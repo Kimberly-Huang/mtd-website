@@ -1,0 +1,8 @@
+# OS files
+.DS_Store
+
+# Source materials (kept local, not part of the website repo)
+*.pptx
+*.docx
+*.pdf
+Code/
