@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JBS Swift Omnichannel Conversion Strategy | Meat the Data</title>
-<meta name="description" content="Interactive strategy dashboard: lifting JBS Swift omnichannel penetration from 2.87% to 6%.">
+<meta name="description" content="Interactive JBS Swift dashboard: an auditable strategy for identifying, activating, and validating first online conversion opportunities.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
   --maxw:1240px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg-2);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:14px}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg-2);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
 h1,h2,h3,h4{font-weight:600;line-height:1.2;letter-spacing:-.015em}
 a{color:inherit;text-decoration:none}
 .num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
@@ -37,10 +37,10 @@ a{color:inherit;text-decoration:none}
 /* ---------- HEADER ---------- */
 header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:700}
 .top-in{max-width:var(--maxw);margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:13.5px;color:var(--navy);white-space:nowrap}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;color:var(--navy);white-space:nowrap}
 .brand svg{width:19px;height:25px;color:var(--navy)}
 .brand b{color:var(--logo-red);font-weight:600}
-.top-meta{font-size:11.5px;color:var(--ink-3);display:flex;gap:14px;align-items:center;white-space:nowrap}
+.top-meta{font-size:13px;color:var(--ink-3);display:flex;gap:14px;align-items:center;white-space:nowrap}
 .top-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:5px}
 @media(max-width:860px){.top-meta{display:none}}
 
@@ -49,12 +49,12 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .tabnav-in{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;justify-content:center}
 .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{background:none;border:none;font-family:inherit;font-size:13.5px;font-weight:500;color:var(--ink-3);
+.tab{background:none;border:none;font-family:inherit;font-size:15px;font-weight:500;color:var(--ink-3);
   padding:13px 20px;cursor:pointer;position:relative;white-space:nowrap;transition:color .15s;letter-spacing:-.005em}
 .tab:hover{color:var(--ink)}
 .tab.on{color:var(--navy);font-weight:600}
 .tab.on::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--navy)}
-@media(max-width:640px){.tabnav-in{padding:0 12px;justify-content:flex-start}.tab{padding:12px 13px;font-size:12.5px}}
+@media(max-width:640px){.tabnav-in{padding:0 12px;justify-content:flex-start}.tab{padding:12px 13px;font-size:14px}}
 
 /* ---------- PAGE ---------- */
 .page{display:none;padding:34px 0 72px;animation:fade .28s ease}
@@ -62,33 +62,47 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .phead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:24px}
 .phead .lhs{max-width:660px}
-.phead .kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
-.phead h2{font-size:23px;margin-top:7px}
-.phead p{color:var(--ink-2);margin-top:8px;font-size:13.5px;line-height:1.6}
-.phead .rhs{text-align:right;font-size:11.5px;color:var(--ink-3);line-height:1.7}
-.phead .rhs b{color:var(--ink);font-weight:600;display:block;font-size:13px}
+.phead .kicker{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.phead h2{font-size:27px;margin-top:7px}
+.phead p{color:var(--ink-2);margin-top:8px;font-size:15px;line-height:1.6}
+.phead .rhs{text-align:right;font-size:13px;color:var(--ink-3);line-height:1.7}
+.phead .rhs b{color:var(--ink);font-weight:600;display:block;font-size:14.5px}
 
 /* ---------- FILTER STRIP (per section) ---------- */
 .fstrip{display:flex;gap:22px;flex-wrap:wrap;align-items:center;background:var(--bg-2);
   border:1px solid var(--line);border-radius:var(--r);padding:11px 15px;margin-bottom:22px}
+.filter-scope{display:flex;flex-direction:column;gap:1px;padding-right:18px;border-right:1px solid var(--line)}
+.filter-scope b{font-size:12px;letter-spacing:.075em;text-transform:uppercase;color:var(--navy)}
+.filter-scope span{font-size:11.5px;color:var(--ink-3);white-space:nowrap}
 .fgrp{display:flex;align-items:center;gap:9px}
-.fgrp>span.lbl{font-size:10.5px;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3)}
+.fgrp>span.lbl{font-size:12px;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3)}
 .pills{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.pills button{background:var(--bg);border:none;font-family:inherit;font-size:12px;font-weight:500;
+.pills button{background:var(--bg);border:none;font-family:inherit;font-size:13.5px;font-weight:500;
   color:var(--ink-2);padding:5px 11px;cursor:pointer;transition:.13s;white-space:nowrap}
 .pills button:hover{background:var(--bg-3)}
 .pills button.on{background:var(--navy);color:#fff;font-weight:600}
-.fchk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--ink-2);cursor:pointer}
+.pills button:disabled{cursor:not-allowed;color:var(--ink-3);background:var(--bg-3);opacity:.55}
+.fgrp.is-disabled{opacity:.72}
+.filter-note{font-size:11.5px;color:var(--amber);white-space:nowrap}
+.fchk{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:var(--ink-2);cursor:pointer}
 .fchk input{accent-color:var(--navy);width:13px;height:13px;cursor:pointer;margin:0}
 .fchk .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
-.fcount{margin-left:auto;font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.fcount{margin-left:auto;font-size:13px;color:var(--ink-3);white-space:nowrap}
 .fcount b{color:var(--navy);font-weight:600}
-.freset{background:none;border:none;font-family:inherit;font-size:11.5px;color:var(--ink-3);
+.freset{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ink-3);
   cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:0}
 .freset:hover{color:var(--red)}
+@media(max-width:640px){
+  .fstrip{gap:12px;padding:12px}
+  .filter-scope{flex-basis:100%;padding:0 0 9px;border-right:0;border-bottom:1px solid var(--line)}
+  .filter-scope span{white-space:normal}
+  .fgrp{align-items:flex-start;flex-wrap:wrap;max-width:100%}
+  .pills{max-width:100%;overflow-x:auto}
+}
 
 /* ---------- GRID + PANELS ---------- */
 .g{display:grid;gap:14px}
+.g>*,.panel,.panel-h,.panel-b{min-width:0}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
@@ -98,20 +112,25 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
 @media(max-width:520px){.g4,.g5{grid-template-columns:1fr}}
 .panel{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
-.panel-h{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.panel-h h3{font-size:13.5px;font-weight:600}
-.panel-h .sub{font-size:11.5px;color:var(--ink-3);font-weight:400}
+.panel.flat{border:none;box-shadow:none;background:transparent}
+.panel.hero{box-shadow:var(--sh-2);border-color:var(--line-2)}
+.panel.hero .panel-h{padding:16px 20px 14px}
+.panel.hero .panel-h h3{font-size:17px}
+.panel.hero .panel-b{padding:20px}
+.panel-h{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.panel-h h3{font-size:15px;font-weight:600}
+.panel-h .sub{font-size:13px;color:var(--ink-3);font-weight:400}
 .panel-b{padding:16px}
 .panel-b.tight{padding:12px 16px}
 
 /* metric */
-.metric{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
-.metric .k{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
-.metric .v{font-size:26px;font-weight:600;margin-top:6px;line-height:1;color:var(--navy)}
+.metric{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh)}
+.metric .k{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.metric .v{font-size:30px;font-weight:600;margin-top:6px;line-height:1;color:var(--navy)}
 .metric .v.red{color:var(--red)}
 .metric .v.teal{color:var(--teal)}
-.metric .s{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.45}
-.metric .delta{font-size:11px;font-weight:600;margin-top:4px}
+.metric .s{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.45}
+.metric .delta{font-size:12.5px;font-weight:600;margin-top:4px}
 .delta.up{color:var(--teal)}.delta.dn{color:var(--red)}
 
 /* chart */
@@ -124,18 +143,25 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .prog{height:26px;background:var(--bg-3);border-radius:4px;position:relative;overflow:hidden;border:1px solid var(--line)}
 .prog .f{position:absolute;left:0;top:0;bottom:0;background:var(--navy);transition:width .9s cubic-bezier(.2,.7,.2,1)}
 .prog .t{position:absolute;top:0;bottom:0;width:2px;background:var(--red)}
-.prog .tl{position:absolute;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:600;color:var(--red);white-space:nowrap;padding-left:7px}
-.prog .vl{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:600;color:#fff;z-index:2}
+.prog .tl{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:var(--red);white-space:nowrap;padding-left:7px}
+.prog .vl{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:#fff;z-index:2}
+.metric-compare{display:grid;grid-template-columns:1fr 34px 1fr;gap:12px;align-items:center}
+.metric-compare .mc{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:13px 14px}
+.metric-compare .mk{font-size:11.5px;font-weight:700;letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3)}
+.metric-compare .mv{font-size:24px;font-weight:600;color:var(--navy);margin-top:3px}
+.metric-compare .md{font-size:12.5px;color:var(--ink-3);line-height:1.45;margin-top:4px}
+.metric-compare .neq{text-align:center;font-size:20px;color:var(--amber);font-weight:600}
+@media(max-width:620px){.metric-compare{grid-template-columns:1fr}.metric-compare .neq{transform:rotate(90deg)}}
 
 /* stacked mix */
 .mix{display:flex;height:10px;border-radius:3px;overflow:hidden}
-.mixleg{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px;font-size:11.5px;color:var(--ink-3)}
+.mixleg{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px;font-size:13px;color:var(--ink-3)}
 .mixleg i{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px}
 .mixleg b{color:var(--ink);font-weight:600}
 
 /* table */
-.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
-.tbl th{text-align:left;padding:9px 12px;font-size:10.5px;font-weight:600;letter-spacing:.06em;
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;padding:9px 12px;font-size:12px;font-weight:600;letter-spacing:.06em;
   text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line-2);white-space:nowrap}
 .tbl td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
 .tbl tr:last-child td{border-bottom:none}
@@ -144,33 +170,33 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .tbl td b{color:var(--ink);font-weight:600}
 .tbl .rt{text-align:right}
 .tblwrap{overflow-x:auto}
-.chip{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:.02em}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:.02em}
 .chip.pass{background:#EDF3EF;color:var(--teal)}
 .chip.new{background:#EDF1F7;color:var(--navy-3)}
 .chip.warn{background:#FBF3E8;color:var(--amber)}
 
 /* ---------- COVER (overview only) ---------- */
-.cover{display:grid;grid-template-columns:auto 1px 1fr;gap:34px;align-items:center;
+.cover{display:grid;grid-template-columns:auto 1px 1fr;gap:30px;align-items:center;
   background:radial-gradient(150% 130% at 16% 8%,#8F1B1B 0%,#6D1414 44%,#4A0D0D 100%);
-  border-radius:var(--r);padding:30px 34px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff}
+  border-radius:var(--r);padding:24px 30px;margin-bottom:22px;position:relative;overflow:hidden;color:#fff}
 .cover::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
   background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 26px)}
 .cover>*{position:relative;z-index:1}
-.cover .cmark{width:150px;height:auto;display:block}
+.cover .cmark{width:132px;height:auto;display:block}
 .cover .cdiv{width:1px;align-self:stretch;background:rgba(255,255,255,.26)}
-.cover .cwm{font-weight:700;letter-spacing:.13em;font-size:15px;color:#F2B7B3;line-height:1}
-.cover .cwm span{display:block;color:#fff;font-weight:700;font-size:34px;letter-spacing:.03em;line-height:1;margin-top:5px}
+.cover .cwm{font-weight:700;letter-spacing:.13em;font-size:16.5px;color:#F2B7B3;line-height:1}
+.cover .cwm span{display:block;color:#fff;font-weight:700;font-size:35px;letter-spacing:.03em;line-height:1;margin-top:5px}
 .cover .csub{margin-top:14px;padding-top:12px;border-top:1px solid rgba(239,90,82,.5);
-  font-size:11px;font-weight:600;letter-spacing:.2em;color:#E6A9A4}
-.cover .ctag{margin-top:16px;font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;max-width:52ch}
-.cover .cstats{display:flex;gap:26px;flex-wrap:wrap;margin-top:16px}
-.cover .cstats div .k{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#E0A99E}
-.cover .cstats div .v{font-size:19px;font-weight:600;margin-top:2px;color:#fff}
+  font-size:12.5px;font-weight:600;letter-spacing:.2em;color:#E6A9A4}
+.cover .ctag{margin-top:13px;font-size:14.5px;color:rgba(255,255,255,.9);line-height:1.6;max-width:58ch}
+.cover .cstats{display:flex;gap:26px;flex-wrap:wrap;margin-top:13px}
+.cover .cstats div .k{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#E0A99E}
+.cover .cstats div .v{font-size:21px;font-weight:600;margin-top:2px;color:#fff}
 @media(max-width:820px){.cover{grid-template-columns:1fr;gap:20px;padding:24px}.cover .cdiv{display:none}.cover .cmark{width:112px}}
 
 /* ---------- v3 additions ---------- */
 .revised{background:#EDF3EF;border:1px solid #C9DED3;border-left:3px solid var(--teal);
-  border-radius:4px;padding:12px 14px;font-size:12px;color:#2C4A3B;line-height:1.6;margin-top:14px}
+  border-radius:4px;padding:12px 14px;font-size:13.5px;color:#2C4A3B;line-height:1.6;margin-top:14px}
 .revised b{color:#1B3327}
 .tiercard{border:1px solid var(--line);border-left:3px solid var(--navy-3);border-radius:var(--r);
   padding:14px 16px;background:var(--bg);margin-bottom:10px}
@@ -180,19 +206,19 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .tiercard.t4{border-left-color:var(--amber)}
 .tiercard.t5{border-left-color:var(--ink-3)}
 .tiercard .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.tiercard .tnum{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.tiercard h4{font-size:13.5px}
-.tiercard .tact{margin-left:auto;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px;
+.tiercard .tnum{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tiercard h4{font-size:15px}
+.tiercard .tact{margin-left:auto;font-size:12px;font-weight:700;padding:2px 8px;border-radius:3px;
   background:var(--bg-3);color:var(--ink-2)}
-.tiercard .tplay{font-size:12px;font-weight:600;color:var(--navy);margin-top:5px}
-.tiercard p{font-size:11.5px;color:var(--ink-3);margin-top:6px;line-height:1.55}
+.tiercard .tplay{font-size:13.5px;font-weight:600;color:var(--navy);margin-top:5px}
+.tiercard p{font-size:13px;color:var(--ink-3);margin-top:6px;line-height:1.55}
 .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:6px}
 .fstep{flex:1;min-width:132px;background:var(--bg-2);border:1px solid var(--line);padding:13px 14px;position:relative}
 .fstep:first-child{border-radius:var(--r) 0 0 var(--r)}
 .fstep:last-child{border-radius:0 var(--r) var(--r) 0;background:#EDF3EF;border-color:#C9DED3}
-.fstep .fn{font-size:10px;font-weight:700;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
-.fstep h5{font-size:12.5px;font-weight:600;margin-top:5px}
-.fstep p{font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.5}
+.fstep .fn{font-size:11.5px;font-weight:700;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
+.fstep h5{font-size:14px;font-weight:600;margin-top:5px}
+.fstep p{font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.5}
 .fstep::after{content:"";position:absolute;right:-7px;top:50%;transform:translateY(-50%) rotate(45deg);
   width:11px;height:11px;background:var(--bg-2);border-top:1px solid var(--line);border-right:1px solid var(--line);z-index:2}
 .fstep:last-child::after{display:none}
@@ -200,22 +226,78 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 @media(max-width:760px){.fstep{min-width:100%;border-radius:var(--r)!important;margin-bottom:6px}.fstep::after{display:none}}
 .painrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
 .painrow:last-child{border-bottom:none}
-.painrow .pl{text-align:right;font-size:12px}
-.painrow .pc{font-size:11px;color:var(--ink-3);text-align:center;min-width:118px}
-.painrow .pr{font-size:12px}
+.painrow .pl{text-align:right;font-size:13.5px}
+.painrow .pc{font-size:12.5px;color:var(--ink-3);text-align:center;min-width:118px}
+.painrow .pr{font-size:13.5px}
 .painbar{height:6px;border-radius:3px;display:inline-block;vertical-align:middle}
+
+/* ---------- methods page ---------- */
+.callout.amber{background:linear-gradient(160deg,#7C4A12,#5A340B)}
+.callout.amber .lb{color:#F0C48A}
+.deftable{margin-top:14px;border-top:1px solid rgba(255,255,255,.18)}
+.defrow{display:grid;grid-template-columns:230px 1fr;gap:16px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.defrow .dk{font-size:13.5px;font-weight:600;color:#fff}
+.defrow .dv{font-size:13px;color:#D8C6AE;line-height:1.6}
+@media(max-width:700px){.defrow{grid-template-columns:1fr;gap:4px}}
+ol.steps{margin:0;padding-left:20px;counter-reset:s}
+ol.steps li{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin-bottom:11px;padding-left:4px}
+ol.steps li b{color:var(--ink)}
+.limit{border-left:2px solid var(--line-2);padding-left:14px}
+.limit h4{font-size:14px;color:var(--ink)}
+.limit p{font-size:13px;color:var(--ink-3);margin-top:6px;line-height:1.65}
+.limit p b{color:var(--ink-2)}
+.gloss dl{margin:0}
+.gloss dt{font-size:13.5px;font-weight:600;color:var(--navy);margin-top:12px}
+.gloss dt:first-child{margin-top:0}
+.gloss dd{font-size:12.5px;color:var(--ink-3);margin:3px 0 0;line-height:1.6}
+
+/* ---------- chart provenance ---------- */
+.prov{font-size:12px;color:var(--ink-3);margin-top:10px;padding-top:9px;border-top:1px solid var(--line);line-height:1.5}
+.prov b{color:var(--ink-2);font-weight:600}
+.prov .sep{color:var(--line-2);margin:0 7px}
+
+/* ---------- a11y ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tab:focus-visible,.pills button:focus-visible,.brow:focus-visible,.pitem:focus-visible,
+.navcard:focus-visible,.switch:focus-visible,a:focus-visible{outline:2px solid var(--navy-3);outline-offset:2px;border-radius:3px}
+.chart-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;line-height:1.55}
+
+/* ---------- data vintage ---------- */
+.vintage{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3)}
+.vintage .pip{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* ---------- print ---------- */
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;font-size:10.5pt}
+  header.top{position:static;border-bottom:2px solid #000}
+  .tabnav,.fstrip,.freset,.navcard .go{display:none!important}
+  .page{display:block!important;page-break-before:always;padding:0 0 18pt}
+  .page:first-of-type{page-break-before:avoid}
+  .panel,.metric,.callout,.readout,.tiercard,.msgbox{break-inside:avoid;box-shadow:none!important}
+  .panel{border:1px solid #bbb!important}
+  .callout{background:#f2f2f2!important;color:#000!important;border:1px solid #bbb}
+  .callout h3,.callout p,.callout .lb{color:#000!important}
+  .ch,.ch.sm,.ch.lg,.ch.xl{height:230px!important;break-inside:avoid}
+  #map{height:260px!important}
+  .phead{border-bottom:1.5px solid #000}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#555}
+  .print-only{display:block!important}
+}
+.print-only{display:none}
 
 /* nav cards on overview */
 .navcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:15px;
   cursor:pointer;transition:.16s;text-align:left;font-family:inherit;box-shadow:var(--sh);display:block;width:100%}
 .navcard:hover{border-color:var(--navy-3);box-shadow:var(--sh-2);transform:translateY(-1px)}
-.navcard .n{font-size:10.5px;font-weight:600;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
-.navcard h4{font-size:13.5px;margin-top:6px}
-.navcard p{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.5}
+.navcard .n{font-size:12px;font-weight:600;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
+.navcard h4{font-size:15px;margin-top:6px}
+.navcard p{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.5}
 .navcard .kv{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
-.navcard .kv .num{font-size:17px;font-weight:600;color:var(--navy)}
-.navcard .kv .lb{font-size:10.5px;color:var(--ink-3)}
-.navcard .go{font-size:11px;color:var(--navy-3);font-weight:600;margin-top:9px}
+.navcard .kv .num{font-size:19px;font-weight:600;color:var(--navy)}
+.navcard .kv .lb{font-size:12px;color:var(--ink-3)}
+.navcard .go{font-size:12.5px;color:var(--navy-3);font-weight:600;margin-top:9px}
 
 /* band rows */
 .brow{display:grid;grid-template-columns:96px 1fr 132px 64px;gap:14px;align-items:center;
@@ -223,32 +305,32 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
   cursor:pointer;transition:.14s;font-family:inherit;width:100%;text-align:left;margin-bottom:6px}
 .brow:hover{border-color:var(--line-2);background:var(--bg-2)}
 .brow.on{border-color:var(--navy);background:var(--bg-2);box-shadow:inset 2px 0 0 var(--navy)}
-.brow .tag{font-size:11.5px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px;text-align:center}
+.brow .tag{font-size:13px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px;text-align:center}
 .brow .bwrap{position:relative;height:20px;background:var(--bg-3);border-radius:3px;overflow:hidden}
 .brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
-.brow .blbl{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:500;color:var(--ink-2);z-index:2}
-.brow .liftv{font-size:15px;font-weight:600;text-align:right}
-.brow .sharev{font-size:11.5px;color:var(--ink-3);text-align:right}
+.brow .blbl{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12.5px;font-weight:500;color:var(--ink-2);z-index:2}
+.brow .liftv{font-size:16.5px;font-weight:600;text-align:right}
+.brow .sharev{font-size:13px;color:var(--ink-3);text-align:right}
 @media(max-width:700px){.brow{grid-template-columns:86px 1fr 62px;gap:10px}.brow .sharev{display:none}}
 
 /* detail readout */
 .readout{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:15px}
 .readout .rh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.readout .rh .tag{font-size:11px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px}
-.readout .rh h4{font-size:13.5px}
-.readout p{font-size:12.5px;color:var(--ink-2);margin-top:9px;line-height:1.6}
+.readout .rh .tag{font-size:12.5px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px}
+.readout .rh h4{font-size:15px}
+.readout p{font-size:14px;color:var(--ink-2);margin-top:9px;line-height:1.6}
 .readout .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
 @media(max-width:620px){.readout .stats{grid-template-columns:repeat(2,1fr)}}
 .readout .stats .st{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:9px 11px}
-.readout .stats .st .k{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
-.readout .stats .st .v{font-size:15px;font-weight:600;margin-top:3px;color:var(--navy)}
+.readout .stats .st .k{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.readout .stats .st .v{font-size:16.5px;font-weight:600;margin-top:3px;color:var(--navy)}
 
 /* axes */
 .axrow{display:grid;grid-template-columns:104px 1fr 42px;gap:11px;align-items:center;margin-bottom:9px}
-.axrow .an{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--ink-2)}
+.axrow .an{font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--ink-2)}
 .axrow .at{height:7px;background:var(--bg-3);border-radius:4px;overflow:hidden}
 .axrow .af{height:100%;background:var(--navy-3);border-radius:4px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
-.axrow .aw{font-size:12px;font-weight:600;text-align:right;color:var(--navy)}
+.axrow .aw{font-size:13.5px;font-weight:600;text-align:right;color:var(--navy)}
 
 /* persona */
 .plist{display:flex;flex-direction:column;gap:5px}
@@ -257,51 +339,52 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
   transition:.14s;font-family:inherit;text-align:left;width:100%}
 .pitem:hover{border-color:var(--line-2);background:var(--bg-2)}
 .pitem.on{border-color:var(--navy);background:var(--bg-2);box-shadow:inset 2px 0 0 var(--navy)}
-.pitem .r{font-size:11px;font-weight:600;color:var(--ink-3);font-family:'IBM Plex Mono',monospace}
-.pitem .nm{font-size:13px;font-weight:600}
-.pitem .tr{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:3px}
+.pitem .r{font-size:12.5px;font-weight:600;color:var(--ink-3);font-family:'IBM Plex Mono',monospace}
+.pitem .nm{font-size:14.5px;font-weight:600}
+.pitem .ev{display:block;font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:1px}
+.pitem .tr{font-size:12px;font-weight:600;padding:2px 7px;border-radius:3px}
 .tier1{background:#EDF3EF;color:var(--teal)}
 .tier2{background:#FBF3E8;color:var(--amber)}
 .tier3{background:var(--bg-3);color:var(--ink-3)}
 .msgbox{border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .msgbox .mh{background:var(--navy);color:#fff;padding:13px 16px}
-.msgbox .mh .lb{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#9DB3CC}
-.msgbox .mh h3{font-size:16px;margin-top:5px;color:#fff;line-height:1.3}
+.msgbox .mh .lb{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#9DB3CC}
+.msgbox .mh h3{font-size:18px;margin-top:5px;color:#fff;line-height:1.3}
 .msgbox .mb{padding:16px}
-.msgbox .mb p{font-size:13px;color:var(--ink-2);margin-bottom:8px;line-height:1.6}
+.msgbox .mb p{font-size:14.5px;color:var(--ink-2);margin-bottom:8px;line-height:1.6}
 .msgbox .offer{background:var(--red-soft);border:1px solid #EFCFC9;border-radius:4px;
-  padding:10px 13px;font-size:12.5px;color:var(--red);font-weight:500;margin-top:12px}
+  padding:10px 13px;font-size:14px;color:var(--red);font-weight:500;margin-top:12px}
 .msgbox .cta{display:inline-block;margin-top:12px;background:var(--navy);color:#fff;
-  font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:4px}
-.msgbox .why{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.6}
+  font-size:14px;font-weight:600;padding:8px 16px;border-radius:4px}
+.msgbox .why{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3);line-height:1.6}
 .msgbox .why b{color:var(--ink-2)}
 
 /* map */
 #map{width:100%;height:440px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.leaflet-popup-content{font-family:'Inter',sans-serif;font-size:12px;margin:9px 12px}
+.leaflet-popup-content{font-family:'Inter',sans-serif;font-size:13.5px;margin:9px 12px}
 .leaflet-container{font-family:'Inter',sans-serif}
 
 /* ruled out */
 .rlist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(max-width:760px){.rlist{grid-template-columns:1fr}}
 .ritem{border:1px solid var(--line);border-left:2px solid var(--red);border-radius:var(--r);padding:13px 15px;background:var(--bg)}
-.ritem h4{font-size:12.5px}
-.ritem p{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.55}
+.ritem h4{font-size:14px}
+.ritem p{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.55}
 
 /* callout */
 .callout{background:var(--navy);color:#fff;border-radius:var(--r);padding:18px 20px}
-.callout .lb{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#E0A99E}
-.callout h3{font-size:15px;margin-top:6px;color:#fff}
-.callout p{font-size:12.5px;color:#C9D5E2;margin-top:7px;line-height:1.6}
+.callout .lb{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#E0A99E}
+.callout h3{font-size:16.5px;margin-top:6px;color:#fff}
+.callout p{font-size:14px;color:#C9D5E2;margin-top:7px;line-height:1.6}
 .callout p b{color:#fff}
-.note{font-size:11.5px;color:var(--ink-3);line-height:1.6;margin-top:12px}
+.note{font-size:13px;color:var(--ink-3);line-height:1.6;margin-top:12px}
 .note b{color:var(--ink-2)}
 
 /* footer */
 footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;margin-top:10px}
-.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-3)}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
 .foot b{color:var(--ink-2);font-weight:600}
-.empty{padding:26px;text-align:center;color:var(--ink-3);font-size:12.5px}
+.empty{padding:26px;text-align:center;color:var(--ink-3);font-size:14px}
 </style>
 </head>
 <body>
@@ -320,22 +403,23 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
     <div class="top-meta">
       <span>JBS Swift · Omnichannel Conversion</span>
-      <span><span class="dot"></span>Snapshot Jun 2026</span>
-      <span>25-month panel</span>
+      <span class="vintage"><span class="pip"></span>Data as of <b style="color:var(--ink-2);margin-left:3px">May 2026</b></span>
+      <span>25-month panel · May 2024 – May 2026</span>
     </div>
   </div>
 </header>
 
 <nav class="tabnav">
   <div class="tabnav-in">
-    <div class="tabs" id="tabs">
-      <button class="tab on" data-p="overview">Overview</button>
-      <button class="tab" data-p="who">Who</button>
-      <button class="tab" data-p="what">What</button>
-      <button class="tab" data-p="how">How</button>
-      <button class="tab" data-p="when">When</button>
-      <button class="tab" data-p="where">Where</button>
-      <button class="tab" data-p="proof">Proof</button>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Analysis sections">
+      <button class="tab on" data-p="overview" role="tab" aria-controls="p-overview" aria-selected="true" tabindex="0">Overview</button>
+      <button class="tab" data-p="who" role="tab" aria-controls="p-who" aria-selected="false" tabindex="-1">Who</button>
+      <button class="tab" data-p="what" role="tab" aria-controls="p-what" aria-selected="false" tabindex="-1">What</button>
+      <button class="tab" data-p="how" role="tab" aria-controls="p-how" aria-selected="false" tabindex="-1">How</button>
+      <button class="tab" data-p="when" role="tab" aria-controls="p-when" aria-selected="false" tabindex="-1">When</button>
+      <button class="tab" data-p="where" role="tab" aria-controls="p-where" aria-selected="false" tabindex="-1">Where</button>
+      <button class="tab" data-p="proof" role="tab" aria-controls="p-proof" aria-selected="false" tabindex="-1">Proof</button>
+      <button class="tab" data-p="methods" role="tab" aria-controls="p-methods" aria-selected="false" tabindex="-1">Methods</button>
     </div>
   </div>
 </nav>
@@ -343,7 +427,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 <main class="wrap">
 
 <!-- ================= OVERVIEW ================= -->
-<section class="page on" id="p-overview">
+<section class="page on" id="p-overview" role="tabpanel" tabindex="0">
   <div class="cover">
     <svg class="cmark" viewBox="0 0 210 172" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Meat the Data logo">
       <path d="M105 22C78 22 57 42 57 68c0 16 9.5 26 17 37 4.8 6.5 6.8 10.5 6.8 17h48.4c0-6.5 2-10.5 6.8-17C143.5 94 153 84 153 68 153 42 132 22 105 22Z" stroke="#fff" stroke-width="3.4"/>
@@ -360,7 +444,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div>
       <div class="cwm">MEAT THE<span>DATA</span></div>
       <div class="csub">JBS SWIFT · OMNICHANNEL CONVERSION</div>
-      <p class="ctag">Connecting the store, the app, and the web into one customer. A targeting engine for lifting omnichannel penetration from 2.87% to 6%.</p>
+      <p class="ctag">Connecting the store, the app, and the web into one customer. An auditable targeting engine for first online conversion.</p>
       <div class="cstats">
         <div><div class="k">Panel</div><div class="v num">25 months</div></div>
         <div><div class="k">Customers</div><div class="v num">2.80M</div></div>
@@ -373,8 +457,8 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Executive summary</div>
-      <h2>Lifting omnichannel penetration from 2.87% to 6%</h2>
-      <p>Penetration has stayed flat for 25 months while the customer base grew. Organic drift will not close the gap, so this analysis builds a targeting engine: who to convert, what to say, how and when to reach them, and where to deploy first.</p>
+      <h2>An auditable path from physical-only to omnichannel</h2>
+      <p>Strict both-channel purchasing has stayed flat for 25 months while the customer base grew. This analysis builds an activation system: who to convert, what to say, how and when to reach them, where to deploy first, and how to measure the result without mixing KPI definitions.</p>
     </div>
     <div class="rhs">
       <b>2,799,245</b>active customers
@@ -384,27 +468,32 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="g g4" style="margin-bottom:14px">
-    <div class="metric"><div class="k">Current penetration</div><div class="v num">2.87%</div><div class="s">80,281 omnichannel customers</div><div class="delta dn">Flat across 25 months</div></div>
-    <div class="metric"><div class="k">Target</div><div class="v num teal">6.00%</div><div class="s">Sponsor-agreed goal</div></div>
-    <div class="metric"><div class="k">Gap to close</div><div class="v num red">87,674</div><div class="s">Net-new omnichannel customers</div></div>
+    <div class="metric"><div class="k">Strict purchase KPI</div><div class="v num">2.87%</div><div class="s">80,281 buy in both channels</div><div class="delta dn">Flat across 25 months</div></div>
+    <div class="metric"><div class="k">Sponsor-reported O2O</div><div class="v num teal">10.82%</div><div class="s">Broader interaction definition</div></div>
+    <div class="metric"><div class="k">Sponsor-stated goal</div><div class="v num">6.00%</div><div class="s">Definition must be aligned before tracking</div></div>
     <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
   </div>
 
   <div class="g g23" style="margin-bottom:14px">
     <div class="panel">
-      <div class="panel-h"><h3>Progress to target</h3><span class="sub">%O2O customers · sponsor-aligned definition</span></div>
+      <div class="panel-h"><h3>Metric reconciliation</h3><span class="sub">Two valid figures, two different definitions</span></div>
       <div class="panel-b">
-        <div class="prog">
-          <div class="f" id="ovFill" style="width:0%"></div>
-          <div class="vl num">2.87%</div>
-          <div class="t" style="left:47.8%"></div>
-          <div class="tl" style="left:47.8%">6% target</div>
+        <div class="metric-compare">
+          <div class="mc">
+            <div class="mk">Dashboard KPI</div><div class="mv num">2.87%</div>
+            <div class="md">Purchased in both physical and Swift-online within a rolling 12 months.</div>
+          </div>
+          <div class="neq">≠</div>
+          <div class="mc">
+            <div class="mk">Sponsor reporting</div><div class="mv num">10.82%</div>
+            <div class="md">Broader O2O interaction definition, covering roughly 302K customers.</div>
+          </div>
         </div>
-        <p class="note" style="margin-top:12px">An omnichannel customer buys in <b>both</b> a físico store and Swift-online within a rolling 12 months. Reaching 6% means converting about <b>87,674</b> customers out of the 2.54M físico-only base, roughly <b>3.5%</b> of that pool.</p>
+        <p class="note"><b>Decision rule.</b> The dashboard uses 2.87% for targeting and validation because it moves only after an online purchase. It does <b>not</b> calculate a gap to the 6% goal until the sponsor confirms which definition the goal uses.</p>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-h"><h3>Active base composition</h3><span class="sub">Jun 2026</span></div>
+      <div class="panel-h"><h3>Active base composition</h3><span class="sub">May 2026</span></div>
       <div class="panel-b">
         <div class="mix">
           <div style="background:var(--fisico);width:90.7%"></div>
@@ -416,7 +505,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
           <span><i style="background:var(--online)"></i>Online-only <b>6.4%</b></span>
           <span><i style="background:var(--omni)"></i>Omni <b>2.9%</b></span>
         </div>
-        <div class="ch sm" style="margin-top:14px"><canvas id="ovMix"></canvas></div>
+        <div class="ch sm" style="margin-top:14px"><canvas id="ovMix" role="img" aria-label="Active base composition: físico 90.7 percent, online-only 6.4 percent, omnichannel 2.9 percent."></canvas><p class="sr-only">Active base composition: físico 90.7 percent, online-only 6.4 percent, omnichannel 2.9 percent.</p></div><p class="prov"><b>% of active customers</b><span class="sep">·</span>n = 2,799,245<span class="sep">·</span>May 2026 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p>
       </div>
     </div>
   </div>
@@ -461,6 +550,12 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
           <div class="kv"><span class="num">8/8</span><span class="lb">criteria cleared</span></div>
           <div class="go">Explore →</div>
         </button>
+        <button class="navcard" data-go="methods">
+          <div class="n">Methods</div><h4>Data and limits</h4>
+          <p>The pipeline, the glossary, the definition gap with the sponsor, and what this data cannot answer.</p>
+          <div class="kv"><span class="num">16 / 10</span><span class="lb">raw / used</span></div>
+          <div class="go">Explore →</div>
+        </button>
       </div>
     </div>
   </div>
@@ -468,7 +563,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="g g2">
     <div class="panel">
       <div class="panel-h"><h3>Why omnichannel matters</h3><span class="sub">Value gap, stable across the panel</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="ovGap"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="ovGap" role="img" aria-label="Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126."></canvas><p class="sr-only">Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126.</p></div><p class="prov"><b>R$ and visits per month</b><span class="sep">·</span>omni vs físico medians<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · SALES_BY_DOCUMENT</b></p></div>
     </div>
     <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
       <div class="lb">The core finding</div>
@@ -480,7 +575,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 </section>
 
 <!-- ================= WHO ================= -->
-<section class="page" id="p-who">
+<section class="page" id="p-who" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Who to target</div>
@@ -494,6 +589,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="fstrip">
+    <div class="filter-scope"><b>Band view</b><span>Updates KPIs and band charts</span></div>
     <div class="fgrp">
       <span class="lbl">P2 view</span>
       <div class="pills" id="fSplit">
@@ -516,17 +612,6 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="size">By size</button>
       </div>
     </div>
-    <div class="fgrp">
-      <span class="lbl">RFV tier</span>
-      <div class="pills" id="fTierW">
-        <button data-v="all" class="on">All</button>
-        <button data-v="Black">Black</button>
-        <button data-v="Gran Reserva">Gran Reserva</button>
-        <button data-v="Ouro">Ouro</button>
-        <button data-v="Prata">Prata</button>
-        <button data-v="Bronze">Bronze</button>
-      </div>
-    </div>
     <div class="fcount" id="whoCount"></div>
   </div>
 
@@ -547,7 +632,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Conversion lift vs base rate</h3><span class="sub">Out-of-time: score month T, observe T+1</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoLift"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoLift" role="img" aria-label="Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate."></canvas><p class="sr-only">Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>n = 2,551,562 scored<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p></div>
     </div>
   </div>
 
@@ -561,23 +646,23 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Band size vs conversion lift</h3><span class="sub">Bubble area is customer count</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoBubble"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoBubble" role="img" aria-label="Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift."></canvas><p class="sr-only">Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift.</p></div><p class="prov"><b>lift × customer count</b><span class="sep">·</span>5 bands, 2.56M customers<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p></div>
     </div>
   </div>
 
-  <div class="fcount" id="whoTierNote" style="display:none;margin:0 0 14px;font-size:12px;
+  <div class="fcount" id="whoTierNote" style="display:none;margin:0 0 14px;font-size:13.5px;
     background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:9px 13px"></div>
 
   <div class="g g2" style="margin-top:14px">
     <div class="panel">
       <div class="panel-h"><h3>Conversion lift by score decile</h3><span class="sub">Decile 10 = highest priority · monotonic from decile 5 up</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoDecile"></canvas></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoDecile" role="img" aria-label="Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10."></canvas><p class="sr-only">Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>4,093 observed converters<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p>
         <p class="note">The curve rises cleanly across the top half, which is what a working rank ordering looks like. Decile 10 converts at <b>2.75×</b> the base rate; the band view concentrates this further because P1 is a rule on top of the score, not just its top slice.</p>
       </div>
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Median sub-scores by band</h3><span class="sub">Where each band's score actually comes from</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoRadar"></canvas></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoRadar" role="img" aria-label="Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0."></canvas><p class="sr-only">Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0.</p></div><p class="prov"><b>sub-score 0–100, median</b><span class="sep">·</span>n = 2,538,552 físico<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p>
         <p class="note">P1 and P2 differ most on <b>READINESS</b> (50 vs 0), which is the has-bought-online signal. P2 and P3 differ most on <b>ENGAGEMENT</b> (67.2 vs 22.4). VALUE barely separates P2 from P3, so engagement is what the ladder is really sorting on below the top.</p>
       </div>
     </div>
@@ -599,7 +684,21 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 
   <div class="g g2" style="margin-top:14px">
     <div class="panel">
-      <div class="panel-h"><h3>RFV tier by band</h3><span class="sub">Customers · the tier filter above highlights a row</span></div>
+      <div class="panel-h"><h3>RFV tier by band</h3><span class="sub">Customers · local highlight control</span></div>
+      <div class="fstrip" style="margin:12px 12px 0">
+        <div class="filter-scope"><b>Table highlight</b><span>Only updates this RFV table</span></div>
+        <div class="fgrp">
+          <span class="lbl">RFV tier</span>
+          <div class="pills" id="fTierW">
+            <button data-v="all" class="on">All</button>
+            <button data-v="Black">Black</button>
+            <button data-v="Gran Reserva">Gran Reserva</button>
+            <button data-v="Ouro">Ouro</button>
+            <button data-v="Prata">Prata</button>
+            <button data-v="Bronze">Bronze</button>
+          </div>
+        </div>
+      </div>
       <div class="tblwrap">
         <table class="tbl">
           <thead><tr><th>Tier</th><th class="rt">P1</th><th class="rt">P2</th><th class="rt">P3</th><th class="rt">Total</th></tr></thead>
@@ -622,7 +721,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 </section>
 
 <!-- ================= WHAT ================= -->
-<section class="page" id="p-what">
+<section class="page" id="p-what" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">What to say</div>
@@ -636,6 +735,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="fstrip">
+    <div class="filter-scope"><b>Persona view</b><span>Updates the persona list and message</span></div>
     <div class="fgrp">
       <span class="lbl">Priority tier</span>
       <div class="pills" id="fTier">
@@ -664,20 +764,37 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div id="pdetail"></div>
   </div>
 
+  <div class="g g2" style="margin-top:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Conversion lift by persona</h3><span class="sub">Relative to the physical-only base</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whatLift" role="img" aria-label="Conversion lift by persona: Prático 1.26 times, Saúde 1.15, Chef 0.99, Anti-Cozinheiro 0.91, Churrasco Premium 0.88, and Churrasco Tradicional 0.79."></canvas><p class="sr-only">Conversion lift by persona: Prático 1.26 times, Saúde 1.15, Chef 0.99, Anti-Cozinheiro 0.91, Churrasco Premium 0.88, and Churrasco Tradicional 0.79.</p></div>
+        <p class="prov"><b>conversion lift vs physical-only base</b><span class="sep">·</span>6 basket personas<span class="sep">·</span>formal prioritisation output<span class="sep">·</span>Source: <b>WHAT PERSONA PRIORITIZATION</b></p>
+        <p class="chart-note">Only Prático and Saúde clear the 1.0× base-rate benchmark. They are the evidence-backed acquisition priority; the remaining personas need lower-cost nurture or stronger experience improvements first.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Persona share of the physical-only base</h3><span class="sub">Audience size and prioritisation trade-off</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whatShare" role="img" aria-label="Persona share of the physical-only base: Churrasco Tradicional 27 percent, Saúde 24, Prático 16, Anti-Cozinheiro 14, Chef 12, and Churrasco Premium 6."></canvas><p class="sr-only">Persona share of the physical-only base: Churrasco Tradicional 27 percent, Saúde 24, Prático 16, Anti-Cozinheiro 14, Chef 12, and Churrasco Premium 6.</p></div>
+        <p class="prov"><b>% of physical-only customers</b><span class="sep">·</span>6 basket personas<span class="sep">·</span>rounded shares<span class="sep">·</span>Source: <b>WHAT PERSONA PRIORITIZATION</b></p>
+        <p class="chart-note">The largest audience is not the best first target: Churrasco Tradicional is 27% of the base but converts at only 0.79×. Saúde combines meaningful scale with above-base lift, while Prático offers the strongest lift.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="panel" style="margin-top:14px">
     <div class="panel-h"><h3>Why persona messaging, not one campaign</h3></div>
     <div class="panel-b">
       <div class="g g3">
-        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Highest potential</div><div class="v num" style="font-size:20px">Prático + Saúde</div><div class="s">Convenience and planning motives map directly onto online ordering, so these two carry the greatest marketing emphasis.</div></div></div>
-        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Needs more incentive</div><div class="v num" style="font-size:20px">Churrasco</div><div class="s">Occasion-driven buyers show lower conversion readiness and need stronger incentives or a better experience first.</div></div></div>
-        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Sequencing</div><div class="v num" style="font-size:20px">Tier 1 → 3</div><div class="s">Messaging complements the running CHEGUEI20 campaign rather than duplicating it, staggered by tier.</div></div></div>
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Highest potential</div><div class="v num" style="font-size:22px">Prático + Saúde</div><div class="s">Convenience and planning motives map directly onto online ordering, so these two carry the greatest marketing emphasis.</div></div></div>
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Needs more incentive</div><div class="v num" style="font-size:22px">Churrasco</div><div class="s">Occasion-driven buyers show lower conversion readiness and need stronger incentives or a better experience first.</div></div></div>
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Sequencing</div><div class="v num" style="font-size:22px">Tier 1 → 3</div><div class="s">Messaging complements the running CHEGUEI20 campaign rather than duplicating it, staggered by tier.</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= HOW & WHEN ================= -->
-<section class="page" id="p-how">
+<section class="page" id="p-how" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">How to reach them</div>
@@ -691,6 +808,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="fstrip">
+    <div class="filter-scope"><b>Complaint chart</b><span>Updates commenter KPIs and theme chart</span></div>
     <div class="fgrp">
       <span class="lbl">Comment set</span>
       <div class="pills" id="fComment">
@@ -723,7 +841,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 
   <div class="panel" style="margin-bottom:14px">
     <div class="panel-h"><h3 id="themeTitle">What customers complain about</h3><span class="sub" id="themeSub">Theme share by channel, all comments</span></div>
-    <div class="panel-b"><div class="ch xl"><canvas id="howTheme"></canvas></div>
+    <div class="panel-b"><div class="ch xl"><canvas id="howTheme" role="img" aria-label="Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality."></canvas><p class="sr-only">Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality.</p></div><p class="prov"><b>% share of comments</b><span class="sep">·</span>n = 181,042 written comments<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p>
       <p class="note"><b>Which NPS figure applies.</b> This page measures the <b>commenting</b> population: the 181,042 survey responses that carried written text, which is the only subset where themes can be extracted. Across <em>all</em> 920,127 responses the scores are higher, physical <b>+86.8</b> and online <b>+77.1</b>, because the detractor rate among commenters is 8.6% versus 2.8% overall, roughly 3× higher. People who take the trouble to write are disproportionately the unhappy ones. Both figures are correct for their own population; the ranking of channels is the same either way, and online trails physical in both.</p>
     </div>
   </div>
@@ -731,7 +849,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="g g23">
     <div class="panel">
       <div class="panel-h"><h3>Pickup beats every delivery mode</h3><span class="sub">NPS and detractor rate by fulfilment modality</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="howMod"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="howMod" role="img" aria-label="NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors."></canvas><p class="sr-only">NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors.</p></div><p class="prov"><b>NPS points and detractor %</b><span class="sep">·</span>online orders only<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p></div>
     </div>
     <div>
       <div class="callout" style="margin-bottom:14px">
@@ -761,7 +879,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 </section>
 
 <!-- ================= WHEN ================= -->
-<section class="page" id="p-when">
+<section class="page" id="p-when" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">When to activate</div>
@@ -775,6 +893,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="fstrip">
+    <div class="filter-scope"><b>Timing views</b><span>Updates charts, KPIs, and handoff table</span></div>
     <div class="fgrp">
       <span class="lbl">Occasion</span>
       <div class="pills" id="fOcc">
@@ -791,7 +910,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="zvec">Online</button>
       </div>
     </div>
-    <div class="fgrp">
+    <div class="fgrp" id="yearFilterGroup">
       <span class="lbl">Year</span>
       <div class="pills" id="fYear">
         <button data-v="all" class="on">All</button>
@@ -799,6 +918,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="2025">2025</button>
         <button data-v="2026">2026</button>
       </div>
+      <span class="filter-note" id="yearFilterNote" hidden>Everyday is available pooled only</span>
     </div>
     <div class="fcount" id="whenCount"></div>
   </div>
@@ -816,7 +936,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <span class="sub" id="seasonSub">ZVEC share of total revenue · 25-month series</span>
     </div>
     <div class="panel-b">
-      <div class="ch lg"><canvas id="whenSeason"></canvas></div>
+      <div class="ch lg"><canvas id="whenSeason" role="img" aria-label="Monthly online revenue share across 25 months, peaking at 5.28 percent in July 2024 and bottoming at 3.82 percent in December 2024."></canvas><p class="sr-only">Monthly online revenue share across 25 months, peaking at 5.28 percent in July 2024 and bottoming at 3.82 percent in December 2024.</p></div><p class="prov"><b>ZVEC % share of revenue</b><span class="sep">·</span>n = 150.4M transactions<span class="sep">·</span>May 2024 – May 2026<span class="sep">·</span>Source: <b>SALES_BY_DOCUMENT</b></p>
       <div class="revised">
         <b>Revised finding.</b> The refreshed 25-month series puts the online-share peak in <b>June–July</b> and the trough in <b>November–January</b> (Dec 2024 = 3.82%, the lowest point in the series). This replaces our earlier assumption of an October–January peak, and it was verified independently within each year rather than pooled.
         <br><br>
@@ -829,14 +949,14 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div class="panel">
       <div class="panel-h"><h3>Day-of-month rhythm</h3><span class="sub" id="domSub">Transaction volume, indexed to each channel's own average</span></div>
       <div class="panel-b">
-        <div class="ch"><canvas id="whenDom"></canvas></div>
+        <div class="ch"><canvas id="whenDom" role="img" aria-label="Transaction volume by day of month. Physical peaks on days 1 and 30; online peaks on days 6 and 7. Both trough on days 24 to 25."></canvas><p class="sr-only">Transaction volume by day of month. Physical peaks on days 1 and 30; online peaks on days 6 and 7. Both trough on days 24 to 25.</p></div><p class="prov"><b>% vs channel average</b><span class="sep">·</span>n = 150.4M transactions<span class="sep">·</span>pooled by day of month<span class="sep">·</span>Source: <b>SALES_BY_DOCUMENT · CALENDAR</b></p>
         <p class="note">Physical peaks at the month boundary (day 1 and day 30, both about +11%). Online peaks about a week later, in the <b>day 6–7</b> window (+18 to 20%). Both bottom out at <b>day 24–25</b>. Day 31 is low only because fewer months have one.</p>
       </div>
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Day of week by occasion</h3><span class="sub" id="dowSub">Transactions, all years</span></div>
       <div class="panel-b">
-        <div class="ch"><canvas id="whenDow"></canvas></div>
+        <div class="ch"><canvas id="whenDow" role="img" aria-label="Transactions by weekday. Barbecue peaks Saturday at roughly three times Monday. Everyday demand also peaks Saturday but far more mildly."></canvas><p class="sr-only">Transactions by weekday. Barbecue peaks Saturday at roughly three times Monday. Everyday demand also peaks Saturday but far more mildly.</p></div><p class="prov"><b>transactions</b><span class="sep">·</span>churrasco 35.7M · everyday 94.9M<span class="sep">·</span>pooled by weekday<span class="sep">·</span>Source: <b>SALES_BY_DOCUMENT · PRODUCTS</b></p>
         <p class="note">Barbecue is a weekend-gathering pattern: Saturday is roughly <b>3× Monday</b>, with Friday the clear lead-in. Everyday demand also peaks Saturday but far more gently, about <b>30%</b> above its flattest day. The shape holds across every WHO band, so it is universal rather than band-specific.</p>
       </div>
     </div>
@@ -845,7 +965,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="g g23" style="margin-bottom:14px">
     <div class="panel">
       <div class="panel-h"><h3>Holiday effect</h3><span class="sub">Average daily revenue, 16 holidays vs 741 non-holidays</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whenHol"></canvas></div>
+      <div class="panel-b"><div class="ch"><canvas id="whenHol" role="img" aria-label="Average daily revenue on holidays versus non-holidays. Online falls about 32 percent on holidays while physical rises about 24 percent."></canvas><p class="sr-only">Average daily revenue on holidays versus non-holidays. Online falls about 32 percent on holidays while physical rises about 24 percent.</p></div><p class="prov"><b>avg daily revenue, R$</b><span class="sep">·</span>16 holidays vs 741 non-holidays<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>SALES_BY_DOCUMENT · HOLIDAYS</b></p>
         <p class="note">Online revenue is lower on holidays for <b>every</b> day of the week without exception. Physical rises, though that uplift is likely concentrated in a few major holidays such as Christmas and Carnaval rather than spread evenly.</p>
       </div>
     </div>
@@ -869,7 +989,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 </section>
 
 <!-- ================= WHERE ================= -->
-<section class="page" id="p-where">
+<section class="page" id="p-where" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Where to deploy</div>
@@ -883,6 +1003,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="fstrip">
+    <div class="filter-scope"><b>Map &amp; footprint</b><span>Updates mapped stores and state chart</span></div>
     <div class="fgrp">
       <span class="lbl">State</span>
       <div class="pills" id="fState">
@@ -908,20 +1029,12 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="rj">Rio</button>
       </div>
     </div>
-    <div class="fgrp">
-      <span class="lbl">Rollout tier</span>
-      <div class="pills" id="fGeo">
-        <button data-v="all" class="on">All</button>
-        <button data-v="1">1</button><button data-v="2">2</button>
-        <button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button>
-      </div>
-    </div>
     <div class="fcount" id="whereCount"></div>
   </div>
 
   <div class="g g4" style="margin-bottom:14px">
     <div class="metric"><div class="k">Stores shown</div><div class="v num" id="msTotal">528</div><div class="s" id="msSplit">230 LOJAS + 298 SWS</div></div>
-    <div class="metric"><div class="k">O2O coverage</div><div class="v num" id="msCov">43.6%</div><div class="s">Only LOJAS can fulfil online orders</div></div>
+    <div class="metric"><div class="k">Mapped O2O share</div><div class="v num" id="msCov">43.6%</div><div class="s">Current map filter; full network is 43.1%</div></div>
     <div class="metric"><div class="k">SWS within 5 km of O2O</div><div class="v num teal">79.2%</div><div class="s">Median distance 1.8 km, network-wide</div></div>
     <div class="metric"><div class="k">Blind-spot cities</div><div class="v num red">38</div><div class="s">SWS present with no LOJAS nearby</div></div>
   </div>
@@ -937,18 +1050,31 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="g g2">
     <div class="panel">
       <div class="panel-h"><h3>O2O enablement by store type</h3><span class="sub">Active stores</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whereBar"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="whereBar" role="img" aria-label="O2O enablement by physical store type. All 355 SWS stores lack O2O; all 269 LOJAS have it."></canvas><p class="sr-only">O2O enablement by physical store type. All 355 SWS stores lack O2O; all 269 LOJAS have it.</p></div><p class="prov"><b>physical touchpoints</b><span class="sep">·</span>n = 624<span class="sep">·</span>current master<span class="sep">·</span>Source: <b>STORES</b></p></div>
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Footprint by state</h3><span class="sub">Stores plotted, current filter</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whereState"></canvas></div></div>
+      <div class="panel-b"><div class="ch"><canvas id="whereState" role="img" aria-label="Stores plotted by state, split into LOJAS and SWS."></canvas><p class="sr-only">Stores plotted by state, split into LOJAS and SWS.</p></div><p class="prov"><b>stores plotted</b><span class="sep">·</span>n = 528 geocoded of 624<span class="sep">·</span>current master<span class="sep">·</span>Source: <b>STORES · GEO_INFORMATION</b></p></div>
     </div>
   </div>
 
   <div class="g g23" style="margin-top:14px">
     <div class="panel">
       <div class="panel-h"><h3>Geographic rollout tiers</h3><span class="sub" id="geoCount"></span></div>
-      <div class="panel-b"><div id="geoList"></div></div>
+      <div class="panel-b">
+        <div class="fstrip" style="margin-bottom:14px">
+          <div class="filter-scope"><b>Tier cards only</b><span>Focuses this rollout list</span></div>
+          <div class="fgrp">
+            <span class="lbl">Rollout tier</span>
+            <div class="pills" id="fGeo">
+              <button data-v="all" class="on">All</button>
+              <button data-v="1">1</button><button data-v="2">2</button>
+              <button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button>
+            </div>
+          </div>
+        </div>
+        <div id="geoList"></div>
+      </div>
     </div>
     <div>
       <div class="panel" style="margin-bottom:14px">
@@ -978,12 +1104,12 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 </section>
 
 <!-- ================= PROOF ================= -->
-<section class="page" id="p-proof">
+<section class="page" id="p-proof" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Proof</div>
-      <h2>Every headline recomputes from raw data, including what failed</h2>
-      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed.</p>
+      <h2>Every headline is reproducible from the analysis notebooks, including what failed</h2>
+      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
     </div>
     <div class="rhs">
       <b>8 / 8</b>criteria cleared
@@ -1025,7 +1151,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <div class="panel-h"><h3>Independent validation</h3><span class="sub">On a table the score never used</span></div>
       <div class="panel-b">
         <p class="note" style="margin-top:0">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, two years of real transactions that were never an input to the score. The priority ordering survives on actual buying behaviour.</p>
-        <div class="ch sm" style="margin-top:10px"><canvas id="proofVal"></canvas></div>
+        <div class="ch sm" style="margin-top:10px"><canvas id="proofVal" role="img" aria-label="Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3."></canvas><p class="sr-only">Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3.</p></div><p class="prov"><b>mean purchases per customer</b><span class="sep">·</span>2 years of transactions<span class="sep">·</span>May 2024 – May 2026<span class="sep">·</span>Source: <b>IDENTIFIED_SALES_DOCUMENT</b></p>
       </div>
     </div>
     <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
@@ -1033,6 +1159,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <h3>One reusable artifact</h3>
       <p>Every view resolves to the same output, refreshable each month on a new snapshot: <b>customer key, band, PriorityScore, and top drivers</b>. That is what Swift's CRM team needs to run the campaign.</p>
       <p>Ranking robustness across weight variants is <b>ρ = 0.99–1.00</b>, so the list does not swing on judgement calls about weights.</p>
+      <p style="font-size:13.5px;color:#9FB4C9;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.16);line-height:1.6"><b style="color:#C9D5E2">How this dashboard works.</b> Analysis runs offline in Python and DuckDB over the Parquet extract. This page carries only the resulting aggregates, so filtering is instant and no customer-level data reaches the browser. It does not re-query the 150M-row source at view time.</p>
     </div>
   </div>
 
@@ -1042,12 +1169,144 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 </section>
 
+<!-- ================= METHODS ================= -->
+<section class="page" id="p-methods" role="tabpanel" tabindex="0">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">Methods, definitions and limits</div>
+      <h2>What the data can and cannot tell us</h2>
+      <p>Everything on this dashboard rests on one proprietary extract and a set of definitions that need to be explicit, because two of them differ from the sponsor's own reporting. This page states the pipeline, the vocabulary, and the boundaries.</p>
+    </div>
+    <div class="rhs">
+      <b>16 raw tables</b>10 used directly in this dashboard
+      <b>Python + DuckDB</b>over Parquet
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-bottom:18px">
+    <div class="lb">Definition reconciliation</div>
+    <h3>Why we report 2.87% and the sponsor reports 10.82%</h3>
+    <p>Both figures are correct under their own definition, and the gap is definitional rather than an error in either analysis.</p>
+    <div class="deftable">
+      <div class="defrow"><div class="dk">This dashboard · <b>2.87%</b></div><div class="dv">A customer counts as omnichannel only if they purchased in <b>both</b> a físico store <b>and</b> Swift-online within a rolling 12 months. 80,281 of 2,799,245 active customers.</div></div>
+      <div class="defrow"><div class="dk">Sponsor reporting · <b>10.82%</b></div><div class="dv">A broader O2O definition covering roughly 302K of 2.79M customers. It admits channel interactions that our stricter both-channel purchase test excludes.</div></div>
+    </div>
+    <p style="margin-top:12px"><b>Why this matters for the target.</b> The original brief framed the goal as “approximately 3% to 6%,” but the later sponsor reporting uses a broader O2O definition that is already at 10.82%. We use the stricter purchase definition for targeting because it moves only after a customer completes an actual online <em>purchase</em>. Until the sponsor confirms which definition governs the 6% goal, <b>this dashboard does not calculate a 2.87% → 6% gap</b>.</p>
+  </div>
+
+  <div class="g g2" style="margin-bottom:18px">
+    <div class="panel">
+      <div class="panel-h"><h3>The pipeline</h3><span class="sub">How 150M rows become the numbers on these pages</span></div>
+      <div class="panel-b">
+        <ol class="steps">
+          <li><b>Read selectively.</b> Queries run in DuckDB directly against partitioned Parquet files using glob patterns. Only the columns a question needs are read; the full dataset is never loaded into memory.</li>
+          <li><b>Clean.</b> Internal bonus entries (BNFC), null document rows, and business-to-business document types (ZVFS, ZVAM, ZZPJ) are excluded from consumer analysis. SALES_BY_DOCUMENT cleans from 150,861,282 to 150,413,704 rows.</li>
+          <li><b>Respect the snapshot grain.</b> CUSTOMER_BEHAVIOR is a rolling 12-month monthly snapshot, so monthly files are never concatenated. A single month is used for point-in-time KPIs, paired months for transition analysis, the full panel only for trends.</li>
+          <li><b>Score and validate.</b> The priority score is computed on one month, then validated out-of-time by observing who actually converted the following month.</li>
+          <li><b>Aggregate and publish.</b> Only the resulting aggregates are embedded in this page. No customer-level records are shipped to the browser.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Source tables</h3><span class="sub">The 10 tables behind the views on this dashboard</span></div>
+      <div class="tblwrap">
+        <table class="tbl">
+          <thead><tr><th>Table</th><th class="rt">Scale</th><th>Used for</th></tr></thead>
+          <tbody>
+            <tr><td><b>CUSTOMER_BEHAVIOR</b></td><td class="rt num">123.7M</td><td>Priority score, bands, tiers</td></tr>
+            <tr><td><b>SALES_BY_DOCUMENT</b></td><td class="rt num">150.4M</td><td>Channel split, timing, basket economics</td></tr>
+            <tr><td><b>IDENTIFIED_SALES_DOC</b></td><td class="rt num">39.8M</td><td>Store breadth, independent validation</td></tr>
+            <tr><td><b>NPS</b></td><td class="rt num">920K</td><td>Channel satisfaction, complaint themes</td></tr>
+            <tr><td><b>PERSONAL_INFO</b></td><td class="rt num">4.0M</td><td>Age axis</td></tr>
+            <tr><td><b>STORES</b></td><td class="rt num">923</td><td>O2O capability, map, geography</td></tr>
+            <tr><td><b>PRODUCTS</b></td><td class="rt num">6,671</td><td>Category and occasion cuts</td></tr>
+            <tr><td><b>CALENDAR / HOLIDAYS</b></td><td class="rt num">9.0K</td><td>Day-of-week, payday, holiday timing</td></tr>
+            <tr><td><b>CAMPAIGN_PRODUCTS</b></td><td class="rt num">6,090</td><td>Campaign window effects</td></tr>
+            <tr><td><b>GEO_INFORMATION</b></td><td class="rt num">1.0M</td><td>City coordinates</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:18px">
+    <div class="panel-h"><h3>Limitations we own</h3><span class="sub">What this analysis structurally cannot answer</span></div>
+    <div class="panel-b">
+      <div class="g g2">
+        <div class="limit">
+          <h4>Customers cannot be linked to stores</h4>
+          <p>CUSTOMER_BEHAVIOR carries no store or geographic identifier. This is why geography is used as a <b>deployment filter</b> for campaign rollout and never as an input to the individual customer score. Any claim of the form "customers near store X behave like Y" is outside what this data supports.</p>
+        </div>
+        <div class="limit">
+          <h4>READINESS partly overlaps the outcome</h4>
+          <p>A prior online purchase is close to the very thing that makes someone omnichannel, so P1's edge is partly true by construction. P1 is best read as <b>the strongest actionable signal</b>, not as a pure prediction. The 730-day cutoff on that axis is a judgement call, disclosed rather than tuned.</p>
+        </div>
+        <div class="limit">
+          <h4>NPS is not representative of the base</h4>
+          <p>Survey response rate is roughly <b>2.7%</b> of active customers, and once split by channel the detractor sample thins further. NPS is used as an experience diagnostic to decide <em>what to fix</em>, never as a per-customer targeting signal. We tested it as a churn predictor and it failed.</p>
+        </div>
+        <div class="limit">
+          <h4>Geographic and identity coverage is partial</h4>
+          <p>Only <b>73 of 125</b> store cities match GEO_INFORMATION, and <b>528 of 624</b> touchpoints have usable coordinates. Separately, <b>29%</b> of physical receipts are anonymous, and each anonymous visit generates a new ID, so those shoppers cannot be profiled or targeted at all.</p>
+        </div>
+        <div class="limit">
+          <h4>Missingness in the behavioural table</h4>
+          <p>About <b>22 of 84</b> CUSTOMER_BEHAVIOR columns exceed 50% missingness and are excluded. <code>Recencia_Online</code> is populated for only about <b>5.9%</b> of físico customers, which makes it a powerful but sparse signal. Age is usable for roughly 60% of customers; missing values default to neutral.</p>
+        </div>
+        <div class="limit">
+          <h4>Some findings await sponsor confirmation</h4>
+          <p>The treatment of ZVLV (Retail Store Sales, 1.85% of rows but 25% of revenue) is unresolved, as is whether the QR Code channel connects structurally to SWS locations. The holiday uplift on physical is likely concentrated in a few major holidays rather than spread evenly, and warrants a per-holiday split.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Glossary</h3><span class="sub">Portuguese terms and document codes used throughout</span></div>
+    <div class="panel-b">
+      <div class="g g3 gloss">
+        <div><dl>
+          <dt>Físico</dt><dd>Physical-only customer: buys in store, never online, in the last 12 months. 90.7% of the active base.</dd>
+          <dt>Omnichannel</dt><dd>Buys in both a physical store and Swift-online within a rolling 12 months.</dd>
+          <dt>O2O</dt><dd>Online-to-offline. A store is O2O-enabled if it can fulfil an online order.</dd>
+        </dl></div>
+        <div><dl>
+          <dt>LOJAS</dt><dd>Company-owned Swift stores. All are O2O-enabled.</dd>
+          <dt>SWS</dt><dd>Store-within-store, inside partner supermarkets such as Carrefour and GPA. None are O2O-enabled, and their customers cannot be individually tracked.</dd>
+          <dt>CPF</dt><dd>Brazilian individual tax ID. Required to link an in-store purchase to a known customer record.</dd>
+        </dl></div>
+        <div><dl>
+          <dt>ZPDV</dt><dd>Document code for physical point-of-sale consumer transactions, about 94% of receipts.</dd>
+          <dt>ZVEC</dt><dd>Document code for online consumer orders. "ZVEC share" means online share of revenue.</dd>
+          <dt>LF / LO</dt><dd>Survey channel codes for the physical store and online journeys.</dd>
+        </dl></div>
+        <div><dl>
+          <dt>RFV</dt><dd>Recência, Frequência, Valor. The loyalty scoring system behind the customer tiers.</dd>
+          <dt>Tiers</dt><dd>Bronze → Prata (silver) → Ouro (gold) → Gran Reserva → Black, lowest to highest.</dd>
+          <dt>Label_Cesta</dt><dd>Basket persona label, the segmentation behind the six personas on the What page.</dd>
+        </dl></div>
+        <div><dl>
+          <dt>Churrasco</dt><dd>Brazilian barbecue. A weekend-centred social occasion, and a distinct purchasing pattern.</dd>
+          <dt>Dia-a-dia</dt><dd>Everyday staples, as opposed to occasion buying.</dd>
+          <dt>Click &amp; Collect</dt><dd>Order online, collect in store. "Retire na Loja".</dd>
+        </dl></div>
+        <div><dl>
+          <dt>Lift</dt><dd>Conversion rate of a group divided by the base rate (0.16%/month). A 6.4× lift means 6.4 times more likely to convert.</dd>
+          <dt>NPS</dt><dd>Promoter% minus detractor% on a 0–10 scale, ranging −100 to +100. Not an average score.</dd>
+          <dt>Out-of-time validation</dt><dd>Score one month, then check who actually converted the next month.</dd>
+        </dl></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
   <div class="wrap foot">
     <span>Team <b>Meat the Data</b> · Arnav Goenka, Bhavya Kumar, Jiayi Nie, Jie Lin, Kimberly Huang, Sowris Kumar Sripathy, Xinyue Fan, Yirui Chen</span>
     <span>Columbia University · Capstone in Applied Analytics · <b>Python + DuckDB</b></span>
+    <span>Data vintage <b>May 2026</b> · scored on the 202605 snapshot · figures reproducible from the analysis notebooks</span>
   </div>
 </footer>
 
@@ -1071,32 +1330,32 @@ const BANDS=[
   prof:"Bronze and Prata mass base. Low frequency and long recency, so reach them only through low-cost broad channels. Everyday staples dominate; churrasco is secondary.",
   stats:[["Mean purchases","4.3"],["Recency","~169 days"],["Tier","Bronze / Prata"],["Size","1,610,526"]]}
 ];
-const P2MERGED={id:"P2",lab:"P2",full:"P2 · High value, no online yet",n:861629,c:"#34567D",lift:1.00,
+const P2MERGED={id:"P2",lab:"P2",full:"P2 · High value, no online yet",n:861629,c:"#34567D",lift:1.05,
   prof:"High-tier and physical-only. The single biggest conversion opportunity by volume, which is why we normally split it by readiness rather than treating it as one block.",
   stats:[["Mean purchases","18.0"],["Recency","~25 days"],["Tier","High, no online"],["Size","861,629"]]};
 const AXES=[["VALUE",.31],["ENGAGEMENT",.22],["READINESS",.22],["MOMENTUM",.13],["AGE",.12]];
 const PERSONAS=[
- {id:"pratico",name:"Prático",rank:1,tier:1,basket:"everyday",head:"Less Time Shopping. More Time for Everything Else.",
+ {id:"pratico",name:"Prático",rank:1,tier:1,basket:"everyday",share:16,lift:1.26,head:"Less Time Shopping. More Time for Everything Else.",
   msg:["Busy weeks deserve easier shopping.","Whether you're restocking everyday essentials or planning the week ahead, shopping online lets you get what you need without another unnecessary trip to the store. If a Swift store is nearby, choose Click &amp; Collect for an even more convenient experience.","Make shopping one less thing to worry about."],
   cta:"Shop Smarter Today",why:"Convenience-driven staples buyers with the highest online conversion potential of any persona, so they carry the greatest marketing emphasis.",
   lead:"Click &amp; Collect",bask:"Dia-a-dia staples"},
- {id:"saude",name:"Saúde",rank:2,tier:1,basket:"everyday",head:"Leaner Choices. Smarter Shopping. Easier Planning.",
+ {id:"saude",name:"Saúde",rank:2,tier:1,basket:"everyday",share:24,lift:1.15,head:"Leaner Choices. Smarter Shopping. Easier Planning.",
   msg:["Healthy eating starts with healthier shopping.","Build your basket with fresh everyday choices while spending less time shopping and more time caring for yourself and your family.","Planning healthy meals has never been easier."],
   cta:"Build Your Healthy Basket Today",why:"Health-conscious planners with the second-highest conversion potential. Planning behaviour maps naturally onto online ordering.",
   lead:"Planned basket",bask:"Lean proteins, fresh"},
- {id:"chef",name:"Chef",rank:3,tier:2,basket:"everyday",head:"New Cuts. New Ideas. Your Next Great Dish Starts Here.",
+ {id:"chef",name:"Chef",rank:3,tier:2,basket:"everyday",share:12,lift:.99,head:"New Cuts. New Ideas. Your Next Great Dish Starts Here.",
   msg:["Love discovering new ingredients?","Explore premium cuts and exciting new products for your next recipe. Shopping online gives you more inspiration and more choices, all in one place.","Turn everyday cooking into something worth sharing."],
   cta:"Discover More Online",why:"Exploration-driven cooks. Online wins here on range rather than speed, so the full assortment is the value proposition.",
   lead:"Range and discovery",bask:"Premium, varied cuts"},
- {id:"anti",name:"Anti-Cozinheiro",rank:4,tier:2,basket:"everyday",head:"Good Food, Without Making Cooking a Project.",
+ {id:"anti",name:"Anti-Cozinheiro",rank:4,tier:2,basket:"everyday",share:14,lift:.91,head:"Good Food, Without Making Cooking a Project.",
   msg:["Some days you just want a good meal without spending hours planning and shopping.","Use CHEGUEI20 on your first online purchase and make grocery shopping one of the easiest parts of your day."],
   cta:"Order in Just a Few Clicks",why:"Low-effort buyers. Simplicity is the entire pitch, so the message stays short and the path to checkout stays shorter.",
   lead:"Speed and simplicity",bask:"Ready and easy"},
- {id:"premium",name:"Churrasco Premium",rank:5,tier:3,basket:"churrasco",head:"Make the Next Churrasco One They Will Remember.",
+ {id:"premium",name:"Churrasco Premium",rank:5,tier:3,basket:"churrasco",share:6,lift:.88,head:"Make the Next Churrasco One They Will Remember.",
   msg:["Planning a special barbecue?","Choose premium cuts for your next gathering and enjoy R$20 off your first online purchase with CHEGUEI20.","Because memorable celebrations start with exceptional ingredients."],
   cta:"Explore Premium Selections",why:"Occasion-driven premium buyers with lower conversion readiness than the everyday personas, so the incentive has to work harder.",
   lead:"Occasion planning",bask:"Premium churrasco"},
- {id:"trad",name:"Churrasco Tradicional",rank:6,tier:3,basket:"churrasco",head:"Your Classic Churrasco Favorites, All in One Place.",
+ {id:"trad",name:"Churrasco Tradicional",rank:6,tier:3,basket:"churrasco",share:27,lift:.79,head:"Your Classic Churrasco Favorites, All in One Place.",
   msg:["Weekend barbecue coming up?","Get everyone's favorites together with your first online purchase and enjoy R$20 off using CHEGUEI20.","Everything you need for the churrasco everyone has been waiting for."],
   cta:"Start Planning Your Next Churrasco",why:"Traditional weekend barbecue buyers with the lowest readiness of the six. Needs stronger incentives or an improved experience before conversion becomes comparable to Tier 1.",
   lead:"Weekend bundle",bask:"Classic churrasco"}
@@ -1138,24 +1397,99 @@ const RULED=[
 const $=id=>document.getElementById(id);
 const fmt=n=>n.toLocaleString('en-US');
 const abbr=n=>n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
+const PILLFN={};
 function pills(id,fn){const el=$(id);if(!el)return;
+  PILLFN[id]=fn;
   el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-    [...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(b.dataset.v)})}
+    setPill(id,b.dataset.v,true)});
+  el.setAttribute('role','group');
+  [...el.children].forEach(b=>{b.setAttribute('aria-pressed',b.classList.contains('on')?'true':'false')});
+}
+function setPill(id,v,run){
+  const el=$(id);if(!el)return;
+  const b=[...el.children].find(x=>x.dataset.v===v);if(!b)return;
+  [...el.children].forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false')});
+  b.classList.add('on');b.setAttribute('aria-pressed','true');
+  if(run&&PILLFN[id])PILLFN[id](v);
+  if(run)syncURL();
+}
+/* filter state <-> URL */
+const URLMAP={s:'fSplit',b:'fBand',o:'fSort',t:'fTierW',pt:'fTier',pb:'fBasket',
+  c:'fComment',th:'fTheme',oc:'fOcc',ch:'fChan',y:'fYear',st:'fState',z:'fZoom',g:'fGeo',pr:'fProof',cr:'fCrit'};
+const PAGE_FILTERS={
+  who:['fSplit','fBand','fSort','fTierW'],
+  what:['fTier','fBasket'],
+  how:['fComment','fTheme','cLF','cLO'],
+  when:['fOcc','fChan','fYear'],
+  where:['fState','fZoom','fGeo','showLojas','showSWS','showRadius'],
+  proof:['fProof','fCrit']
+};
+const pageAllows=(id,page=CUR)=>(PAGE_FILTERS[page]||[]).includes(id);
+let URL_READY=false;
+function syncURL(){
+  if(!URL_READY)return;
+  const p=new URLSearchParams();
+  for(const [k,id] of Object.entries(URLMAP)){
+    if(!pageAllows(id))continue;
+    const el=$(id);if(!el||!el.children.length)continue;
+    const on=[...el.children].find(x=>x.classList.contains('on'));
+    if(on&&on!==el.children[0])p.set(k,on.dataset.v);
+  }
+  ['showLojas','showSWS','showRadius'].forEach((id,i)=>{
+    if(!pageAllows(id))return;
+    const el=$(id);if(!el)return;
+    const def=(id!=='showRadius');
+    if(el.checked!==def)p.set({showLojas:'lj',showSWS:'sw',showRadius:'rd'}[id],el.checked?'1':'0');
+  });
+  ['cLF','cLO'].forEach(id=>{const el=$(id);if(pageAllows(id)&&el&&!el.checked)p.set(id==='cLF'?'lf':'lo','0')});
+  const q=p.toString();
+  history.replaceState(null,'','#'+CUR+(q?'?'+q:''));
+}
+function readURL(){
+  const raw=location.hash.replace('#','');
+  const [page,qs]=raw.split('?');
+  const p=new URLSearchParams(qs||'');
+  for(const [k,id] of Object.entries(URLMAP)){ if(pageAllows(id,page)&&p.has(k))setPill(id,p.get(k),true) }
+  const cbs={lj:'showLojas',sw:'showSWS',rd:'showRadius',lf:'cLF',lo:'cLO'};
+  for(const [k,id] of Object.entries(cbs)){
+    if(pageAllows(id,page)&&p.has(k)){const el=$(id);if(el)el.checked=p.get(k)==='1'}
+  }
+  return page;
+}
 
 /* ================= TABS ================= */
-const PAGES=['overview','who','what','how','when','where','proof'];
+const PAGES=['overview','who','what','how','when','where','proof','methods'];
 let CUR='overview';
 function go(p){
   if(!PAGES.includes(p))return;
   CUR=p;
   document.querySelectorAll('.page').forEach(el=>el.classList.toggle('on',el.id==='p-'+p));
-  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('on',el.dataset.p===p));
-  history.replaceState(null,'','#'+p);
+  document.querySelectorAll('.tab').forEach(el=>{
+    const on=el.dataset.p===p;
+    el.classList.toggle('on',on);
+    el.setAttribute('aria-selected',on?'true':'false');
+    el.setAttribute('tabindex',on?'0':'-1');
+  });
+  const activeTab=document.querySelector(`.tab[data-p="${p}"]`),tabsEl=$('tabs');
+  if(activeTab&&tabsEl&&matchMedia('(max-width:640px)').matches){
+    tabsEl.scrollTo({left:activeTab.offsetLeft-(tabsEl.clientWidth-activeTab.offsetWidth)/2,behavior:'smooth'});
+  }
   scrollTo({top:0,behavior:'instant'});
+  syncURL();
   if(p==='where')setTimeout(()=>{initMap();map&&map.invalidateSize()},60);
   initCharts(p);
 }
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)go(b.dataset.p)});
+$('tabs').addEventListener('keydown',e=>{
+  const keys={ArrowRight:1,ArrowLeft:-1,Home:'first',End:'last'};
+  if(!(e.key in keys))return;
+  e.preventDefault();
+  const i=PAGES.indexOf(CUR);
+  let n = keys[e.key]==='first'?0 : keys[e.key]==='last'?PAGES.length-1
+        : (i+keys[e.key]+PAGES.length)%PAGES.length;
+  go(PAGES[n]);
+  const btn=document.querySelector(`.tab[data-p="${PAGES[n]}"]`); if(btn&&btn.focus)btn.focus();
+});
 document.querySelectorAll('.navcard').forEach(c=>c.onclick=()=>go(c.dataset.go));
 
 /* ================= WHO ================= */
@@ -1212,7 +1546,7 @@ function drawWhat(){
   if(rows.length&&!rows.find(p=>p.id===pActive))pActive=rows[0].id;
   $('plist').innerHTML=rows.length?rows.map(p=>`
     <button class="pitem ${p.id===pActive?'on':''}" data-p="${p.id}">
-      <span class="r num">${p.rank}</span><span class="nm">${p.name}</span>
+      <span class="r num">${p.rank}</span><span class="nm">${p.name}<span class="ev num">${p.share}% of base · ${p.lift.toFixed(2)}× lift</span></span>
       <span class="tr tier${p.tier}">Tier ${p.tier}</span>
     </button>`).join(''):'<div class="empty">No personas match this filter.</div>';
   document.querySelectorAll('.pitem').forEach(el=>el.onclick=()=>{pActive=el.dataset.p;drawWhat()});
@@ -1224,6 +1558,7 @@ function drawWhat(){
         <div class="offer">${OFFER}</div>
         <div><span class="cta">${p.cta}</span></div>
         <div class="why"><b>Why this message.</b> ${p.why}<br><br>
+          <b>Evidence:</b> ${p.share}% of physical-only customers &nbsp;·&nbsp; ${p.lift.toFixed(2)}× conversion lift<br>
           <b>Lead mechanic:</b> ${p.lead} &nbsp;·&nbsp; <b>Basket:</b> ${p.bask}</div>
       </div></div>`:'<div class="panel"><div class="empty">Select a persona to see its message.</div></div>';
   $('whatCount').innerHTML=`Showing <b>${rows.length}</b> of 6 personas`;
@@ -1268,7 +1603,7 @@ function drawHow(){
 }
 pills('fComment',v=>{hComment=v;drawHow()});
 pills('fTheme',v=>{hTheme=v;drawHow()});
-['cLF','cLO'].forEach(id=>$(id).addEventListener('change',()=>{if(CH.howTheme)updHowChart()}));
+['cLF','cLO'].forEach(id=>$(id).addEventListener('change',()=>{if(CH.howTheme)updHowChart();syncURL()}));
 
 /* ================= WHERE ================= */
 let wState='all';
@@ -1276,7 +1611,7 @@ let map=null,lyL=null,lyS=null,lyR=null;
 const VIEWS={all:{c:[-22.5,-46.5],z:6},sp_metro:{c:[-23.55,-46.63],z:10},sp_capital:{c:[-23.56,-46.65],z:12},rj:{c:[-22.9,-43.2],z:10}};
 function storeSet(){return wState==='all'?STORES:STORES.filter(s=>s[6]===wState)}
 function initMap(){
-  if(map)return;
+  if(map||typeof L==='undefined')return;
   map=L.map('map',{scrollWheelZoom:false}).setView(VIEWS.all.c,VIEWS.all.z);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
@@ -1308,7 +1643,7 @@ pills('fState',v=>{wState=v;drawMap();
   if(b){[...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');
     if(map)map.setView(VIEWS[z].c,VIEWS[z].z)}});
 pills('fZoom',v=>{if(map)map.setView(VIEWS[v].c,VIEWS[v].z)});
-['showLojas','showSWS','showRadius'].forEach(id=>$(id).addEventListener('change',drawMap));
+['showLojas','showSWS','showRadius'].forEach(id=>$(id).addEventListener('change',()=>{drawMap();syncURL()}));
 
 /* ================= PROOF ================= */
 let prShow='all',prCrit='all';
@@ -1384,12 +1719,25 @@ function drawWhen(){
     return true;});
   $('timingBody').innerHTML=rows.map(t=>`<tr><td><b>${t[0]}</b></td><td>${t[1]}</td>
     <td><b>${t[2]}</b></td><td>${t[3]}</td><td style="color:var(--red)">${t[4]}</td>
-    <td style="font-size:11.5px">${t[5]}</td></tr>`).join('');
+    <td style="font-size:13px">${t[5]}</td></tr>`).join('');
   if(CH.whenSeason)updWhen();
 }
-pills('fOcc',v=>{occ=v;drawWhen()});
+function syncYearAvailability(){
+  const pooledOnly=occ==='diaadia';
+  $('yearFilterGroup').classList.toggle('is-disabled',pooledOnly);
+  $('yearFilterNote').hidden=!pooledOnly;
+  [...$('fYear').querySelectorAll('button:not([data-v="all"])')].forEach(b=>{
+    b.disabled=pooledOnly;
+    b.setAttribute('aria-disabled',pooledOnly?'true':'false');
+  });
+  if(pooledOnly&&yr!=='all'){yr='all';setPill('fYear','all',false)}
+}
+pills('fOcc',v=>{occ=v;syncYearAvailability();drawWhen()});
 pills('fChan',v=>{chan=v;drawWhen()});
-pills('fYear',v=>{yr=v;drawWhen()});
+pills('fYear',v=>{
+  if(occ==='diaadia'&&v!=='all'){yr='all';setPill('fYear','all',false);drawWhen();return}
+  yr=v;drawWhen()
+});
 function seasonRows(){return yr==='all'?ZVEC_SERIES:ZVEC_SERIES.filter(r=>r[0].startsWith(yr))}
 function updWhen(){
   const s=seasonRows();
@@ -1411,8 +1759,8 @@ function updWhen(){
   const dsw=[];
   const chu=yr==='all'?DOW_CHU:DOW_CHU_Y[yr];
   if(occ!=='diaadia')dsw.push({label:'Barbecue',data:chu,backgroundColor:RED,borderRadius:3});
-  if(occ!=='churrasco'&&yr==='all')dsw.push({label:'Everyday',data:DOW_DIA,backgroundColor:NAVY2,borderRadius:3});
-  CH.whenDow.data.datasets=dsw.length?dsw:[{label:'Barbecue',data:chu,backgroundColor:RED,borderRadius:3}];
+  if(occ!=='churrasco')dsw.push({label:'Everyday',data:DOW_DIA,backgroundColor:NAVY2,borderRadius:3});
+  CH.whenDow.data.datasets=dsw;
   CH.whenDow.update();
 }
 
@@ -1448,11 +1796,11 @@ const GEOTIERS=[
  {t:5,name:"38 blind-spot cities",play:"Deprioritise",
   d:"SWS-only cities such as Niterói, Sumaré and Jandira. No LOJAS means no Click & Collect, and home delivery to smaller cities is hardest to execute well.",
   act:"Later",states:[]}];
-const CITYGAP=[["Brasília",72.6,35.2,37.4,"Online experience is weakest here, fix before pushing"],
- ["Osasco",78.9,48.8,30.1,"High physical satisfaction, poor online, big conversion risk"],
- ["São Paulo",69.0,43.6,25.4,"Core market, meaningful gap to close"],
- ["Sorocaba",73.6,62.1,11.5,"Smallest gap, online experience already decent"],
- ["São Caetano",67.5,57.8,9.7,"Best online performance relative to physical"]];
+const CITYGAP=[["Brasília",72.3,37.4,34.9,"Online experience is weakest here, fix before pushing"],
+ ["Osasco",79.2,47.6,31.6,"High physical satisfaction, poor online, big conversion risk"],
+ ["São Paulo",69.2,43.4,25.8,"Core market, meaningful gap to close"],
+ ["Sorocaba",73.9,60.6,13.3,"Smaller gap, online experience already decent"],
+ ["São Caetano do Sul",67.6,57.0,10.6,"Best online performance relative to physical"]];
 const SWSCITIES=[["Guarulhos",80,"12 SWS, only 3 LOJAS, massive anonymous traffic"],
  ["Guarujá",83,"5 SWS, 1 LOJA, tourist and seasonal market"],
  ["Rio de Janeiro",75,"21 SWS, 7 LOJAS, second largest market"],
@@ -1503,35 +1851,39 @@ function drawGeo(){
   $('gapBody').innerHTML=CITYGAP.map(c=>`<tr><td><b>${c[0]}</b></td>
     <td class="rt num">+${c[1].toFixed(1)}</td><td class="rt num">+${c[2].toFixed(1)}</td>
     <td class="rt num"><b style="color:${c[3]>25?'var(--red)':c[3]>15?'var(--amber)':'var(--teal)'}">${c[3].toFixed(1)}pp</b></td>
-    <td style="font-size:11.5px">${c[4]}</td></tr>`).join('');
+    <td style="font-size:13px">${c[4]}</td></tr>`).join('');
   $('swsBody').innerHTML=SWSCITIES.map(c=>`<tr><td><b>${c[0]}</b></td>
-    <td class="rt num">${c[1]}%</td><td style="font-size:11.5px">${c[2]}</td></tr>`).join('');
+    <td class="rt num">${c[1]}%</td><td style="font-size:13px">${c[2]}</td></tr>`).join('');
   $('partBody').innerHTML=PARTNERS.map(p=>`<tr><td><b>${p[0]}</b></td>
-    <td class="rt num">${p[1]} km</td><td style="font-size:11.5px;color:${p[1]<2?'var(--teal)':'var(--ink-3)'}">${p[2]}</td></tr>`).join('');
+    <td class="rt num">${p[1]} km</td><td style="font-size:13px;color:${p[1]<2?'var(--teal)':'var(--ink-3)'}">${p[2]}</td></tr>`).join('');
   $('geoCount').innerHTML=`Showing <b>${rows.length}</b> of 5 tiers`;
 }
 pills('fGeo',v=>{geoTier=v;drawGeo()});
 
 /* ================= CHARTS ================= */
-Chart.defaults.font.family="'Inter',sans-serif";
-Chart.defaults.color='#6B7887';
-Chart.defaults.font.size=11;
+const CHARTS_AVAILABLE=typeof Chart!=='undefined';
+if(CHARTS_AVAILABLE){
+  Chart.defaults.font.family="'Inter',sans-serif";
+  Chart.defaults.color='#6B7887';
+  Chart.defaults.font.size=12.5;
+}
 const GRID='#E7DDD0',NAVY='#182F4A',NAVY2='#213B58',NAVY3='#34567D',RED='#B01B1B',TEAL='#3E6B57',AMBER='#D9793A',LIGHT='#A8BDD4';
 const CH={};
 const baseOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
 
 function initCharts(p){
+  if(typeof Chart==='undefined')return;
   if(p==='overview'&&!CH.ovMix){
     CH.ovMix=new Chart($('ovMix'),{type:'doughnut',
       data:{labels:['Físico','Online-only','Omni'],datasets:[{data:[90.7,6.4,2.9],
         backgroundColor:[NAVY2,AMBER,TEAL],borderColor:'#fff',borderWidth:2}]},
-      options:{...baseOpt,cutout:'64%',plugins:{legend:{position:'right',labels:{boxWidth:9,usePointStyle:true,padding:11,font:{size:11}}},
+      options:{...baseOpt,cutout:'64%',plugins:{legend:{position:'right',labels:{boxWidth:9,usePointStyle:true,padding:11,font:{size:12.5}}},
         tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'%'}}}}});
     CH.ovGap=new Chart($('ovGap'),{type:'bar',
       data:{labels:['Monthly spend (R$)','Visits / month','Receipt value (R$)'],datasets:[
         {label:'Físico-only',data:[29.21,2,126],backgroundColor:LIGHT,borderRadius:3},
         {label:'Omnichannel',data:[100.78,6,264],backgroundColor:NAVY,borderRadius:3}]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}}},
         scales:{y:{grid:{color:GRID},border:{display:false}},x:{grid:{display:false}}}}});
   }
   if(p==='who'&&!CH.whoLift){
@@ -1546,28 +1898,44 @@ function initCharts(p){
     CH.whoBubble=new Chart($('whoBubble'),{type:'bubble',
       data:{datasets:rows.map(b=>({label:b.lab,data:[{x:b.lift,y:b.n/1000,r:Math.sqrt(b.n)/90}],
         backgroundColor:b.c+'cc',borderColor:b.c}))},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'right',labels:{boxWidth:8,usePointStyle:true,font:{size:10}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'right',labels:{boxWidth:8,usePointStyle:true,font:{size:11.5}}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.x.toFixed(2)+'× lift, '+fmt(Math.round(c.raw.y*1000))+' customers'}}},
-        scales:{x:{title:{display:true,text:'conversion lift',font:{size:10}},grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'}},
-          y:{title:{display:true,text:'customers (000s)',font:{size:10}},grid:{color:GRID},border:{display:false},type:'logarithmic'}}}});
+        scales:{x:{title:{display:true,text:'conversion lift',font:{size:11.5}},grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'}},
+          y:{title:{display:true,text:'customers (000s)',font:{size:11.5}},grid:{color:GRID},border:{display:false},type:'logarithmic'}}}});
   }
   if(p==='how'&&!CH.howTheme){
     CH.howTheme=new Chart($('howTheme'),{type:'bar',data:{labels:[],datasets:[]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+        plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}},
           tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
         scales:{x:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'}},
-          y:{grid:{display:false},ticks:{font:{size:11}}}}}});
+          y:{grid:{display:false},ticks:{font:{size:12.5}}}}}});
     updHowChart();
     CH.howMod=new Chart($('howMod'),{type:'bar',
       data:{labels:MODS.map(m=>m[0]),datasets:[
         {label:'NPS',data:MODS.map(m=>m[1]),backgroundColor:TEAL,borderRadius:3,yAxisID:'y'},
         {label:'Detractor %',data:MODS.map(m=>m[2]),backgroundColor:RED,borderRadius:3,yAxisID:'y2'}]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.dataset.label==='NPS'?'+':'')+c.raw.toFixed(1)+(c.dataset.label==='NPS'?'':'%')}}},
-        scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:11.5}}},
           y:{position:'left',grid:{color:GRID},border:{display:false},ticks:{color:TEAL,callback:v=>'+'+v},min:0,max:70},
           y2:{position:'right',grid:{display:false},border:{display:false},ticks:{color:RED,callback:v=>v+'%'},min:0,max:35}}}});
+  }
+  if(p==='what'&&!CH.whatLift){
+    CH.whatLift=new Chart($('whatLift'),{type:'bar',
+      data:{labels:PERSONAS.map(p=>p.name),datasets:[{data:PERSONAS.map(p=>p.lift),
+        backgroundColor:PERSONAS.map(p=>p.lift>1?TEAL:p.lift>=.9?NAVY3:LIGHT),borderRadius:3}]},
+      options:{...baseOpt,indexAxis:'y',plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'× the physical-only base rate'}}},
+        scales:{x:{min:.7,max:1.35,grid:{color:GRID},border:{display:false},ticks:{callback:v=>v.toFixed(1)+'×'}},
+          y:{grid:{display:false}}}}});
+    CH.whatShare=new Chart($('whatShare'),{type:'bar',
+      data:{labels:PERSONAS.map(p=>p.name),datasets:[{data:PERSONAS.map(p=>p.share),
+        backgroundColor:PERSONAS.map(p=>p.tier===1?NAVY:p.tier===2?NAVY3:LIGHT),borderRadius:3}]},
+      options:{...baseOpt,indexAxis:'y',plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw+'% of the physical-only base'}}},
+        scales:{x:{beginAtZero:true,suggestedMax:30,grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'}},
+          y:{grid:{display:false}}}}});
   }
   if(p==='when'&&!CH.whenSeason){
     CH.whenSeason=new Chart($('whenSeason'),{type:'line',
@@ -1576,27 +1944,27 @@ function initCharts(p){
       options:{...baseOpt,plugins:{legend:{display:false},
         tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'% online share'}}},
         scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'},
-          suggestedMin:3.5,suggestedMax:5.5,title:{display:true,text:'ZVEC share of revenue',font:{size:10}}},
-          x:{grid:{display:false},ticks:{maxRotation:60,minRotation:45,font:{size:9},autoSkip:true,maxTicksLimit:14}}}}});
+          suggestedMin:3.5,suggestedMax:5.5,title:{display:true,text:'ZVEC share of revenue',font:{size:11.5}}},
+          x:{grid:{display:false},ticks:{maxRotation:60,minRotation:45,font:{size:11},autoSkip:true,maxTicksLimit:14}}}}});
     CH.whenDom=new Chart($('whenDom'),{type:'line',
       data:{labels:DOM.map(d=>d[0]),datasets:[]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.raw>=0?'+':'')+c.raw.toFixed(1)+'% vs avg'}}},
         scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>(v>0?'+':'')+v+'%'},
-          title:{display:true,text:'vs channel average',font:{size:10}}},
-          x:{grid:{display:false},title:{display:true,text:'day of month',font:{size:10}},ticks:{font:{size:9},maxTicksLimit:16}}}}});
+          title:{display:true,text:'vs channel average',font:{size:11.5}}},
+          x:{grid:{display:false},title:{display:true,text:'day of month',font:{size:11.5}},ticks:{font:{size:11},maxTicksLimit:16}}}}});
     CH.whenDow=new Chart($('whenDow'),{type:'bar',data:{labels:DOW,datasets:[]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.raw/1e6).toFixed(2)+'M transactions'}}},
         scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>(v/1e6).toFixed(0)+'M'}},x:{grid:{display:false}}}}});
     CH.whenHol=new Chart($('whenHol'),{type:'bar',
       data:{labels:HOL.map(r=>r[0]),datasets:[
         {label:'Holiday',data:HOL.map(r=>r[1]),backgroundColor:AMBER,borderRadius:3},
         {label:'Non-holiday',data:HOL.map(r=>r[2]),backgroundColor:NAVY2,borderRadius:3}]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': R$'+(c.raw/1e6).toFixed(2)+'M/day'}}},
         scales:{y:{type:'logarithmic',grid:{color:GRID},border:{display:false},
-          ticks:{callback:v=>'R$'+(v/1e6).toFixed(1)+'M'},title:{display:true,text:'avg daily revenue (log)',font:{size:10}}},
+          ticks:{callback:v=>'R$'+(v/1e6).toFixed(1)+'M'},title:{display:true,text:'avg daily revenue (log)',font:{size:11.5}}},
           x:{grid:{display:false}}}}});
     updWhen();
   }
@@ -1607,25 +1975,25 @@ function initCharts(p){
       options:{...baseOpt,plugins:{legend:{display:false},
         tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'× base · '+DECILES[c.dataIndex][2]+' converters'}}},
         scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'},
-          title:{display:true,text:'lift vs 0.16% base rate',font:{size:10}}},x:{grid:{display:false}}}}});
+          title:{display:true,text:'lift vs 0.16% base rate',font:{size:11.5}}},x:{grid:{display:false}}}}});
     CH.whoRadar=new Chart($('whoRadar'),{type:'radar',
       data:{labels:['VALUE','ENGAGEMENT','READINESS','MOMENTUM','AGE'],
         datasets:[{label:'P1',data:SUBSCORES.P1,borderColor:NAVY,backgroundColor:'rgba(24,47,74,.14)',borderWidth:2,pointRadius:2.5},
           {label:'P2',data:SUBSCORES.P2,borderColor:NAVY3,backgroundColor:'rgba(52,86,125,.10)',borderWidth:2,pointRadius:2.5},
           {label:'P3',data:SUBSCORES.P3,borderColor:LIGHT,backgroundColor:'rgba(168,189,212,.10)',borderWidth:2,pointRadius:2.5}]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}}},
         scales:{r:{min:0,max:100,grid:{color:GRID},angleLines:{color:GRID},
-          pointLabels:{font:{size:9.5}},ticks:{stepSize:25,font:{size:8},backdropColor:'transparent'}}}}});
+          pointLabels:{font:{size:12.5}},ticks:{stepSize:25,font:{size:10.5},backdropColor:'transparent'}}}}});
   }
   if(p==='where'&&!CH.whereBar){
     CH.whereBar=new Chart($('whereBar'),{type:'bar',
-      data:{labels:['SWS','LOJAS','Online Store','VANS'],datasets:[
-        {label:'O2O enabled',data:[0,230,226,1],backgroundColor:NAVY2,borderRadius:3,stack:'s'},
-        {label:'Not enabled',data:[314,0,1,23],backgroundColor:RED,borderRadius:3,stack:'s'}]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+      data:{labels:['SWS','LOJAS'],datasets:[
+        {label:'O2O enabled',data:[0,269],backgroundColor:NAVY2,borderRadius:3,stack:'s'},
+        {label:'Not enabled',data:[355,0],backgroundColor:RED,borderRadius:3,stack:'s'}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}}},
         scales:{y:{stacked:true,grid:{color:GRID},border:{display:false}},x:{stacked:true,grid:{display:false}}}}});
     CH.whereState=new Chart($('whereState'),{type:'bar',data:{labels:[],datasets:[]},
-      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:12.5}}}},
         scales:{y:{stacked:true,grid:{color:GRID},border:{display:false}},x:{stacked:true,grid:{display:false}}}}});
     updWhereChart();
   }
@@ -1635,7 +2003,7 @@ function initCharts(p){
         backgroundColor:[NAVY,NAVY3,LIGHT],borderRadius:3}]},
       options:{...baseOpt,indexAxis:'y',plugins:{legend:{display:false},
         tooltip:{callbacks:{label:c=>c.raw+' mean purchases per customer'}}},
-        scales:{x:{grid:{color:GRID},border:{display:false},title:{display:true,text:'mean purchases per customer (2 years)',font:{size:10}}},
+        scales:{x:{grid:{color:GRID},border:{display:false},title:{display:true,text:'mean purchases per customer (2 years)',font:{size:11.5}}},
           y:{grid:{display:false}}}}});
   }
 }
@@ -1671,9 +2039,11 @@ function updWhereChart(){
 
 /* ================= INIT ================= */
 drawWho();drawWhoV2();drawRobust();drawWhat();drawHow();drawWhen();drawMap();drawGeo();drawProof();
-const hash=location.hash.replace('#','');
-if(PAGES.includes(hash))go(hash); else initCharts('overview');
-setTimeout(()=>{$('ovFill').style.width=(2.87/6*47.8)+'%'},260);
+const startPage=readURL();
+URL_READY=true;
+drawWho();drawWhoV2();drawWhat();drawHow();drawWhen();drawMap();drawGeo();drawProof();
+if(PAGES.includes(startPage))go(startPage); else {initCharts('overview');syncURL();}
+window.addEventListener('beforeprint',()=>PAGES.forEach(initCharts));
 </script>
 </body>
 </html>
