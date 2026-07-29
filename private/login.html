@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in | Meat the Data</title>
+<meta name="description" content="Secure access to the JBS Swift omnichannel conversion dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8F4;--white:#FFFFFF;--navy:#182F4A;--navy-2:#213B58;--navy-3:#34567D;
+  --ink:#14100E;--ink-2:#4A423C;--muted:#7D7168;--line:#E7DDD0;--line-2:#D6C8B6;
+  --red:#B01B1B;--soft-red:#FDF4F2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:var(--paper);font-family:'Inter',system-ui,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;display:grid;place-items:center;padding:28px}
+button,input{font:inherit}
+.shell{width:min(900px,100%);min-height:530px;display:grid;grid-template-columns:1.05fr .95fr;
+  background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  box-shadow:0 22px 60px rgba(24,47,74,.14)}
+.intro{background:var(--navy);color:#fff;padding:54px;display:flex;flex-direction:column;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;font-size:15px;font-weight:600}
+.mark{width:35px;height:35px;border:1px solid #6E8297;border-radius:50%;display:grid;place-items:center;
+  font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.04em}
+.brand b{color:#F2B7B3}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#E0A99E}
+.intro h1{font-size:34px;line-height:1.14;letter-spacing:-.025em;margin-top:10px;max-width:350px}
+.intro p{font-size:14px;line-height:1.7;color:#C9D5E2;margin-top:15px;max-width:355px}
+.affiliation{font-size:12px;color:#9FB4C9;border-top:1px solid #53697F;padding-top:15px}
+.form-side{padding:54px 48px;display:flex;flex-direction:column;justify-content:center}
+.form-side>.eyebrow{color:var(--red)}
+.form-side h2{font-size:25px;line-height:1.2;letter-spacing:-.02em;margin-top:7px;color:var(--navy)}
+.form-side>p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+form{margin-top:26px}
+label.field{display:block;margin-bottom:16px}
+.field>span:first-child{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.input-wrap{position:relative;display:block}
+input[type="text"],input[type="password"]{width:100%;height:43px;border:1px solid var(--line-2);border-radius:5px;
+  background:var(--white);color:var(--ink);font-size:14px;padding:0 12px;outline:none}
+input.has-action{padding-right:58px}
+input:focus{border-color:var(--navy-3);box-shadow:0 0 0 3px rgba(52,86,125,.1)}
+.toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;
+  color:var(--navy-3);font-size:11.5px;font-weight:600;padding:5px;cursor:pointer}
+.options{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 0 18px}
+.remember{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px;cursor:pointer}
+.remember input{accent-color:var(--navy);width:14px;height:14px}
+.secure{font-size:11.5px;color:var(--muted)}
+.submit{width:100%;height:43px;border:0;border-radius:5px;background:var(--navy);color:#fff;
+  font-size:14px;font-weight:600;cursor:pointer}
+.submit:hover{background:var(--navy-2)}
+.submit:disabled{opacity:.65;cursor:wait}
+.error{min-height:20px;color:var(--red);font-size:12.5px;margin-top:10px}
+.privacy{font-size:11.5px!important;color:var(--muted)!important;border-top:1px solid var(--line);
+  margin-top:18px!important;padding-top:14px;line-height:1.55!important}
+.privacy b{color:var(--ink-2)}
+@media(max-width:760px){
+  body{padding:16px}.shell{grid-template-columns:1fr;min-height:0}
+  .intro{padding:28px}.intro h1{font-size:27px}.intro p{margin-bottom:24px}
+  .form-side{padding:32px 28px}.affiliation{display:none}
+}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="intro" aria-label="Project introduction">
+    <div class="brand"><span class="mark">MTD</span><span>Meat the <b>Data</b></span></div>
+    <div>
+      <div class="eyebrow">JBS Swift · Capstone 2026</div>
+      <h1>From physical loyalty to the first online purchase.</h1>
+      <p>An auditable omnichannel activation strategy built from 25 months of customer, transaction, experience and store-network evidence.</p>
+    </div>
+    <div class="affiliation">Columbia University · Applied Analytics</div>
+  </section>
+  <section class="form-side">
+    <div class="eyebrow">Secure dashboard</div>
+    <h2>Sign in to continue</h2>
+    <p>Use the credentials shared with reviewers and project stakeholders.</p>
+    <form id="loginForm" novalidate>
+      <label class="field">
+        <span>Username</span>
+        <input id="username" name="username" type="text" autocomplete="username" required autofocus aria-describedby="loginError">
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <span class="input-wrap">
+          <input class="has-action" id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="loginError">
+          <button class="toggle" id="passwordToggle" type="button" aria-label="Show password">Show</button>
+        </span>
+      </label>
+      <div class="options">
+        <label class="remember"><input id="remember" type="checkbox" checked> Keep me signed in</label>
+        <span class="secure">Server-verified access</span>
+      </div>
+      <button class="submit" id="loginSubmit" type="submit">Open dashboard</button>
+      <div class="error" id="loginError" role="alert" aria-live="polite"></div>
+    </form>
+    <p class="privacy"><b>Protected session.</b> Credentials are verified by the server and the browser receives a signed, HttpOnly session cookie.</p>
+  </section>
+</main>
+<script>
+const form=document.getElementById('loginForm');
+const username=document.getElementById('username');
+const password=document.getElementById('password');
+const remember=document.getElementById('remember');
+const submit=document.getElementById('loginSubmit');
+const error=document.getElementById('loginError');
+
+form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  error.textContent='';
+  if(!username.value.trim()||!password.value){
+    error.textContent='Enter your username and password.';
+    (!username.value.trim()?username:password).focus();
+    return;
+  }
+  submit.disabled=true;
+  submit.textContent='Signing in…';
+  try{
+    const response=await fetch('/api/auth?action=login',{
+      method:'POST',
+      credentials:'same-origin',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({username:username.value.trim(),password:password.value,remember:remember.checked})
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.error||'Sign in failed. Please try again.');
+    location.replace('/');
+  }catch(err){
+    error.textContent=err.message;
+    password.focus();
+    password.select();
+  }finally{
+    submit.disabled=false;
+    submit.textContent='Open dashboard';
+  }
+});
+document.getElementById('passwordToggle').addEventListener('click',event=>{
+  const show=password.type==='password';
+  password.type=show?'text':'password';
+  event.currentTarget.textContent=show?'Hide':'Show';
+  event.currentTarget.setAttribute('aria-label',show?'Hide password':'Show password');
+  password.focus();
+});
+</script>
+</body>
+</html>

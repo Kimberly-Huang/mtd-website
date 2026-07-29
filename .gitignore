@@ -6,3 +6,9 @@
 *.docx
 *.pdf
 Code/
+
+# Local and Vercel environment files
+.env
+.env.local
+.vercel/
+.vercel

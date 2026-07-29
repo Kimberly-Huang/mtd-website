@@ -1,6 +1,6 @@
 # JBS Swift — Omnichannel Conversion Strategy
 
-An interactive strategy dashboard for identifying, activating and validating JBS Swift's first-online-conversion opportunities, built on a 25-month proprietary dataset.
+An authenticated strategy dashboard for identifying, activating and validating JBS Swift's first-online-conversion opportunities, built on a 25-month proprietary dataset.
 
 **Live:** https://mtd-website-tau.vercel.app/
 
@@ -21,16 +21,18 @@ A single-page application structured as a decision chain rather than a report. T
 
 ## Tech stack
 
-- **Vanilla HTML / CSS / JavaScript** — no framework, no build step, no `node_modules`. The entire application is one static `index.html`.
+- **Vanilla HTML / CSS / JavaScript** — the dashboard remains framework-free and client-side.
+- **Vercel Functions** — server-rendered access gate, environment-backed credentials and signed HttpOnly sessions.
 - **Chart.js 4** — 17 charts: line, bar, stacked bar, horizontal bar, doughnut, radar and bubble.
 - **Leaflet 1.9** — store network map with 528 geocoded locations, layer toggles and 5 km proximity circles.
-- **Vercel** — static deployment, redeployed automatically on every push to `main`.
+- **Vercel** — functions and private HTML templates are redeployed automatically on every push to `main`.
 
 ## Implementation notes
 
 - **One narrative spine, not two modes.** Overview is the guided executive story; Who through Methods are the drill-down layers. Decision banners and next-section handoffs preserve the same logic across every tab without removing analytical depth.
 - **Two analytically separate pilots.** The recommendation coordinates a customer-level CRM activation pilot with a geography-level store rollout, but does not claim a customer-to-store join that the source data cannot support.
-- **Client-side filtering throughout.** 16 pill-group filters and 5 checkbox filters recompute charts, KPI cards and tables from in-memory data. No backend, no API calls, no database connection.
+- **Server-enforced access.** Unauthenticated requests receive only the login document. The dashboard HTML is bundled inside a Vercel Function and is returned only after a signed session cookie is verified.
+- **Client-side filtering throughout.** 16 pill-group filters and 5 checkbox filters recompute charts, KPI cards and tables from in-memory data. No database connection or customer-level browser payload is required.
 - **Scoped controls.** Every filter strip states which component it updates; table-only and rollout-only controls sit next to their respective outputs.
 - **Shareable filter state.** Only the active page's selections are encoded in the URL (`#where?st=SP&z=sp_metro&g=1`), so analytical views can be linked without unrelated filter residue.
 - **Lazy chart initialisation.** Charts are constructed on first visit to their tab rather than on page load.
@@ -61,24 +63,41 @@ Stated here rather than buried, and surfaced on the Methods page in the applicat
 
 Structural limitations of the data — customers cannot be linked to stores, READINESS partly overlaps the outcome, NPS is not representative of the base — are documented on the Methods page.
 
-## Run locally
+## Authentication
 
-No build is required. For the closest match to production, serve the folder locally:
+The login uses three server-only environment variables:
 
 ```bash
-python3 -m http.server 8765
+MTD_AUTH_USERNAME=...
+MTD_AUTH_PASSWORD=... # at least 10 characters
+MTD_AUTH_SECRET=...   # random value, at least 32 characters
 ```
 
-Then open `http://127.0.0.1:8765/`. An internet connection is used only to load Chart.js, Leaflet, map tiles and fonts from their CDNs.
+The password and signing secret are never embedded in the browser bundle or committed to the repository. Successful login issues a signed `HttpOnly`, `Secure`, `SameSite=Lax` cookie. Sessions expire after 12 hours, or after 7 days when **Keep me signed in** is selected.
+
+## Run locally
+
+Copy `.env.example` to an ignored `.env.local`, set the three values, then run with Vercel's local runtime:
+
+```bash
+npx vercel dev
+```
+
+An internet connection is also used to load Chart.js, Leaflet, map tiles and fonts from their CDNs.
 
 ## Deployment
 
-Vercel deploys the static site automatically from the `main` branch of this repository.
+Vercel deploys automatically from the `main` branch. Configure `MTD_AUTH_USERNAME`, `MTD_AUTH_PASSWORD` and `MTD_AUTH_SECRET` for Production, Preview and Development before the first protected deployment.
 
 ## Structure
 
-```
-index.html      # the entire application
-README.md
-.gitignore
+```text
+api/auth.js              # login, logout and session endpoint
+api/site.js              # server-side login/dashboard gate
+lib/auth.js              # signed-cookie authentication
+private/login.html       # public login experience
+private/dashboard.html   # returned only after session verification
+public/robots.txt
+tests/auth.test.mjs
+vercel.json
 ```
