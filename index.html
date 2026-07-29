@@ -169,9 +169,9 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 @media(max-width:820px){.cover{grid-template-columns:1fr;gap:20px;padding:24px}.cover .cdiv{display:none}.cover .cmark{width:112px}}
 
 /* ---------- v3 additions ---------- */
-.pending{background:#FBF3E8;border:1px solid #E8D3B4;border-left:3px solid var(--amber);
-  border-radius:4px;padding:12px 14px;font-size:12px;color:#6B4A22;line-height:1.6;margin-top:14px}
-.pending b{color:#4A3216}
+.revised{background:#EDF3EF;border:1px solid #C9DED3;border-left:3px solid var(--teal);
+  border-radius:4px;padding:12px 14px;font-size:12px;color:#2C4A3B;line-height:1.6;margin-top:14px}
+.revised b{color:#1B3327}
 .tiercard{border:1px solid var(--line);border-left:3px solid var(--navy-3);border-radius:var(--r);
   padding:14px 16px;background:var(--bg);margin-bottom:10px}
 .tiercard.t1{border-left-color:var(--teal)}
@@ -441,6 +441,12 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
           <div class="n">How</div><h4>How to reach them</h4>
           <p>Online complaints are logistics, not product. Pickup outperforms every delivery mode.</p>
           <div class="kv"><span class="num">+57.3</span><span class="lb">pickup NPS</span></div>
+          <div class="go">Explore →</div>
+        </button>
+        <button class="navcard" data-go="when">
+          <div class="n">When</div><h4>When to activate</h4>
+          <p>Barbecue peaks Saturday, online peaks in the first week, and the annual window is June to July.</p>
+          <div class="kv"><span class="num">3×</span><span class="lb">Sat vs Mon</span></div>
           <div class="go">Explore →</div>
         </button>
         <button class="navcard" data-go="where">
@@ -796,7 +802,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="g g4" style="margin-bottom:14px">
-    <div class="metric"><div class="k">Barbecue Saturday peak</div><div class="v num">3×</div><div class="s">vs Monday, the weakest day. Most robust finding in this framework</div></div>
+    <div class="metric"><div class="k">Annual campaign window</div><div class="v num teal">June–July</div><div class="s">Peak online share. Avoid Nov–Jan, the annual trough</div></div>
     <div class="metric"><div class="k">Best send window</div><div class="v num" id="mWin">Thu–Fri</div><div class="s" id="mWinS">Ahead of the Saturday churrasco peak</div></div>
     <div class="metric"><div class="k">Day-of-month trough</div><div class="v num red">Day 24–25</div><div class="s">Both channels bottom out here, avoid it</div></div>
     <div class="metric"><div class="k">Holiday online effect</div><div class="v num red">−32%</div><div class="s">Online softens on holidays; physical rises +24%</div></div>
@@ -809,10 +815,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
     <div class="panel-b">
       <div class="ch lg"><canvas id="whenSeason"></canvas></div>
-      <div class="pending">
-        <b>Pending team alignment.</b> This refreshed series puts the online-share peak in <b>June–July</b> and the trough in <b>November–January</b> (Dec 2024 = 3.82%, the lowest point in the series). Our earlier roadmap assumed an October–January peak, so the campaign window is being reconciled with the team before it reaches the sponsor.
+      <div class="revised">
+        <b>Revised finding.</b> The refreshed 25-month series puts the online-share peak in <b>June–July</b> and the trough in <b>November–January</b> (Dec 2024 = 3.82%, the lowest point in the series). This replaces our earlier assumption of an October–January peak, and it was verified independently within each year rather than pooled.
         <br><br>
-        Note these are not in conflict: December has the highest <b>absolute</b> sales (R$89.6M vs R$58.5M in June) but the lowest <b>online share</b>. The month that sells the most is the hardest month to move people online.
+        The two are not in conflict, and the distinction is the point: December has the highest <b>absolute</b> sales but the lowest <b>online share</b>. <b>The month that sells the most is the hardest month to move people online</b>, so the conversion campaign should not chase the revenue peak.
       </div>
     </div>
   </div>
