@@ -1,4 +1,4 @@
-# JBS Swift — Omnichannel Conversion Strategy
+# JBS Swift Omnichannel Conversion Strategy
 
 An authenticated strategy dashboard for identifying, activating and validating JBS Swift's first-online-conversion opportunities, built on a 25-month proprietary dataset.
 
@@ -6,7 +6,7 @@ An authenticated strategy dashboard for identifying, activating and validating J
 
 ## What it is
 
-A single-page application structured as a decision chain rather than a report. The Overview tells the executive story in five decisions — diagnose, prioritise, design, orchestrate and validate — while seven evidence tabs preserve the detailed charts, controls, assumptions and methods.
+A single-page application structured as a decision chain rather than a report. The Overview tells the executive story through five decisions: diagnose, prioritise, design, orchestrate and validate. Seven evidence tabs preserve the detailed charts, controls, assumptions and methods.
 
 | Section | Question | Key interactions |
 |---|---|---|
@@ -21,11 +21,11 @@ A single-page application structured as a decision chain rather than a report. T
 
 ## Tech stack
 
-- **Vanilla HTML / CSS / JavaScript** — the dashboard remains framework-free and client-side.
-- **Vercel Functions** — server-rendered access gate, environment-backed credentials and signed HttpOnly sessions.
-- **Chart.js 4** — 17 charts: line, bar, stacked bar, horizontal bar, doughnut, radar and bubble.
-- **Leaflet 1.9** — store network map with 528 geocoded locations, layer toggles and 5 km proximity circles.
-- **Vercel** — functions and private HTML templates are redeployed automatically on every push to `main`.
+- **Vanilla HTML / CSS / JavaScript:** the dashboard remains framework-free and client-side.
+- **Vercel Functions:** server-rendered access gate, environment-backed credentials and signed HttpOnly sessions.
+- **Chart.js 4:** 17 charts, including line, bar, stacked bar, horizontal bar, doughnut, radar and bubble.
+- **Leaflet 1.9:** store network map with 528 geocoded locations, layer toggles and 5 km proximity circles.
+- **Vercel:** functions and private HTML templates are redeployed automatically on every push to `main`.
 
 ## Implementation notes
 
@@ -45,10 +45,10 @@ A single-page application structured as a decision chain rather than a report. T
 
 ## Data foundation
 
-Findings are drawn from a proprietary 25-month JBS Swift dataset (May 2024 – May 2026):
+Findings are drawn from a proprietary 25-month JBS Swift dataset covering May 2024 to May 2026:
 
 - **16 raw tables**, with **10 used directly in the dashboard**, **123M+** customer-month rows, **150M+** transaction line items and zero monthly gaps.
-- Processed in **Python + DuckDB** directly over partitioned **Parquet** files — glob-unioned scans, column-selective reads, no full-dataset loads.
+- Processed in **Python + DuckDB** directly over partitioned **Parquet** files using glob-unioned scans and column-selective reads, without full-dataset loads.
 - A transparent **rules-based Priority Score** (Value / Engagement / Readiness / Momentum / Age) ranks 2.56M physical-only customers into five bands, validated out-of-time against observed month-over-month conversions.
 
 Raw data is not included in this repository and is excluded via `.gitignore`.
@@ -61,7 +61,7 @@ Stated here rather than buried, and surfaced on the Methods page in the applicat
 - **NPS populations.** Channel NPS differs between the comment subset (+70.7 physical) and all survey responses (+86.8), because commenters are roughly 3× more likely to be detractors. Both are labelled by population in the application.
 - **Timing coverage.** The Everyday weekday pattern is available only as a pooled view; yearly buttons are disabled when that occasion is selected rather than substituting Barbecue data.
 
-Structural limitations of the data — customers cannot be linked to stores, READINESS partly overlaps the outcome, NPS is not representative of the base — are documented on the Methods page.
+The Methods page documents three structural limitations: customers cannot be linked to stores, READINESS partly overlaps the outcome, and NPS is not representative of the full customer base.
 
 ## Authentication
 

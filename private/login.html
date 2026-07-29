@@ -16,29 +16,28 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100vh;background:var(--paper);font-family:'Inter',system-ui,sans-serif;color:var(--ink);
-  -webkit-font-smoothing:antialiased;display:grid;place-items:center;padding:28px}
+  -webkit-font-smoothing:antialiased;display:grid;place-items:center;padding:clamp(30px,4vw,72px)}
 button,input{font:inherit}
-.shell{width:min(900px,100%);min-height:530px;display:grid;grid-template-columns:1.05fr .95fr;
-  background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+.shell{width:min(1180px,100%);min-height:min(680px,calc(100vh - 96px));display:grid;grid-template-columns:1.08fr .92fr;
+  background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;
   box-shadow:0 22px 60px rgba(24,47,74,.14)}
-.intro{background:var(--navy);color:#fff;padding:54px;display:flex;flex-direction:column;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:11px;font-size:15px;font-weight:600}
-.mark{width:35px;height:35px;border:1px solid #6E8297;border-radius:50%;display:grid;place-items:center;
-  font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.04em}
+.intro{background:var(--navy);color:#fff;padding:clamp(48px,4vw,72px);display:flex;flex-direction:column;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px;font-size:16px;font-weight:600}
+.brand svg{width:34px;height:44px;color:#fff;flex:0 0 auto}
 .brand b{color:#F2B7B3}
 .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#E0A99E}
-.intro h1{font-size:34px;line-height:1.14;letter-spacing:-.025em;margin-top:10px;max-width:350px}
-.intro p{font-size:14px;line-height:1.7;color:#C9D5E2;margin-top:15px;max-width:355px}
-.affiliation{font-size:12px;color:#9FB4C9;border-top:1px solid #53697F;padding-top:15px}
-.form-side{padding:54px 48px;display:flex;flex-direction:column;justify-content:center}
+.intro h1{font-size:clamp(40px,3vw,52px);line-height:1.08;letter-spacing:-.035em;margin-top:14px;max-width:500px}
+.intro p{font-size:15.5px;line-height:1.75;color:#C9D5E2;margin-top:20px;max-width:470px}
+.affiliation{font-size:12.5px;color:#9FB4C9;border-top:1px solid #53697F;padding-top:17px}
+.form-side{padding:clamp(48px,4vw,72px);display:flex;flex-direction:column;justify-content:center}
 .form-side>.eyebrow{color:var(--red)}
-.form-side h2{font-size:25px;line-height:1.2;letter-spacing:-.02em;margin-top:7px;color:var(--navy)}
-.form-side>p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px}
-form{margin-top:26px}
-label.field{display:block;margin-bottom:16px}
+.form-side h2{font-size:31px;line-height:1.2;letter-spacing:-.025em;margin-top:8px;color:var(--navy)}
+.form-side>p{font-size:14px;color:var(--muted);line-height:1.65;margin-top:10px;max-width:400px}
+form{margin-top:30px}
+label.field{display:block;margin-bottom:18px}
 .field>span:first-child{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
 .input-wrap{position:relative;display:block}
-input[type="text"],input[type="password"]{width:100%;height:43px;border:1px solid var(--line-2);border-radius:5px;
+input[type="text"],input[type="password"]{width:100%;height:48px;border:1px solid var(--line-2);border-radius:5px;
   background:var(--white);color:var(--ink);font-size:14px;padding:0 12px;outline:none}
 input.has-action{padding-right:58px}
 input:focus{border-color:var(--navy-3);box-shadow:0 0 0 3px rgba(52,86,125,.1)}
@@ -48,7 +47,7 @@ input:focus{border-color:var(--navy-3);box-shadow:0 0 0 3px rgba(52,86,125,.1)}
 .remember{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px;cursor:pointer}
 .remember input{accent-color:var(--navy);width:14px;height:14px}
 .secure{font-size:11.5px;color:var(--muted)}
-.submit{width:100%;height:43px;border:0;border-radius:5px;background:var(--navy);color:#fff;
+.submit{width:100%;height:48px;border:0;border-radius:5px;background:var(--navy);color:#fff;
   font-size:14px;font-weight:600;cursor:pointer}
 .submit:hover{background:var(--navy-2)}
 .submit:disabled{opacity:.65;cursor:wait}
@@ -57,8 +56,8 @@ input:focus{border-color:var(--navy-3);box-shadow:0 0 0 3px rgba(52,86,125,.1)}
   margin-top:18px!important;padding-top:14px;line-height:1.55!important}
 .privacy b{color:var(--ink-2)}
 @media(max-width:760px){
-  body{padding:16px}.shell{grid-template-columns:1fr;min-height:0}
-  .intro{padding:28px}.intro h1{font-size:27px}.intro p{margin-bottom:24px}
+  body{padding:0;place-items:stretch}.shell{width:100%;grid-template-columns:1fr;min-height:100vh;border:0;border-radius:0}
+  .intro{padding:30px}.intro h1{font-size:30px}.intro p{margin-bottom:24px}
   .form-side{padding:32px 28px}.affiliation{display:none}
 }
 </style>
@@ -66,7 +65,16 @@ input:focus{border-color:var(--navy-3);box-shadow:0 0 0 3px rgba(52,86,125,.1)}
 <body>
 <main class="shell">
   <section class="intro" aria-label="Project introduction">
-    <div class="brand"><span class="mark">MTD</span><span>Meat the <b>Data</b></span></div>
+    <div class="brand">
+      <svg viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4C13.5 4 5 12 5 22.5c0 6.5 3.8 10.4 6.8 14.6 1.9 2.6 2.7 4.2 2.7 6.9h19c0-2.7.8-4.3 2.7-6.9C39.2 32.9 43 29 43 22.5 43 12 34.5 4 24 4Z" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M16.5 50h15M18 54.5h12M21 59h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 16 34 28 16 33Z" stroke="#EF5A52" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="24" cy="16" r="3" fill="#EF5A52"/><circle cx="34" cy="28" r="3" fill="#EF5A52"/>
+        <circle cx="16" cy="33" r="3" fill="#EF5A52"/>
+      </svg>
+      <span>Meat the <b>Data</b></span>
+    </div>
     <div>
       <div class="eyebrow">JBS Swift · Capstone 2026</div>
       <h1>From physical loyalty to the first online purchase.</h1>
