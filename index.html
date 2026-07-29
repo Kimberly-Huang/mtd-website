@@ -715,15 +715,17 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   </div>
 
   <div class="g g4" style="margin-bottom:14px">
-    <div class="metric"><div class="k">Physical NPS</div><div class="v num teal" id="mLF">+70.7</div><div class="s" id="mLFs">156,695 comments</div></div>
-    <div class="metric"><div class="k">Online NPS</div><div class="v num" style="color:var(--amber)" id="mLO">+47.3</div><div class="s" id="mLOs">24,347 comments</div></div>
-    <div class="metric"><div class="k">Self-comparison gap</div><div class="v num red">−5.5 pt</div><div class="s">Same omni customers: 81.5 physical vs 76.0 online</div></div>
+    <div class="metric"><div class="k">Physical NPS · commenters</div><div class="v num teal" id="mLF">+70.7</div><div class="s" id="mLFs">156,695 written comments</div></div>
+    <div class="metric"><div class="k">Online NPS · commenters</div><div class="v num" style="color:var(--amber)" id="mLO">+47.3</div><div class="s" id="mLOs">24,347 written comments</div></div>
+    <div class="metric"><div class="k">Omni self-comparison</div><div class="v num red">−5.5 pt</div><div class="s">Same customers rate physical 81.5 and online 76.0</div></div>
     <div class="metric"><div class="k">Basket-size effect</div><div class="v num red">−6.6 pt</div><div class="s">Online NPS falls fastest on the largest baskets</div></div>
   </div>
 
   <div class="panel" style="margin-bottom:14px">
     <div class="panel-h"><h3 id="themeTitle">What customers complain about</h3><span class="sub" id="themeSub">Theme share by channel, all comments</span></div>
-    <div class="panel-b"><div class="ch xl"><canvas id="howTheme"></canvas></div></div>
+    <div class="panel-b"><div class="ch xl"><canvas id="howTheme"></canvas></div>
+      <p class="note"><b>Which NPS figure applies.</b> This page measures the <b>commenting</b> population: the 181,042 survey responses that carried written text, which is the only subset where themes can be extracted. Across <em>all</em> 920,127 responses the scores are higher, physical <b>+86.8</b> and online <b>+77.1</b>, because the detractor rate among commenters is 8.6% versus 2.8% overall, roughly 3× higher. People who take the trouble to write are disproportionately the unhappy ones. Both figures are correct for their own population; the ranking of channels is the same either way, and online trails physical in both.</p>
+    </div>
   </div>
 
   <div class="g g23">
@@ -1243,9 +1245,9 @@ function drawHow(){
   $('themeTitle').textContent=det?'What drives dissatisfaction':'What customers comment on';
   $('themeSub').textContent=det?'Theme share among detractors (score ≤ 6)':'Theme share by channel, all comments';
   $('mLF').textContent=det?'13,541':'+70.7';
-  $('mLFs').textContent=det?'physical detractors':'156,695 comments';
+  $('mLFs').textContent=det?'physical detractors (8.6% of commenters)':'156,695 written comments';
   $('mLO').textContent=det?'4,601':'+47.3';
-  $('mLOs').textContent=det?'online detractors':'24,347 comments';
+  $('mLOs').textContent=det?'online detractors (18.9% of commenters)':'24,347 written comments';
   const rows=themeRows();
   $('howCount').innerHTML=`Showing <b>${rows.length}</b> of ${THEMES.length} themes`;
   const pain=[['Pricing',24.9,6.3],['Product quality',24.0,8.3],['Customer service',18.8,13.0],
