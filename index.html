@@ -260,7 +260,7 @@ ol.steps li b{color:var(--ink)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tab:focus-visible,.pills button:focus-visible,.brow:focus-visible,.pitem:focus-visible,
-.navcard:focus-visible,.switch:focus-visible,a:focus-visible{outline:2px solid var(--navy-3);outline-offset:2px;border-radius:3px}
+.story-link:focus-visible,.next-link:focus-visible,.switch:focus-visible,a:focus-visible{outline:2px solid var(--navy-3);outline-offset:2px;border-radius:3px}
 .chart-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;line-height:1.55}
 
 /* ---------- data vintage ---------- */
@@ -272,10 +272,10 @@ ol.steps li b{color:var(--ink)}
   @page{margin:14mm}
   html,body{background:#fff!important;font-size:10.5pt}
   header.top{position:static;border-bottom:2px solid #000}
-  .tabnav,.fstrip,.freset,.navcard .go{display:none!important}
+  .tabnav,.fstrip,.freset,.story-link,.next-link{display:none!important}
   .page{display:block!important;page-break-before:always;padding:0 0 18pt}
   .page:first-of-type{page-break-before:avoid}
-  .panel,.metric,.callout,.readout,.tiercard,.msgbox{break-inside:avoid;box-shadow:none!important}
+  .panel,.metric,.callout,.readout,.tiercard,.msgbox,.story-step,.decision-banner,.pilot-card,.next-step{break-inside:avoid;box-shadow:none!important}
   .panel{border:1px solid #bbb!important}
   .callout{background:#f2f2f2!important;color:#000!important;border:1px solid #bbb}
   .callout h3,.callout p,.callout .lb{color:#000!important}
@@ -287,17 +287,69 @@ ol.steps li b{color:var(--ink)}
 }
 .print-only{display:none}
 
-/* nav cards on overview */
-.navcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:15px;
-  cursor:pointer;transition:.16s;text-align:left;font-family:inherit;box-shadow:var(--sh);display:block;width:100%}
-.navcard:hover{border-color:var(--navy-3);box-shadow:var(--sh-2);transform:translateY(-1px)}
-.navcard .n{font-size:12px;font-weight:600;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
-.navcard h4{font-size:15px;margin-top:6px}
-.navcard p{font-size:13px;color:var(--ink-3);margin-top:5px;line-height:1.5}
-.navcard .kv{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
-.navcard .kv .num{font-size:19px;font-weight:600;color:var(--navy)}
-.navcard .kv .lb{font-size:12px;color:var(--ink-3)}
-.navcard .go{font-size:12.5px;color:var(--navy-3);font-weight:600;margin-top:9px}
+/* guided story */
+.story-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin:28px 0 14px}
+.story-head .kicker{font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red)}
+.story-head h3{font-size:23px;line-height:1.25;margin-top:5px;color:var(--navy)}
+.story-head p{max-width:550px;font-size:13.5px;line-height:1.6;color:var(--ink-3)}
+.storyline{position:relative;display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.storyline:before{content:"";position:absolute;left:28px;top:28px;bottom:28px;width:1px;background:var(--line-2)}
+.story-step{position:relative;display:grid;grid-template-columns:58px minmax(230px,1.15fr) minmax(360px,1fr);
+  gap:18px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);
+  padding:18px 20px;box-shadow:var(--sh)}
+.story-index{position:relative;z-index:1;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600}
+.story-kicker{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.story-copy h4{font-size:17px;line-height:1.35;margin-top:4px;color:var(--navy)}
+.story-copy p{font-size:13.5px;line-height:1.6;color:var(--ink-3);margin-top:6px}
+.story-evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.story-stat{background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:9px 10px}
+.story-stat b{display:block;font-size:16px;color:var(--navy);line-height:1.2}
+.story-stat span{display:block;font-size:11.5px;line-height:1.35;color:var(--ink-3);margin-top:3px}
+.story-action{grid-column:3;font-size:12.5px;line-height:1.5;color:var(--ink-2);border-top:1px solid var(--line);padding-top:9px;margin-top:-4px}
+.story-action b{color:var(--red)}
+.story-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.story-link,.next-link{border:1px solid var(--line-2);border-radius:4px;background:var(--bg);color:var(--navy-3);
+  font:600 12.5px 'Inter',sans-serif;padding:6px 10px;cursor:pointer}
+.story-link:hover,.next-link:hover{border-color:var(--navy-3);background:var(--bg-2)}
+.pilot-card{background:var(--navy);color:#fff;border-radius:var(--r);padding:20px;margin:14px 0}
+.pilot-card .eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E0A99E}
+.pilot-card>h3{font-size:20px;color:#fff;margin-top:6px}
+.pilot-card>p{font-size:13.5px;line-height:1.6;color:#C9D5E2;margin-top:7px;max-width:850px}
+.pilot-lanes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.pilot-lane{border:1px solid #53697F;border-radius:5px;background:#193148;padding:15px}
+.pilot-lane .tag{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#F2B7B3}
+.pilot-lane h4{font-size:16px;color:#fff;margin-top:5px}
+.pilot-lane p{font-size:13px;line-height:1.6;color:#C9D5E2;margin-top:6px}
+.pilot-lane b{color:#fff}
+.pilot-note{font-size:12.5px!important;color:#AFC0D0!important;border-top:1px solid #53697F;padding-top:11px;margin-top:14px!important}
+
+/* decision summaries and chapter transitions */
+.decision-banner{display:grid;grid-template-columns:minmax(280px,1.25fr) minmax(360px,1fr);gap:20px;align-items:center;
+  background:var(--navy);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;color:#fff}
+.decision-copy .lb{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#E0A99E}
+.decision-copy h3{font-size:17px;color:#fff;margin-top:5px;line-height:1.35}
+.decision-copy p{font-size:12.5px;color:#C9D5E2;line-height:1.55;margin-top:5px}
+.decision-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.decision-stat{border-left:1px solid #53697F;padding-left:11px}
+.decision-stat b{display:block;font-size:16px;color:#fff}
+.decision-stat span{display:block;font-size:11px;color:#AFC0D0;line-height:1.35;margin-top:2px}
+.next-step{display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--bg-2);
+  border:1px solid var(--line);border-left:3px solid var(--red);border-radius:var(--r);padding:14px 16px;margin-top:14px}
+.next-copy .lb{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--red)}
+.next-copy p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:3px}
+
+@media(max-width:850px){
+  .story-head{display:block}.story-head p{margin-top:8px}
+  .story-step{grid-template-columns:46px 1fr}.story-evidence,.story-action{grid-column:2}
+  .decision-banner{grid-template-columns:1fr}.pilot-lanes{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .storyline:before{left:24px}.story-step{grid-template-columns:38px 1fr;padding:15px 13px;gap:10px}
+  .story-index{width:32px;height:32px}.story-evidence{grid-template-columns:1fr}
+  .decision-stats{grid-template-columns:1fr}.decision-stat{border-left:0;border-top:1px solid #53697F;padding:7px 0 0}
+  .next-step{align-items:flex-start;flex-direction:column}
+}
 
 /* band rows */
 .brow{display:grid;grid-template-columns:96px 1fr 132px 64px;gap:14px;align-items:center;
@@ -457,40 +509,145 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Executive summary</div>
-      <h2>An auditable path from physical-only to omnichannel</h2>
-      <p>Strict both-channel purchasing has stayed flat for 25 months while the customer base grew. This analysis builds an activation system: who to convert, what to say, how and when to reach them, where to deploy first, and how to measure the result without mixing KPI definitions.</p>
+      <h2>Swift does not have a retention problem. It has an activation problem.</h2>
+      <p>Only 1.33% of physical-only customers converted in 24 months, while 97.5% of new omnichannel customers remained omnichannel the following month. The implication is direct: put the next real at the first online purchase, then make that first journey dependable.</p>
     </div>
     <div class="rhs">
-      <b>2,799,245</b>active customers
-      <b>150M+</b>transactions analysed
-      <b>Rules-based</b>no ML, fully auditable
+      <b>1.33%</b>converted in 24 months
+      <b>97.5%</b>retained the next month
+      <b>31×</b>more likely to churn than convert
     </div>
   </div>
 
-  <div class="g g4" style="margin-bottom:14px">
-    <div class="metric"><div class="k">Strict purchase KPI</div><div class="v num">2.87%</div><div class="s">80,281 buy in both channels</div><div class="delta dn">Flat across 25 months</div></div>
-    <div class="metric"><div class="k">Sponsor-reported O2O</div><div class="v num teal">10.82%</div><div class="s">Broader interaction definition</div></div>
-    <div class="metric"><div class="k">Sponsor-stated goal</div><div class="v num">6.00%</div><div class="s">Definition must be aligned before tracking</div></div>
-    <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
+  <div class="story-head">
+    <div>
+      <div class="kicker">The story in five decisions</div>
+      <h3>From business diagnosis to a testable activation plan</h3>
+    </div>
+    <p>Read the five decisions in sequence for the executive story. Use the links inside each step to inspect the underlying data, filters, assumptions and robustness checks.</p>
   </div>
 
-  <div class="g g23" style="margin-bottom:14px">
-    <div class="panel">
-      <div class="panel-h"><h3>Metric reconciliation</h3><span class="sub">Two valid figures, two different definitions</span></div>
-      <div class="panel-b">
-        <div class="metric-compare">
-          <div class="mc">
-            <div class="mk">Dashboard KPI</div><div class="mv num">2.87%</div>
-            <div class="md">Purchased in both physical and Swift-online within a rolling 12 months.</div>
-          </div>
-          <div class="neq">≠</div>
-          <div class="mc">
-            <div class="mk">Sponsor reporting</div><div class="mv num">10.82%</div>
-            <div class="md">Broader O2O interaction definition, covering roughly 302K customers.</div>
-          </div>
-        </div>
-        <p class="note"><b>Decision rule.</b> The dashboard uses 2.87% for targeting and validation because it moves only after an online purchase. It does <b>not</b> calculate a gap to the 6% goal until the sponsor confirms which definition the goal uses.</p>
+  <div class="storyline">
+    <article class="story-step">
+      <div class="story-index">01</div>
+      <div class="story-copy">
+        <div class="story-kicker">Diagnose</div>
+        <h4>Conversion—not retention—is the bottleneck</h4>
+        <p>The base is overwhelmingly physical, first online conversion is rare, and inactivity is far more common. Once customers do cross channels, however, they usually stay.</p>
       </div>
+      <div class="story-evidence">
+        <div class="story-stat"><b class="num">1.33%</b><span>physical-only converted in 24 months</span></div>
+        <div class="story-stat"><b class="num">31×</b><span>more likely to churn than convert</span></div>
+        <div class="story-stat"><b class="num">97.5%</b><span>remain omni the following month</span></div>
+      </div>
+      <div class="story-action"><b>Decision:</b> fund activation before adding more retention spend.</div>
+    </article>
+
+    <article class="story-step">
+      <div class="story-index">02</div>
+      <div class="story-copy">
+        <div class="story-kicker">Prioritize</div>
+        <h4>Start with 91K warm customers; expand to 369K P2-Ready</h4>
+        <p>A transparent five-axis score concentrates customers with the strongest observed conversion propensity without hiding the rules inside a black box.</p>
+        <div class="story-links"><button type="button" class="story-link" data-go="who">Inspect audience logic →</button></div>
+      </div>
+      <div class="story-evidence">
+        <div class="story-stat"><b class="num">66,397</b><span>P1 customers · 6.41× lift</span></div>
+        <div class="story-stat"><b class="num">24,678</b><span>M-WARM · 5.13× lift</span></div>
+        <div class="story-stat"><b class="num">368,506</b><span>P2-Ready · 1.21× lift</span></div>
+      </div>
+      <div class="story-action"><b>Decision:</b> activate P1 + M-WARM first; reserve P2-Ready for wave two.</div>
+    </article>
+
+    <article class="story-step">
+      <div class="story-index">03</div>
+      <div class="story-copy">
+        <div class="story-kicker">Design</div>
+        <h4>Sell convenience, then remove delivery risk</h4>
+        <p>Prático and Saúde are the strongest acquisition messages. A clear first-order incentive creates intent; Click &amp; Collect addresses the fulfilment friction visible in customer feedback.</p>
+        <div class="story-links">
+          <button type="button" class="story-link" data-go="what">Inspect personas →</button>
+          <button type="button" class="story-link" data-go="how">Inspect journey →</button>
+        </div>
+      </div>
+      <div class="story-evidence">
+        <div class="story-stat"><b class="num">1.26×</b><span>Prático persona lift</span></div>
+        <div class="story-stat"><b class="num">1.15×</b><span>Saúde persona lift</span></div>
+        <div class="story-stat"><b class="num">+57.3</b><span>Click &amp; Collect NPS</span></div>
+      </div>
+      <div class="story-action"><b>Decision:</b> combine persona-led creative, CHEGUEI20 and pickup as the low-risk first journey.</div>
+    </article>
+
+    <article class="story-step">
+      <div class="story-index">04</div>
+      <div class="story-copy">
+        <div class="story-kicker">Orchestrate</div>
+        <h4>Launch when intent is high and fulfilment can keep the promise</h4>
+        <p>Concentrate contact on Thursday–Friday and days 6–7, with June–July as the annual scaling window. Begin store deployment in São Paulo, where pickup infrastructure is most credible.</p>
+        <div class="story-links">
+          <button type="button" class="story-link" data-go="when">Inspect timing →</button>
+          <button type="button" class="story-link" data-go="where">Inspect deployment →</button>
+        </div>
+      </div>
+      <div class="story-evidence">
+        <div class="story-stat"><b>Thu–Fri</b><span>pre-weekend activation window</span></div>
+        <div class="story-stat"><b>Day 6–7</b><span>strongest monthly online window</span></div>
+        <div class="story-stat"><b>São Paulo</b><span>first store rollout market</span></div>
+      </div>
+      <div class="story-action"><b>Decision:</b> use geography to govern fulfilment rollout—not to change the customer score.</div>
+    </article>
+
+    <article class="story-step">
+      <div class="story-index">05</div>
+      <div class="story-copy">
+        <div class="story-kicker">Validate</div>
+        <h4>Measure purchases and keep every recommendation auditable</h4>
+        <p>The ranking clears all pre-set validation criteria and remains stable under perturbation. The success KPI must count actual purchases in both channels, separately from the sponsor’s broader O2O measure.</p>
+        <div class="story-links">
+          <button type="button" class="story-link" data-go="proof">Inspect proof →</button>
+          <button type="button" class="story-link" data-go="methods">Inspect definitions →</button>
+        </div>
+      </div>
+      <div class="story-evidence">
+        <div class="story-stat"><b class="num">8 / 8</b><span>validation criteria cleared</span></div>
+        <div class="story-stat"><b class="num">ρ .99–1.00</b><span>ranking stability</span></div>
+        <div class="story-stat"><b class="num">2.87%</b><span>strict purchase KPI today</span></div>
+      </div>
+      <div class="story-action"><b>Decision:</b> run a controlled pilot and report strict purchases separately from broader O2O interactions.</div>
+    </article>
+  </div>
+
+  <div class="pilot-card">
+    <div class="eyebrow">Recommended next move</div>
+    <h3>Run two coordinated pilots with one shared measurement plan</h3>
+    <p>The available data supports a customer-level activation plan and a geography-level fulfilment plan. They should launch together operationally, but remain separate analytically.</p>
+    <div class="pilot-lanes">
+      <div class="pilot-lane">
+        <div class="tag">Pilot A · CRM activation</div>
+        <h4>Convert the warmest known customers</h4>
+        <p><b>Audience:</b> 91,075 P1 + M-WARM customers.<br><b>Message:</b> Prático/Saúde convenience creative.<br><b>Mechanic:</b> CHEGUEI20 with Click &amp; Collect.<br><b>Window:</b> Thu–Fri, days 6–7; scale in June–July.<br><b>Primary KPI:</b> incremental first online purchase versus holdout.</p>
+      </div>
+      <div class="pilot-lane">
+        <div class="tag">Pilot B · Store rollout</div>
+        <h4>Make pickup credible before scaling media</h4>
+        <p><b>Market:</b> São Paulo Capital first.<br><b>Sequence:</b> SWS-assisted discovery → CPF identification → Click &amp; Collect or QR handoff.<br><b>Guardrail:</b> expand only where service quality and pickup capacity hold.<br><b>Primary KPI:</b> store-enabled O2O adoption and pickup NPS.</p>
+      </div>
+    </div>
+    <p class="pilot-note"><b>Analytical boundary:</b> CUSTOMER_BEHAVIOR has no store geography. This dashboard does not claim that P1 or M-WARM customers are located in São Paulo; customer targeting and store deployment are two coordinated, non-joined workstreams.</p>
+  </div>
+
+  <div class="story-head">
+    <div>
+      <div class="kicker">Evidence at a glance</div>
+      <h3>The commercial case and the measurement baseline</h3>
+    </div>
+    <p>The overview closes with the value case and the KPI definition. Detailed pages preserve the interactive filters and supporting evidence.</p>
+  </div>
+
+  <div class="g g2" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Why omnichannel matters</h3><span class="sub">Value gap, stable across the panel</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="ovGap" role="img" aria-label="Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126."></canvas><p class="sr-only">Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126.</p></div><p class="prov"><b>R$ and visits per month</b><span class="sep">·</span>omni vs físico medians<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · SALES_BY_DOCUMENT</b></p></div>
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Active base composition</h3><span class="sub">May 2026</span></div>
@@ -510,66 +667,28 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
   </div>
 
-  <div class="panel" style="margin-bottom:14px">
-    <div class="panel-h"><h3>The analysis in five questions</h3><span class="sub">Select a section to explore its data and filters</span></div>
-    <div class="panel-b">
-      <div class="g g3">
-        <button class="navcard" data-go="who">
-          <div class="n">Who</div><h4>Who to target</h4>
-          <p>A five-tier ladder scored on five independent axes, validated out-of-time.</p>
-          <div class="kv"><span class="num">6.41×</span><span class="lb">top-band lift</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="what">
-          <div class="n">What</div><h4>What to say</h4>
-          <p>Six basket personas, each mapped to the motivation already visible in their purchases.</p>
-          <div class="kv"><span class="num">6</span><span class="lb">personas</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="how">
-          <div class="n">How</div><h4>How to reach them</h4>
-          <p>Online complaints are logistics, not product. Pickup outperforms every delivery mode.</p>
-          <div class="kv"><span class="num">+57.3</span><span class="lb">pickup NPS</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="when">
-          <div class="n">When</div><h4>When to activate</h4>
-          <p>Barbecue peaks Saturday, online peaks in the first week, and the annual window is June to July.</p>
-          <div class="kv"><span class="num">3×</span><span class="lb">Sat vs Mon</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="where">
-          <div class="n">Where</div><h4>Where to deploy</h4>
-          <p>Only LOJAS can fulfil online orders. SWS is the larger footprint and has none.</p>
-          <div class="kv"><span class="num">43.1%</span><span class="lb">O2O coverage</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="proof">
-          <div class="n">Proof</div><h4>Why trust it</h4>
-          <p>Pre-set floors, independent validation, and the hypotheses we killed.</p>
-          <div class="kv"><span class="num">8/8</span><span class="lb">criteria cleared</span></div>
-          <div class="go">Explore →</div>
-        </button>
-        <button class="navcard" data-go="methods">
-          <div class="n">Methods</div><h4>Data and limits</h4>
-          <p>The pipeline, the glossary, the definition gap with the sponsor, and what this data cannot answer.</p>
-          <div class="kv"><span class="num">16 / 10</span><span class="lb">raw / used</span></div>
-          <div class="go">Explore →</div>
-        </button>
-      </div>
-    </div>
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Strict purchase KPI</div><div class="v num">2.87%</div><div class="s">80,281 buy in both channels</div><div class="delta dn">Flat across 25 months</div></div>
+    <div class="metric"><div class="k">Sponsor-reported O2O</div><div class="v num teal">10.82%</div><div class="s">Broader interaction definition</div></div>
+    <div class="metric"><div class="k">Sponsor-stated goal</div><div class="v num">6.00%</div><div class="s">Definition must be aligned before tracking</div></div>
+    <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
   </div>
 
-  <div class="g g2">
-    <div class="panel">
-      <div class="panel-h"><h3>Why omnichannel matters</h3><span class="sub">Value gap, stable across the panel</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="ovGap" role="img" aria-label="Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126."></canvas><p class="sr-only">Omnichannel customers spend R$100.78 monthly versus R$29.21 for físico-only, visit 6 times versus 2, and average R$264 per receipt versus R$126.</p></div><p class="prov"><b>R$ and visits per month</b><span class="sep">·</span>omni vs físico medians<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · SALES_BY_DOCUMENT</b></p></div>
-    </div>
-    <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
-      <div class="lb">The core finding</div>
-      <h3>Conversion is the bottleneck, not retention</h3>
-      <p>Only <b>1.33%</b> of físico-only customers converted over 24 months, while <b>41%</b> went inactive: a customer is roughly <b>31× more likely to churn than to convert</b>. But once converted, <b>97.5%</b> stay omnichannel the following month.</p>
-      <p>So the budget belongs at the top of the funnel. Retention already works; activation is what fails.</p>
+  <div class="panel">
+    <div class="panel-h"><h3>Metric reconciliation</h3><span class="sub">Two valid figures, two different definitions</span></div>
+    <div class="panel-b">
+      <div class="metric-compare">
+        <div class="mc">
+          <div class="mk">Dashboard KPI</div><div class="mv num">2.87%</div>
+          <div class="md">Purchased in both physical and Swift-online within a rolling 12 months.</div>
+        </div>
+        <div class="neq">≠</div>
+        <div class="mc">
+          <div class="mk">Sponsor reporting</div><div class="mv num">10.82%</div>
+          <div class="md">Broader O2O interaction definition, covering roughly 302K customers.</div>
+        </div>
+      </div>
+      <p class="note"><b>Decision rule.</b> The dashboard uses 2.87% for targeting and validation because it moves only after an online purchase. It does <b>not</b> calculate a gap to the 6% goal until the sponsor confirms which definition the goal uses.</p>
     </div>
   </div>
 </section>
@@ -579,12 +698,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Who to target</div>
-      <h2>A five-tier ladder built from rules you can read</h2>
+      <h2>Start with the warmest 91K; expand only where lift holds</h2>
       <p>Every físico customer is scored on five independent axes, then sorted into bands. No machine learning: each input is a named column, and every band is validated out-of-time against who actually converted the following month.</p>
     </div>
     <div class="rhs">
       <b>2,563,230</b>customers scored
       <b>0.16%</b>monthly base conversion rate
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Activate P1 and M-WARM first; use P2-Ready as wave two.</h3>
+      <p>The score is a prioritisation system, not a promise of conversion. Keep a random holdout inside every band to measure incrementality.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">91,075</b><span>immediate CRM audience</span></div>
+      <div class="decision-stat"><b class="num">368,506</b><span>wave-two expansion pool</span></div>
+      <div class="decision-stat"><b class="num">6.41×</b><span>top-band observed lift</span></div>
     </div>
   </div>
 
@@ -718,6 +850,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist barely moves when the weights change, so the ranking is not an artifact of the judgement calls in the formula. <b>We own one caveat:</b> READINESS partly overlaps the outcome, since a past online purchase is close to the thing that makes someone omni. P1 is best read as the strongest <em>actionable</em> signal rather than a pure prediction.</p></div>
     </div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Next insight · What</div><p>The list tells us who. Next, match the message to the motivation already visible in the basket.</p></div>
+    <button type="button" class="next-link" data-go="what">Continue to What →</button>
+  </div>
 </section>
 
 <!-- ================= WHAT ================= -->
@@ -725,12 +861,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">What to say</div>
-      <h2>Six personas, six reasons to buy online</h2>
+      <h2>Prático and Saúde are the strongest acquisition messages</h2>
       <p>The same customers rate their online journey lower than their physical one, so a generic promotion fights an experience problem. Instead each <em>Label_Cesta</em> persona is matched to the motivation already visible in their basket.</p>
     </div>
     <div class="rhs">
       <b>CHEGUEI20</b>live coupon we build on
       <b>R$20 off R$149+</b>first online order
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Lead with convenience and health; keep lower-lift personas in lower-cost nurture.</h3>
+      <p>Persona size and conversion propensity are different decisions. Select creative by lift, then use audience size to plan reach.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">1.26×</b><span>Prático conversion lift</span></div>
+      <div class="decision-stat"><b class="num">1.15×</b><span>Saúde conversion lift</span></div>
+      <div class="decision-stat"><b>6 personas</b><span>distinct basket motivations</span></div>
     </div>
   </div>
 
@@ -791,6 +940,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       </div>
     </div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Next insight · How</div><p>The message creates intent. Next, choose a mechanism that removes journey friction.</p></div>
+    <button type="button" class="next-link" data-go="how">Continue to How →</button>
+  </div>
 </section>
 
 <!-- ================= HOW & WHEN ================= -->
@@ -798,12 +951,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">How to reach them</div>
-      <h2>Lead with the mechanic customers already like best</h2>
+      <h2>Click &amp; Collect removes the online risk customers complain about</h2>
       <p>Before pushing volume online we examined what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
     </div>
     <div class="rhs">
       <b>181,042</b>survey comments analysed
       <b>25 months</b>May 2024 to May 2026
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Pair a price-led first-order offer with Click &amp; Collect.</h3>
+      <p>The promotion creates trial; pickup protects that trial from the delivery delays that dominate online detractor feedback.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">+57.3</b><span>Click &amp; Collect NPS</span></div>
+      <div class="decision-stat"><b class="num">38.5%</b><span>online detractors cite delay</span></div>
+      <div class="decision-stat"><b>R$20 off</b><span>R$149+ first order</span></div>
     </div>
   </div>
 
@@ -876,6 +1042,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <p class="note">Every step in this chain is evidenced separately: the QR satisfaction score, the CPF identification gap, the pricing complaint share, the store proximity distribution, and the modality NPS ranking. The path is the join of those five findings, not a new assumption.</p>
     </div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Next insight · When</div><p>The mechanic is credible. Next, place it in the strongest activation window.</p></div>
+    <button type="button" class="next-link" data-go="when">Continue to When →</button>
+  </div>
 </section>
 
 <!-- ================= WHEN ================= -->
@@ -883,12 +1053,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">When to activate</div>
-      <h2>Timing is the cheapest lever we have</h2>
+      <h2>Concentrate activation before the weekend, early in the month</h2>
       <p>Every pattern below was re-tested directly against the refreshed 150M-row transaction table and verified independently within each year, not pooled. Together they form a lookup table: WHO says which customer, this says when to send.</p>
     </div>
     <div class="rhs">
       <b>150.4M</b>transactions tested
       <b>25 months</b>May 2024 to May 2026
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Send Thu–Fri, convert on days 6–7, and scale in June–July.</h3>
+      <p>Treat these as planning windows, not universal laws: the controls below show how occasion and channel change the pattern.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">3×</b><span>Saturday vs Monday barbecue</span></div>
+      <div class="decision-stat"><b>Day 24–25</b><span>avoid the monthly trough</span></div>
+      <div class="decision-stat"><b class="num">−32%</b><span>online activity on holidays</span></div>
     </div>
   </div>
 
@@ -986,6 +1169,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       </table>
     </div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Next insight · Where</div><p>Timing concentrates demand. Next, deploy only where fulfilment can keep the promise.</p></div>
+    <button type="button" class="next-link" data-go="where">Continue to Where →</button>
+  </div>
 </section>
 
 <!-- ================= WHERE ================= -->
@@ -993,12 +1180,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Where to deploy</div>
-      <h2>Only 43% of the footprint can fulfil an online order</h2>
+      <h2>Start where pickup is operationally credible</h2>
       <p>Click &amp; Collect requires an O2O-enabled store. LOJAS are enabled, SWS are not, and SWS is the larger group. Most SWS sit close to a LOJAS, so the pickup offer can still reach their customers today.</p>
     </div>
     <div class="rhs">
       <b>624</b>physical touchpoints
       <b>528</b>with usable coordinates
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Start the store rollout in SP Capital; expand selectively; hold weak-service markets.</h3>
+      <p>This page filters deployment capacity only. Geography is not joined to the customer-level targeting score.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">43.1%</b><span>full-network O2O coverage</span></div>
+      <div class="decision-stat"><b class="num">79.2%</b><span>SWS within 5 km of LOJAS</span></div>
+      <div class="decision-stat"><b class="num">38</b><span>SWS fulfilment blind spots</span></div>
     </div>
   </div>
 
@@ -1101,6 +1301,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <p class="note" style="margin-top:0">A small gap means the online experience is already decent, so push conversion harder there. A large gap means online lags badly and operations should be fixed first. The worst online detractor rates are all in SP Capital: <b>Tutóia 40.2%</b>, <b>Vila Mariana 35.7%</b>, <b>Clodomiro 34.9%</b>, which gives the sponsor named locations to fix rather than a general recommendation.</p>
     </div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Next insight · Proof</div><p>The rollout is defined. Next, test whether the evidence is strong enough to act on.</p></div>
+    <button type="button" class="next-link" data-go="proof">Continue to Proof →</button>
+  </div>
 </section>
 
 <!-- ================= PROOF ================= -->
@@ -1108,12 +1312,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Proof</div>
-      <h2>Every headline is reproducible from the analysis notebooks, including what failed</h2>
+      <h2>The ranking survives independent and robustness checks</h2>
       <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
     </div>
     <div class="rhs">
       <b>8 / 8</b>criteria cleared
       <b>4</b>hypotheses ruled out
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Use the ranking for a controlled pilot—not as causal proof.</h3>
+      <p>Validation shows that the prioritisation is stable and useful. Only a randomised holdout can show whether the intervention caused incremental conversion.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">8 / 8</b><span>criteria cleared</span></div>
+      <div class="decision-stat"><b class="num">ρ .99–1.00</b><span>ranking stability</span></div>
+      <div class="decision-stat"><b class="num">4</b><span>hypotheses ruled out</span></div>
     </div>
   </div>
 
@@ -1167,6 +1384,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div class="panel-h"><h3>Tested and ruled out</h3><span class="sub">Reported as first-class results, because each one prunes the plan</span></div>
     <div class="panel-b"><div class="rlist" id="ruledList"></div></div>
   </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Final reference · Methods</div><p>The ranking passed its checks. Finish with the definitions, pipeline and analytical limits.</p></div>
+    <button type="button" class="next-link" data-go="methods">Continue to Methods →</button>
+  </div>
 </section>
 
 <!-- ================= METHODS ================= -->
@@ -1180,6 +1401,19 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div class="rhs">
       <b>16 raw tables</b>10 used directly in this dashboard
       <b>Python + DuckDB</b>over Parquet
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div class="decision-copy">
+      <div class="lb">Decision takeaway</div>
+      <h3>Track strict purchases separately from sponsor O2O until the 6% goal is defined.</h3>
+      <p>The site reports both figures, but does not combine them or manufacture a target gap across unlike definitions.</p>
+    </div>
+    <div class="decision-stats">
+      <div class="decision-stat"><b class="num">2.87%</b><span>strict both-channel purchase</span></div>
+      <div class="decision-stat"><b class="num">10.82%</b><span>sponsor broader O2O</span></div>
+      <div class="decision-stat"><b>No gap</b><span>until target definition aligns</span></div>
     </div>
   </div>
 
@@ -1297,6 +1531,10 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         </dl></div>
       </div>
     </div>
+  </div>
+  <div class="next-step">
+    <div class="next-copy"><div class="lb">Return to the decision</div><p>Go back to the five-decision story and the two recommended pilots.</p></div>
+    <button type="button" class="next-link" data-go="overview">Return to Overview →</button>
   </div>
 </section>
 
@@ -1490,7 +1728,7 @@ $('tabs').addEventListener('keydown',e=>{
   go(PAGES[n]);
   const btn=document.querySelector(`.tab[data-p="${PAGES[n]}"]`); if(btn&&btn.focus)btn.focus();
 });
-document.querySelectorAll('.navcard').forEach(c=>c.onclick=()=>go(c.dataset.go));
+document.querySelectorAll('[data-go]').forEach(c=>c.onclick=()=>go(c.dataset.go));
 
 /* ================= WHO ================= */
 let wSplit='split',wBand='all',wSort='lift',wActive='P1';

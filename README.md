@@ -6,11 +6,11 @@ An interactive strategy dashboard for identifying, activating and validating JBS
 
 ## What it is
 
-A single-page application structured as a decision chain rather than a report. Eight tabbed sections, each with its own filter controls that recompute the views in place:
+A single-page application structured as a decision chain rather than a report. The Overview tells the executive story in five decisions — diagnose, prioritise, design, orchestrate and validate — while seven evidence tabs preserve the detailed charts, controls, assumptions and methods.
 
 | Section | Question | Key interactions |
 |---|---|---|
-| **Overview** | Where do we stand? | KPI-definition reconciliation, base composition, section routing |
+| **Overview** | What should Swift do next? | Five-decision narrative, evidence routing, KPI reconciliation and two coordinated pilot plans |
 | **Who** | Which customers to convert? | Band ladder drill-down, P2 split toggle, band sorting, local RFV-table highlight |
 | **What** | What do we say to them? | Persona playbook plus evidence-backed audience share and conversion lift |
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
@@ -21,13 +21,15 @@ A single-page application structured as a decision chain rather than a report. E
 
 ## Tech stack
 
-- **Vanilla HTML / CSS / JavaScript** — no framework, no build step, no `node_modules`. The entire application is one ~167 KB `index.html` (~49 KB gzipped).
+- **Vanilla HTML / CSS / JavaScript** — no framework, no build step, no `node_modules`. The entire application is one static `index.html`.
 - **Chart.js 4** — 17 charts: line, bar, stacked bar, horizontal bar, doughnut, radar and bubble.
 - **Leaflet 1.9** — store network map with 528 geocoded locations, layer toggles and 5 km proximity circles.
 - **Vercel** — static deployment, redeployed automatically on every push to `main`.
 
 ## Implementation notes
 
+- **One narrative spine, not two modes.** Overview is the guided executive story; Who through Methods are the drill-down layers. Decision banners and next-section handoffs preserve the same logic across every tab without removing analytical depth.
+- **Two analytically separate pilots.** The recommendation coordinates a customer-level CRM activation pilot with a geography-level store rollout, but does not claim a customer-to-store join that the source data cannot support.
 - **Client-side filtering throughout.** 16 pill-group filters and 5 checkbox filters recompute charts, KPI cards and tables from in-memory data. No backend, no API calls, no database connection.
 - **Scoped controls.** Every filter strip states which component it updates; table-only and rollout-only controls sit next to their respective outputs.
 - **Shareable filter state.** Only the active page's selections are encoded in the URL (`#where?st=SP&z=sp_metro&g=1`), so analytical views can be linked without unrelated filter residue.
