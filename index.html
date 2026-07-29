@@ -168,6 +168,43 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .cover .cstats div .v{font-size:19px;font-weight:600;margin-top:2px;color:#fff}
 @media(max-width:820px){.cover{grid-template-columns:1fr;gap:20px;padding:24px}.cover .cdiv{display:none}.cover .cmark{width:112px}}
 
+/* ---------- v3 additions ---------- */
+.pending{background:#FBF3E8;border:1px solid #E8D3B4;border-left:3px solid var(--amber);
+  border-radius:4px;padding:12px 14px;font-size:12px;color:#6B4A22;line-height:1.6;margin-top:14px}
+.pending b{color:#4A3216}
+.tiercard{border:1px solid var(--line);border-left:3px solid var(--navy-3);border-radius:var(--r);
+  padding:14px 16px;background:var(--bg);margin-bottom:10px}
+.tiercard.t1{border-left-color:var(--teal)}
+.tiercard.t2{border-left-color:var(--navy-3)}
+.tiercard.t3{border-left-color:var(--gold)}
+.tiercard.t4{border-left-color:var(--amber)}
+.tiercard.t5{border-left-color:var(--ink-3)}
+.tiercard .th{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tiercard .tnum{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tiercard h4{font-size:13.5px}
+.tiercard .tact{margin-left:auto;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px;
+  background:var(--bg-3);color:var(--ink-2)}
+.tiercard .tplay{font-size:12px;font-weight:600;color:var(--navy);margin-top:5px}
+.tiercard p{font-size:11.5px;color:var(--ink-3);margin-top:6px;line-height:1.55}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:6px}
+.fstep{flex:1;min-width:132px;background:var(--bg-2);border:1px solid var(--line);padding:13px 14px;position:relative}
+.fstep:first-child{border-radius:var(--r) 0 0 var(--r)}
+.fstep:last-child{border-radius:0 var(--r) var(--r) 0;background:#EDF3EF;border-color:#C9DED3}
+.fstep .fn{font-size:10px;font-weight:700;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
+.fstep h5{font-size:12.5px;font-weight:600;margin-top:5px}
+.fstep p{font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.5}
+.fstep::after{content:"";position:absolute;right:-7px;top:50%;transform:translateY(-50%) rotate(45deg);
+  width:11px;height:11px;background:var(--bg-2);border-top:1px solid var(--line);border-right:1px solid var(--line);z-index:2}
+.fstep:last-child::after{display:none}
+.fstep:nth-last-child(2)::after{background:#EDF3EF}
+@media(max-width:760px){.fstep{min-width:100%;border-radius:var(--r)!important;margin-bottom:6px}.fstep::after{display:none}}
+.painrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.painrow:last-child{border-bottom:none}
+.painrow .pl{text-align:right;font-size:12px}
+.painrow .pc{font-size:11px;color:var(--ink-3);text-align:center;min-width:118px}
+.painrow .pr{font-size:12px}
+.painbar{height:6px;border-radius:3px;display:inline-block;vertical-align:middle}
+
 /* nav cards on overview */
 .navcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:15px;
   cursor:pointer;transition:.16s;text-align:left;font-family:inherit;box-shadow:var(--sh);display:block;width:100%}
@@ -295,7 +332,8 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <button class="tab on" data-p="overview">Overview</button>
       <button class="tab" data-p="who">Who</button>
       <button class="tab" data-p="what">What</button>
-      <button class="tab" data-p="how">How &amp; When</button>
+      <button class="tab" data-p="how">How</button>
+      <button class="tab" data-p="when">When</button>
       <button class="tab" data-p="where">Where</button>
       <button class="tab" data-p="proof">Proof</button>
     </div>
@@ -386,7 +424,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
   <div class="panel" style="margin-bottom:14px">
     <div class="panel-h"><h3>The analysis in five questions</h3><span class="sub">Select a section to explore its data and filters</span></div>
     <div class="panel-b">
-      <div class="g g5">
+      <div class="g g3">
         <button class="navcard" data-go="who">
           <div class="n">Who</div><h4>Who to target</h4>
           <p>A five-tier ladder scored on five independent axes, validated out-of-time.</p>
@@ -400,7 +438,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
           <div class="go">Explore →</div>
         </button>
         <button class="navcard" data-go="how">
-          <div class="n">How &amp; When</div><h4>How to reach them</h4>
+          <div class="n">How</div><h4>How to reach them</h4>
           <p>Online complaints are logistics, not product. Pickup outperforms every delivery mode.</p>
           <div class="kv"><span class="num">+57.3</span><span class="lb">pickup NPS</span></div>
           <div class="go">Explore →</div>
@@ -472,6 +510,17 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="size">By size</button>
       </div>
     </div>
+    <div class="fgrp">
+      <span class="lbl">RFV tier</span>
+      <div class="pills" id="fTierW">
+        <button data-v="all" class="on">All</button>
+        <button data-v="Black">Black</button>
+        <button data-v="Gran Reserva">Gran Reserva</button>
+        <button data-v="Ouro">Ouro</button>
+        <button data-v="Prata">Prata</button>
+        <button data-v="Bronze">Bronze</button>
+      </div>
+    </div>
     <div class="fcount" id="whoCount"></div>
   </div>
 
@@ -507,6 +556,61 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div class="panel">
       <div class="panel-h"><h3>Band size vs conversion lift</h3><span class="sub">Bubble area is customer count</span></div>
       <div class="panel-b"><div class="ch"><canvas id="whoBubble"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="fcount" id="whoTierNote" style="display:none;margin:0 0 14px;font-size:12px;
+    background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:9px 13px"></div>
+
+  <div class="g g2" style="margin-top:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Conversion lift by score decile</h3><span class="sub">Decile 10 = highest priority · monotonic from decile 5 up</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoDecile"></canvas></div>
+        <p class="note">The curve rises cleanly across the top half, which is what a working rank ordering looks like. Decile 10 converts at <b>2.75×</b> the base rate; the band view concentrates this further because P1 is a rule on top of the score, not just its top slice.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Median sub-scores by band</h3><span class="sub">Where each band's score actually comes from</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoRadar"></canvas></div>
+        <p class="note">P1 and P2 differ most on <b>READINESS</b> (50 vs 0), which is the has-bought-online signal. P2 and P3 differ most on <b>ENGAGEMENT</b> (67.2 vs 22.4). VALUE barely separates P2 from P3, so engagement is what the ladder is really sorting on below the top.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <div class="panel-h"><h3>Band sizing and spend headroom</h3><span class="sub">The honest revenue framing · omni median benchmark R$102.57/month</span></div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>Band</th><th class="rt">Customers</th><th class="rt">% of scored</th><th class="rt">Median spend</th>
+          <th class="rt">Median score</th><th class="rt">% below omni median</th><th class="rt">Headroom</th></tr></thead>
+        <tbody id="headBody"></tbody>
+      </table>
+    </div>
+    <div class="panel-b tight">
+      <p class="note" style="margin-top:0"><b>The trap this table avoids.</b> P1 already spends <em>above</em> the omni median and P2 sits just below it, so their basket headroom is small: their value is convertibility, visit frequency and retention, not a bigger basket. The largest nominal headroom (<b>R$1,482M</b>) sits in <b>P3, the least convertible band</b>. Prioritise by convertibility; size basket upside separately. Do not naively target P3.</p>
+    </div>
+  </div>
+
+  <div class="g g2" style="margin-top:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>RFV tier by band</h3><span class="sub">Customers · the tier filter above highlights a row</span></div>
+      <div class="tblwrap">
+        <table class="tbl">
+          <thead><tr><th>Tier</th><th class="rt">P1</th><th class="rt">P2</th><th class="rt">P3</th><th class="rt">Total</th></tr></thead>
+          <tbody id="tierBody"></tbody>
+        </table>
+      </div>
+      <div class="panel-b tight"><p class="note" style="margin-top:0">Bands are a rule on tier and online history, so the split is clean by construction: only Ouro, Gran Reserva and Black reach P1 or P2, and Bronze and Prata make up all of P3.</p></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Weight robustness</h3><span class="sub">Top-100k overlap and rank correlation vs base weights</span></div>
+      <div class="tblwrap">
+        <table class="tbl">
+          <thead><tr><th>Weight set</th><th class="rt">Top-100k overlap</th><th class="rt">Spearman ρ</th></tr></thead>
+          <tbody id="robustBody"></tbody>
+        </table>
+      </div>
+      <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist barely moves when the weights change, so the ranking is not an artifact of the judgement calls in the formula. <b>We own one caveat:</b> READINESS partly overlaps the outcome, since a past online purchase is close to the thing that makes someone omni. P1 is best read as the strongest <em>actionable</em> signal rather than a pure prediction.</p></div>
     </div>
   </div>
 </section>
@@ -570,7 +674,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 <section class="page" id="p-how">
   <div class="phead">
     <div class="lhs">
-      <div class="kicker">How &amp; when to reach them</div>
+      <div class="kicker">How to reach them</div>
       <h2>Lead with the mechanic customers already like best</h2>
       <p>Before pushing volume online we examined what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
     </div>
@@ -628,13 +732,130 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <p>"Retire na Loja" is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it brings customers into a store where Swift controls the experience.</p>
       </div>
       <div class="panel">
-        <div class="panel-h"><h3>When to activate</h3><span class="sub">Timing constraints</span></div>
-        <div class="panel-b">
-          <p class="note" style="margin-top:0"><b>Payday windows.</b> Activation concentrates on payday and early-month windows using the CALENDAR business-day flag.</p>
-          <p class="note"><b>3 to 4 day lead time.</b> Campaigns land ahead of the push to respect Swift's stated preparation window.</p>
-          <p class="note"><b>December ceiling.</b> Seasonal peak is R$89.6M versus R$58.5M in the June trough, so high-effort Priority 1 activation is scheduled pre-December.</p>
-        </div>
+        <div class="panel-h"><h3>Physical pain is the way in</h3><span class="sub">Detractor themes, physical vs online</span></div>
+        <div class="panel-b" id="painBox"></div>
       </div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:14px">
+    <div class="panel-h"><h3>The lowest-friction conversion path</h3><span class="sub">Turns untrackable SWS footfall into a CRM contact and a first online order</span></div>
+    <div class="panel-b">
+      <div class="flow">
+        <div class="fstep"><div class="fn">Step 1</div><h5>Customer in a SWS store</h5><p>57% of touchpoints cannot fulfil online. These shoppers are anonymous today, with no CPF and no CRM contact.</p></div>
+        <div class="fstep"><div class="fn">Step 2</div><h5>Scans the QR code</h5><p>The highest-satisfaction touchpoint in the whole network at +98.5 NPS. Already a digital habit.</p></div>
+        <div class="fstep"><div class="fn">Step 3</div><h5>Registers a CPF</h5><p>The scan page becomes the registration gateway. This is the step that makes the customer addressable at all.</p></div>
+        <div class="fstep"><div class="fn">Step 4</div><h5>Receives a price-led offer</h5><p>Pricing is the number one physical complaint at 24.9%, so a discount offer hits their actual pain point.</p></div>
+        <div class="fstep"><div class="fn">Step 5</div><h5>Click &amp; Collect at a nearby LOJAS</h5><p>79% of SWS sit within 5 km of an O2O store, median 1.8 km. Highest online NPS at +57.3, and it bypasses delivery entirely.</p></div>
+      </div>
+      <p class="note">Every step in this chain is evidenced separately: the QR satisfaction score, the CPF identification gap, the pricing complaint share, the store proximity distribution, and the modality NPS ranking. The path is the join of those five findings, not a new assumption.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHEN ================= -->
+<section class="page" id="p-when">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">When to activate</div>
+      <h2>Timing is the cheapest lever we have</h2>
+      <p>Every pattern below was re-tested directly against the refreshed 150M-row transaction table and verified independently within each year, not pooled. Together they form a lookup table: WHO says which customer, this says when to send.</p>
+    </div>
+    <div class="rhs">
+      <b>150.4M</b>transactions tested
+      <b>25 months</b>May 2024 to May 2026
+    </div>
+  </div>
+
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">Occasion</span>
+      <div class="pills" id="fOcc">
+        <button data-v="both" class="on">Both</button>
+        <button data-v="churrasco">Barbecue</button>
+        <button data-v="diaadia">Everyday</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Channel</span>
+      <div class="pills" id="fChan">
+        <button data-v="both" class="on">Both</button>
+        <button data-v="zpdv">Physical</button>
+        <button data-v="zvec">Online</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Year</span>
+      <div class="pills" id="fYear">
+        <button data-v="all" class="on">All</button>
+        <button data-v="2024">2024</button>
+        <button data-v="2025">2025</button>
+        <button data-v="2026">2026</button>
+      </div>
+    </div>
+    <div class="fcount" id="whenCount"></div>
+  </div>
+
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Barbecue Saturday peak</div><div class="v num">3×</div><div class="s">vs Monday, the weakest day. Most robust finding in this framework</div></div>
+    <div class="metric"><div class="k">Best send window</div><div class="v num" id="mWin">Thu–Fri</div><div class="s" id="mWinS">Ahead of the Saturday churrasco peak</div></div>
+    <div class="metric"><div class="k">Day-of-month trough</div><div class="v num red">Day 24–25</div><div class="s">Both channels bottom out here, avoid it</div></div>
+    <div class="metric"><div class="k">Holiday online effect</div><div class="v num red">−32%</div><div class="s">Online softens on holidays; physical rises +24%</div></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-h">
+      <h3>Online share of revenue, month by month</h3>
+      <span class="sub" id="seasonSub">ZVEC share of total revenue · 25-month series</span>
+    </div>
+    <div class="panel-b">
+      <div class="ch lg"><canvas id="whenSeason"></canvas></div>
+      <div class="pending">
+        <b>Pending team alignment.</b> This refreshed series puts the online-share peak in <b>June–July</b> and the trough in <b>November–January</b> (Dec 2024 = 3.82%, the lowest point in the series). Our earlier roadmap assumed an October–January peak, so the campaign window is being reconciled with the team before it reaches the sponsor.
+        <br><br>
+        Note these are not in conflict: December has the highest <b>absolute</b> sales (R$89.6M vs R$58.5M in June) but the lowest <b>online share</b>. The month that sells the most is the hardest month to move people online.
+      </div>
+    </div>
+  </div>
+
+  <div class="g g2" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Day-of-month rhythm</h3><span class="sub" id="domSub">Transaction volume, indexed to each channel's own average</span></div>
+      <div class="panel-b">
+        <div class="ch"><canvas id="whenDom"></canvas></div>
+        <p class="note">Physical peaks at the month boundary (day 1 and day 30, both about +11%). Online peaks about a week later, in the <b>day 6–7</b> window (+18 to 20%). Both bottom out at <b>day 24–25</b>. Day 31 is low only because fewer months have one.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Day of week by occasion</h3><span class="sub" id="dowSub">Transactions, all years</span></div>
+      <div class="panel-b">
+        <div class="ch"><canvas id="whenDow"></canvas></div>
+        <p class="note">Barbecue is a weekend-gathering pattern: Saturday is roughly <b>3× Monday</b>, with Friday the clear lead-in. Everyday demand also peaks Saturday but far more gently, about <b>30%</b> above its flattest day. The shape holds across every WHO band, so it is universal rather than band-specific.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="g g23" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Holiday effect</h3><span class="sub">Average daily revenue, 16 holidays vs 741 non-holidays</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whenHol"></canvas></div>
+        <p class="note">Online revenue is lower on holidays for <b>every</b> day of the week without exception. Physical rises, though that uplift is likely concentrated in a few major holidays such as Christmas and Carnaval rather than spread evenly.</p>
+      </div>
+    </div>
+    <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="lb">The counter-intuitive one</div>
+      <h3>Campaigns lift baskets, not channel mix</h3>
+      <p>Inside campaign windows both channels lift almost identically: physical basket <b>+35%</b> (R$33.84 → R$45.57), online <b>+37%</b> (R$42.04 → R$57.70).</p>
+      <p>Yet ZVEC <em>share</em> falls from 4.75% to 4.42%, because physical runs about <b>27 transactions for every 1 online</b> in-window. Timing alone moves value, not channel share. Shifting the mix needs an online-specific mechanic paired with the campaign.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h3>Timing reference table</h3><span class="sub">The reusable handoff, sits alongside the WHO worklist</span></div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>Dimension</th><th>Segment</th><th>Best send window</th><th>Peak day</th><th>Avoid</th><th>Magnitude</th></tr></thead>
+        <tbody id="timingBody"></tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -679,6 +900,14 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
         <button data-v="rj">Rio</button>
       </div>
     </div>
+    <div class="fgrp">
+      <span class="lbl">Rollout tier</span>
+      <div class="pills" id="fGeo">
+        <button data-v="all" class="on">All</button>
+        <button data-v="1">1</button><button data-v="2">2</button>
+        <button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button>
+      </div>
+    </div>
     <div class="fcount" id="whereCount"></div>
   </div>
 
@@ -705,6 +934,37 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     <div class="panel">
       <div class="panel-h"><h3>Footprint by state</h3><span class="sub">Stores plotted, current filter</span></div>
       <div class="panel-b"><div class="ch"><canvas id="whereState"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="g g23" style="margin-top:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Geographic rollout tiers</h3><span class="sub" id="geoCount"></span></div>
+      <div class="panel-b"><div id="geoList"></div></div>
+    </div>
+    <div>
+      <div class="panel" style="margin-bottom:14px">
+        <div class="panel-h"><h3>Partner proximity</h3><span class="sub">Median SWS distance to nearest O2O store</span></div>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Partner</th><th class="rt">Median distance</th><th>Read</th></tr></thead>
+          <tbody id="partBody"></tbody></table></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h3>Highest SWS-share cities</h3><span class="sub">Anonymous traffic concentration</span></div>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>City</th><th class="rt">SWS share</th><th>Why it matters</th></tr></thead>
+          <tbody id="swsBody"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <div class="panel-h"><h3>City-level NPS gap</h3><span class="sub">Physical NPS minus online NPS · how much harder the online experience is locally</span></div>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>City</th><th class="rt">Physical NPS</th><th class="rt">Online NPS</th><th class="rt">Gap</th><th>Read</th></tr></thead>
+      <tbody id="gapBody"></tbody></table></div>
+    <div class="panel-b tight">
+      <p class="note" style="margin-top:0">A small gap means the online experience is already decent, so push conversion harder there. A large gap means online lags badly and operations should be fixed first. The worst online detractor rates are all in SP Capital: <b>Tutóia 40.2%</b>, <b>Vila Mariana 35.7%</b>, <b>Clodomiro 34.9%</b>, which gives the sponsor named locations to fix rather than a general recommendation.</p>
     </div>
   </div>
 </section>
@@ -875,7 +1135,7 @@ function pills(id,fn){const el=$(id);if(!el)return;
     [...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(b.dataset.v)})}
 
 /* ================= TABS ================= */
-const PAGES=['overview','who','what','how','where','proof'];
+const PAGES=['overview','who','what','how','when','where','proof'];
 let CUR='overview';
 function go(p){
   if(!PAGES.includes(p))return;
@@ -982,6 +1242,20 @@ function drawHow(){
   $('mLOs').textContent=det?'online detractors':'24,347 comments';
   const rows=themeRows();
   $('howCount').innerHTML=`Showing <b>${rows.length}</b> of ${THEMES.length} themes`;
+  const pain=[['Pricing',24.9,6.3],['Product quality',24.0,8.3],['Customer service',18.8,13.0],
+              ['Delivery delay',4.4,38.5],['App / website',4.6,20.8],['Delivery quality',1.9,15.0]];
+  $('painBox').innerHTML=pain.map(p=>{const mx=40;
+    return `<div class="painrow">
+      <div class="pl"><span class="painbar" style="width:${p[1]/mx*84}px;background:${NAVY2}"></span>
+        <b class="num" style="margin-left:6px">${p[1].toFixed(1)}%</b></div>
+      <div class="pc">${p[0]}</div>
+      <div class="pr"><b class="num" style="margin-right:6px">${p[2].toFixed(1)}%</b>
+        <span class="painbar" style="width:${p[2]/mx*84}px;background:${RED}"></span></div>
+    </div>`}).join('')
+    +`<p class="note"><span style="color:${NAVY2};font-weight:600">Physical</span> detractors complain about
+      price and product. <span style="color:${RED};font-weight:600">Online</span> detractors complain about
+      delivery and the app. That asymmetry is the opening: a price-led offer answers the physical customer's
+      actual grievance, and Click &amp; Collect removes the online one.</p>`;
   if(CH.howTheme)updHowChart();
 }
 pills('fComment',v=>{hComment=v;drawHow()});
@@ -1030,6 +1304,11 @@ pills('fZoom',v=>{if(map)map.setView(VIEWS[v].c,VIEWS[v].z)});
 
 /* ================= PROOF ================= */
 let prShow='all',prCrit='all';
+function drawRobust(){
+  const el=$('robustBody'); if(!el)return;
+  el.innerHTML=ROBUST.map(r=>`<tr><td><b>${r[0]}</b></td>
+    <td class="rt num">${r[1].toFixed(1)}%</td><td class="rt num">${r[2].toFixed(3)}</td></tr>`).join('');
+}
 function drawProof(){
   const rows=CRITERIA.filter(c=>prCrit==='all'||c[4]===1);
   $('critBody').innerHTML=rows.map(c=>`<tr>
@@ -1044,6 +1323,186 @@ function drawProof(){
 }
 pills('fProof',v=>{prShow=v;drawProof()});
 pills('fCrit',v=>{prCrit=v;drawProof()});
+
+
+/* ================= WHEN DATA ================= */
+const ZVEC_SERIES=[["2024-05",4.77],["2024-06",4.96],["2024-07",5.28],["2024-08",4.86],["2024-09",4.74],
+["2024-10",5.02],["2024-11",4.55],["2024-12",3.82],["2025-01",4.39],["2025-02",4.55],["2025-03",4.28],
+["2025-04",4.51],["2025-05",4.55],["2025-06",4.84],["2025-07",4.76],["2025-08",4.43],["2025-09",4.81],
+["2025-10",4.77],["2025-11",4.19],["2025-12",4.15],["2026-01",3.94],["2026-02",4.43],["2026-03",4.62],
+["2026-04",4.14],["2026-05",4.13]];
+const DOM=[[1,5142998,181664],[2,4994135,201001],[3,4749953,196242],[4,4788502,191019],[5,4655265,189877],
+[6,4725002,203652],[7,4929693,206537],[8,4852355,189075],[9,4860776,187614],[10,4725975,187975],
+[11,4706427,181807],[12,4316711,170239],[13,4361478,170683],[14,4626102,168850],[15,4667922,159031],
+[16,4522974,165687],[17,4567612,169311],[18,4515258,160585],[19,4487907,160470],[20,4571420,157703],
+[21,4608345,154463],[22,4445139,148940],[23,4556892,151698],[24,4344658,145947],[25,3902963,141184],
+[26,4174852,151249],[27,4346181,160721],[28,4764305,170363],[29,4353697,156487],[30,5124348,182686],
+[31,3544274,106417]];
+const DOW=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const DOW_CHU=[3210455,3466670,3497464,3963785,6383896,9917792,5239500];
+const DOW_DIA=[13754256,13507602,13006696,12687347,13374367,17756003,10834858];
+const DOW_CHU_Y={2024:[1154273,1162961,1025628,1254060,2038380,3145349,1694868],
+                 2025:[1461755,1707453,1855547,1910316,3027317,4738624,2498367],
+                 2026:[594427,596256,616289,799409,1318199,2033819,1046265]};
+const HOL=[['Physical (ZPDV)',8000137,6435030],['Online (ZVEC)',206987,306121]];
+const TIMING=[
+ ["Occasion","Barbecue (Churrasco)","Thursday–Friday","Saturday","Monday","~3× Monday's volume, consistent across all 3 years and all WHO bands"],
+ ["Occasion","Everyday (Dia-a-Dia)","Any weekday","Saturday (mild)","None strong","~30% above the flattest days, far gentler than barbecue's swing"],
+ ["Channel","Physical (ZPDV)","Day 1 or day 30","Day 1 / day 30","Day 24–25","~11% above average at peak, ~15% below at trough"],
+ ["Channel","Online (ZVEC)","Day 6–7 (first week)","Day 6–7","Day 24–25","~18–20% above average at peak, ~18% below at trough"],
+ ["Calendar","National holidays","Physical promotion preferred","Holiday date, physical","Online push on holidays","ZVEC ~32% lower, ZPDV ~24% higher (16 holidays vs 741 non-holidays)"],
+ ["Season","Campaign timing, annual","June–July","July","November–January","~3.8% to ~5.3% ZVEC share range, verified in each year"],
+ ["Mechanism","Campaign windows","Pair with an online mechanic","N/A","N/A","Basket +35–37% on both channels, but ~27 physical transactions per 1 online in-window"]
+];
+
+/* ================= WHEN LOGIC ================= */
+let occ='both',chan='both',yr='all';
+function drawWhen(){
+  const occLbl={both:'Both occasions',churrasco:'Barbecue',diaadia:'Everyday'}[occ];
+  const chLbl={both:'Both channels',zpdv:'Physical',zvec:'Online'}[chan];
+  $('whenCount').innerHTML=`<b>${occLbl}</b> · <b>${chLbl}</b>${yr!=='all'?' · <b>'+yr+'</b>':''}`;
+  $('mWin').textContent=occ==='diaadia'?'Any weekday':(chan==='zvec'?'Day 6–7':'Thu–Fri');
+  $('mWinS').textContent=occ==='diaadia'?'Everyday demand has no strong weekday preference'
+    :(chan==='zvec'?'Online peaks in the first week of the month':'Ahead of the Saturday churrasco peak');
+  $('seasonSub').textContent='ZVEC share of total revenue'+(yr!=='all'?' · '+yr:' · 25-month series');
+  $('domSub').textContent=chan==='both'?'Transaction volume, indexed to each channel’s own average'
+    :(chan==='zpdv'?'Physical transaction volume, indexed to its average':'Online transaction volume, indexed to its average');
+  $('dowSub').textContent='Transactions'+(yr!=='all'?' · '+yr:' · all years');
+  const rows=TIMING.filter(t=>{
+    if(occ==='churrasco'&&t[0]==='Occasion'&&!t[1].includes('Barbecue'))return false;
+    if(occ==='diaadia'&&t[0]==='Occasion'&&!t[1].includes('Everyday'))return false;
+    if(chan==='zpdv'&&t[0]==='Channel'&&!t[1].includes('Physical'))return false;
+    if(chan==='zvec'&&t[0]==='Channel'&&!t[1].includes('Online'))return false;
+    return true;});
+  $('timingBody').innerHTML=rows.map(t=>`<tr><td><b>${t[0]}</b></td><td>${t[1]}</td>
+    <td><b>${t[2]}</b></td><td>${t[3]}</td><td style="color:var(--red)">${t[4]}</td>
+    <td style="font-size:11.5px">${t[5]}</td></tr>`).join('');
+  if(CH.whenSeason)updWhen();
+}
+pills('fOcc',v=>{occ=v;drawWhen()});
+pills('fChan',v=>{chan=v;drawWhen()});
+pills('fYear',v=>{yr=v;drawWhen()});
+function seasonRows(){return yr==='all'?ZVEC_SERIES:ZVEC_SERIES.filter(r=>r[0].startsWith(yr))}
+function updWhen(){
+  const s=seasonRows();
+  CH.whenSeason.data.labels=s.map(r=>r[0]);
+  CH.whenSeason.data.datasets[0].data=s.map(r=>r[1]);
+  CH.whenSeason.data.datasets[0].pointBackgroundColor=s.map(r=>{
+    const m=+r[0].slice(5); return (m===6||m===7)?TEAL:(m===11||m===12||m===1)?RED:NAVY;});
+  CH.whenSeason.data.datasets[0].pointRadius=s.map(r=>{
+    const m=+r[0].slice(5); return (m===6||m===7||m===11||m===12||m===1)?4.5:2.5;});
+  CH.whenSeason.update();
+  const dz=DOM.map(d=>d[1]),dv=DOM.map(d=>d[2]);
+  const az=dz.reduce((a,b)=>a+b)/dz.length, av=dv.reduce((a,b)=>a+b)/dv.length;
+  const ds=[];
+  if(chan!=='zvec')ds.push({label:'Physical',data:dz.map(v=>(v/az-1)*100),borderColor:NAVY2,
+    backgroundColor:'rgba(33,59,88,.07)',borderWidth:2,pointRadius:0,tension:.32,fill:true});
+  if(chan!=='zpdv')ds.push({label:'Online',data:dv.map(v=>(v/av-1)*100),borderColor:RED,
+    backgroundColor:'rgba(176,27,27,.06)',borderWidth:2,pointRadius:0,tension:.32,fill:true});
+  CH.whenDom.data.datasets=ds;CH.whenDom.update();
+  const dsw=[];
+  const chu=yr==='all'?DOW_CHU:DOW_CHU_Y[yr];
+  if(occ!=='diaadia')dsw.push({label:'Barbecue',data:chu,backgroundColor:RED,borderRadius:3});
+  if(occ!=='churrasco'&&yr==='all')dsw.push({label:'Everyday',data:DOW_DIA,backgroundColor:NAVY2,borderRadius:3});
+  CH.whenDow.data.datasets=dsw.length?dsw:[{label:'Barbecue',data:chu,backgroundColor:RED,borderRadius:3}];
+  CH.whenDow.update();
+}
+
+
+/* ================= WHO v2 DATA ================= */
+const DECILES=[[1,0.43,178],[2,0.30,123],[3,0.48,196],[4,0.49,200],[5,0.58,238],
+               [6,0.75,308],[7,1.04,424],[8,1.24,508],[9,1.93,791],[10,2.75,1127]];
+const HEADROOM=[
+ ["P1",66397,2.60,120.00,56.50,43.40,17.80],
+ ["M-WARM",24678,1.00,87.60,41.70,56.00,8.80],
+ ["P2",861629,33.60,88.90,38.60,55.40,316.10],
+ ["P3",1610526,62.80,16.90,22.20,97.30,1482.20]];
+const TIERBAND={Bronze:[0,0,879755],Prata:[0,0,730771],Ouro:[39512,592597,0],
+ "Gran Reserva":[13461,168152,0],Black:[13424,100880,0]};
+const SUBSCORES={P1:[30.30,80.60,50.00,50.00,57.10],P2:[15.20,67.20,0,50.00,50.00],P3:[15.20,22.40,0,50.00,50.00]};
+const ROBUST=[["base  V35/E25/R25/M15",100.0,1.000],["value-heavy  50/20/20/10",88.0,0.990],["readiness-heavy  25/25/35/15",83.4,0.997]];
+const OMNI_MED=102.57;
+
+/* ================= WHERE v2 DATA ================= */
+const GEOTIERS=[
+ {t:1,name:"SP Capital",play:"Click & Collect first",
+  d:"91 LOJAS and 83 SWS densely intermixed. Highest store density and the shortest SWS-to-O2O distance, so the QR to Click & Collect route works immediately with zero infrastructure investment.",
+  act:"Start here",states:["SP"]},
+ {t:2,name:"SP Metro ring",play:"Extend the model",
+  d:"Santo André, Guarulhos, SBC, Osasco, Cotia, Barueri. High SWS ratios of 70 to 80% but enough nearby LOJAS for Click & Collect routing. Same playbook, wider geography.",
+  act:"Wave 2",states:["SP"]},
+ {t:3,name:"SP Interior",play:"Selective expansion",
+  d:"Campinas, Sorocaba, Ribeirão Preto, São José dos Campos. Lower density but both formats present. Click & Collect where co-located, home delivery where not.",
+  act:"Wave 3",states:["SP"]},
+ {t:4,name:"Rio de Janeiro",play:"Fix first, scale second",
+  d:"75% SWS share and only 7 LOJAS across the metro, so Click & Collect is not viable for most RJ customers. Delivery delay is the number one online complaint, so do not push RJ hard until reliability improves.",
+  act:"Hold",states:["RJ"]},
+ {t:5,name:"38 blind-spot cities",play:"Deprioritise",
+  d:"SWS-only cities such as Niterói, Sumaré and Jandira. No LOJAS means no Click & Collect, and home delivery to smaller cities is hardest to execute well.",
+  act:"Later",states:[]}];
+const CITYGAP=[["Brasília",72.6,35.2,37.4,"Online experience is weakest here, fix before pushing"],
+ ["Osasco",78.9,48.8,30.1,"High physical satisfaction, poor online, big conversion risk"],
+ ["São Paulo",69.0,43.6,25.4,"Core market, meaningful gap to close"],
+ ["Sorocaba",73.6,62.1,11.5,"Smallest gap, online experience already decent"],
+ ["São Caetano",67.5,57.8,9.7,"Best online performance relative to physical"]];
+const SWSCITIES=[["Guarulhos",80,"12 SWS, only 3 LOJAS, massive anonymous traffic"],
+ ["Guarujá",83,"5 SWS, 1 LOJA, tourist and seasonal market"],
+ ["Rio de Janeiro",75,"21 SWS, 7 LOJAS, second largest market"],
+ ["Taubaté",75,"6 SWS, 2 LOJAS, interior SP"],
+ ["Osasco",71,"10 SWS, 4 LOJAS, metro SP"]];
+const PARTNERS=[["GPA",0.8,"Pilot the QR programme here first"],["Carrefour",1.4,"Pilot candidate"],
+ ["Guanabara",8.3,"Too far, home delivery only"],["Cubatão",50.4,"Too far, home delivery only"]];
+const BADSTORES=[["Tutóia",40.2],["Vila Mariana",35.7],["Clodomiro",34.9]];
+
+/* ================= WHO v2 LOGIC ================= */
+let wTier='all';
+function tierFiltered(){
+  if(wTier==='all')return null;
+  const r=TIERBAND[wTier]; return r?{P1:r[0],P2:r[1],P3:r[2]}:null;
+}
+function drawWhoV2(){
+  const t=tierFiltered();
+  $('headBody').innerHTML=HEADROOM.map(r=>`<tr>
+    <td><b>${r[0]}</b></td><td class="rt num">${fmt(r[1])}</td><td class="rt num">${r[2].toFixed(1)}%</td>
+    <td class="rt num">R$${r[3].toFixed(2)}</td><td class="rt num">${r[4].toFixed(1)}</td>
+    <td class="rt num">${r[5].toFixed(1)}%</td><td class="rt num"><b>R$${r[6].toFixed(1)}M</b></td></tr>`).join('');
+  const tb=$('tierBody');
+  tb.innerHTML=Object.entries(TIERBAND).map(([k,v])=>{
+    const on=wTier==='all'||wTier===k;
+    return `<tr style="${on?'':'opacity:.32'}"><td><b>${k}</b></td>
+      <td class="rt num">${v[0]?fmt(v[0]):'—'}</td><td class="rt num">${v[1]?fmt(v[1]):'—'}</td>
+      <td class="rt num">${v[2]?fmt(v[2]):'—'}</td>
+      <td class="rt num"><b>${fmt(v[0]+v[1]+v[2])}</b></td></tr>`}).join('');
+  if(t){
+    const tot=t.P1+t.P2+t.P3;
+    $('whoTierNote').style.display='';
+    $('whoTierNote').innerHTML=`<b>${wTier}</b> tier: ${fmt(tot)} customers · P1 ${fmt(t.P1)} · P2 ${fmt(t.P2)} · P3 ${fmt(t.P3)}`;
+  } else $('whoTierNote').style.display='none';
+  if(CH.whoDecile)CH.whoDecile.update();
+}
+pills('fTierW',v=>{wTier=v;drawWhoV2()});
+
+/* ================= WHERE v2 LOGIC ================= */
+let geoTier='all';
+function drawGeo(){
+  const rows=geoTier==='all'?GEOTIERS:GEOTIERS.filter(g=>g.t===+geoTier);
+  $('geoList').innerHTML=rows.map(g=>`
+    <div class="tiercard t${g.t}">
+      <div class="th"><span class="tnum">Tier ${g.t}</span><h4>${g.name}</h4><span class="tact">${g.act}</span></div>
+      <div class="tplay">${g.play}</div>
+      <p>${g.d}</p>
+    </div>`).join('');
+  $('gapBody').innerHTML=CITYGAP.map(c=>`<tr><td><b>${c[0]}</b></td>
+    <td class="rt num">+${c[1].toFixed(1)}</td><td class="rt num">+${c[2].toFixed(1)}</td>
+    <td class="rt num"><b style="color:${c[3]>25?'var(--red)':c[3]>15?'var(--amber)':'var(--teal)'}">${c[3].toFixed(1)}pp</b></td>
+    <td style="font-size:11.5px">${c[4]}</td></tr>`).join('');
+  $('swsBody').innerHTML=SWSCITIES.map(c=>`<tr><td><b>${c[0]}</b></td>
+    <td class="rt num">${c[1]}%</td><td style="font-size:11.5px">${c[2]}</td></tr>`).join('');
+  $('partBody').innerHTML=PARTNERS.map(p=>`<tr><td><b>${p[0]}</b></td>
+    <td class="rt num">${p[1]} km</td><td style="font-size:11.5px;color:${p[1]<2?'var(--teal)':'var(--ink-3)'}">${p[2]}</td></tr>`).join('');
+  $('geoCount').innerHTML=`Showing <b>${rows.length}</b> of 5 tiers`;
+}
+pills('fGeo',v=>{geoTier=v;drawGeo()});
 
 /* ================= CHARTS ================= */
 Chart.defaults.font.family="'Inter',sans-serif";
@@ -1102,6 +1561,54 @@ function initCharts(p){
           y:{position:'left',grid:{color:GRID},border:{display:false},ticks:{color:TEAL,callback:v=>'+'+v},min:0,max:70},
           y2:{position:'right',grid:{display:false},border:{display:false},ticks:{color:RED,callback:v=>v+'%'},min:0,max:35}}}});
   }
+  if(p==='when'&&!CH.whenSeason){
+    CH.whenSeason=new Chart($('whenSeason'),{type:'line',
+      data:{labels:[],datasets:[{label:'ZVEC share',data:[],borderColor:NAVY,backgroundColor:'rgba(24,47,74,.06)',
+        borderWidth:2,fill:true,tension:.3,pointRadius:3,pointBackgroundColor:NAVY}]},
+      options:{...baseOpt,plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'% online share'}}},
+        scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'},
+          suggestedMin:3.5,suggestedMax:5.5,title:{display:true,text:'ZVEC share of revenue',font:{size:10}}},
+          x:{grid:{display:false},ticks:{maxRotation:60,minRotation:45,font:{size:9},autoSkip:true,maxTicksLimit:14}}}}});
+    CH.whenDom=new Chart($('whenDom'),{type:'line',
+      data:{labels:DOM.map(d=>d[0]),datasets:[]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.raw>=0?'+':'')+c.raw.toFixed(1)+'% vs avg'}}},
+        scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>(v>0?'+':'')+v+'%'},
+          title:{display:true,text:'vs channel average',font:{size:10}}},
+          x:{grid:{display:false},title:{display:true,text:'day of month',font:{size:10}},ticks:{font:{size:9},maxTicksLimit:16}}}}});
+    CH.whenDow=new Chart($('whenDow'),{type:'bar',data:{labels:DOW,datasets:[]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.raw/1e6).toFixed(2)+'M transactions'}}},
+        scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>(v/1e6).toFixed(0)+'M'}},x:{grid:{display:false}}}}});
+    CH.whenHol=new Chart($('whenHol'),{type:'bar',
+      data:{labels:HOL.map(r=>r[0]),datasets:[
+        {label:'Holiday',data:HOL.map(r=>r[1]),backgroundColor:AMBER,borderRadius:3},
+        {label:'Non-holiday',data:HOL.map(r=>r[2]),backgroundColor:NAVY2,borderRadius:3}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': R$'+(c.raw/1e6).toFixed(2)+'M/day'}}},
+        scales:{y:{type:'logarithmic',grid:{color:GRID},border:{display:false},
+          ticks:{callback:v=>'R$'+(v/1e6).toFixed(1)+'M'},title:{display:true,text:'avg daily revenue (log)',font:{size:10}}},
+          x:{grid:{display:false}}}}});
+    updWhen();
+  }
+  if(p==='who'&&!CH.whoDecile){
+    CH.whoDecile=new Chart($('whoDecile'),{type:'bar',
+      data:{labels:DECILES.map(d=>'D'+d[0]),datasets:[{data:DECILES.map(d=>d[1]),
+        backgroundColor:DECILES.map(d=>d[1]>=2?NAVY:d[1]>=1?NAVY3:LIGHT),borderRadius:3}]},
+      options:{...baseOpt,plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'× base · '+DECILES[c.dataIndex][2]+' converters'}}},
+        scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'},
+          title:{display:true,text:'lift vs 0.16% base rate',font:{size:10}}},x:{grid:{display:false}}}}});
+    CH.whoRadar=new Chart($('whoRadar'),{type:'radar',
+      data:{labels:['VALUE','ENGAGEMENT','READINESS','MOMENTUM','AGE'],
+        datasets:[{label:'P1',data:SUBSCORES.P1,borderColor:NAVY,backgroundColor:'rgba(24,47,74,.14)',borderWidth:2,pointRadius:2.5},
+          {label:'P2',data:SUBSCORES.P2,borderColor:NAVY3,backgroundColor:'rgba(52,86,125,.10)',borderWidth:2,pointRadius:2.5},
+          {label:'P3',data:SUBSCORES.P3,borderColor:LIGHT,backgroundColor:'rgba(168,189,212,.10)',borderWidth:2,pointRadius:2.5}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+        scales:{r:{min:0,max:100,grid:{color:GRID},angleLines:{color:GRID},
+          pointLabels:{font:{size:9.5}},ticks:{stepSize:25,font:{size:8},backdropColor:'transparent'}}}}});
+  }
   if(p==='where'&&!CH.whereBar){
     CH.whereBar=new Chart($('whereBar'),{type:'bar',
       data:{labels:['SWS','LOJAS','Online Store','VANS'],datasets:[
@@ -1155,7 +1662,7 @@ function updWhereChart(){
 }
 
 /* ================= INIT ================= */
-drawWho();drawWhat();drawHow();drawMap();drawProof();
+drawWho();drawWhoV2();drawRobust();drawWhat();drawHow();drawWhen();drawMap();drawGeo();drawProof();
 const hash=location.hash.replace('#','');
 if(PAGES.includes(hash))go(hash); else initCharts('overview');
 setTimeout(()=>{$('ovFill').style.width=(2.87/6*47.8)+'%'},260);
