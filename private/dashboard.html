@@ -228,13 +228,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .painbar{height:6px;border-radius:3px;display:inline-block;vertical-align:middle}
 
 /* ---------- methods page ---------- */
-.callout.amber{background:linear-gradient(160deg,#7C4A12,#5A340B)}
-.callout.amber .lb{color:#F0C48A}
-.deftable{margin-top:14px;border-top:1px solid rgba(255,255,255,.18)}
-.defrow{display:grid;grid-template-columns:230px 1fr;gap:16px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
-.defrow .dk{font-size:13.5px;font-weight:600;color:#fff}
-.defrow .dv{font-size:13px;color:#D8C6AE;line-height:1.6}
-@media(max-width:700px){.defrow{grid-template-columns:1fr;gap:4px}}
 ol.steps{margin:0;padding-left:20px;counter-reset:s}
 ol.steps li{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin-bottom:11px;padding-left:4px}
 ol.steps li b{color:var(--ink)}
@@ -599,18 +592,18 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
       <div class="story-copy">
         <div class="story-kicker">Validate</div>
         <h4>Measure purchases and document every decision rule</h4>
-        <p>The ranking clears all pre-set validation criteria and remains stable under perturbation. The success KPI must count actual purchases in both channels, separately from the sponsor’s broader O2O measure.</p>
+        <p>The ranking clears all pre-set validation criteria and remains stable under perturbation. The success KPI counts completed purchases in both channels.</p>
         <div class="story-links">
           <button type="button" class="story-link" data-go="proof">Inspect proof →</button>
-          <button type="button" class="story-link" data-go="methods">Inspect definitions →</button>
+          <button type="button" class="story-link" data-go="methods">Inspect methods →</button>
         </div>
       </div>
       <div class="story-evidence">
         <div class="story-stat"><b class="num">8 / 8</b><span>validation criteria cleared</span></div>
         <div class="story-stat"><b class="num">ρ .99 to 1.00</b><span>ranking stability</span></div>
-        <div class="story-stat"><b class="num">2.87%</b><span>strict purchase KPI today</span></div>
+        <div class="story-stat"><b class="num">2.87%</b><span>current omnichannel purchase rate</span></div>
       </div>
-      <div class="story-action"><b>Decision:</b> run a controlled pilot and report strict purchases separately from broader O2O interactions.</div>
+      <div class="story-action"><b>Decision:</b> run a controlled pilot and measure incremental first online purchases against a holdout.</div>
     </article>
   </div>
 
@@ -664,10 +657,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     </div>
   </div>
 
-  <div class="g g4" style="margin-bottom:14px">
-    <div class="metric"><div class="k">Strict purchase KPI</div><div class="v num">2.87%</div><div class="s">80,281 buy in both channels</div><div class="delta dn">Flat across 25 months</div></div>
-    <div class="metric"><div class="k">Sponsor-reported O2O</div><div class="v num teal">10.82%</div><div class="s">Broader interaction definition</div></div>
-    <div class="metric"><div class="k">Sponsor-stated goal</div><div class="v num">6.00%</div><div class="s">Definition must be aligned before tracking</div></div>
+  <div class="g g2" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Omnichannel purchase rate</div><div class="v num">2.87%</div><div class="s">80,281 customers buy in both channels</div><div class="delta dn">Flat across 25 months</div></div>
     <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
   </div>
 
@@ -1376,7 +1367,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="lhs">
       <div class="kicker">Methods, definitions and limits</div>
       <h2>What the data can and cannot tell us</h2>
-      <p>Everything on this dashboard rests on one proprietary extract and a set of definitions that need to be explicit, because two of them differ from the sponsor's own reporting. This page states the pipeline, the vocabulary, and the boundaries.</p>
+      <p>Everything on this dashboard rests on one proprietary extract and a documented set of analytical rules. This page explains the pipeline, vocabulary and boundaries.</p>
     </div>
     <div class="rhs">
       <b>16 raw tables</b>10 used directly in this dashboard
@@ -1386,26 +1377,15 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 
   <div class="decision-banner">
     <div class="decision-copy">
-      <div class="lb">Decision takeaway</div>
-      <h3>Track strict purchases separately from sponsor O2O until the 6% goal is defined.</h3>
-      <p>The site reports both figures, but does not combine them or manufacture a target gap across unlike definitions.</p>
+      <div class="lb">Method summary</div>
+      <h3>Transparent inputs, reproducible rules and out-of-time validation.</h3>
+      <p>Every chart is tied to a named source and period, while customer-level records remain outside the browser.</p>
     </div>
     <div class="decision-stats">
-      <div class="decision-stat"><b class="num">2.87%</b><span>strict both-channel purchase</span></div>
-      <div class="decision-stat"><b class="num">10.82%</b><span>sponsor broader O2O</span></div>
-      <div class="decision-stat"><b>No gap</b><span>until target definition aligns</span></div>
+      <div class="decision-stat"><b class="num">10</b><span>source tables used</span></div>
+      <div class="decision-stat"><b class="num">150.4M</b><span>transactions analysed</span></div>
+      <div class="decision-stat"><b class="num">8 / 8</b><span>validation criteria cleared</span></div>
     </div>
-  </div>
-
-  <div class="callout amber" style="margin-bottom:18px">
-    <div class="lb">Definition reconciliation</div>
-    <h3>Why we report 2.87% and the sponsor reports 10.82%</h3>
-    <p>Both figures are correct under their own definition, and the gap is definitional rather than an error in either analysis.</p>
-    <div class="deftable">
-      <div class="defrow"><div class="dk">This dashboard · <b>2.87%</b></div><div class="dv">A customer counts as omnichannel only if they purchased in <b>both</b> a físico store <b>and</b> Swift-online within a rolling 12 months. 80,281 of 2,799,245 active customers.</div></div>
-      <div class="defrow"><div class="dk">Sponsor reporting · <b>10.82%</b></div><div class="dv">A broader O2O definition covering roughly 302K of 2.79M customers. It admits channel interactions that our stricter both-channel purchase test excludes.</div></div>
-    </div>
-    <p style="margin-top:12px"><b>Why this matters for the target.</b> The original brief framed the goal as “approximately 3% to 6%,” but the later sponsor reporting uses a broader O2O definition that is already at 10.82%. We use the stricter purchase definition for targeting because it moves only after a customer completes an actual online <em>purchase</em>. Until the sponsor confirms which definition governs the 6% goal, <b>this dashboard does not calculate a 2.87% → 6% gap</b>.</p>
   </div>
 
   <div class="g g2" style="margin-bottom:18px">

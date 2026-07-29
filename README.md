@@ -10,14 +10,14 @@ A single-page application structured as a decision chain rather than a report. T
 
 | Section | Question | Key interactions |
 |---|---|---|
-| **Overview** | What should Swift do next? | Five-decision narrative, evidence routing, KPI reconciliation and two coordinated pilot plans |
+| **Overview** | What should Swift do next? | Five-decision narrative, evidence routing, KPI baseline and two coordinated pilot plans |
 | **Who** | Which customers to convert? | Band ladder drill-down, P2 split toggle, band sorting, local RFV-table highlight |
 | **What** | What do we say to them? | Persona playbook plus evidence-backed audience share and conversion lift |
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
 | **When** | When do we send? | Occasion, channel and year filters with explicit data-availability safeguards |
 | **Where** | Where do we deploy? | Leaflet map with state, store-type and radius controls; local rollout-tier filter |
 | **Proof** | Why trust it? | Success criteria, independent validation, ruled-out hypotheses |
-| **Methods** | What are the limits? | Pipeline, source tables, glossary, definition reconciliation, owned limitations |
+| **Methods** | What are the limits? | Pipeline, source tables, glossary and analytical limitations |
 
 ## Tech stack
 
@@ -57,7 +57,6 @@ Raw data is not included in this repository and is excluded via `.gitignore`.
 
 Stated here rather than buried, and surfaced on the Methods page in the application:
 
-- **Target basis.** Swift reports **10.82%** under a broader O2O-interaction definition; this dashboard reports **2.87%** under a strict both-channel-purchase definition. Because the stated **6%** goal has not been confirmed against either definition, the dashboard deliberately does **not** calculate a 2.87% → 6% customer gap.
 - **NPS populations.** Channel NPS differs between the comment subset (+70.7 physical) and all survey responses (+86.8), because commenters are roughly 3× more likely to be detractors. Both are labelled by population in the application.
 - **Timing coverage.** The Everyday weekday pattern is available only as a pooled view; yearly buttons are disabled when that occasion is selected rather than substituting Barbecue data.
 
