@@ -148,13 +148,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .prog .t{position:absolute;top:0;bottom:0;width:2px;background:var(--red)}
 .prog .tl{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:var(--red);white-space:nowrap;padding-left:7px}
 .prog .vl{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:#fff;z-index:2}
-.metric-compare{display:grid;grid-template-columns:1fr 34px 1fr;gap:12px;align-items:center}
-.metric-compare .mc{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:13px 14px}
-.metric-compare .mk{font-size:11.5px;font-weight:700;letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3)}
-.metric-compare .mv{font-size:24px;font-weight:600;color:var(--navy);margin-top:3px}
-.metric-compare .md{font-size:12.5px;color:var(--ink-3);line-height:1.45;margin-top:4px}
-.metric-compare .neq{text-align:center;font-size:20px;color:var(--amber);font-weight:600}
-@media(max-width:620px){.metric-compare{grid-template-columns:1fr}.metric-compare .neq{transform:rotate(90deg)}}
 
 /* stacked mix */
 .mix{display:flex;height:10px;border-radius:3px;overflow:hidden}
@@ -678,23 +671,6 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
   </div>
 
-  <div class="panel">
-    <div class="panel-h"><h3>Metric reconciliation</h3><span class="sub">Two valid figures, two different definitions</span></div>
-    <div class="panel-b">
-      <div class="metric-compare">
-        <div class="mc">
-          <div class="mk">Dashboard KPI</div><div class="mv num">2.87%</div>
-          <div class="md">Purchased in both physical and Swift-online within a rolling 12 months.</div>
-        </div>
-        <div class="neq">≠</div>
-        <div class="mc">
-          <div class="mk">Sponsor reporting</div><div class="mv num">10.82%</div>
-          <div class="md">Broader O2O interaction definition, covering roughly 302K customers.</div>
-        </div>
-      </div>
-      <p class="note"><b>Decision rule.</b> The dashboard uses 2.87% for targeting and validation because it moves only after an online purchase. It does <b>not</b> calculate a gap to the 6% goal until the sponsor confirms which definition the goal uses.</p>
-    </div>
-  </div>
 </section>
 
 <!-- ================= WHO ================= -->
