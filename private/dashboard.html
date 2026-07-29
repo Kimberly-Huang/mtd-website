@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<link rel="stylesheet" href="/vendor/leaflet.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="/vendor/leaflet.js"></script>
 <style>
 :root{
   --bg:#FFFFFF; --bg-2:#FBF8F4; --bg-3:#F3ECE3;
@@ -430,9 +430,14 @@ ol.steps li b{color:var(--ink)}
 .msgbox .why b{color:var(--ink-2)}
 
 /* map */
-#map{width:100%;height:440px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#map{width:100%;height:440px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background-color:#EEF2F3;
+  background-image:linear-gradient(rgba(24,47,74,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(24,47,74,.035) 1px,transparent 1px);
+  background-size:32px 32px}
 .leaflet-popup-content{font-family:'Inter',sans-serif;font-size:13.5px;margin:9px 12px}
-.leaflet-container{font-family:'Inter',sans-serif}
+.leaflet-container{font-family:'Inter',sans-serif;background:#EEF2F3}
+.leaflet-control-zoom a{color:var(--navy);border-color:var(--line)}
 
 /* ruled out */
 .rlist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -1285,7 +1290,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="panel-h"><h3>Store network</h3><span class="sub" id="mapSub">Blue = O2O enabled · Red = not enabled</span></div>
     <div id="map"></div>
     <div class="panel-b tight">
-      <p class="note" style="margin-top:0">The full network is <b>624 physical touchpoints</b> (269 LOJAS + 355 SWS, 43.1% O2O). The map plots the <b>528</b> with usable coordinates; proximity figures are computed network-wide. Geography is a rollout filter, not a scoring input: CUSTOMER_BEHAVIOR carries no store identifier, so an individual customer cannot be attributed to a store.</p>
+      <p class="note" style="margin-top:0">The full network is <b>624 physical touchpoints</b> (269 LOJAS + 355 SWS, 43.1% O2O). The map plots the <b>528</b> with usable coordinates; proximity figures are computed network-wide. Geography is a rollout filter, not a scoring input: CUSTOMER_BEHAVIOR carries no store identifier, so an individual customer cannot be attributed to a store. State boundaries are from <b>IBGE</b> and are hosted with the dashboard for reliable display.</p>
     </div>
   </div>
 
@@ -1886,14 +1891,24 @@ pills('fTheme',v=>{hTheme=v;drawHow()});
 
 /* ================= WHERE ================= */
 let wState='all';
-let map=null,lyL=null,lyS=null,lyR=null;
+let map=null,lyL=null,lyS=null,lyR=null,lyBrazil=null;
 const VIEWS={all:{c:[-22.5,-46.5],z:6},sp_metro:{c:[-23.55,-46.63],z:10},sp_capital:{c:[-23.56,-46.65],z:12},rj:{c:[-22.9,-43.2],z:10}};
 function storeSet(){return wState==='all'?STORES:STORES.filter(s=>s[6]===wState)}
 function initMap(){
   if(map||typeof L==='undefined')return;
-  map=L.map('map',{scrollWheelZoom:false}).setView(VIEWS.all.c,VIEWS.all.z);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    {attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
+  map=L.map('map',{scrollWheelZoom:false,attributionControl:false,minZoom:4,maxZoom:14})
+    .setView(VIEWS.all.c,VIEWS.all.z);
+  fetch('/data/brazil-states.geojson')
+    .then(r=>{if(!r.ok)throw new Error('Boundary file unavailable');return r.json()})
+    .then(data=>{
+      if(!map)return;
+      lyBrazil=L.geoJSON(data,{
+        interactive:false,
+        style:{color:'#A7B4BF',weight:1,opacity:.9,fillColor:'#F8FAFA',fillOpacity:.9}
+      }).addTo(map);
+      lyBrazil.bringToBack();
+    })
+    .catch(()=>{});
   drawMap();
 }
 function drawMap(){

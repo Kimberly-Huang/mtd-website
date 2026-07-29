@@ -15,7 +15,7 @@ A single-page application structured as a decision chain rather than a report. T
 | **What** | What do we say to them? | Persona playbook plus evidence-backed audience share and conversion lift |
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
 | **When** | When do we send? | Occasion, channel and year filters with explicit data-availability safeguards |
-| **Where** | Where do we deploy? | Leaflet map with state, store-type and radius controls; local rollout-tier filter |
+| **Where** | Where do we deploy? | Self-contained vector map with state, store-type and radius controls; local rollout-tier filter |
 | **Proof** | Why trust it? | Success criteria, independent validation, ruled-out hypotheses |
 | **Methods** | What are the limits? | Pipeline, source tables, glossary and analytical limitations |
 
@@ -24,7 +24,7 @@ A single-page application structured as a decision chain rather than a report. T
 - **Vanilla HTML / CSS / JavaScript:** the dashboard remains framework-free and client-side.
 - **Vercel Functions:** server-rendered access gate, environment-backed credentials and signed HttpOnly sessions.
 - **Chart.js 4:** 17 charts, including line, bar, stacked bar, horizontal bar, doughnut, radar and bubble.
-- **Leaflet 1.9:** store network map with 528 geocoded locations, layer toggles and 5 km proximity circles.
+- **Leaflet 1.9:** locally bundled store-network map with 528 geocoded locations, IBGE state boundaries, layer toggles and 5 km proximity circles.
 - **Vercel:** functions and private HTML templates are redeployed automatically on every push to `main`.
 
 ## Implementation notes
@@ -40,7 +40,7 @@ A single-page application structured as a decision chain rather than a report. T
 - **Provenance on every chart.** Each of the 17 charts carries its unit, sample size, period and source table.
 - **Accessible.** ARIA tablist semantics, arrow-key navigation between sections, `aria-pressed` on filters, and a text summary of every chart for screen readers.
 - **Responsive and printable.** Mobile navigation follows the active tab, grids avoid horizontal overflow, and the print stylesheet expands every section for PDF export.
-- **Graceful CDN fallback.** Core text, tables and filters remain usable if Chart.js or Leaflet is temporarily unavailable.
+- **Reliable map rendering.** Leaflet and the official IBGE state boundaries are served with the application, so the map does not depend on a third-party tile service at runtime.
 - **CSS design system** driven by custom properties, with tabular figures so numeric columns align.
 
 ## Data foundation
@@ -82,7 +82,7 @@ Copy `.env.example` to an ignored `.env.local`, set the three values, then run w
 npx vercel dev
 ```
 
-An internet connection is also used to load Chart.js, Leaflet, map tiles and fonts from their CDNs.
+An internet connection is used to load Chart.js and fonts. Leaflet and the IBGE map boundaries are served locally with the application.
 
 ## Deployment
 
@@ -97,6 +97,8 @@ lib/auth.js              # signed-cookie authentication
 private/login.html       # public login experience
 private/dashboard.html   # returned only after session verification
 public/robots.txt
+public/data/brazil-states.geojson  # locally hosted IBGE state boundaries
+public/vendor/leaflet.*            # locally bundled map runtime
 tests/auth.test.mjs
 vercel.json
 ```

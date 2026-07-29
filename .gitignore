@@ -12,3 +12,4 @@ Code/
 .env.local
 .vercel/
 .vercel
+node_modules/
