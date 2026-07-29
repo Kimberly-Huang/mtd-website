@@ -264,7 +264,7 @@ ol.steps li b{color:var(--ink)}
   .tabnav,.fstrip,.freset,.story-link,.next-link,.signout{display:none!important}
   .page{display:block!important;page-break-before:always;padding:0 0 18pt}
   .page:first-of-type{page-break-before:avoid}
-  .panel,.metric,.callout,.readout,.tiercard,.msgbox,.story-step,.decision-banner,.pilot-card,.next-step{break-inside:avoid;box-shadow:none!important}
+  .panel,.metric,.callout,.readout,.tiercard,.msgbox,.roadmap,.story-step,.decision-banner,.pilot-card,.next-step{break-inside:avoid;box-shadow:none!important}
   .panel{border:1px solid #bbb!important}
   .callout{background:#f2f2f2!important;color:#000!important;border:1px solid #bbb}
   .callout h3,.callout p,.callout .lb{color:#000!important}
@@ -277,6 +277,29 @@ ol.steps li b{color:var(--ink)}
 .print-only{display:none}
 
 /* guided story */
+.roadmap-block{margin:28px 0 18px}
+.roadmap-intro{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:13px}
+.roadmap-intro .kicker{font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red)}
+.roadmap-intro h3{font-size:23px;line-height:1.25;margin-top:5px;color:var(--navy)}
+.roadmap-intro p{max-width:500px;font-size:13.5px;line-height:1.6;color:var(--ink-3)}
+.roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--bg);
+  border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:visible}
+.road-phase{position:relative;min-width:0;min-height:166px;padding:17px 16px 15px;border-right:1px solid var(--line)}
+.road-phase:last-child{border-right:0;background:var(--navy);border-radius:0 var(--r) var(--r) 0;color:#fff}
+.road-phase:not(:last-child)::after{content:"";position:absolute;z-index:2;right:-6px;top:27px;width:10px;height:10px;
+  border-top:2px solid var(--red);border-right:2px solid var(--red);background:var(--bg);transform:rotate(45deg)}
+.road-top{display:flex;align-items:center;gap:8px}
+.road-no{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--soft-red);
+  color:var(--red);font:600 11px 'IBM Plex Mono',monospace;flex:0 0 auto}
+.road-phase:last-child .road-no{background:rgba(255,255,255,.12);color:#F2B7B3}
+.road-stage{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.road-phase:last-child .road-stage{color:#AFC0D0}
+.road-phase h4{font-size:16px;line-height:1.3;color:var(--navy);margin-top:14px}
+.road-phase:last-child h4{color:#fff}
+.road-signal{display:block;font-size:13px;font-weight:700;color:var(--red);margin-top:7px;line-height:1.35}
+.road-phase:last-child .road-signal{color:#F2B7B3}
+.road-phase p{font-size:12.5px;line-height:1.5;color:var(--ink-3);margin-top:5px}
+.road-phase:last-child p{color:#C9D5E2}
 .story-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin:28px 0 14px}
 .story-head .kicker{font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red)}
 .story-head h3{font-size:23px;line-height:1.25;margin-top:5px;color:var(--navy)}
@@ -329,7 +352,13 @@ ol.steps li b{color:var(--ink)}
 .next-copy p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:3px}
 
 @media(max-width:850px){
-  .story-head{display:block}.story-head p{margin-top:8px}
+  .roadmap-intro,.story-head{display:block}.roadmap-intro p,.story-head p{margin-top:8px}
+  .roadmap{grid-template-columns:1fr}
+  .road-phase{min-height:0;border-right:0;border-bottom:1px solid var(--line);padding:15px 18px 15px 62px}
+  .road-phase:last-child{border-bottom:0;border-radius:0 0 var(--r) var(--r)}
+  .road-phase:not(:last-child)::after{right:auto;left:29px;top:auto;bottom:-6px;transform:rotate(135deg)}
+  .road-top{position:absolute;left:17px;top:15px}.road-stage{display:none}
+  .road-phase h4{margin-top:0}.road-signal{margin-top:4px}.road-phase p{margin-top:3px}
   .story-step{grid-template-columns:46px 1fr}.story-evidence,.story-action{grid-column:2}
   .decision-banner{grid-template-columns:1fr}.pilot-lanes{grid-template-columns:1fr}
 }
@@ -508,6 +537,48 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
       <b>31×</b>more likely to churn than convert
     </div>
   </div>
+
+  <section class="roadmap-block" aria-labelledby="strategyRoadmapTitle">
+    <div class="roadmap-intro">
+      <div>
+        <div class="kicker">Strategy roadmap</div>
+        <h3 id="strategyRoadmapTitle">From activation gap to scalable growth</h3>
+      </div>
+      <p>One connected path from the business problem to the customer, offer, moment and measurement plan.</p>
+    </div>
+    <div class="roadmap" role="list" aria-label="Omnichannel activation roadmap">
+      <article class="road-phase" role="listitem">
+        <div class="road-top"><span class="road-no">01</span><span class="road-stage">Diagnose</span></div>
+        <h4>Activation gap</h4>
+        <span class="road-signal num">1.33% conversion</span>
+        <p>First online purchase is the constraint.</p>
+      </article>
+      <article class="road-phase" role="listitem">
+        <div class="road-top"><span class="road-no">02</span><span class="road-stage">Prioritize</span></div>
+        <h4>Warm audience</h4>
+        <span class="road-signal num">91,075 customers</span>
+        <p>Start with P1 and M-WARM.</p>
+      </article>
+      <article class="road-phase" role="listitem">
+        <div class="road-top"><span class="road-no">03</span><span class="road-stage">Activate</span></div>
+        <h4>Offer and journey</h4>
+        <span class="road-signal">CHEGUEI20 + pickup</span>
+        <p>Match persona messaging with Click &amp; Collect.</p>
+      </article>
+      <article class="road-phase" role="listitem">
+        <div class="road-top"><span class="road-no">04</span><span class="road-stage">Orchestrate</span></div>
+        <h4>Moment and market</h4>
+        <span class="road-signal">Thu + Fri · São Paulo</span>
+        <p>Focus on days 6 and 7 where pickup is credible.</p>
+      </article>
+      <article class="road-phase" role="listitem">
+        <div class="road-top"><span class="road-no">05</span><span class="road-stage">Validate</span></div>
+        <h4>Pilot, then scale</h4>
+        <span class="road-signal">Holdout · P2 Ready</span>
+        <p>Measure first online purchases before expansion.</p>
+      </article>
+    </div>
+  </section>
 
   <div class="story-head">
     <div>

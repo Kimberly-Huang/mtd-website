@@ -10,7 +10,7 @@ A single-page application structured as a decision chain rather than a report. T
 
 | Section | Question | Key interactions |
 |---|---|---|
-| **Overview** | What should Swift do next? | Five-decision narrative, evidence routing, KPI baseline and two coordinated pilot plans |
+| **Overview** | What should Swift do next? | Visual strategy roadmap, five-decision narrative, KPI baseline and two coordinated pilot plans |
 | **Who** | Which customers to convert? | Band ladder drill-down, P2 split toggle, band sorting, local RFV-table highlight |
 | **What** | What do we say to them? | Persona playbook plus evidence-backed audience share and conversion lift |
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
