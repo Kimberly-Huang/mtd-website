@@ -447,14 +447,14 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
 
   <div class="g g4" style="margin-bottom:14px">
     <div class="metric"><div class="k">Current penetration</div><div class="v num">2.87%</div><div class="s">80,281 omnichannel customers</div><div class="delta dn">Flat across 25 months</div></div>
-    <div class="metric"><div class="k">Target</div><div class="v num teal">6.00%</div><div class="s">Sponsor-agreed goal</div></div>
+    <div class="metric"><div class="k">Target</div><div class="v num teal">6.00%</div><div class="s">Sponsor goal, on the same strict definition</div></div>
     <div class="metric"><div class="k">Gap to close</div><div class="v num red">87,674</div><div class="s">Net-new omnichannel customers</div></div>
     <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
   </div>
 
   <div class="g g23" style="margin-bottom:14px">
     <div class="panel">
-      <div class="panel-h"><h3>Progress to target</h3><span class="sub">%O2O customers · sponsor-aligned definition</span></div>
+      <div class="panel-h"><h3>Progress to target</h3><span class="sub">Both figures on our strict both-channel definition</span></div>
       <div class="panel-b">
         <div class="prog">
           <div class="f" id="ovFill" style="width:0%"></div>
@@ -462,7 +462,8 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
           <div class="t" style="left:47.8%"></div>
           <div class="tl" style="left:47.8%">6% target</div>
         </div>
-        <p class="note" style="margin-top:12px">An omnichannel customer buys in <b>both</b> a físico store and Swift-online within a rolling 12 months. Reaching 6% means converting about <b>87,674</b> customers out of the 2.54M físico-only base, roughly <b>3.5%</b> of that pool.</p>
+        <p class="note" style="margin-top:12px">An omnichannel customer buys in <b>both</b> a físico store and Swift-online within a rolling 12 months. Reaching 6% means converting about <b>87,674</b> customers out of the 2.54M físico-only base, roughly <b>3.5%</b> of that pool. Current and target are stated on the same definition, so the gap is a like-for-like subtraction.</p>
+        <p class="note" style="background:#FBF3E8;border:1px solid #E8D3B4;border-left:3px solid var(--amber);border-radius:4px;padding:10px 12px;margin-top:10px"><b>Open question for the sponsor.</b> The original brief framed the goal as "approximately 3% to 6%", which pairs the target with the metric we measure, and every gap figure here is computed on that reading. Swift separately reports <b>10.82%</b> under a broader O2O definition, and on that basis the 6% mark is already passed. The target's basis has not been confirmed in writing, so this sizing holds only if 6% is read on the strict definition.</p>
       </div>
     </div>
     <div class="panel">
@@ -742,9 +743,9 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Occasion mix by priority band</h3><span class="sub">What each band actually puts in the basket</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whatMix" role="img" aria-label="Occasion mix by band. P1 is 73 percent everyday, P2 71 percent, P3 64 percent, with churrasco making up the remainder."></canvas><p class="sr-only">Occasion mix by band. P1 is 73 percent everyday, P2 71 percent, P3 64 percent, with churrasco making up the remainder.</p></div>
-        <p class="prov"><b>% of band's tracked volume</b><span class="sep">·</span>n = 2.56M scored customers<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · PRODUCTS</b></p>
-        <p class="chart-note">P1 skews to everyday staples at 73%, so the message is habit reinforcement. P3 is the most churrasco-weighted, which is also the occasion with the weakest online readiness, and is part of why P3 converts below the base rate.</p>
+      <div class="panel-b"><div class="ch"><canvas id="whatMix" role="img" aria-label="Occasion mix by band. P1 is 73 percent everyday and P2 is 71 percent, with churrasco making up the remainder. P3 is not yet quantified."></canvas><p class="sr-only">Occasion mix by band. P1 is 73 percent everyday and P2 is 71 percent, with churrasco making up the remainder. P3 is not yet quantified.</p></div>
+        <p class="prov"><b>% of band's tracked volume</b><span class="sep">·</span>P1 and P2 only, P3 not yet quantified<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · PRODUCTS</b></p>
+        <p class="chart-note">P1 skews to everyday staples at 73%, so the message is habit reinforcement rather than a bigger basket. P2 carries a meaningful barbecue component at 29%, which is why its message pairs the weekly shop with reserving weekend cuts. <b>P3 is described in the source analysis as the most churrasco-weighted band but is not yet quantified</b>, so it is left off this chart rather than estimated.</p>
       </div>
     </div>
   </div>
@@ -1150,7 +1151,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;ma
       <div class="defrow"><div class="dk">This dashboard · <b>2.87%</b></div><div class="dv">A customer counts as omnichannel only if they purchased in <b>both</b> a físico store <b>and</b> Swift-online within a rolling 12 months. 80,281 of 2,799,245 active customers.</div></div>
       <div class="defrow"><div class="dk">Sponsor reporting · <b>10.82%</b></div><div class="dv">A broader O2O definition covering roughly 302K of 2.79M customers. It admits channel interactions that our stricter both-channel purchase test excludes.</div></div>
     </div>
-    <p style="margin-top:12px">We use the stricter definition deliberately: the strategy targets customers who must complete an actual online <em>purchase</em>, so the metric has to move only when that happens. <b>The two figures must be aligned with the sponsor before the final deliverable</b>, since the 6% target was set against their definition, not ours.</p>
+    <p style="margin-top:12px"><b>Why this matters for the target.</b> The original brief framed the goal as "approximately 3% to 6%", pairing it with the metric we measure, and every gap figure on this dashboard is computed on that reading. If 6% were instead read against the broader O2O definition, Swift would already be past it at 10.82% and the sizing would need restating. We use the stricter definition deliberately: the strategy targets customers who must complete an actual online <em>purchase</em>, so the metric has to move only when that happens. <b>The two figures must be aligned with the sponsor before the final deliverable</b>, because the 6% target predates the discovery of this gap and its basis has not been confirmed in writing.</p>
   </div>
 
   <div class="g g2" style="margin-bottom:18px">
@@ -1612,7 +1613,7 @@ pills('fCrit',v=>{prCrit=v;drawProof()});
 
 
 const CATPEN=[['Poultry',5.76],['Fruits & Veg',5.21],['Pork',5.18],['Seafood',4.95],['Beef',4.43]];
-const BANDMIX=[['P1',73,27],['P2',71,29],['P3',64,36]];
+const BANDMIX=[['P1',73,27],['P2',71,29]];
 
 /* ================= WHEN DATA ================= */
 const ZVEC_SERIES=[["2024-05",4.77],["2024-06",4.96],["2024-07",5.28],["2024-08",4.86],["2024-09",4.74],
