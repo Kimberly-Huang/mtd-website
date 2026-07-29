@@ -3,835 +3,1116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meat the Data · JBS Swift Omnichannel Conversion Strategy</title>
-<meta name="description" content="Interactive strategy dashboard: lifting JBS Swift omnichannel penetration from 2.87% to 6%. Team Meat the Data, Capstone in Applied Analytics.">
+<title>JBS Swift Omnichannel Conversion Strategy | Meat the Data</title>
+<meta name="description" content="Interactive strategy dashboard: lifting JBS Swift omnichannel penetration from 2.87% to 6%.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 :root{
-  --ink:#14100E; --ink-soft:#3a322e; --paper:#FBF8F4; --paper-2:#F3ECE3; --card:#FFFFFF;
-  --red:#B01B1B; --red-deep:#7C1414; --ember:#D9793A; --gold:#C79A44; --sage:#3E6B57;
-  --line:#E7DDD0; --line-strong:#D6C8B6; --muted:#8a7d70;
-  --navy:#182f4a; --navy-deep:#0f2438; --navy-soft:#213b58; --logo-red:#EF5A52;
-  --fisico:#2a78d6; --online:#eb6834; --omni:#1baf7a;
-  --b1:#17427e; --b2:#3987e5; --b3:#8fb9ee; --mw:#7a4fd6;
-  --shadow:0 1px 2px rgba(20,16,14,.04),0 12px 32px -12px rgba(20,16,14,.18);
-  --shadow-lg:0 24px 60px -24px rgba(20,16,14,.35);
-  --maxw:1180px;
+  --bg:#FFFFFF; --bg-2:#F7F8FA; --bg-3:#EFF2F6;
+  --navy:#0F2C4C; --navy-2:#1B4470; --navy-3:#2E5C90;
+  --ink:#101720; --ink-2:#48566A; --ink-3:#6B7887;
+  --line:#E2E7EE; --line-2:#CFD7E2;
+  --red:#B32318; --red-soft:#FEF3F2;
+  --teal:#0E7C6B; --amber:#B54708; --violet:#5925DC;
+  --fisico:#1B4470; --online:#B54708; --omni:#0E7C6B;
+  --sh:0 1px 2px rgba(16,23,32,.05);
+  --sh-2:0 2px 4px rgba(16,23,32,.04),0 8px 16px -8px rgba(16,23,32,.10);
+  --r:6px;
+  --maxw:1240px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:132px}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.01em}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:14px}
+h1,h2,h3,h4{font-weight:600;line-height:1.2;letter-spacing:-.015em}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.eyebrow{font-family:'Inter';font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:inline-flex;align-items:center;gap:.55rem}
-.eyebrow::before{content:"";width:26px;height:1.5px;background:var(--red);display:inline-block}
+.num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 18px}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(251,248,244,.9);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
-nav.scrolled{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(20,16,14,.4)}
-.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;height:62px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:.95rem;line-height:1;color:var(--navy)}
-.brand .mark{width:24px;height:31px;color:var(--navy);display:block}
-.brand b{color:var(--logo-red);font-weight:800}
-.nav-links{display:flex;gap:1.35rem;align-items:center}
-.nav-links a{font-size:.82rem;font-weight:500;color:var(--ink-soft);position:relative;padding:.2rem 0;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--red)}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:0;background:var(--red);transition:width .25s}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-@media(max-width:980px){.nav-links{display:none}}
+/* ---------- HEADER ---------- */
+header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:700}
+.top-in{max-width:var(--maxw);margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:13.5px;color:var(--navy);white-space:nowrap}
+.brand svg{width:19px;height:25px;color:var(--navy)}
+.brand b{color:var(--red);font-weight:600}
+.top-meta{font-size:11.5px;color:var(--ink-3);display:flex;gap:14px;align-items:center;white-space:nowrap}
+.top-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:5px}
+@media(max-width:860px){.top-meta{display:none}}
 
-/* FILTER BAR */
-.filterbar{position:fixed;top:62px;left:0;right:0;z-index:590;background:var(--navy);color:#fff;border-bottom:1px solid rgba(255,255,255,.1)}
-.fb-inner{max-width:var(--maxw);margin:0 auto;padding:9px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.fb-group{display:flex;align-items:center;gap:8px}
-.fb-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8fa3ba}
-.seg{display:flex;background:rgba(255,255,255,.08);border-radius:8px;padding:2px;gap:2px}
-.seg button{background:none;border:none;color:#c3d0e0;font-family:inherit;font-size:.76rem;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;transition:.18s;white-space:nowrap}
-.seg button:hover{color:#fff}
-.seg button.on{background:var(--logo-red);color:#fff}
-.fb-note{margin-left:auto;font-size:.72rem;color:#8fa3ba}
-.fb-note b{color:#fff}
-@media(max-width:760px){.fb-inner{gap:12px;padding:8px 20px}.fb-note{display:none}}
+/* ---------- TAB NAV (centered, sticky) ---------- */
+.tabnav{position:sticky;top:56px;z-index:690;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabnav-in{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;justify-content:center}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:none;font-family:inherit;font-size:13.5px;font-weight:500;color:var(--ink-3);
+  padding:13px 20px;cursor:pointer;position:relative;white-space:nowrap;transition:color .15s;letter-spacing:-.005em}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--navy);font-weight:600}
+.tab.on::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--navy)}
+@media(max-width:640px){.tabnav-in{padding:0 12px;justify-content:flex-start}.tab{padding:12px 13px;font-size:12.5px}}
 
-/* HERO */
-.hero{position:relative;padding:186px 0 62px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(900px 500px at 78% -8%,rgba(176,27,27,.10),transparent 60%),radial-gradient(700px 500px at 5% 110%,rgba(62,107,87,.08),transparent 60%)}
-.hero-grid-lines{position:absolute;inset:0;z-index:0;opacity:.5;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,#000,transparent 75%)}
-.hero .wrap{position:relative;z-index:1}
-.hero-top{display:grid;grid-template-columns:1.35fr .82fr;gap:48px;align-items:center}
-@media(max-width:900px){.hero-top{grid-template-columns:1fr;gap:34px}}
-.hero h1{font-size:clamp(2.2rem,4.8vw,3.7rem);font-weight:600;max-width:16ch;margin-top:20px}
-.hero h1 .accent{color:var(--red);font-style:italic}
-.hero-sub{margin-top:20px;font-size:clamp(1rem,1.6vw,1.16rem);color:var(--ink-soft);max-width:58ch}
-.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.83rem;color:var(--muted)}
-.hero-meta b{color:var(--ink);font-weight:600}
-.hero-logo{background:radial-gradient(140% 130% at 20% 12%,#8f1b1b,#6d1414 46%,#4a0d0d);border-radius:22px;padding:34px 28px 28px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;position:relative;overflow:hidden}
-.hero-logo::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 24px)}
-.hero-logo svg{width:150px;height:auto;position:relative;z-index:1}
-.hero-logo-wm{position:relative;z-index:1;color:#f2b7b3;font-weight:600;font-size:.95rem;letter-spacing:.16em}
-.hero-logo-wm span{display:block;color:#fff;font-weight:800;font-size:1.85rem;letter-spacing:.04em;line-height:1;margin-top:3px}
-.hero-logo-wm small{display:block;font-weight:600;font-size:.58rem;letter-spacing:.24em;color:#e6a9a4;margin-top:11px;padding-top:10px;border-top:1px solid rgba(239,90,82,.55)}
-@media(max-width:900px){.hero-logo{max-width:340px;margin:0 auto}}
+/* ---------- PAGE ---------- */
+.page{display:none;padding:34px 0 72px;animation:fade .28s ease}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.phead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.phead .lhs{max-width:660px}
+.phead .kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.phead h2{font-size:23px;margin-top:7px}
+.phead p{color:var(--ink-2);margin-top:8px;font-size:13.5px;line-height:1.6}
+.phead .rhs{text-align:right;font-size:11.5px;color:var(--ink-3);line-height:1.7}
+.phead .rhs b{color:var(--ink);font-weight:600;display:block;font-size:13px}
 
-/* GOAL STRIP */
-.goalstrip{margin-top:44px;background:var(--card);border:1px solid var(--line-strong);border-radius:18px;padding:26px 28px;box-shadow:var(--shadow)}
-.goal-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px}
-.goal-head .now{font-family:'Fraunces';font-size:3rem;font-weight:600;line-height:1}
-.goal-head .now small{font-size:.9rem;color:var(--muted);font-family:'Inter';font-weight:500;display:block;margin-top:4px;letter-spacing:0}
-.goal-head .gap{text-align:right}
-.goal-head .gap .n{font-family:'Fraunces';font-size:1.9rem;font-weight:600;color:var(--red)}
-.goal-head .gap .t{font-size:.76rem;color:var(--muted)}
-.progress{margin-top:20px;height:34px;background:var(--paper-2);border-radius:10px;position:relative;overflow:hidden;border:1px solid var(--line)}
-.progress .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--red-deep),var(--red));border-radius:9px 0 0 9px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
-.progress .target{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--sage)}
-.progress .target span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:.66rem;font-weight:700;color:var(--sage);white-space:nowrap;letter-spacing:.06em}
-.progress .lbl{position:absolute;inset:0;display:flex;align-items:center;padding-left:12px;font-size:.78rem;font-weight:700;color:#fff;z-index:2}
-.mixbar{margin-top:18px;display:flex;height:12px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
-.mixbar div{height:100%}
-.mixlegend{margin-top:9px;display:flex;gap:18px;flex-wrap:wrap;font-size:.76rem;color:var(--muted)}
-.mixlegend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
-.mixlegend b{color:var(--ink)}
+/* ---------- FILTER STRIP (per section) ---------- */
+.fstrip{display:flex;gap:22px;flex-wrap:wrap;align-items:center;background:var(--bg-2);
+  border:1px solid var(--line);border-radius:var(--r);padding:11px 15px;margin-bottom:22px}
+.fgrp{display:flex;align-items:center;gap:9px}
+.fgrp>span.lbl{font-size:10.5px;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3)}
+.pills{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.pills button{background:var(--bg);border:none;font-family:inherit;font-size:12px;font-weight:500;
+  color:var(--ink-2);padding:5px 11px;cursor:pointer;transition:.13s;white-space:nowrap}
+.pills button:hover{background:var(--bg-3)}
+.pills button.on{background:var(--navy);color:#fff;font-weight:600}
+.fchk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--ink-2);cursor:pointer}
+.fchk input{accent-color:var(--navy);width:13px;height:13px;cursor:pointer;margin:0}
+.fchk .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+.fcount{margin-left:auto;font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.fcount b{color:var(--navy);font-weight:600}
+.freset{background:none;border:none;font-family:inherit;font-size:11.5px;color:var(--ink-3);
+  cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:0}
+.freset:hover{color:var(--red)}
 
-/* SECTIONS */
-section{padding:74px 0;position:relative}
-.sec-head{max-width:780px;margin-bottom:38px}
-.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.55rem);font-weight:600;margin-top:14px}
-.sec-head p{margin-top:14px;color:var(--ink-soft);font-size:1.04rem}
-.alt{background:linear-gradient(180deg,var(--paper-2),var(--paper))}
-.dark{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:var(--paper);position:relative}
-.dark::before{content:"";position:absolute;inset:0;opacity:.4;pointer-events:none;background:radial-gradient(600px 340px at 88% -5%,rgba(239,90,82,.14),transparent 60%)}
-.dark .wrap{position:relative;z-index:1}
-.dark .sec-head p{color:#c3d0e0}
-.dark .eyebrow{color:var(--ember)}
-.dark .eyebrow::before{background:var(--ember)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+/* ---------- GRID + PANELS ---------- */
+.g{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g23{grid-template-columns:1.25fr 1fr}
+@media(max-width:1000px){.g4,.g5{grid-template-columns:repeat(2,1fr)}.g23{grid-template-columns:1fr}}
+@media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+@media(max-width:520px){.g4,.g5{grid-template-columns:1fr}}
+.panel{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.panel-h{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.panel-h h3{font-size:13.5px;font-weight:600}
+.panel-h .sub{font-size:11.5px;color:var(--ink-3);font-weight:400}
+.panel-b{padding:16px}
+.panel-b.tight{padding:12px 16px}
 
-/* CARDS + GRID */
-.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:24px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
-.grid{display:grid;gap:20px}
-.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
-.chartcard{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:22px 22px 16px;box-shadow:var(--shadow)}
-.chartcard h4{font-size:1.02rem;font-weight:600}
-.chartcard .sub{font-size:.8rem;color:var(--muted);margin:4px 0 14px}
-.chart-holder{position:relative;height:290px}
-.chart-holder.tall{height:380px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;box-shadow:var(--shadow)}
-.kpi .m{font-family:'Fraunces';font-size:1.85rem;font-weight:600;color:var(--red);line-height:1}
-.kpi .t{font-size:.78rem;color:var(--muted);margin-top:6px}
-.kpi .s{font-size:.72rem;color:var(--line-strong);margin-top:3px}
-.dark .kpi{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
-.dark .kpi .m{color:var(--ember)}
-.dark .kpi .t{color:#c3d0e0}
-.footnote{font-size:.76rem;color:var(--muted);margin-top:12px}
-.dark .footnote{color:#8fa3ba}
+/* metric */
+.metric{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
+.metric .k{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.metric .v{font-size:26px;font-weight:600;margin-top:6px;line-height:1;color:var(--navy)}
+.metric .v.red{color:var(--red)}
+.metric .v.teal{color:var(--teal)}
+.metric .s{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.45}
+.metric .delta{font-size:11px;font-weight:600;margin-top:4px}
+.delta.up{color:var(--teal)}.delta.dn{color:var(--red)}
 
-/* BAND LADDER */
-.ladder{display:flex;flex-direction:column;gap:10px}
-.brow{display:grid;grid-template-columns:132px 1fr auto;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 20px;box-shadow:var(--shadow);cursor:pointer;transition:.22s;text-align:left;font-family:inherit;width:100%}
-.brow:hover{transform:translateX(4px);border-color:var(--line-strong)}
-.brow.on{border-color:var(--red);box-shadow:0 0 0 2px rgba(176,27,27,.13),var(--shadow)}
-.brow .tag{font-weight:800;font-size:.82rem;letter-spacing:.05em;color:#fff;padding:6px 10px;border-radius:7px;text-align:center}
-.brow .barwrap{position:relative;height:26px;background:var(--paper-2);border-radius:6px;overflow:hidden}
-.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
-.brow .barlbl{position:absolute;inset:0;display:flex;align-items:center;padding-left:10px;font-size:.76rem;font-weight:600;color:var(--ink);z-index:2}
-.brow .lift{font-family:'Fraunces';font-size:1.35rem;font-weight:600;min-width:74px;text-align:right}
-.bandpanel{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:24px;box-shadow:var(--shadow)}
-.bandpanel .bp-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bandpanel .bp-head .pill2{font-weight:800;font-size:.75rem;color:#fff;padding:5px 11px;border-radius:20px}
-.bandpanel h4{font-size:1.12rem}
-.bandpanel p{margin-top:10px;color:var(--ink-soft);font-size:.92rem;max-width:75ch}
-.bp-stats{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-@media(max-width:700px){.bp-stats{grid-template-columns:repeat(2,1fr)}.brow{grid-template-columns:104px 1fr;gap:12px}.brow .lift{grid-column:2;text-align:left}}
-.bp-stats .st{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.bp-stats .st .k{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;font-weight:700}
-.bp-stats .st .v{font-family:'Fraunces';font-size:1.25rem;font-weight:600;margin-top:3px}
-.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 14px;transition:.2s;font-family:inherit}
-.switch:hover{border-color:var(--line-strong)}
-.switch.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.switch i{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.5}
-.switch.on i{opacity:1;background:var(--logo-red)}
+/* chart */
+.ch{position:relative;height:250px}
+.ch.sm{height:190px}
+.ch.lg{height:330px}
+.ch.xl{height:400px}
 
-/* AXES */
-.axes{display:flex;flex-direction:column;gap:11px}
-.axis{display:grid;grid-template-columns:118px 1fr 48px;gap:14px;align-items:center}
-.axis .n{font-size:.76rem;font-weight:700;letter-spacing:.08em}
-.axis .track{height:9px;background:rgba(255,255,255,.13);border-radius:5px;overflow:hidden}
-.axis .fill{height:100%;background:linear-gradient(90deg,var(--ember),var(--logo-red));border-radius:5px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
-.axis .w{font-family:'Fraunces';font-size:.95rem;font-weight:600;text-align:right}
+/* progress */
+.prog{height:26px;background:var(--bg-3);border-radius:4px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.prog .f{position:absolute;left:0;top:0;bottom:0;background:var(--navy);transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.prog .t{position:absolute;top:0;bottom:0;width:2px;background:var(--red)}
+.prog .tl{position:absolute;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:600;color:var(--red);white-space:nowrap;padding-left:7px}
+.prog .vl{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:600;color:#fff;z-index:2}
 
-/* PERSONAS */
-.ptabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-.ptab{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:8px 16px;font-family:inherit;font-size:.83rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px}
-.ptab:hover{border-color:var(--line-strong);transform:translateY(-1px)}
-.ptab.on{background:var(--red);border-color:var(--red);color:#fff}
-.ptab .rank{font-size:.66rem;font-weight:800;background:var(--paper-2);color:var(--muted);border-radius:10px;padding:1px 7px}
-.ptab.on .rank{background:rgba(255,255,255,.22);color:#fff}
-.pcard{display:grid;grid-template-columns:1fr .78fr;gap:0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
-@media(max-width:820px){.pcard{grid-template-columns:1fr}}
-.pcard .left{background:var(--card);padding:30px}
-.pcard .right{background:linear-gradient(160deg,var(--navy),var(--navy-deep));padding:30px;color:#fff}
-.pcard .plabel{font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--red)}
-.pcard h3{font-size:1.5rem;margin-top:10px;line-height:1.2}
-.pcard .msg{margin-top:16px;color:var(--ink-soft);font-size:.94rem}
-.pcard .msg p{margin-bottom:9px}
-.pcard .offer{margin-top:18px;background:#fdf4f2;border:1px dashed #e8b9b1;border-radius:11px;padding:13px 16px;font-size:.87rem;color:var(--red-deep);font-weight:600}
-.pcard .cta{margin-top:18px;display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:.86rem;padding:11px 22px;border-radius:9px;box-shadow:0 8px 18px -8px rgba(176,27,27,.7)}
-.pcard .right .rl{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
-.pcard .right .why{margin-top:12px;font-size:.88rem;color:#c3d0e0}
-.pcard .right .metrics{margin-top:20px;display:flex;flex-direction:column;gap:12px}
-.pcard .right .met{border-top:1px solid rgba(255,255,255,.14);padding-top:11px}
-.pcard .right .met .k{font-size:.7rem;color:#8fa3ba;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
-.pcard .right .met .v{font-family:'Fraunces';font-size:1.3rem;font-weight:600;margin-top:2px}
+/* stacked mix */
+.mix{display:flex;height:10px;border-radius:3px;overflow:hidden}
+.mixleg{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px;font-size:11.5px;color:var(--ink-3)}
+.mixleg i{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px}
+.mixleg b{color:var(--ink);font-weight:600}
 
-/* MAP */
-.mapshell{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
-.mapctl{padding:14px 20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);background:var(--paper-2)}
-.chk{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;color:var(--ink-soft);cursor:pointer}
-.chk input{accent-color:var(--red);width:15px;height:15px;cursor:pointer}
-.chk .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
-#map{width:100%;height:520px}
-.mapstats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
-@media(max-width:760px){.mapstats{grid-template-columns:repeat(2,1fr)}#map{height:400px}}
-.mapstats .ms{padding:16px 18px;border-right:1px solid var(--line)}
-.mapstats .ms:last-child{border-right:none}
-.mapstats .ms .k{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
-.mapstats .ms .v{font-family:'Fraunces';font-size:1.5rem;font-weight:600;margin-top:3px}
-.mapstats .ms .s{font-size:.72rem;color:var(--muted);margin-top:2px}
-.leaflet-popup-content{font-family:'Inter',sans-serif;font-size:.82rem}
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{text-align:left;padding:9px 12px;font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line-2);white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tbody tr{cursor:default;transition:background .12s}
+.tbl tbody tr:hover{background:var(--bg-2)}
+.tbl td b{color:var(--ink);font-weight:600}
+.tbl .rt{text-align:right}
+.tblwrap{overflow-x:auto}
+.chip{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:.02em}
+.chip.pass{background:#ECFDF3;color:var(--teal)}
+.chip.new{background:#EEF4FF;color:var(--navy-3)}
+.chip.warn{background:#FFFAEB;color:var(--amber)}
 
-/* TABLES */
-.dtable{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:.87rem}
-.dtable th{background:var(--navy);color:var(--paper);text-align:left;padding:13px 17px;font-weight:600;font-size:.76rem;letter-spacing:.03em}
-.dtable td{padding:12px 17px;border-top:1px solid var(--line);color:var(--ink-soft)}
-.dtable tr:hover td{background:var(--paper-2)}
-.dtable td b{color:var(--ink)}
-.twrap{overflow-x:auto;border-radius:14px}
-.ok{color:var(--sage);font-weight:700}
-.newb{font-size:.62rem;font-weight:800;background:#eef3fa;color:var(--b1);border-radius:10px;padding:2px 7px;letter-spacing:.06em}
+/* nav cards on overview */
+.navcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:15px;
+  cursor:pointer;transition:.16s;text-align:left;font-family:inherit;box-shadow:var(--sh);display:block;width:100%}
+.navcard:hover{border-color:var(--navy-3);box-shadow:var(--sh-2);transform:translateY(-1px)}
+.navcard .n{font-size:10.5px;font-weight:600;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
+.navcard h4{font-size:13.5px;margin-top:6px}
+.navcard p{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.5}
+.navcard .kv{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.navcard .kv .num{font-size:17px;font-weight:600;color:var(--navy)}
+.navcard .kv .lb{font-size:10.5px;color:var(--ink-3)}
+.navcard .go{font-size:11px;color:var(--navy-3);font-weight:600;margin-top:9px}
 
-/* RULED OUT */
-.ruled{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:760px){.ruled{grid-template-columns:1fr}}
-.rcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:20px;position:relative}
-.rcard .x{width:26px;height:26px;border-radius:50%;background:rgba(227,73,72,.16);color:#ff8b86;display:grid;place-items:center;font-weight:800;font-size:.9rem;margin-bottom:11px}
-.rcard h4{font-size:1rem;color:#fff}
-.rcard p{font-size:.85rem;color:#c3d0e0;margin-top:7px}
+/* band rows */
+.brow{display:grid;grid-template-columns:96px 1fr 132px 64px;gap:14px;align-items:center;
+  padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);
+  cursor:pointer;transition:.14s;font-family:inherit;width:100%;text-align:left;margin-bottom:6px}
+.brow:hover{border-color:var(--line-2);background:var(--bg-2)}
+.brow.on{border-color:var(--navy);background:var(--bg-2);box-shadow:inset 2px 0 0 var(--navy)}
+.brow .tag{font-size:11.5px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px;text-align:center}
+.brow .bwrap{position:relative;height:20px;background:var(--bg-3);border-radius:3px;overflow:hidden}
+.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.brow .blbl{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:500;color:var(--ink-2);z-index:2}
+.brow .liftv{font-size:15px;font-weight:600;text-align:right}
+.brow .sharev{font-size:11.5px;color:var(--ink-3);text-align:right}
+@media(max-width:700px){.brow{grid-template-columns:86px 1fr 62px;gap:10px}.brow .sharev{display:none}}
 
-/* FOOTER */
-footer{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:var(--paper);padding:56px 0 32px}
-footer h3{font-size:1.6rem;max-width:22ch}
-footer .sub{color:#c3d0e0;margin-top:12px;max-width:56ch}
-.foot-top{display:flex;gap:24px;align-items:center;margin-bottom:24px}
-.foot-top .logo-ic{width:50px;height:64px;color:#fff;flex-shrink:0}
-.foot-wm{font-family:'Inter';font-weight:800;letter-spacing:.02em;line-height:.95;font-size:1.2rem}
-.foot-wm span{color:var(--logo-red)}
-.foot-wm small{display:block;font-weight:600;font-size:.64rem;letter-spacing:.26em;color:#9fb0c4;margin-top:5px}
-.foot-badge{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.foot-badge span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 13px;font-size:.74rem;color:#c3d0e0}
-.foot-meta{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.78rem;color:#9fb0c4}
+/* detail readout */
+.readout{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:15px}
+.readout .rh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.readout .rh .tag{font-size:11px;font-weight:600;color:#fff;padding:3px 8px;border-radius:3px}
+.readout .rh h4{font-size:13.5px}
+.readout p{font-size:12.5px;color:var(--ink-2);margin-top:9px;line-height:1.6}
+.readout .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:620px){.readout .stats{grid-template-columns:repeat(2,1fr)}}
+.readout .stats .st{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:9px 11px}
+.readout .stats .st .k{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.readout .stats .st .v{font-size:15px;font-weight:600;margin-top:3px;color:var(--navy)}
 
-/* STORY RAIL */
-.rail{display:flex;gap:0;margin-bottom:8px;flex-wrap:wrap}
-.rail .step{flex:1;min-width:150px;padding:14px 16px;border-top:3px solid var(--line);position:relative}
-.rail .step.on{border-top-color:var(--red)}
-.rail .step .n{font-size:.66rem;font-weight:800;letter-spacing:.12em;color:var(--muted)}
-.rail .step.on .n{color:var(--red)}
-.rail .step .t{font-size:.86rem;font-weight:700;margin-top:3px}
-.rail .step .d{font-size:.74rem;color:var(--muted);margin-top:2px}
-.filtered-note{display:inline-flex;align-items:center;gap:7px;background:#fdf4f2;border:1px solid #e8b9b1;color:var(--red-deep);border-radius:8px;padding:7px 13px;font-size:.78rem;font-weight:600;margin-bottom:16px}
-.dark .filtered-note{background:rgba(239,90,82,.13);border-color:rgba(239,90,82,.34);color:#ffb3ae}
+/* axes */
+.axrow{display:grid;grid-template-columns:104px 1fr 42px;gap:11px;align-items:center;margin-bottom:9px}
+.axrow .an{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--ink-2)}
+.axrow .at{height:7px;background:var(--bg-3);border-radius:4px;overflow:hidden}
+.axrow .af{height:100%;background:var(--navy-3);border-radius:4px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.axrow .aw{font-size:12px;font-weight:600;text-align:right;color:var(--navy)}
+
+/* persona */
+.plist{display:flex;flex-direction:column;gap:5px}
+.pitem{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;padding:9px 12px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--bg);cursor:pointer;
+  transition:.14s;font-family:inherit;text-align:left;width:100%}
+.pitem:hover{border-color:var(--line-2);background:var(--bg-2)}
+.pitem.on{border-color:var(--navy);background:var(--bg-2);box-shadow:inset 2px 0 0 var(--navy)}
+.pitem .r{font-size:11px;font-weight:600;color:var(--ink-3);font-family:'IBM Plex Mono',monospace}
+.pitem .nm{font-size:13px;font-weight:600}
+.pitem .tr{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:3px}
+.tier1{background:#ECFDF3;color:var(--teal)}
+.tier2{background:#FFFAEB;color:var(--amber)}
+.tier3{background:var(--bg-3);color:var(--ink-3)}
+.msgbox{border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.msgbox .mh{background:var(--navy);color:#fff;padding:13px 16px}
+.msgbox .mh .lb{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#8FB0D4}
+.msgbox .mh h3{font-size:16px;margin-top:5px;color:#fff;line-height:1.3}
+.msgbox .mb{padding:16px}
+.msgbox .mb p{font-size:13px;color:var(--ink-2);margin-bottom:8px;line-height:1.6}
+.msgbox .offer{background:var(--red-soft);border:1px solid #FECDCA;border-radius:4px;
+  padding:10px 13px;font-size:12.5px;color:var(--red);font-weight:500;margin-top:12px}
+.msgbox .cta{display:inline-block;margin-top:12px;background:var(--navy);color:#fff;
+  font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:4px}
+.msgbox .why{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.6}
+.msgbox .why b{color:var(--ink-2)}
+
+/* map */
+#map{width:100%;height:440px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.leaflet-popup-content{font-family:'Inter',sans-serif;font-size:12px;margin:9px 12px}
+.leaflet-container{font-family:'Inter',sans-serif}
+
+/* ruled out */
+.rlist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.rlist{grid-template-columns:1fr}}
+.ritem{border:1px solid var(--line);border-left:2px solid var(--red);border-radius:var(--r);padding:13px 15px;background:var(--bg)}
+.ritem h4{font-size:12.5px}
+.ritem p{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.55}
+
+/* callout */
+.callout{background:var(--navy);color:#fff;border-radius:var(--r);padding:18px 20px}
+.callout .lb{font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#8FB0D4}
+.callout h3{font-size:15px;margin-top:6px;color:#fff}
+.callout p{font-size:12.5px;color:#C3D3E5;margin-top:7px;line-height:1.6}
+.callout p b{color:#fff}
+.note{font-size:11.5px;color:var(--ink-3);line-height:1.6;margin-top:12px}
+.note b{color:var(--ink-2)}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:var(--bg-2);padding:24px 0;margin-top:10px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-3)}
+.foot b{color:var(--ink-2);font-weight:600}
+.empty{padding:26px;text-align:center;color:var(--ink-3);font-size:12.5px}
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand">
-      <svg class="mark logo-ic" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M24 4C13.5 4 5 12 5 22.5c0 6.5 3.8 10.4 6.8 14.6 1.9 2.6 2.7 4.2 2.7 6.9h19c0-2.7.8-4.3 2.7-6.9C39.2 32.9 43 29 43 22.5 43 12 34.5 4 24 4Z" stroke="currentColor" stroke-width="2.3"/>
-        <path d="M16.5 50h15M18 54.5h12M21 59h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M24 16 34 28 16 33Z" stroke="#EF5A52" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M24.5 26.5 24 16M24.5 26.5 34 28M24.5 26.5 16 33" stroke="#EF5A52" stroke-width="1.1" opacity=".55"/>
-        <circle cx="24" cy="16" r="3.1" fill="#EF5A52"/><circle cx="34" cy="28" r="3.1" fill="#EF5A52"/>
-        <circle cx="16" cy="33" r="3.1" fill="#EF5A52"/><circle cx="24.5" cy="26.5" r="2" fill="#9aa1ab"/>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <svg viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4C13.5 4 5 12 5 22.5c0 6.5 3.8 10.4 6.8 14.6 1.9 2.6 2.7 4.2 2.7 6.9h19c0-2.7.8-4.3 2.7-6.9C39.2 32.9 43 29 43 22.5 43 12 34.5 4 24 4Z" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M16.5 50h15M18 54.5h12M21 59h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 16 34 28 16 33Z" stroke="#B32318" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="24" cy="16" r="3" fill="#B32318"/><circle cx="34" cy="28" r="3" fill="#B32318"/>
+        <circle cx="16" cy="33" r="3" fill="#B32318"/>
       </svg>
       <span>Meat the <b>Data</b></span>
-    </a>
-    <div class="nav-links">
-      <a href="#overview">Overview</a>
-      <a href="#who">01 Who</a>
-      <a href="#what">02 What</a>
-      <a href="#how">03 How &amp; When</a>
-      <a href="#where">04 Where</a>
-      <a href="#proof">05 Proof</a>
     </div>
-  </div>
-</nav>
-
-<div class="filterbar">
-  <div class="fb-inner">
-    <div class="fb-group">
-      <span class="fb-label">Segment</span>
-      <div class="seg" id="segFilter">
-        <button data-seg="all" class="on">All</button>
-        <button data-seg="fisico">Físico</button>
-        <button data-seg="online">Online-only</button>
-        <button data-seg="omni">Omni</button>
-      </div>
-    </div>
-    <div class="fb-group">
-      <span class="fb-label">Region</span>
-      <div class="seg" id="regFilter">
-        <button data-reg="all" class="on">Brazil</button>
-        <button data-reg="SP">SP</button>
-        <button data-reg="RJ">RJ</button>
-        <button data-reg="DF">DF</button>
-      </div>
-    </div>
-    <div class="fb-note">Snapshot <b>Jun 2026</b> · filters drive every view below</div>
-  </div>
-</div>
-
-<header class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-grid-lines"></div>
-  <div class="wrap">
-    <div class="hero-top">
-     <div class="hero-left">
-      <span class="eyebrow">Capstone in Applied Analytics · JBS Swift</span>
-      <h1>From <span class="accent">2.87%</span> to 6%: a targeting engine, not a campaign.</h1>
-      <p class="hero-sub">Swift's omnichannel penetration has been flat for 25 months. This dashboard walks the full decision chain: who to convert, what to say, how and when to reach them, where to deploy, and the evidence behind each call.</p>
-      <div class="hero-meta">
-        <span><b>2.80M</b> active customers</span><span>·</span>
-        <span><b>25 months</b> of data</span><span>·</span>
-        <span><b>150M+</b> transactions</span><span>·</span>
-        <span>Rules-based, <b>no ML</b></span>
-      </div>
-     </div>
-     <div class="hero-right">
-      <div class="hero-logo">
-        <svg viewBox="0 0 210 172" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Meat the Data logo">
-          <path d="M105 22C78 22 57 42 57 68c0 16 9.5 26 17 37 4.8 6.5 6.8 10.5 6.8 17h48.4c0-6.5 2-10.5 6.8-17C143.5 94 153 84 153 68 153 42 132 22 105 22Z" stroke="#fff" stroke-width="3.4"/>
-          <path d="M85 138h40M89 150h32M95 161h20" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
-          <path d="M105 52 131 82 79 92Z" stroke="#EF5A52" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M106 78 105 52M106 78 131 82M106 78 79 92" stroke="#EF5A52" stroke-width="1.6" opacity=".5"/>
-          <circle cx="105" cy="52" r="5.2" fill="#EF5A52"/><circle cx="131" cy="82" r="5.2" fill="#EF5A52"/>
-          <circle cx="79" cy="92" r="5.2" fill="#EF5A52"/><circle cx="106" cy="78" r="3.2" fill="#c9ced6"/>
-          <text x="105" y="43" fill="#f2b7b3" font-size="9.5" font-weight="700" letter-spacing="1.6" text-anchor="middle" font-family="Inter,sans-serif">APP</text>
-          <text x="140" y="85" fill="#f2b7b3" font-size="9.5" font-weight="700" letter-spacing="1.6" font-family="Inter,sans-serif">WEB</text>
-          <text x="70" y="94" fill="#f2b7b3" font-size="9.5" font-weight="700" letter-spacing="1.6" text-anchor="end" font-family="Inter,sans-serif">STORE</text>
-        </svg>
-        <div class="hero-logo-wm">MEAT THE<span>DATA</span><small>JBS SWIFT · OMNICHANNEL</small></div>
-      </div>
-     </div>
-    </div>
-
-    <div class="goalstrip" id="overview">
-      <div class="goal-head">
-        <div>
-          <span class="eyebrow">%O2O Customers · sponsor-aligned KPI</span>
-          <div class="now" style="margin-top:10px"><span id="penNow">2.87%</span><small id="penSub">Jun 2026 · 80,281 omni customers</small></div>
-        </div>
-        <div class="gap">
-          <div class="n" id="gapNum">87,674</div>
-          <div class="t">more customers needed to reach 6%</div>
-        </div>
-      </div>
-      <div class="progress">
-        <div class="fill" id="penFill" style="width:0%"></div>
-        <div class="target" style="left:48%"><span>6% GOAL</span></div>
-        <div class="lbl" id="penLbl">2.87%</div>
-      </div>
-      <div class="mixbar" id="mixBar">
-        <div style="background:var(--fisico);width:90.7%"></div>
-        <div style="background:var(--online);width:6.4%"></div>
-        <div style="background:var(--omni);width:2.9%"></div>
-      </div>
-      <div class="mixlegend">
-        <span><i style="background:var(--fisico)"></i>Físico <b>90.7%</b> · 2.54M</span>
-        <span><i style="background:var(--online)"></i>Online-only <b>6.4%</b></span>
-        <span><i style="background:var(--omni)"></i>Omni <b>2.9%</b> · 80,281</span>
-      </div>
-      <p class="footnote">Omnichannel = buys both físico <em>and</em> Swift-online in a rolling 12 months (sponsor-aligned def-B). The físico base is the pool we prioritise.</p>
-    </div>
-
-    <div class="rail" style="margin-top:34px">
-      <div class="step on"><div class="n">01</div><div class="t">WHO</div><div class="d">Rank 2.56M by a transparent score</div></div>
-      <div class="step"><div class="n">02</div><div class="t">WHAT</div><div class="d">Persona-matched messaging</div></div>
-      <div class="step"><div class="n">03</div><div class="t">HOW &amp; WHEN</div><div class="d">Pickup-led, payday-timed</div></div>
-      <div class="step"><div class="n">04</div><div class="t">WHERE</div><div class="d">O2O footprint first</div></div>
-      <div class="step"><div class="n">05</div><div class="t">PROOF</div><div class="d">Validation and what we ruled out</div></div>
+    <div class="top-meta">
+      <span>JBS Swift · Omnichannel Conversion</span>
+      <span><span class="dot"></span>Snapshot Jun 2026</span>
+      <span>25-month panel</span>
     </div>
   </div>
 </header>
 
-<section id="who" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">01 · WHO to target</span>
-      <h2>A five-tier ladder, built from rules you can read.</h2>
-      <p>Every físico customer is scored on five independent axes and sorted into bands. No machine learning, no black box: each input is a named column, and each band is validated out-of-time against who actually converted the following month.</p>
-    </div>
-
-    <div class="toggle-row reveal">
-      <button class="switch on" id="splitToggle"><i></i>Split P2 by readiness</button>
-      <span style="font-size:.8rem;color:var(--muted)">Click any band to drill into its profile</span>
-    </div>
-
-    <div class="ladder reveal" id="ladder"></div>
-    <div class="bandpanel reveal" id="bandPanel"></div>
-
-    <div class="grid g2 reveal" style="margin-top:26px">
-      <div class="chartcard">
-        <h4>Conversion lift vs base rate</h4>
-        <div class="sub">Físico → omni, out-of-time validation (score month T, observe T+1). Base rate 0.16%.</div>
-        <div class="chart-holder"><canvas id="liftChart"></canvas></div>
-      </div>
-      <div class="card" style="background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:#fff;border:none">
-        <span class="eyebrow" style="color:var(--ember)">The score</span>
-        <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Five orthogonal axes, no ML</h3>
-        <p style="font-size:.86rem;color:#c3d0e0;margin:10px 0 20px">Max pairwise correlation 0.52, so no axis is a proxy for another. Effective weights shown.</p>
-        <div class="axes" id="axesBox"></div>
-        <p class="footnote" style="color:#8fa3ba;margin-top:18px"><b style="color:#fff">AGE</b> was added at sponsor request (weight 0.12). It is independent of the other four (corr ≤0.08) and improves top-decile lift from 2.66× to <b style="color:#fff">2.75×</b>. Usable for ~60% of customers; missing values default to neutral.</p>
-      </div>
+<nav class="tabnav">
+  <div class="tabnav-in">
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-p="overview">Overview</button>
+      <button class="tab" data-p="who">Who</button>
+      <button class="tab" data-p="what">What</button>
+      <button class="tab" data-p="how">How &amp; When</button>
+      <button class="tab" data-p="where">Where</button>
+      <button class="tab" data-p="proof">Proof</button>
     </div>
   </div>
-</section>
+</nav>
 
-<section id="what">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">02 · WHAT to say</span>
-      <h2>The message is not "try online". It is "here is why online fits you".</h2>
-      <p>The same customers rate their online journey lower than their physical one, so a generic promo fights an experience problem. Instead we map each <em>Label_Cesta</em> persona to the motivation already visible in their basket, then write to that motivation.</p>
+<main class="wrap">
+
+<!-- ================= OVERVIEW ================= -->
+<section class="page on" id="p-overview">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">Executive summary</div>
+      <h2>Lifting omnichannel penetration from 2.87% to 6%</h2>
+      <p>Penetration has stayed flat for 25 months while the customer base grew. Organic drift will not close the gap, so this analysis builds a targeting engine: who to convert, what to say, how and when to reach them, and where to deploy first.</p>
     </div>
-
-    <div class="ptabs reveal" id="ptabs"></div>
-    <div class="pcard reveal" id="pcard"></div>
-
-    <div class="grid g3 reveal" style="margin-top:26px">
-      <div class="kpi"><div class="m">Prático + Saúde</div><div class="t">Highest online conversion potential, so they carry the greatest marketing emphasis</div></div>
-      <div class="kpi"><div class="m">Churrasco</div><div class="t">Lower conversion readiness. Needs stronger incentives or a better experience first</div></div>
-      <div class="kpi"><div class="m">CHEGUEI20</div><div class="t">Swift's live coupon (R$20 off R$149+). Our messaging builds on it rather than duplicating it</div></div>
+    <div class="rhs">
+      <b>2,799,245</b>active customers
+      <b>150M+</b>transactions analysed
+      <b>Rules-based</b>no ML, fully auditable
     </div>
   </div>
-</section>
 
-<section id="how" class="dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">03 · HOW &amp; WHEN to reach them</span>
-      <h2>Lead with the mechanic customers already like best.</h2>
-      <p>Before pushing volume online, we looked at what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
-    </div>
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Current penetration</div><div class="v num">2.87%</div><div class="s">80,281 omnichannel customers</div><div class="delta dn">Flat across 25 months</div></div>
+    <div class="metric"><div class="k">Target</div><div class="v num teal">6.00%</div><div class="s">Sponsor-agreed goal</div></div>
+    <div class="metric"><div class="k">Gap to close</div><div class="v num red">87,674</div><div class="s">Net-new omnichannel customers</div></div>
+    <div class="metric"><div class="k">Addressable pool</div><div class="v num">2.54M</div><div class="s">Físico-only customers we can prioritise</div></div>
+  </div>
 
-    <div class="grid g4 reveal" style="margin-bottom:24px">
-      <div class="kpi"><div class="m">+70.7</div><div class="t">Physical NPS</div><div class="s">156,695 comments</div></div>
-      <div class="kpi"><div class="m">+47.3</div><div class="t">Online NPS</div><div class="s">24,347 comments</div></div>
-      <div class="kpi"><div class="m">−5.5 pt</div><div class="t">Self-comparison gap</div><div class="s">Same omni customers: 81.5 physical vs 76.0 online</div></div>
-      <div class="kpi"><div class="m">−6.6 pt</div><div class="t">NPS drop across basket size</div><div class="s">Online falls fastest on big baskets</div></div>
-    </div>
-
-    <div class="grid g2 reveal" style="margin-bottom:22px">
-      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
-        <h4 style="color:#fff">What customers complain about</h4>
-        <div class="sub" style="color:#8fa3ba">All comments, theme share by channel</div>
-        <div class="chart-holder tall"><canvas id="themeChart"></canvas></div>
-      </div>
-      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
-        <h4 style="color:#fff">Detractors only (score ≤ 6)</h4>
-        <div class="sub" style="color:#8fa3ba">Online dissatisfaction is delivery, physical is product and price</div>
-        <div class="chart-holder tall"><canvas id="detChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="grid g2 reveal">
-      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
-        <h4 style="color:#fff">Pickup beats every delivery mode</h4>
-        <div class="sub" style="color:#8fa3ba">NPS and detractor rate by fulfilment modality</div>
-        <div class="chart-holder"><canvas id="modChart"></canvas></div>
-      </div>
-      <div>
-        <div class="card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff">
-          <span class="eyebrow" style="color:var(--ember)">The lever</span>
-          <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Click &amp; Collect: +57.3 NPS, lowest detractor rate</h3>
-          <p style="font-size:.88rem;color:#c3d0e0;margin-top:10px">"Retire na Loja" is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it pulls customers into a store where Swift controls the experience.</p>
+  <div class="g g23" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Progress to target</h3><span class="sub">%O2O customers · sponsor-aligned definition</span></div>
+      <div class="panel-b">
+        <div class="prog">
+          <div class="f" id="ovFill" style="width:0%"></div>
+          <div class="vl num">2.87%</div>
+          <div class="t" style="left:47.8%"></div>
+          <div class="tl" style="left:47.8%">6% target</div>
         </div>
-        <div class="card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff;margin-top:16px">
-          <span class="eyebrow" style="color:var(--ember)">The timing</span>
-          <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Payday and early-month windows</h3>
-          <p style="font-size:.88rem;color:#c3d0e0;margin-top:10px">Activation concentrates on payday windows using the CALENDAR business-day flag, and lands 3 to 4 days ahead of the push to respect Swift's campaign lead time. December is the seasonal ceiling: R$89.6M versus R$58.5M in the June trough.</p>
+        <p class="note" style="margin-top:12px">An omnichannel customer buys in <b>both</b> a físico store and Swift-online within a rolling 12 months. Reaching 6% means converting about <b>87,674</b> customers out of the 2.54M físico-only base, roughly <b>3.5%</b> of that pool.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Active base composition</h3><span class="sub">Jun 2026</span></div>
+      <div class="panel-b">
+        <div class="mix">
+          <div style="background:var(--fisico);width:90.7%"></div>
+          <div style="background:var(--online);width:6.4%"></div>
+          <div style="background:var(--omni);width:2.9%"></div>
+        </div>
+        <div class="mixleg">
+          <span><i style="background:var(--fisico)"></i>Físico <b>90.7%</b></span>
+          <span><i style="background:var(--online)"></i>Online-only <b>6.4%</b></span>
+          <span><i style="background:var(--omni)"></i>Omni <b>2.9%</b></span>
+        </div>
+        <div class="ch sm" style="margin-top:14px"><canvas id="ovMix"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-h"><h3>The analysis in five questions</h3><span class="sub">Select a section to explore its data and filters</span></div>
+    <div class="panel-b">
+      <div class="g g5">
+        <button class="navcard" data-go="who">
+          <div class="n">Who</div><h4>Who to target</h4>
+          <p>A five-tier ladder scored on five independent axes, validated out-of-time.</p>
+          <div class="kv"><span class="num">6.41×</span><span class="lb">top-band lift</span></div>
+          <div class="go">Explore →</div>
+        </button>
+        <button class="navcard" data-go="what">
+          <div class="n">What</div><h4>What to say</h4>
+          <p>Six basket personas, each mapped to the motivation already visible in their purchases.</p>
+          <div class="kv"><span class="num">6</span><span class="lb">personas</span></div>
+          <div class="go">Explore →</div>
+        </button>
+        <button class="navcard" data-go="how">
+          <div class="n">How &amp; When</div><h4>How to reach them</h4>
+          <p>Online complaints are logistics, not product. Pickup outperforms every delivery mode.</p>
+          <div class="kv"><span class="num">+57.3</span><span class="lb">pickup NPS</span></div>
+          <div class="go">Explore →</div>
+        </button>
+        <button class="navcard" data-go="where">
+          <div class="n">Where</div><h4>Where to deploy</h4>
+          <p>Only LOJAS can fulfil online orders. SWS is the larger footprint and has none.</p>
+          <div class="kv"><span class="num">43.1%</span><span class="lb">O2O coverage</span></div>
+          <div class="go">Explore →</div>
+        </button>
+        <button class="navcard" data-go="proof">
+          <div class="n">Proof</div><h4>Why trust it</h4>
+          <p>Pre-set floors, independent validation, and the hypotheses we killed.</p>
+          <div class="kv"><span class="num">8/8</span><span class="lb">criteria cleared</span></div>
+          <div class="go">Explore →</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="g g2">
+    <div class="panel">
+      <div class="panel-h"><h3>Why omnichannel matters</h3><span class="sub">Value gap, stable across the panel</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="ovGap"></canvas></div></div>
+    </div>
+    <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="lb">The core finding</div>
+      <h3>Conversion is the bottleneck, not retention</h3>
+      <p>Only <b>1.33%</b> of físico-only customers converted over 24 months, while <b>41%</b> went inactive: a customer is roughly <b>31× more likely to churn than to convert</b>. But once converted, <b>97.5%</b> stay omnichannel the following month.</p>
+      <p>So the budget belongs at the top of the funnel. Retention already works; activation is what fails.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO ================= -->
+<section class="page" id="p-who">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">Who to target</div>
+      <h2>A five-tier ladder built from rules you can read</h2>
+      <p>Every físico customer is scored on five independent axes, then sorted into bands. No machine learning: each input is a named column, and every band is validated out-of-time against who actually converted the following month.</p>
+    </div>
+    <div class="rhs">
+      <b>2,563,230</b>customers scored
+      <b>0.16%</b>monthly base conversion rate
+    </div>
+  </div>
+
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">P2 view</span>
+      <div class="pills" id="fSplit">
+        <button data-v="split" class="on">Split by readiness</button>
+        <button data-v="merged">Merged</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Show bands</span>
+      <div class="pills" id="fBand">
+        <button data-v="all" class="on">All</button>
+        <button data-v="prio">Priority only (lift &gt; 1)</button>
+        <button data-v="low">Low priority</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Sort</span>
+      <div class="pills" id="fSort">
+        <button data-v="lift" class="on">By lift</button>
+        <button data-v="size">By size</button>
+      </div>
+    </div>
+    <div class="fcount" id="whoCount"></div>
+  </div>
+
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Bands shown</div><div class="v num" id="whoKB">5</div><div class="s">of 5 total</div></div>
+    <div class="metric"><div class="k">Customers covered</div><div class="v num" id="whoKC">2.56M</div><div class="s" id="whoKCs">100% of scored base</div></div>
+    <div class="metric"><div class="k">Weighted avg lift</div><div class="v num" id="whoKL">1.00×</div><div class="s">vs 0.16% base rate</div></div>
+    <div class="metric"><div class="k">P1+P2 converter capture</div><div class="v num teal">53.7%</div><div class="s">of all real converters</div></div>
+  </div>
+
+  <div class="g g23" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Priority bands</h3><span class="sub">Click a band to inspect its profile</span></div>
+      <div class="panel-b">
+        <div id="ladder"></div>
+        <div id="readout" style="margin-top:12px"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Conversion lift vs base rate</h3><span class="sub">Out-of-time: score month T, observe T+1</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoLift"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="g g2">
+    <div class="panel">
+      <div class="panel-h"><h3>The score</h3><span class="sub">Five orthogonal axes, max pairwise correlation 0.52</span></div>
+      <div class="panel-b">
+        <div id="axes"></div>
+        <p class="note"><b>AGE</b> was added at sponsor request (weight 0.12). It is independent of the other four (correlation ≤ 0.08) and improves top-decile lift from 2.66× to <b>2.75×</b>. Usable for about 60% of customers; missing values default to neutral, which is also why its weight stays modest.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Band size vs conversion lift</h3><span class="sub">Bubble area is customer count</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoBubble"></canvas></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT ================= -->
+<section class="page" id="p-what">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">What to say</div>
+      <h2>Six personas, six reasons to buy online</h2>
+      <p>The same customers rate their online journey lower than their physical one, so a generic promotion fights an experience problem. Instead each <em>Label_Cesta</em> persona is matched to the motivation already visible in their basket.</p>
+    </div>
+    <div class="rhs">
+      <b>CHEGUEI20</b>live coupon we build on
+      <b>R$20 off R$149+</b>first online order
+    </div>
+  </div>
+
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">Priority tier</span>
+      <div class="pills" id="fTier">
+        <button data-v="all" class="on">All</button>
+        <button data-v="1">Tier 1</button>
+        <button data-v="2">Tier 2</button>
+        <button data-v="3">Tier 3</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Basket type</span>
+      <div class="pills" id="fBasket">
+        <button data-v="all" class="on">All</button>
+        <button data-v="everyday">Everyday</button>
+        <button data-v="churrasco">Churrasco</button>
+      </div>
+    </div>
+    <div class="fcount" id="whatCount"></div>
+  </div>
+
+  <div class="g g23">
+    <div class="panel">
+      <div class="panel-h"><h3>Personas</h3><span class="sub">Ranked by online conversion potential</span></div>
+      <div class="panel-b"><div class="plist" id="plist"></div></div>
+    </div>
+    <div id="pdetail"></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <div class="panel-h"><h3>Why persona messaging, not one campaign</h3></div>
+    <div class="panel-b">
+      <div class="g g3">
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Highest potential</div><div class="v num" style="font-size:20px">Prático + Saúde</div><div class="s">Convenience and planning motives map directly onto online ordering, so these two carry the greatest marketing emphasis.</div></div></div>
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Needs more incentive</div><div class="v num" style="font-size:20px">Churrasco</div><div class="s">Occasion-driven buyers show lower conversion readiness and need stronger incentives or a better experience first.</div></div></div>
+        <div><div class="metric" style="border:none;box-shadow:none;padding:0"><div class="k">Sequencing</div><div class="v num" style="font-size:20px">Tier 1 → 3</div><div class="s">Messaging complements the running CHEGUEI20 campaign rather than duplicating it, staggered by tier.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW & WHEN ================= -->
+<section class="page" id="p-how">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">How &amp; when to reach them</div>
+      <h2>Lead with the mechanic customers already like best</h2>
+      <p>Before pushing volume online we examined what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
+    </div>
+    <div class="rhs">
+      <b>181,042</b>survey comments analysed
+      <b>25 months</b>May 2024 to May 2026
+    </div>
+  </div>
+
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">Comment set</span>
+      <div class="pills" id="fComment">
+        <button data-v="all" class="on">All comments</button>
+        <button data-v="det">Detractors only (≤6)</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Channel</span>
+      <label class="fchk"><input type="checkbox" id="cLF" checked><span class="sw" style="background:#1B4470"></span>Physical (LF)</label>
+      <label class="fchk"><input type="checkbox" id="cLO" checked><span class="sw" style="background:#B32318"></span>Online (LO)</label>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Themes</span>
+      <div class="pills" id="fTheme">
+        <button data-v="all" class="on">All</button>
+        <button data-v="neg">Complaints only</button>
+        <button data-v="top5">Top 5 gaps</button>
+      </div>
+    </div>
+    <div class="fcount" id="howCount"></div>
+  </div>
+
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Physical NPS</div><div class="v num teal" id="mLF">+70.7</div><div class="s" id="mLFs">156,695 comments</div></div>
+    <div class="metric"><div class="k">Online NPS</div><div class="v num" style="color:var(--amber)" id="mLO">+47.3</div><div class="s" id="mLOs">24,347 comments</div></div>
+    <div class="metric"><div class="k">Self-comparison gap</div><div class="v num red">−5.5 pt</div><div class="s">Same omni customers: 81.5 physical vs 76.0 online</div></div>
+    <div class="metric"><div class="k">Basket-size effect</div><div class="v num red">−6.6 pt</div><div class="s">Online NPS falls fastest on the largest baskets</div></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-h"><h3 id="themeTitle">What customers complain about</h3><span class="sub" id="themeSub">Theme share by channel, all comments</span></div>
+    <div class="panel-b"><div class="ch xl"><canvas id="howTheme"></canvas></div></div>
+  </div>
+
+  <div class="g g23">
+    <div class="panel">
+      <div class="panel-h"><h3>Pickup beats every delivery mode</h3><span class="sub">NPS and detractor rate by fulfilment modality</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="howMod"></canvas></div></div>
+    </div>
+    <div>
+      <div class="callout" style="margin-bottom:14px">
+        <div class="lb">The lever</div>
+        <h3>Click &amp; Collect: +57.3 NPS, lowest detractor rate</h3>
+        <p>"Retire na Loja" is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it brings customers into a store where Swift controls the experience.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h3>When to activate</h3><span class="sub">Timing constraints</span></div>
+        <div class="panel-b">
+          <p class="note" style="margin-top:0"><b>Payday windows.</b> Activation concentrates on payday and early-month windows using the CALENDAR business-day flag.</p>
+          <p class="note"><b>3 to 4 day lead time.</b> Campaigns land ahead of the push to respect Swift's stated preparation window.</p>
+          <p class="note"><b>December ceiling.</b> Seasonal peak is R$89.6M versus R$58.5M in the June trough, so high-effort Priority 1 activation is scheduled pre-December.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="where" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">04 · WHERE to deploy</span>
-      <h2>Only 43% of the footprint can fulfil an online order.</h2>
-      <p>Click &amp; Collect requires an O2O-enabled store. LOJAS are enabled, SWS are not, and SWS is the larger group. The good news: most SWS sit close to a LOJAS, so the pickup offer can still reach their customers today.</p>
+<!-- ================= WHERE ================= -->
+<section class="page" id="p-where">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">Where to deploy</div>
+      <h2>Only 43% of the footprint can fulfil an online order</h2>
+      <p>Click &amp; Collect requires an O2O-enabled store. LOJAS are enabled, SWS are not, and SWS is the larger group. Most SWS sit close to a LOJAS, so the pickup offer can still reach their customers today.</p>
     </div>
+    <div class="rhs">
+      <b>624</b>physical touchpoints
+      <b>528</b>with usable coordinates
+    </div>
+  </div>
 
-    <div class="filtered-note reveal" id="mapFilterNote" style="display:none"></div>
-
-    <div class="mapshell reveal">
-      <div class="mapctl">
-        <label class="chk"><input type="checkbox" id="showLojas" checked><span class="dot" style="background:#2a78d6"></span>LOJAS · O2O enabled</label>
-        <label class="chk"><input type="checkbox" id="showSWS" checked><span class="dot" style="background:#e34948"></span>SWS · not O2O</label>
-        <label class="chk"><input type="checkbox" id="showRadius"><span class="dot" style="background:rgba(42,120,214,.3);border:1px solid #2a78d6"></span>5 km radius around LOJAS</label>
-        <div class="seg" style="background:var(--card);border:1px solid var(--line);margin-left:auto" id="mapZoom">
-          <button data-v="all" class="on" style="color:var(--ink-soft)">All</button>
-          <button data-v="sp_metro" style="color:var(--ink-soft)">SP Metro</button>
-          <button data-v="sp_capital" style="color:var(--ink-soft)">SP Capital</button>
-          <button data-v="rj" style="color:var(--ink-soft)">Rio</button>
-        </div>
-      </div>
-      <div id="map"></div>
-      <div class="mapstats">
-        <div class="ms"><div class="k">Stores plotted</div><div class="v" id="msTotal">528</div><div class="s" id="msSplit">230 LOJAS + 298 SWS</div></div>
-        <div class="ms"><div class="k">O2O coverage</div><div class="v" id="msCov">43.6%</div><div class="s">Only LOJAS can fulfil online</div></div>
-        <div class="ms"><div class="k">SWS within 5 km of O2O</div><div class="v">79.2%</div><div class="s">Median distance 1.8 km · network-wide</div></div>
-        <div class="ms"><div class="k">Blind-spot cities</div><div class="v">38</div><div class="s">SWS present, no LOJAS</div></div>
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">State</span>
+      <div class="pills" id="fState">
+        <button data-v="all" class="on">All Brazil</button>
+        <button data-v="SP">SP</button>
+        <button data-v="RJ">RJ</button>
+        <button data-v="DF">DF</button>
+        <button data-v="GO">GO</button>
       </div>
     </div>
-    <p class="footnote">The full network is <b>624 physical touchpoints</b> (269 LOJAS + 355 SWS, 43.1% O2O). The map plots the <b>528</b> with usable coordinates; proximity figures are computed network-wide. Deployment reads geography as a rollout filter, not a scoring input: CUSTOMER_BEHAVIOR carries no store identifier, so we cannot attribute an individual customer to a store. SP holds the largest O2O footprint and is the natural first wave.</p>
+    <div class="fgrp">
+      <span class="lbl">Store type</span>
+      <label class="fchk"><input type="checkbox" id="showLojas" checked><span class="sw" style="background:#1B4470"></span>LOJAS · O2O</label>
+      <label class="fchk"><input type="checkbox" id="showSWS" checked><span class="sw" style="background:#B32318"></span>SWS · no O2O</label>
+      <label class="fchk"><input type="checkbox" id="showRadius"><span class="sw" style="background:#8FB0D4"></span>5 km radius</label>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">View</span>
+      <div class="pills" id="fZoom">
+        <button data-v="all" class="on">Fit</button>
+        <button data-v="sp_metro">SP Metro</button>
+        <button data-v="sp_capital">SP Capital</button>
+        <button data-v="rj">Rio</button>
+      </div>
+    </div>
+    <div class="fcount" id="whereCount"></div>
+  </div>
+
+  <div class="g g4" style="margin-bottom:14px">
+    <div class="metric"><div class="k">Stores shown</div><div class="v num" id="msTotal">528</div><div class="s" id="msSplit">230 LOJAS + 298 SWS</div></div>
+    <div class="metric"><div class="k">O2O coverage</div><div class="v num" id="msCov">43.6%</div><div class="s">Only LOJAS can fulfil online orders</div></div>
+    <div class="metric"><div class="k">SWS within 5 km of O2O</div><div class="v num teal">79.2%</div><div class="s">Median distance 1.8 km, network-wide</div></div>
+    <div class="metric"><div class="k">Blind-spot cities</div><div class="v num red">38</div><div class="s">SWS present with no LOJAS nearby</div></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-h"><h3>Store network</h3><span class="sub" id="mapSub">Blue = O2O enabled · Red = not enabled</span></div>
+    <div id="map"></div>
+    <div class="panel-b tight">
+      <p class="note" style="margin-top:0">The full network is <b>624 physical touchpoints</b> (269 LOJAS + 355 SWS, 43.1% O2O). The map plots the <b>528</b> with usable coordinates; proximity figures are computed network-wide. Geography is a rollout filter, not a scoring input: CUSTOMER_BEHAVIOR carries no store identifier, so an individual customer cannot be attributed to a store.</p>
+    </div>
+  </div>
+
+  <div class="g g2">
+    <div class="panel">
+      <div class="panel-h"><h3>O2O enablement by store type</h3><span class="sub">Active stores</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whereBar"></canvas></div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>Footprint by state</h3><span class="sub">Stores plotted, current filter</span></div>
+      <div class="panel-b"><div class="ch"><canvas id="whereState"></canvas></div></div>
+    </div>
   </div>
 </section>
 
-<section id="proof" class="dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">05 · PROOF</span>
-      <h2>Every headline recomputes from raw data. Here is what failed, too.</h2>
-      <p>A strategy is only as good as the tests it survived. Below are the floors we set before looking at results, the independent check on a table the score never used, and the ideas we killed.</p>
+<!-- ================= PROOF ================= -->
+<section class="page" id="p-proof">
+  <div class="phead">
+    <div class="lhs">
+      <div class="kicker">Proof</div>
+      <h2>Every headline recomputes from raw data, including what failed</h2>
+      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed.</p>
     </div>
+    <div class="rhs">
+      <b>8 / 8</b>criteria cleared
+      <b>4</b>hypotheses ruled out
+    </div>
+  </div>
 
-    <div class="twrap reveal" style="margin-bottom:30px">
-      <table class="dtable">
-        <thead><tr><th>Success criterion</th><th>Floor</th><th>Today</th><th></th></tr></thead>
-        <tbody>
-          <tr><td>Top-band conversion lift</td><td>≥ 3×</td><td><b>6.41×</b></td><td class="ok">✓</td></tr>
-          <tr><td>M-WARM band lift <span class="newb">NEW</span></td><td>new band</td><td><b>5.13×</b></td><td class="ok">✓</td></tr>
-          <tr><td>P1+P2 converter capture</td><td>≥ 40%</td><td><b>53.7%</b></td><td class="ok">✓</td></tr>
-          <tr><td>Axis independence (max corr, 5 axes)</td><td>≤ 0.60</td><td><b>0.52</b></td><td class="ok">✓</td></tr>
-          <tr><td>AGE axis effect on top decile <span class="newb">NEW</span></td><td>must not hurt</td><td><b>2.66 → 2.75×</b></td><td class="ok">✓</td></tr>
-          <tr><td>Ranking robustness (ρ across weight variants)</td><td>≥ 0.95</td><td><b>0.99–1.00</b></td><td class="ok">✓</td></tr>
-          <tr><td>Demographic coverage</td><td>≥ 90%</td><td><b>93.7%</b></td><td class="ok">✓</td></tr>
-          <tr><td>Refreshable pipeline</td><td>0 errors</td><td><b>0 errors</b></td><td class="ok">✓</td></tr>
-        </tbody>
+  <div class="fstrip">
+    <div class="fgrp">
+      <span class="lbl">Show</span>
+      <div class="pills" id="fProof">
+        <button data-v="all" class="on">Everything</button>
+        <button data-v="criteria">Success criteria</button>
+        <button data-v="ruled">Ruled out</button>
+      </div>
+    </div>
+    <div class="fgrp">
+      <span class="lbl">Criteria</span>
+      <div class="pills" id="fCrit">
+        <button data-v="all" class="on">All</button>
+        <button data-v="new">New in v2</button>
+      </div>
+    </div>
+    <div class="fcount" id="proofCount"></div>
+  </div>
+
+  <div class="panel" id="critPanel" style="margin-bottom:14px">
+    <div class="panel-h"><h3>Success criteria</h3><span class="sub">Floors were set before results were known</span></div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>Criterion</th><th>Floor</th><th class="rt">Today</th><th class="rt">Status</th></tr></thead>
+        <tbody id="critBody"></tbody>
       </table>
     </div>
+  </div>
 
-    <div class="card reveal" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff;margin-bottom:30px">
-      <span class="eyebrow" style="color:var(--ember)">Independent validation</span>
-      <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">The bands hold on two years of real transactions</h3>
-      <p style="font-size:.9rem;color:#c3d0e0;margin-top:10px">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, a table the score never touched. Mean purchases per customer: <b style="color:#fff">P1 22.8</b> &gt; <b style="color:#fff">P2 18.0</b> &gt; <b style="color:#fff">P3 4.3</b>. The priority ordering survives on actual buying behaviour, not just on the score's own inputs.</p>
+  <div class="g g2" id="valPanel" style="margin-bottom:14px">
+    <div class="panel">
+      <div class="panel-h"><h3>Independent validation</h3><span class="sub">On a table the score never used</span></div>
+      <div class="panel-b">
+        <p class="note" style="margin-top:0">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, two years of real transactions that were never an input to the score. The priority ordering survives on actual buying behaviour.</p>
+        <div class="ch sm" style="margin-top:10px"><canvas id="proofVal"></canvas></div>
+      </div>
     </div>
+    <div class="callout" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="lb">The handoff</div>
+      <h3>One reusable artifact</h3>
+      <p>Every view resolves to the same output, refreshable each month on a new snapshot: <b>customer key, band, PriorityScore, and top drivers</b>. That is what Swift's CRM team needs to run the campaign.</p>
+      <p>Ranking robustness across weight variants is <b>ρ = 0.99–1.00</b>, so the list does not swing on judgement calls about weights.</p>
+    </div>
+  </div>
 
-    <div class="sec-head reveal" style="margin-bottom:20px">
-      <span class="eyebrow">The honesty panel</span>
-      <h2 style="font-size:1.5rem">Tested and ruled out</h2>
-      <p>Reported as first-class results, because each one prunes the plan.</p>
-    </div>
-    <div class="ruled reveal">
-      <div class="rcard"><div class="x">✕</div><h4>QR code as a readiness signal</h4><p>Failed twice: coverage below 0.4% and headline lift 0.85×, under 1. Not a usable score input, despite being our most promising early hypothesis.</p></div>
-      <div class="rcard"><div class="x">✕</div><h4>Weather-triggered campaigns</h4><p>Temperature against physical sales correlates +0.04 (p = 0.73). No signal. Dropped unless rain data arrives, since precipitation is the more plausible driver.</p></div>
-      <div class="rcard"><div class="x">✕</div><h4>NPS as a churn predictor</h4><p>Omni detractor 3-month retention 91.4%, promoter 91.2%. NPS is an experience diagnostic, not an early-warning list, so we use it to fix the channel rather than to target people.</p></div>
-      <div class="rcard"><div class="x">✕</div><h4>Folding multi-store into the score</h4><p>Top-decile lift dropped 2.66× → 2.52×. We kept the score intact and used multi-store as a band-level filter (P2-Ready) instead.</p></div>
-    </div>
-
-    <div class="card reveal" style="background:linear-gradient(120deg,var(--red-deep),var(--red));border:none;color:#fff;margin-top:30px">
-      <span class="eyebrow" style="color:#f2b7b3">The handoff</span>
-      <h3 style="font-size:1.3rem;margin-top:12px;color:#fff">One reusable artifact: a scored, campaign-ready customer list</h3>
-      <p style="font-size:.92rem;color:rgba(255,255,255,.88);margin-top:10px">Every view on this page resolves to the same output, refreshable each month on a new snapshot: customer key, band, PriorityScore, and top drivers. That is what Swift's CRM team actually needs to run the campaign.</p>
-    </div>
+  <div class="panel" id="ruledPanel">
+    <div class="panel-h"><h3>Tested and ruled out</h3><span class="sub">Reported as first-class results, because each one prunes the plan</span></div>
+    <div class="panel-b"><div class="rlist" id="ruledList"></div></div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <svg class="logo-ic" viewBox="0 0 48 62" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M24 4C13.5 4 5 12 5 22.5c0 6.5 3.8 10.4 6.8 14.6 1.9 2.6 2.7 4.2 2.7 6.9h19c0-2.7.8-4.3 2.7-6.9C39.2 32.9 43 29 43 22.5 43 12 34.5 4 24 4Z" stroke="currentColor" stroke-width="2.3"/>
-        <path d="M16.5 50h15M18 54.5h12M21 59h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M24 16 34 28 16 33Z" stroke="#EF5A52" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M24.5 26.5 24 16M24.5 26.5 34 28M24.5 26.5 16 33" stroke="#EF5A52" stroke-width="1.1" opacity=".55"/>
-        <circle cx="24" cy="16" r="3.1" fill="#EF5A52"/><circle cx="34" cy="28" r="3.1" fill="#EF5A52"/>
-        <circle cx="16" cy="33" r="3.1" fill="#EF5A52"/><circle cx="24.5" cy="26.5" r="2" fill="#9aa1ab"/>
-      </svg>
-      <div class="foot-wm">MEAT THE <span>DATA</span><small>JBS SWIFT · OMNICHANNEL</small></div>
-    </div>
-    <h3>A scored list, a matched message, and a place to start.</h3>
-    <p class="sub">Built on 25 months of first-party data: 2.80M active customers, 150M+ transactions, 624 stores, 181K survey comments.</p>
-    <div class="foot-badge">
-      <span>Python + DuckDB</span><span>Parquet</span><span>Rules-based scoring</span><span>Out-of-time validation</span><span>Chart.js + Leaflet</span>
-    </div>
-    <div class="foot-meta">
-      <span>Team Meat the Data · Arnav Goenka · Bhavya Kumar · Jiayi Nie · Jie Lin · Kimberly Huang · Sowris Kumar Sripathy · Xinyue Fan · Yirui Chen</span>
-      <span>Columbia University · Capstone in Applied Analytics</span>
-    </div>
+  <div class="wrap foot">
+    <span>Team <b>Meat the Data</b> · Arnav Goenka, Bhavya Kumar, Jiayi Nie, Jie Lin, Kimberly Huang, Sowris Kumar Sripathy, Xinyue Fan, Yirui Chen</span>
+    <span>Columbia University · Capstone in Applied Analytics · <b>Python + DuckDB</b></span>
   </div>
 </footer>
 
 <script>
 const STORES=[[-21.20513,-47.79269,1,"RIBEIRAO PRETO","RIBEIRÃO PRETO","","SP"],[-23.50016,-46.85955,1,"ALPHAVILLE","BARUERI","","SP"],[-21.68195,-49.77367,1,"LINS","LINS","","SP"],[-23.62146,-46.6728,1,"CAMPO BELO","SÃO PAULO","","SP"],[-23.61225,-46.68433,1,"BROOKLIN","SÃO PAULO","","SP"],[-23.66158,-46.68888,1,"MARAJOARA","SÃO PAULO","","SP"],[-23.58886,-46.6248,1,"KLABIN","SÃO PAULO","","SP"],[-23.64667,-46.57581,1,"SCS MAUA","SÃO CAETANO DO SUL","","SP"],[-23.49749,-46.74716,1,"PIRITUBA","SÃO PAULO","","SP"],[-23.50095,-47.47751,1,"SOROCABA","SOROCABA","","SP"],[-23.58994,-46.82422,1,"GRANJA VIANA","COTIA","","SP"],[-23.60263,-46.6715,1,"ROUXINOL","SÃO PAULO","","SP"],[-22.88827,-47.06084,1,"BARAO ITAPURA","CAMPINAS","","SP"],[-20.8848,-51.36832,1,"ANDRADINA","ANDRADINA","","SP"],[-23.53292,-46.72684,1,"LEOPOLDINA","SÃO PAULO","","SP"],[-23.61017,-46.66034,1,"MOEMA JURUCE","SÃO PAULO","","SP"],[-23.54249,-46.65604,1,"ANGELICA","SÃO PAULO","","SP"],[-23.58412,-46.64252,1,"VILA MARIANA 2","SÃO PAULO","","SP"],[-23.61686,-46.63644,1,"VILA SAUDE","SÃO PAULO","","SP"],[-23.61746,-46.56808,1,"SAO CAETANO CENTRO","SÃO CAETANO DO SUL","","SP"],[-22.88261,-47.03376,1,"JOSE BONIFACIO","CAMPINAS","","SP"],[-22.97641,-46.99919,1,"VALINHOS","VALINHOS","","SP"],[-23.6333,-46.73527,1,"PANAMBY","SÃO PAULO","","SP"],[-23.50644,-46.57753,1,"VILA MARIA","SÃO PAULO","","SP"],[-23.57041,-46.6354,1,"ACLIMACAO","SÃO PAULO","","SP"],[-23.48657,-46.61487,1,"VILA PAULICEIA","SÃO PAULO","","SP"],[-22.92003,-47.05304,1,"SAUDADE","CAMPINAS","","SP"],[-23.53937,-46.68146,1,"PERDIZES","SÃO PAULO","","SP"],[-23.48713,-46.63322,1,"SANTANA","SÃO PAULO","","SP"],[-23.65146,-46.53458,1,"D. PEDRO ll","SANTO ANDRÉ","","SP"],[-23.45799,-46.61692,1,"TREMEMBE","SÃO PAULO","","SP"],[-23.528,-46.70065,1,"VILA ROMANA","SÃO PAULO","","SP"],[-23.19636,-45.89419,1,"SAO JOSE DOS CAMPOS","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.59025,-46.57444,1,"ZELINA","SÃO PAULO","","SP"],[-23.45479,-46.55724,1,"GUARULHOS","GUARULHOS","","SP"],[-23.02542,-45.58217,1,"TAUBATE","TAUBATÉ","","SP"],[-23.59614,-46.60624,1,"IPIRANGA","SÃO PAULO","","SP"],[-23.66554,-46.53394,1,"PORTUGAL","SANTO ANDRÉ","","SP"],[-23.08029,-47.21042,1,"INDAIATUBA","INDAIATUBA","","SP"],[-23.54686,-46.54939,1,"TATUAPE","SÃO PAULO","","SP"],[-23.54849,-46.53772,1,"VILA CARRAO","SÃO PAULO","","SP"],[-23.70662,-46.5489,1,"SAO BERNARDO","SÃO BERNARDO DO CAMPO","","SP"],[-23.23215,-45.88475,1,"SJC ANDROMEDA","SÃO JOSÉ DOS CAMPOS","","SP"],[-21.19169,-47.80991,1,"RIB.PRETO INDEPENDENCIA","RIBEIRÃO PRETO","","SP"],[-23.51575,-47.46565,1,"SOROCABA W.LUIZ","SOROCABA","","SP"],[-23.58083,-46.58365,1,"VILA PRUDENTE","SÃO PAULO","","SP"],[-23.56083,-46.69099,1,"PINHEIROS","SÃO PAULO","","SP"],[-23.58815,-46.7229,1,"MORUMBI","SÃO PAULO","","SP"],[-23.60579,-46.64887,1,"PLANALTO","SÃO PAULO","","SP"],[-23.56662,-46.6215,1,"CAMBUCI","SÃO PAULO","","SP"],[-23.52301,-46.52215,1,"PENHA","SÃO PAULO","","SP"],[-23.96242,-46.32318,1,"BOQUEIRAO","SANTOS","","SP"],[-23.5754,-46.74023,1,"JD. BONFIGLIOLI","SÃO PAULO","","SP"],[-23.57437,-46.6506,1,"TUTOIA","SÃO PAULO","","SP"],[-23.78916,-46.03166,1,"RIVIERA","BERTIOGA","","SP"],[-23.45779,-46.53057,1,"BOSQUE MAIA","GUARULHOS","","SP"],[-23.7205,-46.56358,1,"ASSUNCAO","SÃO BERNARDO DO CAMPO","","SP"],[-23.58218,-46.83847,1,"SAO CAMILO","COTIA","","SP"],[-23.60439,-46.62664,1,"CHACARA INGLESA","SÃO PAULO","","SP"],[-23.57979,-46.62433,1,"LINS DE VASCONCELOS","SÃO PAULO","","SP"],[-23.55416,-46.83597,1,"CARAPICUIBA","CARAPICUÍBA","","SP"],[-23.63658,-46.71398,1,"CHACARA ST. ANTONIO","SÃO PAULO","","SP"],[-23.62374,-46.62002,1,"BOSQUE DA SAUDE","SÃO PAULO","","SP"],[-23.55905,-46.56833,1,"AGUA RASA","SÃO PAULO","","SP"],[-23.59735,-46.64053,1,"BORGES LAGOA","SÃO PAULO","","SP"],[-23.55084,-46.64261,1,"BELA VISTA","SÃO PAULO","","SP"],[-23.54242,-46.56969,1,"SERRA DE JAPI","SÃO PAULO","","SP"],[-23.50435,-46.60748,1,"VILA GUILHERME","SÃO PAULO","","SP"],[-23.49304,-46.62618,1,"VOLUNTARIOS DA PATRIA","SÃO PAULO","","SP"],[-22.73262,-47.63787,1,"PIRACICABA","PIRACICABA","","SP"],[-23.56555,-46.66615,1,"OSCAR FREIRE","SÃO PAULO","","SP"],[-23.62489,-46.6684,1,"CAMPO BELO 2","SÃO PAULO","","SP"],[-23.6009,-46.67933,1,"VILA OLIMPIA","SÃO PAULO","","SP"],[-23.62475,-46.7406,1,"VILA ANDRADE","SÃO PAULO","","SP"],[-23.62019,-46.55321,1,"BARCELONA","SÃO CAETANO DO SUL","","SP"],[-23.52166,-46.73421,1,"GUAIPA","SÃO PAULO","","SP"],[-23.61495,-46.74187,1,"PORTAL DO MORUMBI","SÃO PAULO","","SP"],[-20.8205,-49.38322,1,"ALBERTO ANDALO","SÃO JOSÉ DO RIO PRETO","","SP"],[-23.98527,-46.30519,1,"PONTA DA PRAIA","SANTOS","","SP"],[-23.64258,-46.56197,1,"BOA VISTA","SÃO CAETANO DO SUL","","SP"],[-22.89604,-47.04743,1,"NORTE SUL","CAMPINAS","","SP"],[-23.48722,-46.621,1,"NOVA CANTAREIRA","SÃO PAULO","","SP"],[-23.4812,-46.54125,1,"VILA AUGUSTA","GUARULHOS","","SP"],[-23.53471,-46.66939,1,"PERDIZES 2","SÃO PAULO","","SP"],[-23.54069,-46.72795,1,"VILLA LOBOS","SÃO PAULO","","SP"],[-23.1831,-46.89656,1,"JUNDIAI","JUNDIAÍ","","SP"],[-23.5374,-46.77837,1,"AUTONOMISTAS","OSASCO","","SP"],[-23.5378,-46.52551,1,"VILA MATILDE","SÃO PAULO","","SP"],[-23.69473,-46.70181,1,"INTERLAGOS","SÃO PAULO","","SP"],[-23.55762,-46.75585,1,"CIDADE SAO FRANCISCO","SÃO PAULO","","SP"],[-23.52998,-46.68772,1,"POMPEIA DESEMBARGADOR","SÃO PAULO","","SP"],[-23.12029,-46.554,1,"ATIBAIA","ATIBAIA","","SP"],[-23.672,-46.5134,1,"DOM PEDRO I","SANTO ANDRÉ","","SP"],[-24.00765,-46.43,1,"GUILHERMINA","PRAIA GRANDE","","SP"],[-23.46932,-46.63042,1,"MANDAQUI","SÃO PAULO","","SP"],[-23.5212,-46.18089,1,"MOGI DAS CRUZES","MOGI DAS CRUZES","","SP"],[-23.96399,-46.34437,1,"SANTOS POMPEIA","SANTOS","","SP"],[-23.0329,-46.98691,1,"VINHEDO","VINHEDO","","SP"],[-22.33282,-49.0692,1,"BAURU","BAURU","","SP"],[-23.50035,-46.73419,1,"ANASTACIO","SÃO PAULO","","SP"],[-15.81117,-47.89809,1,"106 ASA SUL","BRASÍLIA","","DF"],[-23.98209,-46.22988,1,"ENSEADA","GUARUJÁ","","SP"],[-23.54041,-46.78829,1,"NOVA GRANADA","OSASCO","","SP"],[-21.22551,-50.43679,1,"ARACATUBA","ARAÇATUBA","","SP"],[-15.84085,-48.02278,1,"AGUAS CLARAS","BRASÍLIA","","DF"],[-23.26125,-47.29467,1,"ITU","ITU","","SP"],[-23.64285,-46.66591,1,"VILA MASCOTE","SÃO PAULO","","SP"],[-23.50637,-46.48864,1,"PONTE RASA","SÃO PAULO","","SP"],[-23.97074,-46.37144,1,"SAO VICENTE","SÃO VICENTE","","SP"],[-22.88681,-48.44472,1,"BOTUCATU","BOTUCATU","","SP"],[-23.53458,-46.568,1,"CELSO GARCIA","SÃO PAULO","","SP"],[-23.52554,-47.13214,1,"SAO ROQUE","SÃO ROQUE","","SP"],[-23.6088,-46.70719,1,"REAL PARQUE","SÃO PAULO","","SP"],[-24.02229,-46.47049,1,"TUPI","PRAIA GRANDE","","SP"],[-23.00965,-45.55042,1,"TAUBATE SAO GERALDO","TAUBATÉ","","SP"],[-24.0101,-46.40355,1,"CANTO DO FORTE","PRAIA GRANDE","","SP"],[-15.846,-47.89538,1,"GILBERTO SALOMAO","BRASÍLIA","","DF"],[-15.8093,-47.88495,1,"402 ASA SUL","BRASÍLIA","","DF"],[-21.20822,-47.81354,1,"RIB.PRETO ALTO DA BOA VISTA","RIBEIRÃO PRETO","","SP"],[-15.76897,-47.8879,1,"306 ASA NORTE","BRASÍLIA","","DF"],[-23.65624,-46.57071,1,"SBC RUDGE RAMOS","SÃO BERNARDO DO CAMPO","","SP"],[-23.53005,-46.79422,1,"OSASCO KM 18","OSASCO","","SP"],[-22.8646,-47.05357,1,"ALTO TAQUARAL","CAMPINAS","","SP"],[-22.2269,-49.93319,1,"MARILIA","MARÍLIA","","SP"],[-23.21574,-45.90285,1,"AQUARIUS","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.65656,-46.85177,1,"EMBU DAS ARTES","EMBU DAS ARTES","","SP"],[-23.467,-46.84673,1,"TAMBORE","SANTANA DE PARNAÍBA","","SP"],[-23.00942,-46.84328,1,"ITATIBA","ITATIBA","","SP"],[-23.47793,-46.57555,1,"ROLAND GARROS","SÃO PAULO","","SP"],[-23.57864,-46.48145,1,"PARQUE DO CARMO","SÃO PAULO","","SP"],[-23.55077,-46.59481,1,"ALTO DA MOOCA","SÃO PAULO","","SP"],[-21.77895,-48.17948,1,"ARARAQUARA","ARARAQUARA","","SP"],[-22.94679,-45.47708,1,"PINDAMONHANGABA","PINDAMONHANGABA","","SP"],[-23.64841,-46.70292,1,"ALTO DA BOA VISTA","SÃO PAULO","","SP"],[-23.97508,-46.31593,1,"EMBARE","SANTOS","","SP"],[-22.42318,-47.56014,1,"RIO CLARO","RIO CLARO","","SP"],[-23.54243,-46.31394,1,"SUZANO","SUZANO","","SP"],[-23.65727,-46.67345,1,"JARDIM PRUDENCIA","SÃO PAULO","","SP"],[-22.9825,-43.22334,1,"LEBLON","RIO DE JANEIRO","","RJ"],[-23.61575,-46.97065,1,"COTIA KM 39","COTIA","","SP"],[-22.81414,-45.20236,1,"GUARATINGUETA","GUARATINGUETÁ","","SP"],[-24.18045,-46.78269,1,"ITANHAEM","ITANHAÉM","","SP"],[-15.69511,-47.87149,1,"TAQUARI","BRASÍLIA","","DF"],[-23.58671,-48.03609,1,"ITAPETININGA","ITAPETININGA","","SP"],[-23.51262,-46.18098,1,"MOGI DAS CRUZES MOGILAR","MOGI DAS CRUZES","","SP"],[-23.31957,-46.59069,1,"MAIRIPORA","MAIRIPORÃ","","SP"],[-23.18128,-47.31133,1,"SALTO","SALTO","","SP"],[-23.2853,-45.95303,1,"JACAREI","JACAREÍ","","SP"],[-22.11601,-51.40145,1,"PRESIDENTE PRUDENTE","PRESIDENTE PRUDENTE","","SP"],[-24.31584,-46.99157,1,"PERUIBE","PERUÍBE","","SP"],[-23.58788,-46.73644,1,"PERI PERI","SÃO PAULO","","SP"],[-23.59419,-46.54408,1,"PARQUE SAO LUCAS","SÃO PAULO","","SP"],[-22.96495,-46.54419,1,"BRAGANCA PAULISTA","BRAGANÇA PAULISTA","","SP"],[-23.49696,-46.70383,1,"FREGUESIA DO O","SÃO PAULO","","SP"],[-23.66346,-46.52529,1,"PERIMETRAL","SANTO ANDRÉ","","SP"],[-23.5474,-46.76152,1,"VILA YARA","OSASCO","","SP"],[-23.55407,-46.65264,1,"FREI CANECA","SÃO PAULO","","SP"],[-23.70794,-46.40104,1,"RIBEIRAO PIRES","RIBEIRÃO PIRES","","SP"],[-20.80045,-49.3461,1,"SAO JOSE DO RIO PRETO","SÃO JOSÉ DO RIO PRETO","","SP"],[-22.91958,-43.23463,1,"PRACA VARNHAGEM","RIO DE JANEIRO","","RJ"],[-23.59501,-46.67663,1,"CLODOMIRO","SÃO PAULO","","SP"],[-23.62294,-46.60773,1,"VILA DAS MERCES","SÃO PAULO","","SP"],[-16.70046,-49.26729,1,"MUTIRAO","GOIÂNIA","","GO"],[-23.40843,-46.85046,1,"CAJAMAR","CAJAMAR","","SP"],[-23.48488,-46.86388,1,"ALPHAVILLE CONDE","BARUERI","","SP"],[-23.60265,-46.91428,1,"COTIA","COTIA","","SP"],[-22.18915,-47.39593,1,"LEME","LEME","","SP"],[-22.563,-47.42195,1,"LIMEIRA","LIMEIRA","","SP"],[-22.70943,-47.65465,1,"VILA RESENDE","PIRACICABA","","SP"],[-23.50679,-46.66662,1,"CASA VERDE","SÃO PAULO","","SP"],[-23.57053,-46.59122,1,"JUVENTUS","SÃO PAULO","","SP"],[-23.95495,-46.33152,1,"ANA COSTA","SANTOS","","SP"],[-24.04586,-46.52775,1,"VILA CAICARA","PRAIA GRANDE","","SP"],[-23.48689,-46.35289,1,"ITAQUA","ITAQUAQUECETUBA","","SP"],[-23.58834,-46.86948,1,"GRANJA KM 26","COTIA","","SP"],[-23.48251,-46.67327,1,"CACHOEIRINHA","SÃO PAULO","","SP"],[-23.63437,-46.50316,1,"SANTO ANDRE ORATORIO","SANTO ANDRÉ","","SP"],[-23.48687,-46.69267,1,"ITABERABA","SÃO PAULO","","SP"],[-23.5357,-46.46444,1,"CAMPANELLA","SÃO PAULO","","SP"],[-23.50884,-46.76199,1,"REMEDIOS ONIX","SÃO PAULO","","SP"],[-23.50156,-46.44252,1,"SAO MIGUEL","SÃO PAULO","","SP"],[-23.58707,-46.54429,1,"VILA EMA","SÃO PAULO","","SP"],[-23.46007,-45.06202,1,"UBATUBA","UBATUBA","","SP"],[-23.76555,-46.71742,1,"PARELHEIROS","SÃO PAULO","","SP"],[-23.54913,-46.5059,1,"AV. ITAQUERA","SÃO PAULO","","SP"],[-23.70749,-46.57554,1,"PLANALTO","SÃO BERNARDO DO CAMPO","","SP"],[-23.50597,-46.86783,1,"BARUERI","BARUERI","","SP"],[-23.65119,-46.75716,1,"CAMPO LIMPO","SÃO PAULO","","SP"],[-23.41021,-46.31962,1,"ARUJA","ARUJÁ","","SP"],[-22.5644,-44.95872,1,"CRUZEIRO","CRUZEIRO","","SP"],[-23.01682,-43.45971,1,"GLAUCIO GIL","RIO DE JANEIRO","","RJ"],[-22.93085,-43.17668,1,"LARGO DO MACHADO","RIO DE JANEIRO","","RJ"],[-23.52856,-47.49015,1,"SOROCABA PANNUNZIO","SOROCABA","","SP"],[-23.08791,-47.22534,1,"PARQUE ECOLOGICO","INDAIATUBA","","SP"],[-24.09346,-46.61774,1,"MONGAGUA","MONGAGUÁ","","SP"],[-23.08123,-46.95078,1,"LOUVEIRA","LOUVEIRA","","SP"],[-23.26425,-45.94474,1,"JACAREI VILLA BRANCA","JACAREÍ","","SP"],[-22.7758,-47.14474,1,"PAULINIA","PAULÍNIA","","SP"],[-23.10566,-45.71052,1,"CACAPAVA","CAÇAPAVA","","SP"],[-22.83225,-47.07863,1,"BARAO GERALDO","CAMPINAS","","SP"],[-23.53833,-46.93503,1,"ITAPEVI","ITAPEVI","","SP"],[-23.00947,-43.44985,1,"RECREIO","RIO DE JANEIRO","","RJ"],[-23.18036,-45.86924,1,"MONTE CASTELO","SÃO JOSÉ DOS CAMPOS","","SP"],[-15.8391,-48.05511,1,"TAGUATINGA SUL","BRASÍLIA","","DF"],[-23.6729,-46.45939,1,"MAUA 2","MAUÁ","","SP"],[-23.51378,-46.73101,1,"MALL MULTI GERMINARE","SÃO PAULO","","SP"],[-23.68493,-46.54761,1,"SBC PEREIRA BARRETO","SÃO BERNARDO DO CAMPO","","SP"],[-23.63446,-46.53215,1,"SANTA TERESINHA","SANTO ANDRÉ","","SP"],[-23.57725,-46.51579,1,"VILA RICA","SÃO PAULO","","SP"],[-23.70638,-46.70075,1,"JANGADEIROS","SÃO PAULO","","SP"],[-23.2077,-46.87899,1,"14 DE DEZEMBRO","JUNDIAÍ","","SP"],[-23.46936,-46.6451,1,"HORTO","SÃO PAULO","","SP"],[-22.99947,-43.40549,1,"ALL WAYS MALL","RIO DE JANEIRO","","RJ"],[-22.90876,-47.09515,1,"UNIMART","CAMPINAS","","SP"],[-23.20356,-45.94055,1,"URBANOVA","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.59752,-46.48688,1,"MATEO BEI","SÃO PAULO","","SP"],[-22.29506,-48.54869,1,"JAU","JAÚ","","SP"],[-23.50065,-46.39874,1,"TIBURCIO","SÃO PAULO","","SP"],[-23.81691,-45.36673,1,"ILHABELA","ILHABELA","","SP"],[-23.47572,-46.70382,1,"MORRO GRANDE","SÃO PAULO","","SP"],[-23.71033,-46.84962,1,"ITAPECERICA DA SERRA","ITAPECERICA DA SERRA","","SP"],[-23.37257,-46.75395,1,"BOX CAIEIRAS","CAIEIRAS","","SP"],[-22.97283,-43.39161,1,"PARQUE OLIMPICO","RIO DE JANEIRO","","RJ"],[-23.49458,-46.96325,1,"ALDEIA DA SERRA","BARUERI","","SP"],[-22.79205,-43.30226,1,"25 DE AGOSTO","DUQUE DE CAXIAS","","RJ"],[-23.79008,-46.03424,1,"SAO LOURENCO","BERTIOGA","","SP"],[-23.36262,-46.74245,1,"CAIEIRAS","CAIEIRAS","","SP"],[-23.68562,-46.62426,1,"DIADEMA","DIADEMA","","SP"],[-23.52131,-46.41857,1,"VILA CURUCA","SÃO PAULO","","SP"],[-23.48409,-46.42115,1,"OLIVEIRA FREIRE","SÃO PAULO","","SP"],[-23.50665,-46.87527,0,"BARBOSA","BARUERI","BARBOSA","SP"],[-23.35009,-47.8445,0,"BARBOSA","TATUÍ","BARBOSA","SP"],[-23.64477,-46.67396,0,"GPA","SÃO PAULO","GPA","SP"],[-23.62634,-46.71722,0,"GPA","SÃO PAULO","GPA","SP"],[-23.47796,-47.4416,0,"BARBOSA","SOROCABA","BARBOSA","SP"],[-23.6394,-46.53971,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.51228,-46.67494,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66429,-46.52342,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.49633,-47.44207,0,"COOP","SOROCABA","COOP","SP"],[-23.98263,-46.26444,0,"ATACADAO","GUARUJÁ","ATACADAO","SP"],[-23.49491,-46.45653,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.58113,-46.60064,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.53807,-46.77106,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.52211,-46.65821,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.72268,-46.54682,0,"ATACADAO","SÃO BERNARDO DO CAMPO","ATACADAO","SP"],[-23.62912,-46.64502,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.65523,-46.69261,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.65271,-46.85064,0,"LOPES","EMBU DAS ARTES","LOPES","SP"],[-23.58459,-46.72529,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.6105,-46.56502,0,"CARREFOUR","SÃO CAETANO DO SUL","CARREFOUR","SP"],[-23.533,-47.46295,0,"CARREFOUR","VOTORANTIM","CARREFOUR","SP"],[-23.24171,-45.90536,0,"COOP","SÃO JOSÉ DOS CAMPOS","COOP","SP"],[-23.66521,-46.49183,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.65134,-46.57544,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.56105,-46.51667,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.18329,-46.9076,0,"CARREFOUR","JUNDIAÍ","CARREFOUR","SP"],[-23.69265,-46.61979,0,"COOP","DIADEMA","COOP","SP"],[-23.54939,-46.93994,0,"LOPES","ITAPEVI","LOPES","SP"],[-23.46035,-46.519,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.49856,-46.45516,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.60196,-46.53101,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.53182,-46.90351,0,"BARBOSA","JANDIRA","BARBOSA","SP"],[-23.50505,-46.83399,0,"CARREFOUR","BARUERI","CARREFOUR","SP"],[-23.61756,-46.62638,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.71219,-46.54243,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.58475,-46.77889,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.5881,-46.62049,0,"GPA","SÃO PAULO","GPA","SP"],[-23.61143,-46.70128,0,"GPA","SÃO PAULO","GPA","SP"],[-23.6454,-46.64167,0,"GPA","SÃO PAULO","GPA","SP"],[-23.57221,-46.80121,0,"BARBOSA","OSASCO","BARBOSA","SP"],[-23.60978,-46.93081,0,"BARBOSA","COTIA","BARBOSA","SP"],[-23.5863,-46.72183,0,"GPA","SÃO PAULO","GPA","SP"],[-23.56359,-46.68735,0,"GPA","SÃO PAULO","GPA","SP"],[-23.63038,-46.69083,0,"GPA","SÃO PAULO","GPA","SP"],[-23.71507,-46.5536,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.5612,-46.56067,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.53763,-46.76854,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.63139,-46.5993,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.64684,-46.52648,0,"CARREFOUR","SANTO ANDRÉ","CARREFOUR","SP"],[-23.6969,-46.44396,0,"COOP","RIBEIRÃO PIRES","COOP","SP"],[-23.64776,-46.53225,0,"GPA","SANTO ANDRÉ","GPA","SP"],[-23.6406,-46.49932,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.51752,-46.17922,0,"DAVO","MOGI DAS CRUZES","DAVO","SP"],[-23.58925,-46.6191,0,"GPA","SÃO PAULO","GPA","SP"],[-23.56624,-46.64719,0,"GPA","SÃO PAULO","GPA","SP"],[-23.49033,-46.88408,0,"LOPES","BARUERI","LOPES","SP"],[-23.46249,-46.55422,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.59261,-46.67729,0,"GPA","SÃO PAULO","GPA","SP"],[-23.62079,-46.56395,0,"GPA","SÃO CAETANO DO SUL","GPA","SP"],[-23.54306,-46.31848,0,"DAVO","SUZANO","DAVO","SP"],[-23.55011,-46.44571,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.22332,-45.90659,0,"CARREFOUR","SÃO JOSÉ DOS CAMPOS","CARREFOUR","SP"],[-23.67772,-46.67541,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.62983,-46.71082,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.63124,-46.7359,0,"GPA","SÃO PAULO","GPA","SP"],[-23.46223,-46.8759,0,"GPA","SANTANA DE PARNAÍBA","GPA","SP"],[-23.78948,-46.03229,0,"GPA","BERTIOGA","GPA","SP"],[-23.98849,-46.24844,0,"GPA","GUARUJÁ","GPA","SP"],[-23.53489,-46.71303,0,"GPA","SÃO PAULO","GPA","SP"],[-22.85307,-47.02782,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-23.96721,-46.36957,0,"CARREFOUR","SÃO VICENTE","CARREFOUR","SP"],[-23.52166,-46.59904,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.68483,-46.6327,0,"CARREFOUR","DIADEMA","CARREFOUR","SP"],[-23.67763,-46.53813,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.58838,-46.67624,0,"GPA","SÃO PAULO","GPA","SP"],[-23.54252,-46.78751,0,"LOPES","OSASCO","LOPES","SP"],[-21.21442,-47.81594,0,"CARREFOUR","RIBEIRÃO PRETO","CARREFOUR","SP"],[-22.89219,-47.02373,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-23.64246,-46.73415,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.62589,-46.68649,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.95152,-47.02837,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-21.22612,-47.83396,0,"SAVEGNAGO","RIBEIRÃO PRETO","SAVEGNAGO","SP"],[-23.58355,-46.41562,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.68649,-47.02073,0,"BARBOSA","COTIA","BARBOSA","SP"],[-23.67637,-46.55473,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.55893,-46.83784,0,"BARBOSA","CARAPICUÍBA","BARBOSA","SP"],[-23.47873,-47.45499,0,"SAO VICENTE","SOROCABA","SAO VICENTE","SP"],[-23.44072,-46.54088,0,"CARREFOUR","GUARULHOS","CARREFOUR","SP"],[-22.43646,-46.81461,0,"CUBATAO","ITAPIRA","CUBATAO","SP"],[-23.02478,-45.57795,0,"CARREFOUR","TAUBATÉ","CARREFOUR","SP"],[-20.83253,-49.3557,0,"CARREFOUR","SÃO JOSÉ DO RIO PRETO","CARREFOUR","SP"],[-23.57277,-46.69559,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66422,-46.44855,0,"COOP","MAUÁ","COOP","SP"],[-23.6388,-46.51745,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.65518,-46.52551,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.70559,-46.58887,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.70283,-46.53788,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-22.89738,-47.07058,0,"SAVEGNAGO","CAMPINAS","SAVEGNAGO","SP"],[-23.98158,-46.23149,0,"CARREFOUR","GUARUJÁ","CARREFOUR","SP"],[-23.5692,-46.44542,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66953,-46.53586,0,"CARREFOUR","SANTO ANDRÉ","CARREFOUR","SP"],[-23.48564,-47.47012,0,"CARREFOUR","SOROCABA","CARREFOUR","SP"],[-23.51341,-46.65946,0,"GPA","SÃO PAULO","GPA","SP"],[-23.63554,-46.78883,0,"DAVO","TABOÃO DA SERRA","DAVO","SP"],[-22.78543,-47.30194,0,"SAO VICENTE","NOVA ODESSA","SAO VICENTE","SP"],[-22.76237,-47.34122,0,"SAO VICENTE","AMERICANA","SAO VICENTE","SP"],[-23.57772,-46.74284,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.69783,-46.50643,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.70661,-46.53495,0,"DAVO","SÃO BERNARDO DO CAMPO","DAVO","SP"],[-23.67202,-46.77302,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.18792,-45.79235,0,"COOP","SÃO JOSÉ DOS CAMPOS","COOP","SP"],[-23.42979,-46.43686,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.53898,-46.91477,0,"LOPES","JANDIRA","LOPES","SP"],[-23.47561,-46.55369,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.61357,-46.50115,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.39473,-46.32996,0,"SEMAR","ARUJÁ","SEMAR","SP"],[-23.79632,-45.40026,0,"SEMAR","SÃO SEBASTIÃO","SEMAR","SP"],[-23.43307,-45.08672,0,"SEMAR","UBATUBA","SEMAR","SP"],[-23.23629,-45.89711,0,"SHIBATA","SÃO JOSÉ DOS CAMPOS","SHIBATA","SP"],[-23.11916,-45.71351,0,"SHIBATA","CAÇAPAVA","SHIBATA","SP"],[-22.94694,-45.48113,0,"SHIBATA","PINDAMONHANGABA","SHIBATA","SP"],[-22.84434,-45.24253,0,"SHIBATA","APARECIDA DO NORTE","SHIBATA","SP"],[-23.69585,-46.66876,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.66606,-46.79968,0,"BARBOSA","CAMPO LIMPO PAULISTA","BARBOSA","SP"],[-23.51302,-46.33874,0,"SEMAR","POÁ","SEMAR","SP"],[-23.53775,-46.42768,0,"DAVO","SÃO PAULO","DAVO","SP"],[-22.57161,-47.40992,0,"SAVEGNAGO","LIMEIRA","SAVEGNAGO","SP"],[-23.53104,-46.89257,0,"LOPES","JANDIRA","LOPES","SP"],[-15.83044,-47.95504,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.84616,-47.89494,0,"GPA","BRASÍLIA","GPA","DF"],[-15.73388,-47.89952,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.58703,-46.30921,0,"SEMAR","SUZANO","SEMAR","SP"],[-23.83773,-46.13194,0,"SEMAR","BERTIOGA","SEMAR","SP"],[-22.42037,-46.96023,0,"CUBATAO","MOGI MIRIM","CUBATAO","SP"],[-21.97313,-46.76772,0,"CUBATAO","SÃO JOÃO DA BOA VISTA","CUBATAO","SP"],[-23.96948,-46.32463,0,"CARREFOUR","SANTOS","CARREFOUR","SP"],[-15.84855,-48.04103,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.61189,-46.64499,0,"LEMON","SÃO PAULO","LEMON","SP"],[-23.65512,-46.59534,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.50481,-46.15199,0,"SHIBATA","MOGI DAS CRUZES","SHIBATA","SP"],[-20.81427,-49.50899,0,"EMPORIO ALFREDO","MIRASSOL","EMPORIO ALFREDO","SP"],[-23.50872,-46.48981,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.52309,-46.20695,0,"SHIBATA","MOGI DAS CRUZES","SHIBATA","SP"],[-23.54641,-46.25259,0,"SEMAR","MOGI DAS CRUZES","SEMAR","SP"],[-15.84267,-47.87617,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.83589,-47.83458,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.53154,-46.56481,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.01786,-45.5655,0,"SEMAR","TAUBATÉ","SEMAR","SP"],[-22.7981,-45.20675,0,"SEMAR","GUARATINGUETÁ","SEMAR","SP"],[-23.48943,-46.3643,0,"SHIBATA","ITAQUAQUECETUBA","SHIBATA","SP"],[-22.69318,-46.99128,0,"CUBATAO","JAGUARIÚNA","CUBATAO","SP"],[-23.54855,-46.79163,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.31579,-46.22492,0,"STYLLUS","SANTA ISABEL","STYLLUS","SP"],[-23.39701,-46.32901,0,"STYLLUS","ARUJÁ","STYLLUS","SP"],[-23.49499,-46.47088,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-22.67049,-43.28296,0,"CARREFOUR","DUQUE DE CAXIAS","CARREFOUR","RJ"],[-15.77466,-47.88759,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.75062,-47.89449,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-22.1158,-51.40833,0,"CARREFOUR","PRESIDENTE PRUDENTE","CARREFOUR","SP"],[-16.71099,-49.23324,0,"CARREFOUR","GOIÂNIA","CARREFOUR","GO"],[-16.70989,-49.29726,0,"CARREFOUR","GOIÂNIA","CARREFOUR","GO"],[-23.6124,-46.77694,0,"CARREFOUR","TABOÃO DA SERRA","CARREFOUR","SP"],[-22.72473,-47.67108,0,"CARREFOUR","PIRACICABA","CARREFOUR","SP"],[-22.94013,-43.05625,0,"GPA","NITERÓI","GPA","RJ"],[-23.65919,-46.77453,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.5512,-46.46415,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.31467,-46.7209,0,"ROSSI","FRANCO DA ROCHA","ROSSI","SP"],[-23.54075,-46.4693,0,"GPA","SÃO PAULO","GPA","SP"],[-22.98104,-43.22254,0,"GPA","RIO DE JANEIRO","GPA","RJ"],[-23.49807,-46.78832,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.49178,-46.54517,0,"DAVO","GUARULHOS","DAVO","SP"],[-23.51308,-46.54051,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.31258,-45.9795,0,"SHIBATA","JACAREÍ","SHIBATA","SP"],[-23.49081,-46.46384,0,"SHIBATA","SÃO PAULO","SHIBATA","SP"],[-23.63481,-46.658,0,"CASTELAO","SÃO PAULO","CASTELAO","SP"],[-23.62108,-45.42918,0,"SHIBATA","CARAGUATATUBA","SHIBATA","SP"],[-22.92967,-45.4582,0,"SHIBATA","PINDAMONHANGABA","SHIBATA","SP"],[-23.54255,-46.75227,0,"VERDE","SÃO PAULO","VERDE","SP"],[-22.70492,-46.77087,0,"GUARANI","AMPARO","GUARANI","SP"],[-22.42203,-47.5662,0,"SAVEGNAGO","RIO CLARO","SAVEGNAGO","SP"],[-21.76344,-48.16457,0,"SAVEGNAGO","ARARAQUARA","SAVEGNAGO","SP"],[-23.44927,-46.54897,0,"X SUPER","GUARULHOS","X SUPER","SP"],[-23.54472,-46.56886,0,"GPA","SÃO PAULO","GPA","SP"],[-23.4968,-46.34813,0,"DAVO","ITAQUAQUECETUBA","DAVO","SP"],[-23.5454,-46.38057,0,"SHIBATA","SÃO PAULO","SHIBATA","SP"],[-23.98496,-46.20116,0,"GPA","GUARUJÁ","GPA","SP"],[-23.53807,-46.77106,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.69451,-46.70047,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.01719,-45.55129,0,"CARREFOUR","TAUBATÉ","CARREFOUR","SP"],[-24.01337,-46.41817,0,"CARREFOUR","PRAIA GRANDE","CARREFOUR","SP"],[-23.49422,-46.41312,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.19509,-47.3033,0,"SAO VICENTE","SALTO","SAO VICENTE","SP"],[-23.27724,-47.28116,0,"SAO VICENTE","ITU","SAO VICENTE","SP"],[-22.00507,-47.9051,0,"SAVEGNAGO","SÃO CARLOS","SAVEGNAGO","SP"],[-22.36078,-47.37747,0,"SAVEGNAGO","ARARAS","SAVEGNAGO","SP"],[-23.52694,-46.33091,0,"SHIBATA","POÁ","SHIBATA","SP"],[-15.81835,-47.91302,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.48142,-47.42047,0,"GPA","SOROCABA","GPA","SP"],[-23.5759,-46.61596,0,"GPA","SÃO PAULO","GPA","SP"],[-24.29913,-46.97151,0,"GPA","PERUÍBE","GPA","SP"],[-23.88702,-46.42045,0,"GPA","CUBATÃO","GPA","SP"],[-22.79555,-45.18192,0,"COLINAS","GUARATINGUETÁ","COLINAS","SP"],[-23.50023,-46.87764,0,"SAO VICENTE","BARUERI","SAO VICENTE","SP"],[-22.74764,-47.63843,0,"DELTA","PIRACICABA","DELTA","SP"],[-23.28199,-47.6744,0,"DELTA","BOITUVA","DELTA","SP"],[-23.96829,-46.37704,0,"GPA","SÃO VICENTE","GPA","SP"],[-23.58181,-46.79532,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.30189,-45.9626,0,"SHIBATA","JACAREÍ","SHIBATA","SP"],[-22.83025,-47.26698,0,"SAVEGNAGO","SUMARÉ","SAVEGNAGO","SP"],[-21.13972,-47.99482,0,"SAVEGNAGO","SERTÃOZINHO","SAVEGNAGO","SP"],[-24.02664,-46.48044,0,"GPA","PRAIA GRANDE","GPA","SP"],[-23.16213,-47.73795,0,"DELTA","CERQUILHO","DELTA","SP"],[-23.02711,-45.60253,0,"SHIBATA","TAUBATÉ","SHIBATA","SP"],[-23.57337,-46.54127,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.66593,-46.69006,0,"GPA","SÃO PAULO","GPA","SP"],[-23.44928,-46.49915,0,"X SUPER","GUARULHOS","X SUPER","SP"],[-15.83216,-48.03985,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.6021,-46.63971,0,"GPA","SÃO PAULO","GPA","SP"],[-22.97784,-49.8861,0,"GPA","OURINHOS","GPA","SP"],[-23.00431,-45.55748,0,"REDE SINCO","TAUBATÉ","REDE SINCO","SP"],[-23.0155,-46.82627,0,"FLEX","ITATIBA","ASP-FLEX","SP"],[-23.51379,-46.18131,0,"ALABARCE","MOGI DAS CRUZES","ALABARCE","SP"],[-23.16534,-45.89592,0,"SHIBATA","SÃO JOSÉ DOS CAMPOS","SHIBATA","SP"],[-22.88997,-43.11559,0,"GUANABARA","NITERÓI","GUANABARA","RJ"],[-23.94758,-46.33542,0,"GPA","SANTOS","GPA","SP"],[-22.92219,-43.24931,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.00111,-43.33796,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.92014,-43.22745,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.61176,-46.74114,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.70398,-46.98689,0,"ANTONELLI","JAGUARIÚNA","ANTONELLI","SP"],[-23.48605,-46.64099,0,"GPA","SÃO PAULO","GPA","SP"],[-23.70392,-46.57695,0,"LOPES","SÃO BERNARDO DO CAMPO","LOPES","SP"],[-21.99322,-49.45674,0,"SERVETODOS","PIRAJUÍ","SERVETODOS","SP"],[-22.21805,-49.65062,0,"SERVETODOS","GARÇA","SERVETODOS","SP"],[-22.73515,-47.64953,0,"SAVEGNAGO","PIRACICABA","SAVEGNAGO","SP"],[-22.18239,-47.39462,0,"SAVEGNAGO","LEME","SAVEGNAGO","SP"],[-23.62722,-46.6761,0,"GPA","SÃO PAULO","GPA","SP"],[-22.72684,-47.6383,0,"GPA","PIRACICABA","GPA","SP"],[-23.64941,-46.75742,0,"GPA","SÃO PAULO","GPA","SP"],[-22.43913,-46.81547,0,"CUBATAO","ITAPIRA","CUBATAO","SP"],[-23.59573,-46.62224,0,"COMERCIAL TATENO","SÃO PAULO","COMERCIAL TATENO","SP"],[-20.56785,-47.39217,0,"SAVEGNAGO","FRANCA","SAVEGNAGO","SP"],[-21.60158,-48.36185,0,"SAVEGNAGO","MATÃO","SAVEGNAGO","SP"],[-22.88209,-47.19735,0,"GOODBOM","HORTOLÂNDIA","GOODBOM","SP"],[-22.83201,-43.32909,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.83294,-47.16479,0,"GOODBOM","SUMARÉ","GOODBOM","SP"],[-23.59598,-46.43443,0,"ROSSI","SÃO PAULO","ROSSI","SP"],[-22.88986,-47.05884,0,"SAVEGNAGO","CAMPINAS","SAVEGNAGO","SP"],[-22.86076,-43.25344,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.88178,-43.33904,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.89585,-43.56342,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.89821,-43.29518,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.53581,-46.76742,0,"ATACADAO","OSASCO","ATACADAO","SP"],[-22.91382,-43.37432,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.03707,-45.56016,0,"GPA","TAUBATÉ","GPA","SP"],[-23.71252,-46.41183,0,"GPA","RIBEIRÃO PRETO","GPA","SP"],[-22.82635,-43.0153,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.86471,-43.29401,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.92788,-43.67789,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87624,-43.37133,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.43692,-45.09049,0,"SHIBATA","UBATUBA","SHIBATA","SP"],[-22.88646,-43.30872,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.84132,-43.28065,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87843,-43.42817,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87423,-43.46464,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.76187,-43.44605,0,"GUANABARA","NOVA IGUACU","GUANABARA","RJ"],[-23.65921,-46.5017,0,"ATACADAO","SANTO ANDRÉ","ATACADAO","SP"],[-22.81529,-47.24328,0,"SAO VICENTE","SUMARÉ","SAO VICENTE","SP"],[-23.51618,-46.67002,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.50152,-46.83421,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.47523,-46.5272,0,"ATACADAO","GUARULHOS","ATACADAO","SP"],[-23.72686,-46.69802,0,"DAVO","SÃO PAULO","DAVO","SP"],[-22.86984,-43.78211,0,"GUANABARA","ITAGUAÍ","GUANABARA","RJ"],[-23.53622,-46.58199,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.69864,-46.56544,0,"BARBOSA","SÃO BERNARDO DO CAMPO","BARBOSA","SP"],[-23.98263,-46.26444,0,"ATACADAO","GUARUJÁ","ATACADAO","SP"],[-23.65562,-46.47263,0,"ATACADAO","","ATACADAO","SP"],[-23.45633,-46.5163,0,"X SUPER","","X SUPER","SP"],[-23.47523,-46.5272,0,"ATACADAO","GUARULHOS","ATACADAO","SP"],[-23.53581,-46.76742,0,"ATACADAO","OSASCO","ATACADAO","SP"],[-23.52752,-46.90479,0,"BARBOSA","JANDIRA","BARBOSA","SP"],[-23.72268,-46.54682,0,"ATACADAO","SÃO BERNARDO DO CAMPO","ATACADAO","SP"],[-23.96948,-46.32463,0,"CARREFOUR","SANTOS","CARREFOUR","SP"],[-22.89219,-47.02373,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-22.1158,-51.40833,0,"CARREFOUR","PRESIDENTE PRUDENTE","CARREFOUR","SP"],[-23.65008,-46.73322,0,"AYUMI","","AYUMI","SP"],[-23.5062,-46.78871,0,"DAVO","","DAVO","SP"],[-23.56496,-46.50379,0,"X SUPER","","X SUPER","SP"],[-23.63407,-46.71747,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.46302,-46.66134,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.54255,-46.75227,0,"VERDE","SÃO PAULO","VERDE","SP"],[-23.57277,-46.69559,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.80094,-47.19322,0,"GOODBOM","SUMARÉ","GOODBOM","SP"],[-22.945,-47.3122,0,"GOODBOM","MONTE MOR","GOODBOM","SP"],[-23.56337,-46.61218,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.62912,-46.64502,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.52211,-46.65821,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.54675,-46.60616,0,"X SUPER","","X SUPER","SP"]];
-/* ============ DATA ============ */
-const BANDS_BASE=[
- {id:"P1",lab:"P1",full:"P1 · High value + online history",n:66397,c:"var(--b1)",lift:6.41,liftT:"6.41×",
-  prof:"High-tier customers who have bought online before. Highest frequency and value, so they go first. The message is win-back, not welcome: they already hit friction once.",
-  stats:[["Mean purchases","22.8"],["Lift","6.41×"],["Recency","~26 days"],["Tier","Ouro / Gran Reserva / Black"]]},
- {id:"MW",lab:"M-WARM",full:"M-WARM · Marketplace-warm",n:24678,c:"var(--mw)",lift:5.13,liftT:"5.13×",
-  prof:"High-value customers who already buy Swift through a marketplace rather than direct. Already registered with us, so reachable. Counted as a separate reachable band, not as omni.",
-  stats:[["Conversion lift","5.13×"],["Size","24,678"],["Signal","Físico + marketplace"],["Use","nudge to buy direct"]]},
- {id:"P2",lab:"P2",full:"P2 · High value, no online yet",n:861629,c:"var(--b2)",lift:1.0,liftT:"~1.0×",
-  prof:"High-tier and physical-only. The single biggest conversion opportunity by volume, which is why we split it by readiness rather than treating it as one block.",
-  stats:[["Mean purchases","18.0"],["Recency","~25 days"],["Tier","High, no online"],["Size","861,629"]]},
- {id:"P3",lab:"P3",full:"P3 · Mass base",n:1610526,c:"var(--b3)",lift:0.74,liftT:"0.74×",
-  prof:"Bronze and Prata mass base. Low frequency and long recency, so reach them only through low-cost broad channels. Staples dominate; churrasco is secondary.",
+/* ================= DATA ================= */
+const BANDS=[
+ {id:"P1",lab:"P1",full:"P1 · High value with online history",n:66397,c:"#0F2C4C",lift:6.41,
+  prof:"High-tier customers who have bought online before. Highest frequency and value, so they go first. The message is win-back rather than welcome: they already hit friction once and stopped.",
+  stats:[["Mean purchases","22.8"],["Lift","6.41×"],["Recency","~26 days"],["Tier","Ouro / GR / Black"]]},
+ {id:"MW",lab:"M-WARM",full:"M-WARM · Marketplace-warm",n:24678,c:"#5925DC",lift:5.13,
+  prof:"High-value customers who already buy Swift through a marketplace rather than direct. Already registered with us and therefore reachable. Tracked as a separate reachable band, not counted as omnichannel.",
+  stats:[["Lift","5.13×"],["Size","24,678"],["Signal","Físico + marketplace"],["Use","Nudge to buy direct"]]},
+ {id:"P2R",lab:"P2-Ready",full:"P2-Ready · Multi-store shoppers",n:368506,c:"#1B4470",lift:1.21,p2:true,
+  prof:"Physical-only high-tier customers who already shop across two or more stores, a validated readiness signal (1.62× headline, survives frequency control). About 17.7% of converters.",
+  stats:[["Lift","1.21×"],["Size","368,506"],["Signal","≥2 stores"],["Use","Priority P2 list"]]},
+ {id:"P2C",lab:"P2-Cold",full:"P2-Cold · Single-store",n:493123,c:"#2E5C90",lift:0.94,p2:true,
+  prof:"High-tier but single-store, with no online readiness signal. Lower expected conversion, so nurture rather than push.",
+  stats:[["Lift","0.94×"],["Size","493,123"],["Signal","1 store"],["Use","Nurture / later"]]},
+ {id:"P3",lab:"P3",full:"P3 · Mass base",n:1610526,c:"#8FB0D4",lift:0.74,
+  prof:"Bronze and Prata mass base. Low frequency and long recency, so reach them only through low-cost broad channels. Everyday staples dominate; churrasco is secondary.",
   stats:[["Mean purchases","4.3"],["Recency","~169 days"],["Tier","Bronze / Prata"],["Size","1,610,526"]]}
 ];
-const P2SPLIT=[
- {id:"P2R",lab:"P2-Ready",full:"P2-Ready · multi-store shoppers",n:368506,c:"var(--b2)",lift:1.21,liftT:"1.21×",
-  prof:"Physical-only high-tier customers who already shop across two or more stores, a validated readiness signal (1.62× headline, survives frequency control). About 17.7% of converters.",
-  stats:[["Conversion lift","1.21×"],["Size","368,506"],["Signal","≥2 stores"],["Use","priority P2 list"]]},
- {id:"P2C",lab:"P2-Cold",full:"P2-Cold · single-store",n:493123,c:"var(--b3)",lift:0.94,liftT:"0.94×",
-  prof:"High-tier but single-store, with no online readiness signal. Lower expected conversion, so nurture rather than push.",
-  stats:[["Conversion lift","0.94×"],["Size","493,123"],["Signal","1 store"],["Use","nurture / later"]]}
-];
+const P2MERGED={id:"P2",lab:"P2",full:"P2 · High value, no online yet",n:861629,c:"#1B4470",lift:1.00,
+  prof:"High-tier and physical-only. The single biggest conversion opportunity by volume, which is why we normally split it by readiness rather than treating it as one block.",
+  stats:[["Mean purchases","18.0"],["Recency","~25 days"],["Tier","High, no online"],["Size","861,629"]]};
 const AXES=[["VALUE",.31],["ENGAGEMENT",.22],["READINESS",.22],["MOMENTUM",.13],["AGE",.12]];
 const PERSONAS=[
- {id:"pratico",name:"Prático",rank:1,head:"Less Time Shopping. More Time for Everything Else.",
+ {id:"pratico",name:"Prático",rank:1,tier:1,basket:"everyday",head:"Less Time Shopping. More Time for Everything Else.",
   msg:["Busy weeks deserve easier shopping.","Whether you're restocking everyday essentials or planning the week ahead, shopping online lets you get what you need without another unnecessary trip to the store. If a Swift store is nearby, choose Click &amp; Collect for an even more convenient experience.","Make shopping one less thing to worry about."],
-  cta:"Shop Smarter Today",why:"Convenience-driven staples buyers. The highest online conversion potential of any persona, so they carry the greatest marketing emphasis.",
-  met:[["Priority","Tier 1"],["Lead mechanic","Click &amp; Collect"],["Basket","Dia-a-dia staples"]]},
- {id:"saude",name:"Saúde",rank:2,head:"Leaner Choices. Smarter Shopping. Easier Planning.",
+  cta:"Shop Smarter Today",why:"Convenience-driven staples buyers with the highest online conversion potential of any persona, so they carry the greatest marketing emphasis.",
+  lead:"Click &amp; Collect",bask:"Dia-a-dia staples"},
+ {id:"saude",name:"Saúde",rank:2,tier:1,basket:"everyday",head:"Leaner Choices. Smarter Shopping. Easier Planning.",
   msg:["Healthy eating starts with healthier shopping.","Build your basket with fresh everyday choices while spending less time shopping and more time caring for yourself and your family.","Planning healthy meals has never been easier."],
-  cta:"Build Your Healthy Basket Today",why:"Health-conscious planners. Second-highest conversion potential, and planning behaviour maps naturally onto online ordering.",
-  met:[["Priority","Tier 1"],["Lead mechanic","Planned basket"],["Basket","Lean proteins, fresh"]]},
- {id:"chef",name:"Chef",rank:3,head:"New Cuts. New Ideas. Your Next Great Dish Starts Here.",
+  cta:"Build Your Healthy Basket Today",why:"Health-conscious planners with the second-highest conversion potential. Planning behaviour maps naturally onto online ordering.",
+  lead:"Planned basket",bask:"Lean proteins, fresh"},
+ {id:"chef",name:"Chef",rank:3,tier:2,basket:"everyday",head:"New Cuts. New Ideas. Your Next Great Dish Starts Here.",
   msg:["Love discovering new ingredients?","Explore premium cuts and exciting new products for your next recipe. Shopping online gives you more inspiration and more choices, all in one place.","Turn everyday cooking into something worth sharing."],
-  cta:"Discover More Online",why:"Exploration-driven cooks. Online wins here on range, not on speed: the full assortment is the value proposition.",
-  met:[["Priority","Tier 2"],["Lead mechanic","Range and discovery"],["Basket","Premium, varied cuts"]]},
- {id:"anti",name:"Anti-Cozinheiro",rank:4,head:"Good Food, Without Making Cooking a Project.",
+  cta:"Discover More Online",why:"Exploration-driven cooks. Online wins here on range rather than speed, so the full assortment is the value proposition.",
+  lead:"Range and discovery",bask:"Premium, varied cuts"},
+ {id:"anti",name:"Anti-Cozinheiro",rank:4,tier:2,basket:"everyday",head:"Good Food, Without Making Cooking a Project.",
   msg:["Some days you just want a good meal without spending hours planning and shopping.","Use CHEGUEI20 on your first online purchase and make grocery shopping one of the easiest parts of your day."],
   cta:"Order in Just a Few Clicks",why:"Low-effort buyers. Simplicity is the entire pitch, so the message stays short and the path to checkout stays shorter.",
-  met:[["Priority","Tier 2"],["Lead mechanic","Speed and simplicity"],["Basket","Ready and easy"]]},
- {id:"premium",name:"Churrasco Premium",rank:5,head:"Make the Next Churrasco One They Will Remember.",
+  lead:"Speed and simplicity",bask:"Ready and easy"},
+ {id:"premium",name:"Churrasco Premium",rank:5,tier:3,basket:"churrasco",head:"Make the Next Churrasco One They Will Remember.",
   msg:["Planning a special barbecue?","Choose premium cuts for your next gathering and enjoy R$20 off your first online purchase with CHEGUEI20.","Because memorable celebrations start with exceptional ingredients."],
-  cta:"Explore Premium Selections",why:"Occasion-driven premium buyers. Lower conversion readiness than the everyday personas, so the incentive has to work harder.",
-  met:[["Priority","Tier 3"],["Lead mechanic","Occasion planning"],["Basket","Premium churrasco"]]},
- {id:"trad",name:"Churrasco Tradicional",rank:6,head:"Your Classic Churrasco Favorites, All in One Place.",
+  cta:"Explore Premium Selections",why:"Occasion-driven premium buyers with lower conversion readiness than the everyday personas, so the incentive has to work harder.",
+  lead:"Occasion planning",bask:"Premium churrasco"},
+ {id:"trad",name:"Churrasco Tradicional",rank:6,tier:3,basket:"churrasco",head:"Your Classic Churrasco Favorites, All in One Place.",
   msg:["Weekend barbecue coming up?","Get everyone's favorites together with your first online purchase and enjoy R$20 off using CHEGUEI20.","Everything you need for the churrasco everyone has been waiting for."],
-  cta:"Start Planning Your Next Churrasco",why:"Traditional weekend barbecue buyers. Lowest readiness of the six: needs stronger incentives or an improved experience before conversion comparable to Tier 1.",
-  met:[["Priority","Tier 3"],["Lead mechanic","Weekend bundle"],["Basket","Classic churrasco"]]}
+  cta:"Start Planning Your Next Churrasco",why:"Traditional weekend barbecue buyers with the lowest readiness of the six. Needs stronger incentives or an improved experience before conversion becomes comparable to Tier 1.",
+  lead:"Weekend bundle",bask:"Classic churrasco"}
 ];
-const OFFER="🎉 Use <b>CHEGUEI20</b> and enjoy R$20 off orders over R$149 on your first online purchase.";
-const SEGDATA={
- all:{pen:"2.87%",sub:"Jun 2026 · 80,281 omni customers",gap:"87,674",fill:2.87},
- fisico:{pen:"90.7%",sub:"2,538,000 físico-only customers · the pool we prioritise",gap:"87,674",fill:2.87},
- online:{pen:"6.4%",sub:"~179,000 online-only customers · already digital, never in store",gap:"87,674",fill:2.87},
- omni:{pen:"2.9%",sub:"80,281 omni customers · buy both channels in 12 months",gap:"87,674",fill:2.87}
-};
-const THEME_L=['Delivery delay','App / website','Delivery quality','Missing / wrong item','Payment / billing','Stock / availability','Positive / praise','Product quality','Store experience','Customer service','Pricing'];
-const THEME_LF=[1.1,1.7,0.6,1.0,4.7,12.0,38.3,4.8,2.9,10.3,21.8];
-const THEME_LO=[15.2,21.5,9.8,2.9,5.9,12.2,37.7,3.8,0.7,5.8,8.6];
-const DET_L=['Delivery delay','App / website','Delivery quality','Missing / wrong item','Stock / availability','Positive / praise','Payment / billing','Store experience','Customer service','Product quality','Pricing'];
-const DET_LF=[4.4,4.6,1.9,1.2,19.0,29.6,13.2,5.4,18.8,24.0,24.9];
-const DET_LO=[38.5,20.8,15.0,6.5,18.7,27.6,10.4,1.3,13.0,8.3,6.3];
-const MOD_L=['Click & collect','Express (3-5h)','Next day','Scheduled','Weekend/Monday','2-Day'];
-const MOD_NPS=[57.3,48.6,45.5,42.3,41.1,33.8];
-const MOD_DET=[14.6,19.0,19.7,20.5,22.8,20.9];
+const OFFER='Use <b>CHEGUEI20</b> for R$20 off orders over R$149 on the first online purchase.';
+const THEMES=[
+ {t:'Delivery delay',lf:1.1,lo:15.2,dlf:4.4,dlo:38.5,neg:true},
+ {t:'App / website',lf:1.7,lo:21.5,dlf:4.6,dlo:20.8,neg:true},
+ {t:'Delivery quality',lf:0.6,lo:9.8,dlf:1.9,dlo:15.0,neg:true},
+ {t:'Missing / wrong item',lf:1.0,lo:2.9,dlf:1.2,dlo:6.5,neg:true},
+ {t:'Payment / billing',lf:4.7,lo:5.9,dlf:13.2,dlo:10.4,neg:true},
+ {t:'Stock / availability',lf:12.0,lo:12.2,dlf:19.0,dlo:18.7,neg:true},
+ {t:'Positive / praise',lf:38.3,lo:37.7,dlf:29.6,dlo:27.6,neg:false},
+ {t:'Product quality',lf:4.8,lo:3.8,dlf:24.0,dlo:8.3,neg:true},
+ {t:'Store experience',lf:2.9,lo:0.7,dlf:5.4,dlo:1.3,neg:true},
+ {t:'Customer service',lf:10.3,lo:5.8,dlf:18.8,dlo:13.0,neg:true},
+ {t:'Pricing',lf:21.8,lo:8.6,dlf:24.9,dlo:6.3,neg:true}
+];
+const MODS=[['Click & collect',57.3,14.6],['Express (3-5h)',48.6,19.0],['Next day',45.5,19.7],
+            ['Scheduled',42.3,20.5],['Weekend/Monday',41.1,22.8],['2-Day',33.8,20.9]];
+const CRITERIA=[
+ ["Top-band conversion lift","≥ 3×","6.41×",1,0],
+ ["M-WARM band lift","new band","5.13×",1,1],
+ ["P1+P2 converter capture","≥ 40%","53.7%",1,0],
+ ["Axis independence (max corr)","≤ 0.60","0.52",1,0],
+ ["AGE axis effect on top decile","must not hurt","2.66 → 2.75×",1,1],
+ ["Ranking robustness (ρ)","≥ 0.95","0.99–1.00",1,0],
+ ["Demographic coverage","≥ 90%","93.7%",1,0],
+ ["Refreshable pipeline","0 errors","0 errors",1,0]
+];
+const RULED=[
+ ["QR code as a readiness signal","Failed twice: coverage below 0.4% and headline lift 0.85×, under 1. Not a usable score input, despite being our most promising early hypothesis."],
+ ["Weather-triggered campaigns","Temperature against physical sales correlates +0.04 (p = 0.73). No signal. Dropped unless rain data arrives, since precipitation is the more plausible driver."],
+ ["NPS as a churn predictor","Omni detractor 3-month retention 91.4%, promoter 91.2%. NPS is an experience diagnostic, not an early-warning list, so we use it to fix the channel rather than to target people."],
+ ["Folding multi-store into the score","Top-decile lift dropped 2.66× → 2.52×. We kept the score intact and used multi-store as a band-level filter (P2-Ready) instead."]
+];
 
-/* ============ NAV + REVEAL ============ */
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const secs=[...document.querySelectorAll('section[id],header[id]')];
-const navA=[...document.querySelectorAll('.nav-links a')];
-const rail=[...document.querySelectorAll('.rail .step')];
-addEventListener('scroll',()=>{
-  let cur=secs[0]?.id;
-  for(const s of secs){if(s.getBoundingClientRect().top<=200)cur=s.id}
-  navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
-  const order=['who','what','how','where','proof'];const i=order.indexOf(cur);
-  rail.forEach((r,k)=>r.classList.toggle('on',i<0?k===0:k===i));
-});
+/* ================= HELPERS ================= */
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString('en-US');
+const abbr=n=>n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
+function pills(id,fn){const el=$(id);if(!el)return;
+  el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    [...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(b.dataset.v)})}
 
-/* ============ GLOBAL FILTERS ============ */
-let SEG='all',REG='all';
-function bindSeg(id,fn){
-  document.getElementById(id).addEventListener('click',e=>{
-    const b=e.target.closest('button');if(!b)return;
-    [...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(b.dataset);
-  });
+/* ================= TABS ================= */
+const PAGES=['overview','who','what','how','where','proof'];
+let CUR='overview';
+function go(p){
+  if(!PAGES.includes(p))return;
+  CUR=p;
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('on',el.id==='p-'+p));
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('on',el.dataset.p===p));
+  history.replaceState(null,'','#'+p);
+  scrollTo({top:0,behavior:'instant'});
+  if(p==='where')setTimeout(()=>{initMap();map&&map.invalidateSize()},60);
+  initCharts(p);
 }
-bindSeg('segFilter',d=>{SEG=d.seg;applySeg()});
-bindSeg('regFilter',d=>{REG=d.reg;applyReg()});
-function applySeg(){
-  const s=SEGDATA[SEG];
-  document.getElementById('penNow').textContent=s.pen;
-  document.getElementById('penSub').textContent=s.sub;
-  document.getElementById('gapNum').textContent=s.gap;
-  document.getElementById('penLbl').textContent=s.pen;
-  document.getElementById('penFill').style.width=(s.fill/6*48)+'%';
-}
-function applyReg(){
-  drawMap();
-  const note=document.getElementById('mapFilterNote');
-  if(REG==='all'){note.style.display='none'}
-  else{note.style.display='inline-flex';note.innerHTML='Filtered to <b style="margin:0 4px">'+REG+'</b> · '+STORES.filter(s=>s[6]===REG).length+' stores shown';}
-  const v={all:'all',SP:'sp_metro',RJ:'rj',DF:'all'}[REG];
-  const btn=document.querySelector(`#mapZoom button[data-v="${v}"]`);
-  if(btn){[...btn.parentNode.children].forEach(x=>x.classList.remove('on'));btn.classList.add('on');zoomTo(v)}
-}
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)go(b.dataset.p)});
+document.querySelectorAll('.navcard').forEach(c=>c.onclick=()=>go(c.dataset.go));
 
-/* ============ WHO: LADDER ============ */
-let SPLIT=true,ACTIVE='P1';
-function bands(){return SPLIT?[BANDS_BASE[0],BANDS_BASE[1],...P2SPLIT,BANDS_BASE[3]]:BANDS_BASE}
-function fmt(n){return n.toLocaleString('en-US')}
-function drawLadder(){
-  const bs=bands(),max=Math.max(...bs.map(b=>b.n));
-  document.getElementById('ladder').innerHTML=bs.map(b=>`
-    <button class="brow ${b.id===ACTIVE?'on':''}" data-b="${b.id}">
+/* ================= WHO ================= */
+let wSplit='split',wBand='all',wSort='lift',wActive='P1';
+function whoRows(){
+  let r=wSplit==='split'?BANDS.slice():BANDS.filter(b=>!b.p2).concat([P2MERGED]);
+  if(wSplit!=='split')r=[BANDS[0],BANDS[1],P2MERGED,BANDS[4]];
+  if(wBand==='prio')r=r.filter(b=>b.lift>1);
+  if(wBand==='low')r=r.filter(b=>b.lift<=1);
+  r.sort((a,b)=>wSort==='lift'?b.lift-a.lift:b.n-a.n);
+  return r;
+}
+function drawWho(){
+  const rows=whoRows(),total=BANDS.reduce((s,b)=>s+b.n,0);
+  const max=Math.max(...rows.map(b=>b.n),1);
+  $('ladder').innerHTML=rows.length?rows.map(b=>`
+    <button class="brow ${b.id===wActive?'on':''}" data-b="${b.id}">
       <span class="tag" style="background:${b.c}">${b.lab}</span>
-      <span class="barwrap"><span class="bar" style="width:${b.n/max*100}%;background:${b.c};opacity:.28"></span><span class="barlbl">${fmt(b.n)} customers</span></span>
-      <span class="lift" style="color:${b.lift>=3?'var(--red)':'var(--ink-soft)'}">${b.liftT}</span>
-    </button>`).join('');
-  document.querySelectorAll('.brow').forEach(el=>el.onclick=()=>{ACTIVE=el.dataset.b;drawLadder();drawPanel()});
+      <span class="bwrap"><span class="bar" style="width:${b.n/max*100}%;background:${b.c};opacity:.2"></span>
+        <span class="blbl num">${fmt(b.n)}</span></span>
+      <span class="sharev num">${(b.n/total*100).toFixed(1)}% of base</span>
+      <span class="liftv num" style="color:${b.lift>=3?'#B32318':b.lift>1?'#0F2C4C':'#6B7887'}">${b.lift.toFixed(2)}×</span>
+    </button>`).join(''):'<div class="empty">No bands match this filter.</div>';
+  document.querySelectorAll('#ladder .brow').forEach(el=>el.onclick=()=>{wActive=el.dataset.b;drawWho()});
+  const sel=rows.find(b=>b.id===wActive)||rows[0];
+  $('readout').innerHTML=sel?`<div class="readout">
+      <div class="rh"><span class="tag" style="background:${sel.c}">${sel.lab}</span><h4>${sel.full}</h4></div>
+      <p>${sel.prof}</p>
+      <div class="stats">${sel.stats.map(s=>`<div class="st"><div class="k">${s[0]}</div><div class="v num">${s[1]}</div></div>`).join('')}</div>
+    </div>`:'';
+  const cov=rows.reduce((s,b)=>s+b.n,0);
+  const wl=cov?rows.reduce((s,b)=>s+b.lift*b.n,0)/cov:0;
+  $('whoKB').textContent=rows.length;
+  $('whoKC').textContent=abbr(cov);
+  $('whoKCs').textContent=(cov/total*100).toFixed(1)+'% of scored base';
+  $('whoKL').textContent=wl.toFixed(2)+'×';
+  $('whoCount').innerHTML=`Showing <b>${rows.length}</b> of ${wSplit==='split'?5:4} bands · <b>${abbr(cov)}</b> customers`;
+  if(CH.whoLift)updWhoCharts(rows);
 }
-function drawPanel(){
-  const b=bands().find(x=>x.id===ACTIVE)||bands()[0];
-  document.getElementById('bandPanel').innerHTML=`
-    <div class="bp-head"><span class="pill2" style="background:${b.c}">${b.lab}</span><h4>${b.full}</h4></div>
-    <p>${b.prof}</p>
-    <div class="bp-stats">${b.stats.map(s=>`<div class="st"><div class="k">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>`;
-}
-document.getElementById('splitToggle').onclick=function(){
-  SPLIT=!SPLIT;this.classList.toggle('on',SPLIT);
-  if(!SPLIT&&(ACTIVE==='P2R'||ACTIVE==='P2C'))ACTIVE='P2';
-  if(SPLIT&&ACTIVE==='P2')ACTIVE='P2R';
-  drawLadder();drawPanel();if(liftC)updateLift();
-};
-document.getElementById('axesBox').innerHTML=AXES.map(a=>`
-  <div class="axis"><span class="n">${a[0]}</span><span class="track"><span class="fill" style="width:${a[1]/.31*100}%"></span></span><span class="w">${a[1].toFixed(2)}</span></div>`).join('');
+pills('fSplit',v=>{wSplit=v;
+  if(v!=='split'&&(wActive==='P2R'||wActive==='P2C'))wActive='P2';
+  if(v==='split'&&wActive==='P2')wActive='P2R';drawWho()});
+pills('fBand',v=>{wBand=v;drawWho()});
+pills('fSort',v=>{wSort=v;drawWho()});
+$('axes').innerHTML=AXES.map(a=>`<div class="axrow"><span class="an">${a[0]}</span>
+  <span class="at"><span class="af" style="width:${a[1]/.31*100}%"></span></span>
+  <span class="aw num">${a[1].toFixed(2)}</span></div>`).join('');
 
-/* ============ WHAT: PERSONAS ============ */
-let PA='pratico';
-function drawP(){
-  document.getElementById('ptabs').innerHTML=PERSONAS.map(p=>
-    `<button class="ptab ${p.id===PA?'on':''}" data-p="${p.id}"><span class="rank">${p.rank}</span>${p.name}</button>`).join('');
-  document.querySelectorAll('.ptab').forEach(el=>el.onclick=()=>{PA=el.dataset.p;drawP()});
-  const p=PERSONAS.find(x=>x.id===PA);
-  document.getElementById('pcard').innerHTML=`
-    <div class="left">
-      <div class="plabel">Persona ${p.rank} · ${p.name}</div>
-      <h3>${p.head}</h3>
-      <div class="msg">${p.msg.map(m=>`<p>${m}</p>`).join('')}</div>
-      <div class="offer">${OFFER}</div>
-      <div><span class="cta">${p.cta} →</span></div>
-    </div>
-    <div class="right">
-      <div class="rl">Why this message</div>
-      <div class="why">${p.why}</div>
-      <div class="metrics">${p.met.map(m=>`<div class="met"><div class="k">${m[0]}</div><div class="v">${m[1]}</div></div>`).join('')}</div>
-    </div>`;
+/* ================= WHAT ================= */
+let pTier='all',pBasket='all',pActive='pratico';
+function pRows(){return PERSONAS.filter(p=>(pTier==='all'||p.tier==+pTier)&&(pBasket==='all'||p.basket===pBasket))}
+function drawWhat(){
+  const rows=pRows();
+  if(rows.length&&!rows.find(p=>p.id===pActive))pActive=rows[0].id;
+  $('plist').innerHTML=rows.length?rows.map(p=>`
+    <button class="pitem ${p.id===pActive?'on':''}" data-p="${p.id}">
+      <span class="r num">${p.rank}</span><span class="nm">${p.name}</span>
+      <span class="tr tier${p.tier}">Tier ${p.tier}</span>
+    </button>`).join(''):'<div class="empty">No personas match this filter.</div>';
+  document.querySelectorAll('.pitem').forEach(el=>el.onclick=()=>{pActive=el.dataset.p;drawWhat()});
+  const p=rows.find(x=>x.id===pActive);
+  $('pdetail').innerHTML=p?`<div class="msgbox">
+      <div class="mh"><div class="lb">Persona ${p.rank} · ${p.name}</div><h3>${p.head}</h3></div>
+      <div class="mb">
+        ${p.msg.map(m=>`<p>${m}</p>`).join('')}
+        <div class="offer">${OFFER}</div>
+        <div><span class="cta">${p.cta}</span></div>
+        <div class="why"><b>Why this message.</b> ${p.why}<br><br>
+          <b>Lead mechanic:</b> ${p.lead} &nbsp;·&nbsp; <b>Basket:</b> ${p.bask}</div>
+      </div></div>`:'<div class="panel"><div class="empty">Select a persona to see its message.</div></div>';
+  $('whatCount').innerHTML=`Showing <b>${rows.length}</b> of 6 personas`;
 }
+pills('fTier',v=>{pTier=v;drawWhat()});
+pills('fBasket',v=>{pBasket=v;drawWhat()});
 
-/* ============ CHARTS ============ */
-Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.color='#8a7d70';Chart.defaults.font.size=11;
-const LINE='#E7DDD0',DLINE='rgba(255,255,255,.12)',DTICK='#8fa3ba';
-let liftC=null;
-function onView(id,fn){const el=document.getElementById(id);if(!el)return;
-  const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){fn();o.disconnect()}}),{threshold:.2});o.observe(el)}
-function updateLift(){
-  const bs=bands();
-  liftC.data.labels=bs.map(b=>b.lab);
-  liftC.data.datasets[0].data=bs.map(b=>b.lift);
-  liftC.data.datasets[0].backgroundColor=bs.map(b=>b.lift>=3?'#B01B1B':b.lift>=1?'#D9793A':'#d9c9b6');
-  liftC.update();
+/* ================= HOW ================= */
+let hComment='all',hTheme='all';
+function themeRows(){
+  let r=THEMES.slice();
+  if(hTheme==='neg')r=r.filter(t=>t.neg);
+  if(hTheme==='top5'){r=r.slice().sort((a,b)=>
+    Math.abs((hComment==='det'?b.dlo-b.dlf:b.lo-b.lf))-Math.abs((hComment==='det'?a.dlo-a.dlf:a.lo-a.lf))).slice(0,5)}
+  return r;
 }
-onView('liftChart',()=>{
-  const bs=bands();
-  liftC=new Chart(liftChart,{type:'bar',data:{labels:bs.map(b=>b.lab),datasets:[{label:'Lift vs base',data:bs.map(b=>b.lift),
-    backgroundColor:bs.map(b=>b.lift>=3?'#B01B1B':b.lift>=1?'#D9793A':'#d9c9b6'),borderRadius:6}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>c.raw+'× the 0.16% base rate'}}},
-      scales:{y:{grid:{color:LINE},ticks:{callback:v=>v+'×'},title:{display:true,text:'lift vs base rate'}},x:{grid:{display:false}}}}});
-});
-function hbar(ctx,labels,lf,lo){
-  return new Chart(ctx,{type:'bar',data:{labels,datasets:[
-    {label:'Physical',data:lf,backgroundColor:'#2a78d6',borderRadius:4,barPercentage:.72,categoryPercentage:.8},
-    {label:'Online',data:lo,backgroundColor:'#e34948',borderRadius:4,barPercentage:.72,categoryPercentage:.8}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,usePointStyle:true,color:DTICK}},
-        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
-      scales:{x:{grid:{color:DLINE},ticks:{color:DTICK,callback:v=>v+'%'}},y:{grid:{display:false},ticks:{color:DTICK,font:{size:11}}}}}});
+function drawHow(){
+  const det=hComment==='det';
+  $('themeTitle').textContent=det?'What drives dissatisfaction':'What customers comment on';
+  $('themeSub').textContent=det?'Theme share among detractors (score ≤ 6)':'Theme share by channel, all comments';
+  $('mLF').textContent=det?'13,541':'+70.7';
+  $('mLFs').textContent=det?'physical detractors':'156,695 comments';
+  $('mLO').textContent=det?'4,601':'+47.3';
+  $('mLOs').textContent=det?'online detractors':'24,347 comments';
+  const rows=themeRows();
+  $('howCount').innerHTML=`Showing <b>${rows.length}</b> of ${THEMES.length} themes`;
+  if(CH.howTheme)updHowChart();
 }
-onView('themeChart',()=>hbar(themeChart,THEME_L,THEME_LF,THEME_LO));
-onView('detChart',()=>hbar(detChart,DET_L,DET_LF,DET_LO));
-onView('modChart',()=>{
-  new Chart(modChart,{type:'bar',data:{labels:MOD_L,datasets:[
-    {label:'NPS',data:MOD_NPS,backgroundColor:'#1baf7a',borderRadius:5,barPercentage:.62,categoryPercentage:.75,yAxisID:'y'},
-    {label:'Detractor %',data:MOD_DET,backgroundColor:'#e34948',borderRadius:5,barPercentage:.62,categoryPercentage:.75,yAxisID:'y2'}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,usePointStyle:true,color:DTICK}},
-        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.dataset.label==='NPS'?'+':'')+c.raw.toFixed(1)+(c.dataset.label==='NPS'?'':'%')}}},
-      scales:{x:{grid:{display:false},ticks:{color:DTICK,font:{size:10}}},
-        y:{position:'left',grid:{color:DLINE},ticks:{color:'#1baf7a',callback:v=>'+'+v},min:0,max:70},
-        y2:{position:'right',grid:{display:false},ticks:{color:'#e34948',callback:v=>v+'%'},min:0,max:35}}}});
-});
+pills('fComment',v=>{hComment=v;drawHow()});
+pills('fTheme',v=>{hTheme=v;drawHow()});
+['cLF','cLO'].forEach(id=>$(id).addEventListener('change',()=>{if(CH.howTheme)updHowChart()}));
 
-/* ============ WHERE: MAP ============ */
+/* ================= WHERE ================= */
+let wState='all';
+let map=null,lyL=null,lyS=null,lyR=null;
 const VIEWS={all:{c:[-22.5,-46.5],z:6},sp_metro:{c:[-23.55,-46.63],z:10},sp_capital:{c:[-23.56,-46.65],z:12},rj:{c:[-22.9,-43.2],z:10}};
-let map=null,layerL=null,layerS=null,layerR=null;
+function storeSet(){return wState==='all'?STORES:STORES.filter(s=>s[6]===wState)}
 function initMap(){
+  if(map)return;
   map=L.map('map',{scrollWheelZoom:false}).setView(VIEWS.all.c,VIEWS.all.z);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
   drawMap();
 }
 function drawMap(){
-  if(!map)return;
-  [layerL,layerS,layerR].forEach(l=>{if(l)map.removeLayer(l)});
-  const set=REG==='all'?STORES:STORES.filter(s=>s[6]===REG);
-  const lojas=set.filter(s=>s[2]===1),sws=set.filter(s=>s[2]===0);
-  const mk=(arr,col)=>L.layerGroup(arr.map(s=>L.circleMarker([s[0],s[1]],
-    {radius:4,color:col,weight:1,fillColor:col,fillOpacity:.62})
-    .bindPopup(`<b>${s[3]}</b><br>${s[4]} · ${s[6]}<br><span style="color:${col};font-weight:600">${s[2]===1?'LOJAS · O2O enabled':'SWS · not O2O'}</span>`)));
-  layerL=mk(lojas,'#2a78d6');layerS=mk(sws,'#e34948');
-  layerR=L.layerGroup(lojas.map(s=>L.circle([s[0],s[1]],{radius:5000,color:'#2a78d6',weight:1,opacity:.22,fillColor:'#2a78d6',fillOpacity:.05})));
-  if(document.getElementById('showLojas').checked)layerL.addTo(map);
-  if(document.getElementById('showSWS').checked)layerS.addTo(map);
-  if(document.getElementById('showRadius').checked)layerR.addTo(map);
-  const t=set.length,cov=t?(lojas.length/t*100).toFixed(1):'0.0';
-  document.getElementById('msTotal').textContent=t;
-  document.getElementById('msSplit').textContent=`${lojas.length} LOJAS + ${sws.length} SWS`;
-  document.getElementById('msCov').textContent=cov+'%';
+  const set=storeSet(),lo=set.filter(s=>s[2]===1),sw=set.filter(s=>s[2]===0);
+  const t=set.length,cov=t?(lo.length/t*100).toFixed(1):'0.0';
+  $('msTotal').textContent=fmt(t);
+  $('msSplit').textContent=`${lo.length} LOJAS + ${sw.length} SWS`;
+  $('msCov').textContent=cov+'%';
+  $('whereCount').innerHTML=`Showing <b>${fmt(t)}</b> of ${STORES.length} plotted stores`;
+  if(map){
+    [lyL,lyS,lyR].forEach(l=>l&&map.removeLayer(l));
+    const mk=(a,c)=>L.layerGroup(a.map(s=>L.circleMarker([s[0],s[1]],
+      {radius:4,color:c,weight:1,fillColor:c,fillOpacity:.6})
+      .bindPopup(`<b>${s[3]}</b><br>${s[4]} · ${s[6]}<br><span style="color:${c}">${s[2]?'LOJAS · O2O enabled':'SWS · not O2O'}</span>`)));
+    lyL=mk(lo,'#1B4470');lyS=mk(sw,'#B32318');
+    lyR=L.layerGroup(lo.map(s=>L.circle([s[0],s[1]],{radius:5000,color:'#1B4470',weight:1,opacity:.2,fillOpacity:.04})));
+    if($('showLojas').checked)lyL.addTo(map);
+    if($('showSWS').checked)lyS.addTo(map);
+    if($('showRadius').checked)lyR.addTo(map);
+  }
+  if(CH.whereState)updWhereChart();
 }
-function zoomTo(v){if(map&&VIEWS[v])map.setView(VIEWS[v].c,VIEWS[v].z)}
-['showLojas','showSWS','showRadius'].forEach(id=>document.getElementById(id).addEventListener('change',drawMap));
-bindSeg('mapZoom',d=>zoomTo(d.v));
-onView('map',initMap);
+pills('fState',v=>{wState=v;drawMap();
+  const z={all:'all',SP:'sp_metro',RJ:'rj',DF:'all',GO:'all'}[v];
+  const b=document.querySelector(`#fZoom button[data-v="${z}"]`);
+  if(b){[...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    if(map)map.setView(VIEWS[z].c,VIEWS[z].z)}});
+pills('fZoom',v=>{if(map)map.setView(VIEWS[v].c,VIEWS[v].z)});
+['showLojas','showSWS','showRadius'].forEach(id=>$(id).addEventListener('change',drawMap));
 
-/* ============ INIT ============ */
-drawLadder();drawPanel();drawP();applySeg();
-setTimeout(()=>{document.getElementById('penFill').style.width=(2.87/6*48)+'%'},350);
+/* ================= PROOF ================= */
+let prShow='all',prCrit='all';
+function drawProof(){
+  const rows=CRITERIA.filter(c=>prCrit==='all'||c[4]===1);
+  $('critBody').innerHTML=rows.map(c=>`<tr>
+    <td><b>${c[0]}</b> ${c[4]?'<span class="chip new">NEW</span>':''}</td>
+    <td>${c[1]}</td><td class="rt num"><b>${c[2]}</b></td>
+    <td class="rt"><span class="chip pass">PASS</span></td></tr>`).join('');
+  $('ruledList').innerHTML=RULED.map(r=>`<div class="ritem"><h4>${r[0]}</h4><p>${r[1]}</p></div>`).join('');
+  $('critPanel').style.display=(prShow==='all'||prShow==='criteria')?'':'none';
+  $('valPanel').style.display=(prShow==='all')?'':'none';
+  $('ruledPanel').style.display=(prShow==='all'||prShow==='ruled')?'':'none';
+  $('proofCount').innerHTML=`<b>${rows.length}</b> criteria · <b>${RULED.length}</b> ruled out`;
+}
+pills('fProof',v=>{prShow=v;drawProof()});
+pills('fCrit',v=>{prCrit=v;drawProof()});
+
+/* ================= CHARTS ================= */
+Chart.defaults.font.family="'Inter',sans-serif";
+Chart.defaults.color='#6B7887';
+Chart.defaults.font.size=11;
+const GRID='#E2E7EE',NAVY='#0F2C4C',NAVY2='#1B4470',NAVY3='#2E5C90',RED='#B32318',TEAL='#0E7C6B',AMBER='#B54708',LIGHT='#8FB0D4';
+const CH={};
+const baseOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+
+function initCharts(p){
+  if(p==='overview'&&!CH.ovMix){
+    CH.ovMix=new Chart($('ovMix'),{type:'doughnut',
+      data:{labels:['Físico','Online-only','Omni'],datasets:[{data:[90.7,6.4,2.9],
+        backgroundColor:[NAVY2,AMBER,TEAL],borderColor:'#fff',borderWidth:2}]},
+      options:{...baseOpt,cutout:'64%',plugins:{legend:{position:'right',labels:{boxWidth:9,usePointStyle:true,padding:11,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'%'}}}}});
+    CH.ovGap=new Chart($('ovGap'),{type:'bar',
+      data:{labels:['Monthly spend (R$)','Visits / month','Receipt value (R$)'],datasets:[
+        {label:'Físico-only',data:[29.21,2,126],backgroundColor:LIGHT,borderRadius:3},
+        {label:'Omnichannel',data:[100.78,6,264],backgroundColor:NAVY,borderRadius:3}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+        scales:{y:{grid:{color:GRID},border:{display:false}},x:{grid:{display:false}}}}});
+  }
+  if(p==='who'&&!CH.whoLift){
+    const rows=whoRows();
+    CH.whoLift=new Chart($('whoLift'),{type:'bar',
+      data:{labels:rows.map(b=>b.lab),datasets:[{data:rows.map(b=>b.lift),
+        backgroundColor:rows.map(b=>b.c),borderRadius:3}]},
+      options:{...baseOpt,plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw.toFixed(2)+'× the 0.16% base rate'}}},
+        scales:{y:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'},beginAtZero:true},
+          x:{grid:{display:false}}}}});
+    CH.whoBubble=new Chart($('whoBubble'),{type:'bubble',
+      data:{datasets:rows.map(b=>({label:b.lab,data:[{x:b.lift,y:b.n/1000,r:Math.sqrt(b.n)/90}],
+        backgroundColor:b.c+'cc',borderColor:b.c}))},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'right',labels:{boxWidth:8,usePointStyle:true,font:{size:10}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.x.toFixed(2)+'× lift, '+fmt(Math.round(c.raw.y*1000))+' customers'}}},
+        scales:{x:{title:{display:true,text:'conversion lift',font:{size:10}},grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'×'}},
+          y:{title:{display:true,text:'customers (000s)',font:{size:10}},grid:{color:GRID},border:{display:false},type:'logarithmic'}}}});
+  }
+  if(p==='how'&&!CH.howTheme){
+    CH.howTheme=new Chart($('howTheme'),{type:'bar',data:{labels:[],datasets:[]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+          tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
+        scales:{x:{grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'}},
+          y:{grid:{display:false},ticks:{font:{size:11}}}}}});
+    updHowChart();
+    CH.howMod=new Chart($('howMod'),{type:'bar',
+      data:{labels:MODS.map(m=>m[0]),datasets:[
+        {label:'NPS',data:MODS.map(m=>m[1]),backgroundColor:TEAL,borderRadius:3,yAxisID:'y'},
+        {label:'Detractor %',data:MODS.map(m=>m[2]),backgroundColor:RED,borderRadius:3,yAxisID:'y2'}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.dataset.label==='NPS'?'+':'')+c.raw.toFixed(1)+(c.dataset.label==='NPS'?'':'%')}}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
+          y:{position:'left',grid:{color:GRID},border:{display:false},ticks:{color:TEAL,callback:v=>'+'+v},min:0,max:70},
+          y2:{position:'right',grid:{display:false},border:{display:false},ticks:{color:RED,callback:v=>v+'%'},min:0,max:35}}}});
+  }
+  if(p==='where'&&!CH.whereBar){
+    CH.whereBar=new Chart($('whereBar'),{type:'bar',
+      data:{labels:['SWS','LOJAS','Online Store','VANS'],datasets:[
+        {label:'O2O enabled',data:[0,230,226,1],backgroundColor:NAVY2,borderRadius:3,stack:'s'},
+        {label:'Not enabled',data:[314,0,1,23],backgroundColor:RED,borderRadius:3,stack:'s'}]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+        scales:{y:{stacked:true,grid:{color:GRID},border:{display:false}},x:{stacked:true,grid:{display:false}}}}});
+    CH.whereState=new Chart($('whereState'),{type:'bar',data:{labels:[],datasets:[]},
+      options:{...baseOpt,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:9,usePointStyle:true,font:{size:11}}}},
+        scales:{y:{stacked:true,grid:{color:GRID},border:{display:false}},x:{stacked:true,grid:{display:false}}}}});
+    updWhereChart();
+  }
+  if(p==='proof'&&!CH.proofVal){
+    CH.proofVal=new Chart($('proofVal'),{type:'bar',
+      data:{labels:['P1','P2','P3'],datasets:[{data:[22.8,18.0,4.3],
+        backgroundColor:[NAVY,NAVY3,LIGHT],borderRadius:3}]},
+      options:{...baseOpt,indexAxis:'y',plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.raw+' mean purchases per customer'}}},
+        scales:{x:{grid:{color:GRID},border:{display:false},title:{display:true,text:'mean purchases per customer (2 years)',font:{size:10}}},
+          y:{grid:{display:false}}}}});
+  }
+}
+function updWhoCharts(rows){
+  CH.whoLift.data.labels=rows.map(b=>b.lab);
+  CH.whoLift.data.datasets[0].data=rows.map(b=>b.lift);
+  CH.whoLift.data.datasets[0].backgroundColor=rows.map(b=>b.c);
+  CH.whoLift.update();
+  if(CH.whoBubble){
+    CH.whoBubble.data.datasets=rows.map(b=>({label:b.lab,data:[{x:b.lift,y:b.n/1000,r:Math.sqrt(b.n)/90}],
+      backgroundColor:b.c+'cc',borderColor:b.c}));
+    CH.whoBubble.update();
+  }
+}
+function updHowChart(){
+  const rows=themeRows(),det=hComment==='det',ds=[];
+  if($('cLF').checked)ds.push({label:'Physical (LF)',data:rows.map(t=>det?t.dlf:t.lf),backgroundColor:NAVY2,borderRadius:3,barPercentage:.74,categoryPercentage:.8});
+  if($('cLO').checked)ds.push({label:'Online (LO)',data:rows.map(t=>det?t.dlo:t.lo),backgroundColor:RED,borderRadius:3,barPercentage:.74,categoryPercentage:.8});
+  CH.howTheme.data.labels=rows.map(t=>t.t);
+  CH.howTheme.data.datasets=ds;
+  CH.howTheme.update();
+}
+function updWhereChart(){
+  const set=storeSet(),by={};
+  set.forEach(s=>{by[s[6]]=by[s[6]]||[0,0];by[s[6]][s[2]===1?0:1]++});
+  const st=Object.keys(by).sort((a,b)=>(by[b][0]+by[b][1])-(by[a][0]+by[a][1]));
+  CH.whereState.data.labels=st;
+  CH.whereState.data.datasets=[
+    {label:'LOJAS',data:st.map(k=>by[k][0]),backgroundColor:NAVY2,borderRadius:3,stack:'s'},
+    {label:'SWS',data:st.map(k=>by[k][1]),backgroundColor:RED,borderRadius:3,stack:'s'}];
+  CH.whereState.update();
+}
+
+/* ================= INIT ================= */
+drawWho();drawWhat();drawHow();drawMap();drawProof();
+const hash=location.hash.replace('#','');
+if(PAGES.includes(hash))go(hash); else initCharts('overview');
+setTimeout(()=>{$('ovFill').style.width=(2.87/6*47.8)+'%'},260);
 </script>
 </body>
 </html>
