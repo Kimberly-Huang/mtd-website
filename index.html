@@ -3,299 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meat the Data · Driving Omnichannel Conversion at JBS Swift</title>
-<meta name="description" content="A data-driven strategy to double omnichannel penetration at JBS Swift, from ~3% to 6%. Team Meat the Data · Capstone in Applied Analytics.">
+<title>Meat the Data · JBS Swift Omnichannel Conversion Strategy</title>
+<meta name="description" content="Interactive strategy dashboard: lifting JBS Swift omnichannel penetration from 2.87% to 6%. Team Meat the Data, Capstone in Applied Analytics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 :root{
-  --ink:#14100E;
-  --ink-soft:#3a322e;
-  --paper:#FBF8F4;
-  --paper-2:#F3ECE3;
-  --card:#FFFFFF;
-  --red:#B01B1B;
-  --red-deep:#7C1414;
-  --ember:#D9793A;
-  --gold:#C79A44;
-  --sage:#3E6B57;
-  --line:#E7DDD0;
-  --line-strong:#D6C8B6;
-  --muted:#8a7d70;
-  --navy:#182f4a;
-  --navy-deep:#0f2438;
-  --navy-soft:#213b58;
-  --logo-red:#EF5A52;
+  --ink:#14100E; --ink-soft:#3a322e; --paper:#FBF8F4; --paper-2:#F3ECE3; --card:#FFFFFF;
+  --red:#B01B1B; --red-deep:#7C1414; --ember:#D9793A; --gold:#C79A44; --sage:#3E6B57;
+  --line:#E7DDD0; --line-strong:#D6C8B6; --muted:#8a7d70;
+  --navy:#182f4a; --navy-deep:#0f2438; --navy-soft:#213b58; --logo-red:#EF5A52;
+  --fisico:#2a78d6; --online:#eb6834; --omni:#1baf7a;
+  --b1:#17427e; --b2:#3987e5; --b3:#8fb9ee; --mw:#7a4fd6;
   --shadow:0 1px 2px rgba(20,16,14,.04),0 12px 32px -12px rgba(20,16,14,.18);
   --shadow-lg:0 24px 60px -24px rgba(20,16,14,.35);
-  --maxw:1160px;
+  --maxw:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  color:var(--ink);
-  background:var(--paper);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+html{scroll-behavior:smooth;scroll-padding-top:132px}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.01em}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.eyebrow{
-  font-family:'Inter';font-weight:700;font-size:.72rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--red);display:inline-flex;align-items:center;gap:.55rem;
-}
+.eyebrow{font-family:'Inter';font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:inline-flex;align-items:center;gap:.55rem}
 .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--red);display:inline-block}
 
-/* ---------- NAV ---------- */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(251,248,244,.82);backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(251,248,244,.9);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
 nav.scrolled{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(20,16,14,.4)}
-.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:.95rem;letter-spacing:-.01em;line-height:1;color:var(--navy)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:.95rem;line-height:1;color:var(--navy)}
 .brand .mark{width:24px;height:31px;color:var(--navy);display:block}
 .brand b{color:var(--logo-red);font-weight:800}
-.logo-ic{display:block}
-.nav-links{display:flex;gap:1.5rem;align-items:center}
-.nav-links a{font-size:.83rem;font-weight:500;color:var(--ink-soft);position:relative;padding:.2rem 0;transition:color .2s}
-.nav-links a:hover{color:var(--red)}
+.nav-links{display:flex;gap:1.35rem;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--ink-soft);position:relative;padding:.2rem 0;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:0;background:var(--red);transition:width .25s}
-.nav-links a:hover::after{width:100%}
-.nav-cta{background:var(--navy);color:var(--paper);padding:.5rem .9rem;border-radius:8px;font-size:.8rem;font-weight:600;transition:transform .2s,background .2s}
-.nav-cta:hover{background:var(--red);transform:translateY(-1px)}
-.menu-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--ink)}
-@media(max-width:920px){.nav-links{display:none}.menu-btn{display:block}}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+@media(max-width:980px){.nav-links{display:none}}
 
-/* ---------- BRAND BAND ---------- */
-.brandband{position:relative;overflow:hidden;padding:66px 0;
-  background:radial-gradient(140% 120% at 18% 10%,#8f1b1b 0%,#6d1414 42%,#4a0d0d 100%);color:#fff}
-.brandband::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 26px)}
-.bb-inner{position:relative;z-index:1;display:flex;align-items:center;gap:46px;flex-wrap:wrap}
-.bb-mark{width:210px;height:auto;flex-shrink:0}
-.bb-divider{width:1px;align-self:stretch;background:rgba(255,255,255,.28)}
-.bb-copy{flex:1;min-width:260px}
-.bb-copy .eyebrow{color:#f2b7b3}
-.bb-copy .eyebrow::before{background:#f2b7b3}
-.bb-copy h2{font-size:clamp(1.55rem,3.1vw,2.3rem);font-weight:600;margin-top:14px;max-width:20ch}
-.bb-copy p{margin-top:14px;color:rgba(255,255,255,.85);font-size:1.02rem;max-width:56ch}
-.bb-nodes{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.bb-nodes span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:600}
-.bb-nodes span i{width:8px;height:8px;border-radius:50%;background:var(--logo-red);font-style:normal}
-@media(max-width:720px){.bb-inner{gap:26px}.bb-divider{display:none}.bb-mark{width:150px}}
+/* FILTER BAR */
+.filterbar{position:fixed;top:62px;left:0;right:0;z-index:590;background:var(--navy);color:#fff;border-bottom:1px solid rgba(255,255,255,.1)}
+.fb-inner{max-width:var(--maxw);margin:0 auto;padding:9px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fb-group{display:flex;align-items:center;gap:8px}
+.fb-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8fa3ba}
+.seg{display:flex;background:rgba(255,255,255,.08);border-radius:8px;padding:2px;gap:2px}
+.seg button{background:none;border:none;color:#c3d0e0;font-family:inherit;font-size:.76rem;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;transition:.18s;white-space:nowrap}
+.seg button:hover{color:#fff}
+.seg button.on{background:var(--logo-red);color:#fff}
+.fb-note{margin-left:auto;font-size:.72rem;color:#8fa3ba}
+.fb-note b{color:#fff}
+@media(max-width:760px){.fb-inner{gap:12px;padding:8px 20px}.fb-note{display:none}}
 
-/* ---------- HERO ---------- */
-.hero{position:relative;padding:150px 0 70px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0;
-  background:
-   radial-gradient(900px 500px at 78% -8%,rgba(176,27,27,.10),transparent 60%),
-   radial-gradient(700px 500px at 5% 110%,rgba(62,107,87,.08),transparent 60%);
-}
-.hero-grid-lines{position:absolute;inset:0;z-index:0;opacity:.5;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,#000,transparent 75%)}
+/* HERO */
+.hero{position:relative;padding:186px 0 62px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(900px 500px at 78% -8%,rgba(176,27,27,.10),transparent 60%),radial-gradient(700px 500px at 5% 110%,rgba(62,107,87,.08),transparent 60%)}
+.hero-grid-lines{position:absolute;inset:0;z-index:0;opacity:.5;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,#000,transparent 75%)}
 .hero .wrap{position:relative;z-index:1}
 .hero-top{display:grid;grid-template-columns:1.35fr .82fr;gap:48px;align-items:center}
 @media(max-width:900px){.hero-top{grid-template-columns:1fr;gap:34px}}
-.hero-tag{margin-bottom:22px}
-.hero-logo{background:radial-gradient(140% 130% at 20% 12%,#8f1b1b,#6d1414 46%,#4a0d0d);border-radius:22px;padding:38px 30px 32px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;position:relative;overflow:hidden}
-.hero-logo::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 24px)}
-.hero-logo svg{width:168px;height:auto;position:relative;z-index:1}
-.hero-logo-wm{position:relative;z-index:1;color:#f2b7b3;font-weight:600;font-size:1.02rem;letter-spacing:.16em}
-.hero-logo-wm span{display:block;color:#fff;font-weight:800;font-size:2rem;letter-spacing:.04em;line-height:1;margin-top:3px}
-.hero-logo-wm small{display:block;font-weight:600;font-size:.6rem;letter-spacing:.24em;color:#e6a9a4;margin-top:12px;padding-top:11px;border-top:1px solid rgba(239,90,82,.55)}
-@media(max-width:900px){.hero-logo{max-width:360px;margin:0 auto}}
-.hero h1{font-size:clamp(2.4rem,5.4vw,4.15rem);font-weight:600;max-width:15ch}
+.hero h1{font-size:clamp(2.2rem,4.8vw,3.7rem);font-weight:600;max-width:16ch;margin-top:20px}
 .hero h1 .accent{color:var(--red);font-style:italic}
-.hero-sub{margin-top:22px;font-size:clamp(1.02rem,1.7vw,1.22rem);color:var(--ink-soft);max-width:60ch;font-weight:400}
-.hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:.85rem;color:var(--muted)}
+.hero-sub{margin-top:20px;font-size:clamp(1rem,1.6vw,1.16rem);color:var(--ink-soft);max-width:58ch}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.83rem;color:var(--muted)}
 .hero-meta b{color:var(--ink);font-weight:600}
-.hero-stats{margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line-strong);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
-.hstat{padding:26px 24px;border-right:1px solid var(--line)}
-.hstat:last-child{border-right:none}
-.hstat .num{font-family:'Fraunces';font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;color:var(--ink);line-height:1;letter-spacing:-.02em}
-.hstat .num .u{color:var(--red)}
-.hstat .lbl{margin-top:9px;font-size:.78rem;color:var(--muted);font-weight:500;line-height:1.35}
-@media(max-width:820px){.hero-stats{grid-template-columns:repeat(2,1fr)}.hstat:nth-child(2){border-right:none}.hstat:nth-child(1),.hstat:nth-child(2){border-bottom:1px solid var(--line)}}
-@media(max-width:460px){.hero-stats{grid-template-columns:1fr}.hstat{border-right:none;border-bottom:1px solid var(--line)}}
+.hero-logo{background:radial-gradient(140% 130% at 20% 12%,#8f1b1b,#6d1414 46%,#4a0d0d);border-radius:22px;padding:34px 28px 28px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;position:relative;overflow:hidden}
+.hero-logo::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 24px)}
+.hero-logo svg{width:150px;height:auto;position:relative;z-index:1}
+.hero-logo-wm{position:relative;z-index:1;color:#f2b7b3;font-weight:600;font-size:.95rem;letter-spacing:.16em}
+.hero-logo-wm span{display:block;color:#fff;font-weight:800;font-size:1.85rem;letter-spacing:.04em;line-height:1;margin-top:3px}
+.hero-logo-wm small{display:block;font-weight:600;font-size:.58rem;letter-spacing:.24em;color:#e6a9a4;margin-top:11px;padding-top:10px;border-top:1px solid rgba(239,90,82,.55)}
+@media(max-width:900px){.hero-logo{max-width:340px;margin:0 auto}}
 
-/* ---------- SECTIONS ---------- */
-section{padding:84px 0;position:relative}
-.sec-head{max-width:760px;margin-bottom:44px}
-.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.75rem);font-weight:600;margin-top:16px}
-.sec-head p{margin-top:16px;color:var(--ink-soft);font-size:1.05rem}
+/* GOAL STRIP */
+.goalstrip{margin-top:44px;background:var(--card);border:1px solid var(--line-strong);border-radius:18px;padding:26px 28px;box-shadow:var(--shadow)}
+.goal-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px}
+.goal-head .now{font-family:'Fraunces';font-size:3rem;font-weight:600;line-height:1}
+.goal-head .now small{font-size:.9rem;color:var(--muted);font-family:'Inter';font-weight:500;display:block;margin-top:4px;letter-spacing:0}
+.goal-head .gap{text-align:right}
+.goal-head .gap .n{font-family:'Fraunces';font-size:1.9rem;font-weight:600;color:var(--red)}
+.goal-head .gap .t{font-size:.76rem;color:var(--muted)}
+.progress{margin-top:20px;height:34px;background:var(--paper-2);border-radius:10px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.progress .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--red-deep),var(--red));border-radius:9px 0 0 9px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.progress .target{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--sage)}
+.progress .target span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:.66rem;font-weight:700;color:var(--sage);white-space:nowrap;letter-spacing:.06em}
+.progress .lbl{position:absolute;inset:0;display:flex;align-items:center;padding-left:12px;font-size:.78rem;font-weight:700;color:#fff;z-index:2}
+.mixbar{margin-top:18px;display:flex;height:12px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.mixbar div{height:100%}
+.mixlegend{margin-top:9px;display:flex;gap:18px;flex-wrap:wrap;font-size:.76rem;color:var(--muted)}
+.mixlegend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.mixlegend b{color:var(--ink)}
+
+/* SECTIONS */
+section{padding:74px 0;position:relative}
+.sec-head{max-width:780px;margin-bottom:38px}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.55rem);font-weight:600;margin-top:14px}
+.sec-head p{margin-top:14px;color:var(--ink-soft);font-size:1.04rem}
 .alt{background:linear-gradient(180deg,var(--paper-2),var(--paper))}
 .dark{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:var(--paper);position:relative}
-.dark::before{content:"";position:absolute;inset:0;opacity:.4;pointer-events:none;
-  background:radial-gradient(600px 340px at 88% -5%,rgba(239,90,82,.14),transparent 60%),radial-gradient(520px 320px at 4% 108%,rgba(255,255,255,.05),transparent 60%)}
+.dark::before{content:"";position:absolute;inset:0;opacity:.4;pointer-events:none;background:radial-gradient(600px 340px at 88% -5%,rgba(239,90,82,.14),transparent 60%)}
 .dark .wrap{position:relative;z-index:1}
 .dark .sec-head p{color:#c3d0e0}
 .dark .eyebrow{color:var(--ember)}
 .dark .eyebrow::before{background:var(--ember)}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
-.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}.reveal[data-d="4"]{transition-delay:.32s}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
 
-/* cards */
-.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:26px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
+/* CARDS + GRID */
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:24px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
 .grid{display:grid;gap:20px}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.chartcard{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:22px 22px 16px;box-shadow:var(--shadow)}
+.chartcard h4{font-size:1.02rem;font-weight:600}
+.chartcard .sub{font-size:.8rem;color:var(--muted);margin:4px 0 14px}
+.chart-holder{position:relative;height:290px}
+.chart-holder.tall{height:380px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;box-shadow:var(--shadow)}
+.kpi .m{font-family:'Fraunces';font-size:1.85rem;font-weight:600;color:var(--red);line-height:1}
+.kpi .t{font-size:.78rem;color:var(--muted);margin-top:6px}
+.kpi .s{font-size:.72rem;color:var(--line-strong);margin-top:3px}
+.dark .kpi{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.dark .kpi .m{color:var(--ember)}
+.dark .kpi .t{color:#c3d0e0}
+.footnote{font-size:.76rem;color:var(--muted);margin-top:12px}
+.dark .footnote{color:#8fa3ba}
 
-/* exec summary problem/opp */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-@media(max-width:820px){.split{grid-template-columns:1fr}}
-.panel{border-radius:15px;padding:28px;border:1px solid var(--line)}
-.panel.prob{background:linear-gradient(180deg,#fff,#fdf4f2);border-color:#f0d6d1}
-.panel.opp{background:linear-gradient(180deg,#fff,#f1f6f2);border-color:#d3e6da}
-.panel h3{font-size:1.25rem;display:flex;align-items:center;gap:.55rem}
-.panel .dot{width:10px;height:10px;border-radius:50%}
-.prob .dot{background:var(--red)}.opp .dot{background:var(--sage)}
-.panel ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:14px}
-.panel li{padding-left:28px;position:relative;font-size:.94rem;color:var(--ink-soft)}
-.panel li::before{content:"";position:absolute;left:2px;top:9px;width:13px;height:2px;border-radius:2px}
-.prob li::before{background:var(--red)}.opp li::before{background:var(--sage)}
-.panel li b{color:var(--ink);font-weight:600}
+/* BAND LADDER */
+.ladder{display:flex;flex-direction:column;gap:10px}
+.brow{display:grid;grid-template-columns:132px 1fr auto;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 20px;box-shadow:var(--shadow);cursor:pointer;transition:.22s;text-align:left;font-family:inherit;width:100%}
+.brow:hover{transform:translateX(4px);border-color:var(--line-strong)}
+.brow.on{border-color:var(--red);box-shadow:0 0 0 2px rgba(176,27,27,.13),var(--shadow)}
+.brow .tag{font-weight:800;font-size:.82rem;letter-spacing:.05em;color:#fff;padding:6px 10px;border-radius:7px;text-align:center}
+.brow .barwrap{position:relative;height:26px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.brow .barlbl{position:absolute;inset:0;display:flex;align-items:center;padding-left:10px;font-size:.76rem;font-weight:600;color:var(--ink);z-index:2}
+.brow .lift{font-family:'Fraunces';font-size:1.35rem;font-weight:600;min-width:74px;text-align:right}
+.bandpanel{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:24px;box-shadow:var(--shadow)}
+.bandpanel .bp-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bandpanel .bp-head .pill2{font-weight:800;font-size:.75rem;color:#fff;padding:5px 11px;border-radius:20px}
+.bandpanel h4{font-size:1.12rem}
+.bandpanel p{margin-top:10px;color:var(--ink-soft);font-size:.92rem;max-width:75ch}
+.bp-stats{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.bp-stats{grid-template-columns:repeat(2,1fr)}.brow{grid-template-columns:104px 1fr;gap:12px}.brow .lift{grid-column:2;text-align:left}}
+.bp-stats .st{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.bp-stats .st .k{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;font-weight:700}
+.bp-stats .st .v{font-family:'Fraunces';font-size:1.25rem;font-weight:600;margin-top:3px}
+.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 14px;transition:.2s;font-family:inherit}
+.switch:hover{border-color:var(--line-strong)}
+.switch.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.switch i{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.5}
+.switch.on i{opacity:1;background:var(--logo-red)}
 
-/* metric chips */
-.metricrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
-.chip{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;padding:14px 18px;flex:1;min-width:130px}
-.chip .m{font-family:'Fraunces';font-size:1.7rem;font-weight:600;color:var(--red)}
-.chip .t{font-size:.76rem;color:var(--muted);margin-top:3px}
+/* AXES */
+.axes{display:flex;flex-direction:column;gap:11px}
+.axis{display:grid;grid-template-columns:118px 1fr 48px;gap:14px;align-items:center}
+.axis .n{font-size:.76rem;font-weight:700;letter-spacing:.08em}
+.axis .track{height:9px;background:rgba(255,255,255,.13);border-radius:5px;overflow:hidden}
+.axis .fill{height:100%;background:linear-gradient(90deg,var(--ember),var(--logo-red));border-radius:5px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.axis .w{font-family:'Fraunces';font-size:.95rem;font-weight:600;text-align:right}
 
-/* chart card */
-.chartcard{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:24px 24px 18px;box-shadow:var(--shadow)}
-.chartcard h4{font-size:1.05rem;font-weight:600}
-.chartcard .sub{font-size:.82rem;color:var(--muted);margin:4px 0 16px}
-.chart-holder{position:relative;height:280px}
-.chart-holder.tall{height:330px}
+/* PERSONAS */
+.ptabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.ptab{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:8px 16px;font-family:inherit;font-size:.83rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.ptab:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.ptab.on{background:var(--red);border-color:var(--red);color:#fff}
+.ptab .rank{font-size:.66rem;font-weight:800;background:var(--paper-2);color:var(--muted);border-radius:10px;padding:1px 7px}
+.ptab.on .rank{background:rgba(255,255,255,.22);color:#fff}
+.pcard{display:grid;grid-template-columns:1fr .78fr;gap:0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+@media(max-width:820px){.pcard{grid-template-columns:1fr}}
+.pcard .left{background:var(--card);padding:30px}
+.pcard .right{background:linear-gradient(160deg,var(--navy),var(--navy-deep));padding:30px;color:#fff}
+.pcard .plabel{font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--red)}
+.pcard h3{font-size:1.5rem;margin-top:10px;line-height:1.2}
+.pcard .msg{margin-top:16px;color:var(--ink-soft);font-size:.94rem}
+.pcard .msg p{margin-bottom:9px}
+.pcard .offer{margin-top:18px;background:#fdf4f2;border:1px dashed #e8b9b1;border-radius:11px;padding:13px 16px;font-size:.87rem;color:var(--red-deep);font-weight:600}
+.pcard .cta{margin-top:18px;display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:.86rem;padding:11px 22px;border-radius:9px;box-shadow:0 8px 18px -8px rgba(176,27,27,.7)}
+.pcard .right .rl{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+.pcard .right .why{margin-top:12px;font-size:.88rem;color:#c3d0e0}
+.pcard .right .metrics{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.pcard .right .met{border-top:1px solid rgba(255,255,255,.14);padding-top:11px}
+.pcard .right .met .k{font-size:.7rem;color:#8fa3ba;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.pcard .right .met .v{font-family:'Fraunces';font-size:1.3rem;font-weight:600;margin-top:2px}
 
-/* number callout inline */
-.stat-inline{font-family:'Fraunces';font-weight:600;color:var(--red)}
+/* MAP */
+.mapshell{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.mapctl{padding:14px 20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.chk{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;color:var(--ink-soft);cursor:pointer}
+.chk input{accent-color:var(--red);width:15px;height:15px;cursor:pointer}
+.chk .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+#map{width:100%;height:520px}
+.mapstats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+@media(max-width:760px){.mapstats{grid-template-columns:repeat(2,1fr)}#map{height:400px}}
+.mapstats .ms{padding:16px 18px;border-right:1px solid var(--line)}
+.mapstats .ms:last-child{border-right:none}
+.mapstats .ms .k{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.mapstats .ms .v{font-family:'Fraunces';font-size:1.5rem;font-weight:600;margin-top:3px}
+.mapstats .ms .s{font-size:.72rem;color:var(--muted);margin-top:2px}
+.leaflet-popup-content{font-family:'Inter',sans-serif;font-size:.82rem}
 
-/* 5W steps */
-.w-step{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
-.w-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.w-step .tag{font-family:'Fraunces';font-size:2.6rem;font-weight:600;color:var(--paper-2);position:absolute;top:12px;right:20px;line-height:1;user-select:none}
-.dark .w-step{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.1);backdrop-filter:blur(2px)}
-.dark .w-step .tag{color:rgba(255,255,255,.07)}
-.w-step .k{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
-.dark .w-step .k{color:var(--ember)}
-.w-step h4{font-size:1.15rem;margin:8px 0 10px;max-width:22ch}
-.w-step p{font-size:.9rem;color:var(--ink-soft)}
-.dark .w-step p{color:#c3d0e0}
-.w-step .hyp{margin-top:14px;font-size:.82rem;font-style:italic;color:var(--muted);border-left:2px solid var(--red);padding-left:12px}
-.dark .w-step .hyp{color:#9fb0c4;border-color:var(--ember)}
-
-/* priority bands */
-.band{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;box-shadow:var(--shadow);transition:transform .2s}
-.band:hover{transform:translateX(4px)}
-.band .pnum{font-family:'Fraunces';font-weight:600;font-size:1.5rem;width:54px;height:54px;border-radius:12px;display:grid;place-items:center;color:#fff}
-.band.p1 .pnum{background:linear-gradient(135deg,var(--red),var(--red-deep))}
-.band.p2 .pnum{background:linear-gradient(135deg,var(--ember),#b85a24)}
-.band.p3 .pnum{background:linear-gradient(135deg,var(--gold),#a37f2f)}
-.band .desc h4{font-size:1.05rem}
-.band .desc .who{font-size:.8rem;color:var(--muted);margin-top:2px}
-.band .desc p{font-size:.87rem;color:var(--ink-soft);margin-top:7px}
-.band .lift{text-align:right;min-width:120px}
-.band .lift .big{font-family:'Fraunces';font-size:1.9rem;font-weight:600;color:var(--ink)}
-.band .lift .cap{font-size:.72rem;color:var(--muted)}
-.band .lift .cnt{font-size:.8rem;font-weight:600;color:var(--red);margin-top:4px}
-@media(max-width:720px){.band{grid-template-columns:auto 1fr}.band .lift{grid-column:2;text-align:left;margin-top:8px}}
-
-/* formula */
-.formula{background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:var(--paper);border-radius:16px;padding:34px;text-align:center;box-shadow:var(--shadow-lg)}
-.formula .eq{font-family:'Fraunces';font-size:clamp(1.1rem,2.5vw,1.7rem);font-weight:500}
-.formula .eq .v{color:var(--ember)}.formula .eq .e{color:#e0b968}.formula .eq .r{color:#7dbd9e}
-.formula .legend{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;text-align:left}
-@media(max-width:700px){.formula .legend{grid-template-columns:1fr}}
-.formula .leg{border-top:2px solid;padding-top:12px}
-.formula .leg.v{border-color:var(--ember)}.formula .leg.e{border-color:#e0b968}.formula .leg.r{border-color:#7dbd9e}
-.formula .leg .w{font-family:'Fraunces';font-size:1.3rem;font-weight:600}
-.formula .leg .n{font-size:.82rem;font-weight:600;margin:2px 0 6px}
-.formula .leg p{font-size:.8rem;color:#c3d0e0}
-
-/* data table */
+/* TABLES */
 .dtable{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:.87rem}
-.dtable th{background:var(--navy);color:var(--paper);text-align:left;padding:14px 18px;font-weight:600;font-size:.78rem;letter-spacing:.03em}
-.dtable td{padding:13px 18px;border-top:1px solid var(--line);color:var(--ink-soft)}
+.dtable th{background:var(--navy);color:var(--paper);text-align:left;padding:13px 17px;font-weight:600;font-size:.76rem;letter-spacing:.03em}
+.dtable td{padding:12px 17px;border-top:1px solid var(--line);color:var(--ink-soft)}
 .dtable tr:hover td{background:var(--paper-2)}
 .dtable td b{color:var(--ink)}
-.qbadge{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.03em}
-.q-strong{background:#e2f0e7;color:#2f6a4c}
-.q-good{background:#e7eef7;color:#38598a}
-.q-limited{background:#f7ece2;color:#a35d29}
 .twrap{overflow-x:auto;border-radius:14px}
+.ok{color:var(--sage);font-weight:700}
+.newb{font-size:.62rem;font-weight:800;background:#eef3fa;color:var(--b1);border-radius:10px;padding:2px 7px;letter-spacing:.06em}
 
-/* messaging table */
-.msg-table td .prof{font-size:.82rem;color:var(--muted)}
-.msg-table td .say{font-style:italic;color:var(--ink)}
+/* RULED OUT */
+.ruled{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:760px){.ruled{grid-template-columns:1fr}}
+.rcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:20px;position:relative}
+.rcard .x{width:26px;height:26px;border-radius:50%;background:rgba(227,73,72,.16);color:#ff8b86;display:grid;place-items:center;font-weight:800;font-size:.9rem;margin-bottom:11px}
+.rcard h4{font-size:1rem;color:#fff}
+.rcard p{font-size:.85rem;color:#c3d0e0;margin-top:7px}
 
-/* roadmap */
-.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative}
-@media(max-width:900px){.timeline{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.timeline{grid-template-columns:repeat(2,1fr)}}
-.tl-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 16px;box-shadow:var(--shadow);position:relative;transition:transform .2s,border-color .2s}
-.tl-item:hover{transform:translateY(-4px);border-color:var(--red)}
-.tl-item .wk{font-family:'Fraunces';font-weight:600;color:var(--red);font-size:1.05rem}
-.tl-item .dt{font-size:.72rem;color:var(--muted)}
-.tl-item .ph{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:10px;color:var(--ink)}
-.tl-item .ds{font-size:.8rem;color:var(--ink-soft);margin-top:4px}
-
-/* success criteria */
-.sc{display:flex;gap:14px;align-items:flex-start}
-.sc .ic{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;color:var(--red)}
-.sc h4{font-size:1rem}
-.sc p{font-size:.86rem;color:var(--ink-soft);margin-top:5px}
-
-/* team */
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:820px){.team-grid{grid-template-columns:repeat(2,1fr)}}
-.trole{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px;box-shadow:var(--shadow)}
-.trole .r{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
-.trole .names{margin-top:10px;font-size:.9rem;color:var(--ink-soft);line-height:1.8}
-
-/* footer */
-footer{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:var(--paper);padding:60px 0 34px}
-footer h3{font-size:1.7rem;max-width:20ch}
-footer .sub{color:#c3d0e0;margin-top:12px;max-width:52ch}
-.foot-top{display:flex;gap:26px;align-items:center;margin-bottom:26px}
-.foot-top .logo-ic{width:52px;height:66px;color:#fff;flex-shrink:0}
-.foot-wm{font-family:'Inter';font-weight:800;letter-spacing:.02em;line-height:.95;font-size:1.25rem}
+/* FOOTER */
+footer{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:var(--paper);padding:56px 0 32px}
+footer h3{font-size:1.6rem;max-width:22ch}
+footer .sub{color:#c3d0e0;margin-top:12px;max-width:56ch}
+.foot-top{display:flex;gap:24px;align-items:center;margin-bottom:24px}
+.foot-top .logo-ic{width:50px;height:64px;color:#fff;flex-shrink:0}
+.foot-wm{font-family:'Inter';font-weight:800;letter-spacing:.02em;line-height:.95;font-size:1.2rem}
 .foot-wm span{color:var(--logo-red)}
-.foot-wm small{display:block;font-weight:600;font-size:.66rem;letter-spacing:.28em;color:#9fb0c4;margin-top:5px}
-.foot-meta{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.8rem;color:#9fb0c4}
+.foot-wm small{display:block;font-weight:600;font-size:.64rem;letter-spacing:.26em;color:#9fb0c4;margin-top:5px}
 .foot-badge{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.foot-badge span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 13px;font-size:.75rem;color:#c3d0e0}
-.foot-uni{display:flex;align-items:center;gap:8px;color:#9fb0c4;font-size:.8rem}
+.foot-badge span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 13px;font-size:.74rem;color:#c3d0e0}
+.foot-meta{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.78rem;color:#9fb0c4}
 
-/* callout banner */
-.banner{background:linear-gradient(120deg,var(--red-deep),var(--red));color:#fff;border-radius:16px;padding:30px 34px;box-shadow:var(--shadow-lg);display:flex;gap:26px;align-items:center;flex-wrap:wrap}
-.banner .bignum{font-family:'Fraunces';font-size:3rem;font-weight:600;line-height:1}
-.banner .txt{flex:1;min-width:240px}
-.banner .txt h3{font-size:1.3rem}
-.banner .txt p{color:rgba(255,255,255,.86);margin-top:6px;font-size:.94rem}
-
-.footnote{font-size:.78rem;color:var(--muted);margin-top:10px}
-.pill{display:inline-block;background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:.74rem;font-weight:600;color:var(--ink-soft);margin:0 4px 8px 0}
+/* STORY RAIL */
+.rail{display:flex;gap:0;margin-bottom:8px;flex-wrap:wrap}
+.rail .step{flex:1;min-width:150px;padding:14px 16px;border-top:3px solid var(--line);position:relative}
+.rail .step.on{border-top-color:var(--red)}
+.rail .step .n{font-size:.66rem;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.rail .step.on .n{color:var(--red)}
+.rail .step .t{font-size:.86rem;font-weight:700;margin-top:3px}
+.rail .step .d{font-size:.74rem;color:var(--muted);margin-top:2px}
+.filtered-note{display:inline-flex;align-items:center;gap:7px;background:#fdf4f2;border:1px solid #e8b9b1;color:var(--red-deep);border-radius:8px;padding:7px 13px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+.dark .filtered-note{background:rgba(239,90,82,.13);border-color:rgba(239,90,82,.34);color:#ffb3ae}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
     <a href="#top" class="brand">
@@ -310,35 +270,57 @@ footer .sub{color:#c3d0e0;margin-top:12px;max-width:52ch}
       <span>Meat the <b>Data</b></span>
     </a>
     <div class="nav-links">
-      <a href="#summary">Summary</a>
-      <a href="#challenge">Challenge</a>
-      <a href="#data">Data</a>
-      <a href="#eda">Findings</a>
-      <a href="#framework">Strategy</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#team">Team</a>
+      <a href="#overview">Overview</a>
+      <a href="#who">01 Who</a>
+      <a href="#what">02 What</a>
+      <a href="#how">03 How &amp; When</a>
+      <a href="#where">04 Where</a>
+      <a href="#proof">05 Proof</a>
     </div>
-    <button class="menu-btn" id="menuBtn">☰</button>
   </div>
 </nav>
 
-<!-- HERO -->
+<div class="filterbar">
+  <div class="fb-inner">
+    <div class="fb-group">
+      <span class="fb-label">Segment</span>
+      <div class="seg" id="segFilter">
+        <button data-seg="all" class="on">All</button>
+        <button data-seg="fisico">Físico</button>
+        <button data-seg="online">Online-only</button>
+        <button data-seg="omni">Omni</button>
+      </div>
+    </div>
+    <div class="fb-group">
+      <span class="fb-label">Region</span>
+      <div class="seg" id="regFilter">
+        <button data-reg="all" class="on">Brazil</button>
+        <button data-reg="SP">SP</button>
+        <button data-reg="RJ">RJ</button>
+        <button data-reg="DF">DF</button>
+      </div>
+    </div>
+    <div class="fb-note">Snapshot <b>Jun 2026</b> · filters drive every view below</div>
+  </div>
+</div>
+
 <header class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid-lines"></div>
   <div class="wrap">
     <div class="hero-top">
      <div class="hero-left">
-      <div class="hero-tag reveal"><span class="eyebrow">Capstone in Applied Analytics · JBS Swift</span></div>
-      <h1 class="reveal" data-d="1">Doubling omnichannel penetration at <span class="accent">JBS Swift.</span></h1>
-      <p class="hero-sub reveal" data-d="2">A transparent, data-driven targeting engine that identifies exactly <b>who</b> to convert, <b>what</b> to offer, <b>when</b> to reach them, <b>how</b> to activate, and <b>where</b> to pilot, turning a flat 2.94% into a reachable 6%.</p>
-      <div class="hero-meta reveal" data-d="3">
-        <span>Team <b>Meat the Data</b></span><span>·</span>
-        <span><b>25 months</b> of data (May 2024 to May 2026)</span><span>·</span>
-        <span><b>123M+</b> customer rows · <b>150M+</b> transactions</span>
+      <span class="eyebrow">Capstone in Applied Analytics · JBS Swift</span>
+      <h1>From <span class="accent">2.87%</span> to 6%: a targeting engine, not a campaign.</h1>
+      <p class="hero-sub">Swift's omnichannel penetration has been flat for 25 months. This dashboard walks the full decision chain: who to convert, what to say, how and when to reach them, where to deploy, and the evidence behind each call.</p>
+      <div class="hero-meta">
+        <span><b>2.80M</b> active customers</span><span>·</span>
+        <span><b>25 months</b> of data</span><span>·</span>
+        <span><b>150M+</b> transactions</span><span>·</span>
+        <span>Rules-based, <b>no ML</b></span>
       </div>
      </div>
-     <div class="hero-right reveal" data-d="2">
+     <div class="hero-right">
       <div class="hero-logo">
         <svg viewBox="0 0 210 172" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Meat the Data logo">
           <path d="M105 22C78 22 57 42 57 68c0 16 9.5 26 17 37 4.8 6.5 6.8 10.5 6.8 17h48.4c0-6.5 2-10.5 6.8-17C143.5 94 153 84 153 68 153 42 132 22 105 22Z" stroke="#fff" stroke-width="3.4"/>
@@ -355,368 +337,232 @@ footer .sub{color:#c3d0e0;margin-top:12px;max-width:52ch}
       </div>
      </div>
     </div>
-    <div class="hero-stats reveal" data-d="4">
-      <div class="hstat"><div class="num">2.94<span class="u">%</span></div><div class="lbl">Current omnichannel penetration, flat for 25 months</div></div>
-      <div class="hstat"><div class="num">6<span class="u">%</span></div><div class="lbl">Sponsor target penetration rate</div></div>
-      <div class="hstat"><div class="num">~83.5<span class="u">K</span></div><div class="lbl">Net-new omnichannel converts required</div></div>
-      <div class="hstat"><div class="num">6.4<span class="u">×</span></div><div class="lbl">Priority 1 conversion lift vs. base rate</div></div>
+
+    <div class="goalstrip" id="overview">
+      <div class="goal-head">
+        <div>
+          <span class="eyebrow">%O2O Customers · sponsor-aligned KPI</span>
+          <div class="now" style="margin-top:10px"><span id="penNow">2.87%</span><small id="penSub">Jun 2026 · 80,281 omni customers</small></div>
+        </div>
+        <div class="gap">
+          <div class="n" id="gapNum">87,674</div>
+          <div class="t">more customers needed to reach 6%</div>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="fill" id="penFill" style="width:0%"></div>
+        <div class="target" style="left:48%"><span>6% GOAL</span></div>
+        <div class="lbl" id="penLbl">2.87%</div>
+      </div>
+      <div class="mixbar" id="mixBar">
+        <div style="background:var(--fisico);width:90.7%"></div>
+        <div style="background:var(--online);width:6.4%"></div>
+        <div style="background:var(--omni);width:2.9%"></div>
+      </div>
+      <div class="mixlegend">
+        <span><i style="background:var(--fisico)"></i>Físico <b>90.7%</b> · 2.54M</span>
+        <span><i style="background:var(--online)"></i>Online-only <b>6.4%</b></span>
+        <span><i style="background:var(--omni)"></i>Omni <b>2.9%</b> · 80,281</span>
+      </div>
+      <p class="footnote">Omnichannel = buys both físico <em>and</em> Swift-online in a rolling 12 months (sponsor-aligned def-B). The físico base is the pool we prioritise.</p>
+    </div>
+
+    <div class="rail" style="margin-top:34px">
+      <div class="step on"><div class="n">01</div><div class="t">WHO</div><div class="d">Rank 2.56M by a transparent score</div></div>
+      <div class="step"><div class="n">02</div><div class="t">WHAT</div><div class="d">Persona-matched messaging</div></div>
+      <div class="step"><div class="n">03</div><div class="t">HOW &amp; WHEN</div><div class="d">Pickup-led, payday-timed</div></div>
+      <div class="step"><div class="n">04</div><div class="t">WHERE</div><div class="d">O2O footprint first</div></div>
+      <div class="step"><div class="n">05</div><div class="t">PROOF</div><div class="d">Validation and what we ruled out</div></div>
     </div>
   </div>
 </header>
 
-<!-- EXECUTIVE SUMMARY -->
-<section id="summary">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">01 · Executive Summary</span>
-      <h2>The value is proven. The bottleneck is conversion.</h2>
-      <p>Omnichannel customers are worth <b>3.5× more</b> per month and visit <b>3× more often</b> than physical-only shoppers, a gap that holds steady across all 25 months. Yet penetration hasn't moved. This is not a retention problem; it is an activation problem, and it is solvable with the customers Swift already has on file.</p>
-    </div>
-
-    <div class="grid g3 reveal" style="margin-bottom:28px">
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0">
-        <div class="m">2.94%</div><div class="t" style="font-size:.86rem;color:var(--ink-soft)">Omnichannel penetration, essentially <b>flat between 2.75%–2.94%</b> across the full 25-month panel despite a +10% growing base.</div></div></div>
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0">
-        <div class="m">3.5×</div><div class="t" style="font-size:.86rem;color:var(--ink-soft)">Omnichannel monthly spend (<b>R$100.78</b>) vs. physical-only (<b>R$29.21</b>), a structural, durable value gap.</div></div></div>
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0">
-        <div class="m">6.4×</div><div class="t" style="font-size:.86rem;color:var(--ink-soft)">Priority 1 customers (high-value + prior online history) convert at <b>6.4× the base rate</b>, the sharpest entry point.</div></div></div>
-    </div>
-
-    <div class="split">
-      <div class="panel prob reveal">
-        <h3><span class="dot"></span>Key Problems</h3>
-        <ul>
-          <li>Penetration is <b>flat at 2.75–2.94%</b> across 25 months, there is no organic drift toward the 6% target.</li>
-          <li>Only <b>1.33%</b> of physical-only customers converted over 24 months; <b>41%</b> went inactive instead. Churn is <b>31× more likely</b> than conversion.</li>
-          <li>Online satisfaction (NPS <b>+77.1</b>) sits <b>~10 points below</b> physical stores, pushing volume into a weaker channel risks brand damage.</li>
-        </ul>
-      </div>
-      <div class="panel opp reveal" data-d="1">
-        <h3><span class="dot"></span>Key Opportunities</h3>
-        <ul>
-          <li><b>~69K Priority 1</b> customers already have online history and convert at 6.4× the base rate, a ready-made starting list.</li>
-          <li><b>85%+</b> of physical-store customers are already reachable via Email or WhatsApp, no new acquisition spend needed.</li>
-          <li><b>314 store-within-store</b> locations have zero online-to-offline enablement, fixing this unlocks Click &amp; Collect capacity.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BUSINESS CHALLENGE -->
-<section id="challenge" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">02 · The Business Challenge</span>
-      <h2>Omnichannel growth is a conversion challenge, not a retention one.</h2>
-      <p>Of 2.57M physical-only customers, monthly gains of +4,261 conversions are almost entirely cancelled by −4,045 reversions, a near-zero net gain. Once customers convert, however, <b>97.5% stay</b>. The problem sits squarely at the top of the funnel: activation.</p>
-    </div>
-
-    <div class="grid g2 reveal" style="align-items:stretch;margin-bottom:26px">
-      <div class="chartcard">
-        <h4>Penetration has not moved in 25 months</h4>
-        <div class="sub">Omnichannel share of active base · May 2024 → May 2026</div>
-        <div class="chart-holder"><canvas id="penChart"></canvas></div>
-      </div>
-      <div class="chartcard">
-        <h4>The omnichannel value gap</h4>
-        <div class="sub">Monthly spend, visits &amp; margin per receipt, omnichannel vs. physical-only</div>
-        <div class="chart-holder"><canvas id="gapChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="grid g4 reveal">
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0"><div class="m">2.57M</div><div class="t">Physical-only customers (94.2% of active base)</div></div></div>
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0"><div class="m">1.33%</div><div class="t">Converted to omnichannel over 24 months</div></div></div>
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0"><div class="m">41%</div><div class="t">Went inactive before converting, the leak</div></div></div>
-      <div class="card"><div class="chip" style="background:none;border:none;padding:0"><div class="m">97.5%</div><div class="t">Retention once converted, retention already works</div></div></div>
-    </div>
-
-    <div style="margin-top:26px" class="banner reveal">
-      <div class="bignum">~0</div>
-      <div class="txt">
-        <h3>Net monthly gain from organic growth</h3>
-        <p>Physical-to-omni gains (+4,261/mo) are cancelled by omni-to-physical losses (−4,045/mo). Reaching 6% requires a deliberate conversion engine, and intercepting customers before they drift into the 41% inactive leak.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STRUCTURAL BARRIERS -->
-<section id="barriers">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">03 · Structural Barriers</span>
-      <h2>Two structural ceilings cap conversion today.</h2>
-      <p>Before the strategy scales, two constraints must be understood: who Swift can actually see, and which stores can actually fulfil an online order.</p>
-    </div>
-    <div class="split">
-      <div class="card reveal">
-        <h3 style="font-size:1.2rem;color:var(--red)">Identification gap</h3>
-        <p style="margin-top:10px;color:var(--ink-soft);font-size:.95rem">Across two years, <b>70.88%</b> of physical-store receipts carry a customer ID, but <b>29.12%</b> (11.58M receipts) remain anonymous. Because each anonymous visit gets a brand-new ID, one shopper visiting five times appears as five strangers. These customers cannot be profiled, targeted, or converted through CRM.</p>
-        <div class="metricrow" style="margin-top:18px">
-          <div class="chip"><div class="m">70.88%</div><div class="t">Identification rate (2-yr)</div></div>
-          <div class="chip"><div class="m">3.68M</div><div class="t">Unique identified customers</div></div>
-        </div>
-        <p class="footnote">Note: rate peaked at 73.5% (Jun–Jul 2025) and has since declined to ~66%, a structural concern for any CPF registration initiative.</p>
-      </div>
-      <div class="card reveal" data-d="1">
-        <h3 style="font-size:1.2rem;color:var(--red)">Infrastructure gap</h3>
-        <p style="margin-top:10px;color:var(--ink-soft);font-size:.95rem">Among 798 active stores, <b>314 store-within-store (SWS)</b> locations, Swift's single largest channel type, have <b>zero O2O enablement</b>. Every Click &amp; Collect order requires O2O capability, so SWS is structurally excluded from online fulfilment today, even though it is the largest physical footprint.</p>
-        <div class="twrap" style="margin-top:16px">
-          <table class="dtable" style="font-size:.82rem">
-            <thead><tr><th>Channel type</th><th>Active</th><th>O2O enabled</th><th>Not enabled</th></tr></thead>
-            <tbody>
-              <tr><td><b>SWS</b></td><td>314</td><td>0</td><td>314</td></tr>
-              <tr><td>LOJAS (physical)</td><td>230</td><td>230</td><td>0</td></tr>
-              <tr><td>Online Store</td><td>227</td><td>226</td><td>1</td></tr>
-              <tr><td>VANS</td><td>24</td><td>1</td><td>23</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DATA OVERVIEW -->
-<section id="data" class="dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">04 · Data Foundation</span>
-      <h2>16 tables. 25 months. Zero monthly gaps.</h2>
-      <p>The analysis draws on a proprietary JBS Swift dataset (Parquet, queried via DuckDB) spanning May 2024 – May 2026. No full-dataset loads: 150M+ row queries run column-selectively and glob-unioned across partitions.</p>
-    </div>
-    <div class="grid g4 reveal" style="margin-bottom:30px">
-      <div class="w-step" style="padding:22px"><div class="num" style="font-family:'Fraunces';font-size:2rem;font-weight:600;color:var(--ember)">16</div><div style="font-size:.82rem;color:#c9bdb0;margin-top:4px">Data tables across 25 months</div></div>
-      <div class="w-step" style="padding:22px"><div class="num" style="font-family:'Fraunces';font-size:2rem;font-weight:600;color:var(--ember)">123M+</div><div style="font-size:.82rem;color:#c9bdb0;margin-top:4px">Customer-month behavior rows</div></div>
-      <div class="w-step" style="padding:22px"><div class="num" style="font-family:'Fraunces';font-size:2rem;font-weight:600;color:var(--ember)">150M+</div><div style="font-size:.82rem;color:#c9bdb0;margin-top:4px">Transaction line items</div></div>
-      <div class="w-step" style="padding:22px"><div class="num" style="font-family:'Fraunces';font-size:2rem;font-weight:600;color:var(--ember)">0</div><div style="font-size:.82rem;color:#c9bdb0;margin-top:4px">Monthly gaps, full panel coverage</div></div>
-    </div>
-
-    <div class="twrap reveal">
-      <table class="dtable">
-        <thead><tr><th>Dataset</th><th>Scale</th><th>Role in the analysis</th><th>Quality</th></tr></thead>
-        <tbody>
-          <tr><td><b>CUSTOMER_BEHAVIOR</b></td><td>123.7M rows</td><td>Primary targeting, customer-month RFV snapshots</td><td><span class="qbadge q-strong">Strong</span></td></tr>
-          <tr><td><b>SALES_BY_DOCUMENT</b></td><td>150.4M rows</td><td>Channel revenue split (ZPDV/ZVEC); basket economics</td><td><span class="qbadge q-strong">Strong</span></td></tr>
-          <tr><td><b>IDENTIFIED_SALES_DOC</b></td><td>39.8M rows</td><td>Customer-ID linkage; identification-rate measurement</td><td><span class="qbadge q-good">Good</span></td></tr>
-          <tr><td><b>PRODUCTS</b></td><td>6,671 SKUs</td><td>SKU→category mapping; online-penetration by category</td><td><span class="qbadge q-strong">Strong</span></td></tr>
-          <tr><td><b>NPS</b></td><td>920K responses</td><td>Channel satisfaction &amp; reachability</td><td><span class="qbadge q-good">Good</span></td></tr>
-          <tr><td><b>STORES</b></td><td>923 stores</td><td>Store format, O2O flag, geography</td><td><span class="qbadge q-good">Good</span></td></tr>
-          <tr><td><b>SALES_BY_STORE</b></td><td>381K rows</td><td>Store-level seasonality &amp; net sales</td><td><span class="qbadge q-good">Good</span></td></tr>
-          <tr><td><b>WEATHER / WIND</b></td><td>1M+ rows</td><td>Secondary demand signal (72–76 cities)</td><td><span class="qbadge q-limited">Limited</span></td></tr>
-          <tr><td><b>SOCCER_MATCH_RESULTS</b></td><td>2,963 matches</td><td>Match-day demand signal (508 match days in window)</td><td><span class="qbadge q-good">Resolved</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="footnote" style="color:#a99a8c;margin-top:16px">Key limitations: ~22 of 84 CUSTOMER_BEHAVIOR columns exceed 50% missingness; the table carries no store/geo identifiers; <code>Recencia_Online</code> is populated for only ~6% of physical customers. A definitional gap between the team's 2.94% metric and the sponsor's 10.82% figure must be reconciled before final reporting.</p>
-  </div>
-</section>
-
-<!-- EDA FINDINGS -->
-<section id="eda">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">05 · Exploratory Findings</span>
-      <h2>Four signals that shape the strategy.</h2>
-      <p>Satisfaction, product mix, seasonality, and reachability each point to the same conclusion, the levers for conversion already exist inside Swift's data.</p>
-    </div>
-
-    <div class="grid g2 reveal" style="margin-bottom:22px">
-      <div class="chartcard">
-        <h4>Net Promoter Score by channel</h4>
-        <div class="sub">920K responses · Online (LO) sits ~10 pts below Physical, ~21 pts below QR Code</div>
-        <div class="chart-holder"><canvas id="npsChart"></canvas></div>
-      </div>
-      <div class="chartcard">
-        <h4>Online revenue share (ZVEC) by category</h4>
-        <div class="sub">Everyday proteins out-penetrate premium beef online, the low-friction first purchase</div>
-        <div class="chart-holder"><canvas id="prodChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="grid g2 reveal">
-      <div class="chartcard">
-        <h4>Seasonality, net store sales by month</h4>
-        <div class="sub">December peak (R$89.6M) vs. June trough (R$58.5M); ZVEC share peaks Oct–Jan</div>
-        <div class="chart-holder"><canvas id="seasonChart"></canvas></div>
-      </div>
-      <div class="chartcard">
-        <h4>How to reach physical customers</h4>
-        <div class="sub">85%+ already have a digital touchpoint on file, no new acquisition needed</div>
-        <div class="chart-holder"><canvas id="reachChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="grid g3 reveal" style="margin-top:26px">
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">QR Code is the bridge</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">The highest-satisfaction touchpoint (<b>+98.5 NPS</b>). These customers already engage digitally in-store without buying online, the most natural first conversion target. Turning the QR scan into a CPF gateway can convert untrackable SWS footfall into CRM contacts.</p></div>
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">Click &amp; Collect beats delivery</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">Within online orders, Click &amp; Collect scores <b>+82.2 NPS</b> vs. <b>+76.0</b> for home delivery, a +6-point edge that makes it the priority fulfilment path and lead conversion offer.</p></div>
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">Basket economics favour online</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">Online receipts average <b>R$264</b> vs. <b>R$126</b> physical (2.1×), with <b>1.6× higher margin</b>, stable across the full panel. The conversion opportunity is structurally durable, not promotion-driven.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5W FRAMEWORK -->
-<section id="framework" class="dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">06 · The Strategy Framework</span>
-      <h2>Who · What · When · How · Where</h2>
-      <p>Five interrelated research questions form a sequential targeting engine, from scoring the right customers to piloting in the right region.</p>
-    </div>
-    <div class="grid g3 reveal">
-      <div class="w-step"><span class="tag">01</span><div class="k">Who</div><h4>Which physical-only customers to prioritise</h4><p>A transparent priority score across Value, Engagement, Readiness &amp; Momentum surfaces the customers most likely to convert.</p><div class="hyp">H1: High-value, high-frequency customers with online readiness convert well above average.</div></div>
-      <div class="w-step"><span class="tag">02</span><div class="k">What</div><h4>Which categories unlock the first online purchase</h4><p>Poultry, Pork, Seafood &amp; Fruits/Veg out-penetrate beef online, everyday proteins are the low-friction entry offer.</p><div class="hyp">H2: High online-adoption, high-frequency categories drive first online purchases.</div></div>
-      <div class="w-step"><span class="tag">03</span><div class="k">When</div><h4>When in the lifecycle to activate</h4><p>Launch pre-December to ride the holiday peak; concentrate push nudges on Thu/Fri ahead of the Saturday churrasco peak (1.76× weekday volume).</p><div class="hyp">H3: Activating at high-activity touchpoints beats random engagement.</div></div>
-      <div class="w-step"><span class="tag">04</span><div class="k">How</div><h4>Which channels &amp; offers activate best</h4><p>85%+ reachable via Email/WhatsApp; lead with Click &amp; Collect (+6 NPS). Differentiate the message by priority band.</p><div class="hyp">H4: Differentiated, characteristic-based activation beats one-size-fits-all.</div></div>
-      <div class="w-step"><span class="tag">05</span><div class="k">Where</div><h4>Where to pilot first</h4><p>São Paulo, 93% of open O2O-capable stores, all LOJAS O2O-enabled. Geography is a deployment filter, not a scoring input.</p><div class="hyp">H5: Regions with mature O2O and higher existing penetration make the best pilots.</div></div>
-      <div class="w-step" style="background:linear-gradient(135deg,var(--red-deep),var(--red));border:none"><span class="tag" style="color:rgba(255,255,255,.14)">✦</span><div class="k" style="color:#fff">Overall Hypothesis</div><h4 style="color:#fff">A transparent prioritisation model + targeted activation can lift penetration from ~3% to 6%.</h4><p style="color:rgba(255,255,255,.85)">Right customer, right channel, right timing, right region.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- WHO: PRIORITY MODEL -->
 <section id="who" class="alt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">07 · WHO · The Priority Score</span>
-      <h2>A transparent, rules-based targeting model.</h2>
-      <p>No black box. Every physical-only customer is scored on interpretable RFV dimensions, then validated against real observed converter behavior.</p>
+      <span class="eyebrow">01 · WHO to target</span>
+      <h2>A five-tier ladder, built from rules you can read.</h2>
+      <p>Every físico customer is scored on five independent axes and sorted into bands. No machine learning, no black box: each input is a named column, and each band is validated out-of-time against who actually converted the following month.</p>
     </div>
 
-    <div class="formula reveal" style="margin-bottom:32px">
-      <div class="eq">Priority Score = <span class="v">0.50 × Value</span> + <span class="e">0.30 × Engagement</span> + <span class="r">0.20 × Readiness</span></div>
-      <div class="legend">
-        <div class="leg v"><div class="w" style="color:var(--ember)">Value · 50%</div><div class="n">Classificacao_Cliente (RFV tier)</div><p>Only Ouro, Gran Reserva &amp; Black qualify for Priority 1 &amp; 2.</p></div>
-        <div class="leg e"><div class="w" style="color:#e0b968">Engagement · 30%</div><div class="n">Pontos_Recencia + Pontos_Frequencia</div><p>How recently &amp; often they shop in-store, more visits, more chances to nudge.</p></div>
-        <div class="leg r"><div class="w" style="color:#7dbd9e">Readiness · 20%</div><div class="n">Recencia_Online</div><p>Has the customer ever ordered online? Not null = proven online buyer.</p></div>
-      </div>
+    <div class="toggle-row reveal">
+      <button class="switch on" id="splitToggle"><i></i>Split P2 by readiness</button>
+      <span style="font-size:.8rem;color:var(--muted)">Click any band to drill into its profile</span>
     </div>
 
-    <div class="grid reveal" style="gap:14px;margin-bottom:20px">
-      <div class="band p1">
-        <div class="pnum">P1</div>
-        <div class="desc"><h4>Priority 1 · ~69K customers</h4><div class="who">High-value tier + prior online purchase</div><p>Proven they'll buy online. Start here, habit reinforcement, not a bigger basket.</p></div>
-        <div class="lift"><div class="big">6.35×</div><div class="cap">conversion lift vs. base</div></div>
-      </div>
-      <div class="band p2">
-        <div class="pnum">P2</div>
-        <div class="desc"><h4>Priority 2 · ~871K customers</h4><div class="who">High-value tier + never ordered online</div><p>The big revenue prize, needs an assisted first nudge to cross over.</p></div>
-        <div class="lift"><div class="big">1.05×</div><div class="cap">conversion lift vs. base</div></div>
-      </div>
-      <div class="band p3">
-        <div class="pnum">P3</div>
-        <div class="desc"><h4>Priority 3 · ~1.63M customers</h4><div class="who">Bronze / Prata tiers</div><p>Lowest priority, a light, always-on digital nudge only.</p></div>
-        <div class="lift"><div class="big">0.74×</div><div class="cap">conversion lift vs. base</div></div>
-      </div>
-    </div>
+    <div class="ladder reveal" id="ladder"></div>
+    <div class="bandpanel reveal" id="bandPanel"></div>
 
-    <div class="banner reveal">
-      <div class="bignum">P1+P2</div>
-      <div class="txt"><h3>Together exceed the ~83.5K net-new target</h3><p>Priority 1 + 2 capture 53.7% of all real converters, and the score is robust across weight variants. Refreshed monthly and validated against observed month-over-month conversions.</p></div>
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="chartcard">
+        <h4>Conversion lift vs base rate</h4>
+        <div class="sub">Físico → omni, out-of-time validation (score month T, observe T+1). Base rate 0.16%.</div>
+        <div class="chart-holder"><canvas id="liftChart"></canvas></div>
+      </div>
+      <div class="card" style="background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:#fff;border:none">
+        <span class="eyebrow" style="color:var(--ember)">The score</span>
+        <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Five orthogonal axes, no ML</h3>
+        <p style="font-size:.86rem;color:#c3d0e0;margin:10px 0 20px">Max pairwise correlation 0.52, so no axis is a proxy for another. Effective weights shown.</p>
+        <div class="axes" id="axesBox"></div>
+        <p class="footnote" style="color:#8fa3ba;margin-top:18px"><b style="color:#fff">AGE</b> was added at sponsor request (weight 0.12). It is independent of the other four (corr ≤0.08) and improves top-decile lift from 2.66× to <b style="color:#fff">2.75×</b>. Usable for ~60% of customers; missing values default to neutral.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHAT & HOW: ACTIVATION -->
-<section id="activation">
+<section id="what">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">08 · WHAT &amp; HOW · Activation Blueprint</span>
-      <h2>The right message, in the right channel, per band.</h2>
-      <p>Each priority band gets a data-grounded message tied to its category mix and spend headroom, designed to complement Swift's existing CHEGUEI20 coupon campaign, not duplicate it.</p>
+      <span class="eyebrow">02 · WHAT to say</span>
+      <h2>The message is not "try online". It is "here is why online fits you".</h2>
+      <p>The same customers rate their online journey lower than their physical one, so a generic promo fights an experience problem. Instead we map each <em>Label_Cesta</em> persona to the motivation already visible in their basket, then write to that motivation.</p>
     </div>
 
-    <div class="twrap reveal" style="margin-bottom:28px">
-      <table class="dtable msg-table">
-        <thead><tr><th>Band</th><th>Buyer profile</th><th>Message</th><th>Channel</th></tr></thead>
+    <div class="ptabs reveal" id="ptabs"></div>
+    <div class="pcard reveal" id="pcard"></div>
+
+    <div class="grid g3 reveal" style="margin-top:26px">
+      <div class="kpi"><div class="m">Prático + Saúde</div><div class="t">Highest online conversion potential, so they carry the greatest marketing emphasis</div></div>
+      <div class="kpi"><div class="m">Churrasco</div><div class="t">Lower conversion readiness. Needs stronger incentives or a better experience first</div></div>
+      <div class="kpi"><div class="m">CHEGUEI20</div><div class="t">Swift's live coupon (R$20 off R$149+). Our messaging builds on it rather than duplicating it</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">03 · HOW &amp; WHEN to reach them</span>
+      <h2>Lead with the mechanic customers already like best.</h2>
+      <p>Before pushing volume online, we looked at what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
+    </div>
+
+    <div class="grid g4 reveal" style="margin-bottom:24px">
+      <div class="kpi"><div class="m">+70.7</div><div class="t">Physical NPS</div><div class="s">156,695 comments</div></div>
+      <div class="kpi"><div class="m">+47.3</div><div class="t">Online NPS</div><div class="s">24,347 comments</div></div>
+      <div class="kpi"><div class="m">−5.5 pt</div><div class="t">Self-comparison gap</div><div class="s">Same omni customers: 81.5 physical vs 76.0 online</div></div>
+      <div class="kpi"><div class="m">−6.6 pt</div><div class="t">NPS drop across basket size</div><div class="s">Online falls fastest on big baskets</div></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-bottom:22px">
+      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
+        <h4 style="color:#fff">What customers complain about</h4>
+        <div class="sub" style="color:#8fa3ba">All comments, theme share by channel</div>
+        <div class="chart-holder tall"><canvas id="themeChart"></canvas></div>
+      </div>
+      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
+        <h4 style="color:#fff">Detractors only (score ≤ 6)</h4>
+        <div class="sub" style="color:#8fa3ba">Online dissatisfaction is delivery, physical is product and price</div>
+        <div class="chart-holder tall"><canvas id="detChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal">
+      <div class="chartcard" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)">
+        <h4 style="color:#fff">Pickup beats every delivery mode</h4>
+        <div class="sub" style="color:#8fa3ba">NPS and detractor rate by fulfilment modality</div>
+        <div class="chart-holder"><canvas id="modChart"></canvas></div>
+      </div>
+      <div>
+        <div class="card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff">
+          <span class="eyebrow" style="color:var(--ember)">The lever</span>
+          <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Click &amp; Collect: +57.3 NPS, lowest detractor rate</h3>
+          <p style="font-size:.88rem;color:#c3d0e0;margin-top:10px">"Retire na Loja" is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it pulls customers into a store where Swift controls the experience.</p>
+        </div>
+        <div class="card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff;margin-top:16px">
+          <span class="eyebrow" style="color:var(--ember)">The timing</span>
+          <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">Payday and early-month windows</h3>
+          <p style="font-size:.88rem;color:#c3d0e0;margin-top:10px">Activation concentrates on payday windows using the CALENDAR business-day flag, and lands 3 to 4 days ahead of the push to respect Swift's campaign lead time. December is the seasonal ceiling: R$89.6M versus R$58.5M in the June trough.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="where" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">04 · WHERE to deploy</span>
+      <h2>Only 43% of the footprint can fulfil an online order.</h2>
+      <p>Click &amp; Collect requires an O2O-enabled store. LOJAS are enabled, SWS are not, and SWS is the larger group. The good news: most SWS sit close to a LOJAS, so the pickup offer can still reach their customers today.</p>
+    </div>
+
+    <div class="filtered-note reveal" id="mapFilterNote" style="display:none"></div>
+
+    <div class="mapshell reveal">
+      <div class="mapctl">
+        <label class="chk"><input type="checkbox" id="showLojas" checked><span class="dot" style="background:#2a78d6"></span>LOJAS · O2O enabled</label>
+        <label class="chk"><input type="checkbox" id="showSWS" checked><span class="dot" style="background:#e34948"></span>SWS · not O2O</label>
+        <label class="chk"><input type="checkbox" id="showRadius"><span class="dot" style="background:rgba(42,120,214,.3);border:1px solid #2a78d6"></span>5 km radius around LOJAS</label>
+        <div class="seg" style="background:var(--card);border:1px solid var(--line);margin-left:auto" id="mapZoom">
+          <button data-v="all" class="on" style="color:var(--ink-soft)">All</button>
+          <button data-v="sp_metro" style="color:var(--ink-soft)">SP Metro</button>
+          <button data-v="sp_capital" style="color:var(--ink-soft)">SP Capital</button>
+          <button data-v="rj" style="color:var(--ink-soft)">Rio</button>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div class="mapstats">
+        <div class="ms"><div class="k">Stores plotted</div><div class="v" id="msTotal">528</div><div class="s" id="msSplit">230 LOJAS + 298 SWS</div></div>
+        <div class="ms"><div class="k">O2O coverage</div><div class="v" id="msCov">43.6%</div><div class="s">Only LOJAS can fulfil online</div></div>
+        <div class="ms"><div class="k">SWS within 5 km of O2O</div><div class="v">79.2%</div><div class="s">Median distance 1.8 km · network-wide</div></div>
+        <div class="ms"><div class="k">Blind-spot cities</div><div class="v">38</div><div class="s">SWS present, no LOJAS</div></div>
+      </div>
+    </div>
+    <p class="footnote">The full network is <b>624 physical touchpoints</b> (269 LOJAS + 355 SWS, 43.1% O2O). The map plots the <b>528</b> with usable coordinates; proximity figures are computed network-wide. Deployment reads geography as a rollout filter, not a scoring input: CUSTOMER_BEHAVIOR carries no store identifier, so we cannot attribute an individual customer to a store. SP holds the largest O2O footprint and is the natural first wave.</p>
+  </div>
+</section>
+
+<section id="proof" class="dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">05 · PROOF</span>
+      <h2>Every headline recomputes from raw data. Here is what failed, too.</h2>
+      <p>A strategy is only as good as the tests it survived. Below are the floors we set before looking at results, the independent check on a table the score never used, and the ideas we killed.</p>
+    </div>
+
+    <div class="twrap reveal" style="margin-bottom:30px">
+      <table class="dtable">
+        <thead><tr><th>Success criterion</th><th>Floor</th><th>Today</th><th></th></tr></thead>
         <tbody>
-          <tr>
-            <td><b>Priority 1</b><br><span style="font-size:.78rem;color:var(--muted)">~69K</span></td>
-            <td class="prof">High-value, already ordered online; staples-led (73%)</td>
-            <td class="say">“Make your weekly staples a two-tap reorder, ready at your store.”, habit reinforcement</td>
-            <td>High-touch in-store POS + Email / WhatsApp</td>
-          </tr>
-          <tr>
-            <td><b>Priority 2</b><br><span style="font-size:.78rem;color:var(--muted)">~871K</span></td>
-            <td class="prof">High-value, never online; staples + barbecue (29%)</td>
-            <td class="say">“Skip the queue on your weekly shop + reserve weekend barbecue cuts ahead.”, assisted first order</td>
-            <td>In-store POS assisted first order + follow-up</td>
-          </tr>
-          <tr>
-            <td><b>Priority 3</b><br><span style="font-size:.78rem;color:var(--muted)">~1.63M</span></td>
-            <td class="prof">Bronze / Prata, barbecue-heaviest, lower spend</td>
-            <td class="say">“Try ordering online, pick up in store.”, light always-on nudge</td>
-            <td>Always-on digital (Email / WhatsApp)</td>
-          </tr>
+          <tr><td>Top-band conversion lift</td><td>≥ 3×</td><td><b>6.41×</b></td><td class="ok">✓</td></tr>
+          <tr><td>M-WARM band lift <span class="newb">NEW</span></td><td>new band</td><td><b>5.13×</b></td><td class="ok">✓</td></tr>
+          <tr><td>P1+P2 converter capture</td><td>≥ 40%</td><td><b>53.7%</b></td><td class="ok">✓</td></tr>
+          <tr><td>Axis independence (max corr, 5 axes)</td><td>≤ 0.60</td><td><b>0.52</b></td><td class="ok">✓</td></tr>
+          <tr><td>AGE axis effect on top decile <span class="newb">NEW</span></td><td>must not hurt</td><td><b>2.66 → 2.75×</b></td><td class="ok">✓</td></tr>
+          <tr><td>Ranking robustness (ρ across weight variants)</td><td>≥ 0.95</td><td><b>0.99–1.00</b></td><td class="ok">✓</td></tr>
+          <tr><td>Demographic coverage</td><td>≥ 90%</td><td><b>93.7%</b></td><td class="ok">✓</td></tr>
+          <tr><td>Refreshable pipeline</td><td>0 errors</td><td><b>0 errors</b></td><td class="ok">✓</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="grid g3 reveal">
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">São Paulo first</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">425 of 457 open O2O-capable stores (93%) are in São Paulo, all company-owned LOJAS fully O2O-enabled. The natural pilot geography; SWS (314 stores) is the structural ceiling to address next.</p></div>
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">December seasonal peak</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">December averages R$89.6M vs. R$58.5M in June. Schedule Priority 1 high-effort activation 3–4 days before the peak, within Swift's 3–4 day campaign lead-time constraint.</p></div>
-      <div class="card"><h4 style="font-size:1rem;color:var(--red)">The audience is ready now</h4><p style="font-size:.88rem;color:var(--ink-soft);margin-top:8px">85%+ reachable via Email (59%) or WhatsApp (26%). Path: fix online experience → enable SWS O2O → CRM to the 85% digital base → lead with Click &amp; Collect.</p></div>
+    <div class="card reveal" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#fff;margin-bottom:30px">
+      <span class="eyebrow" style="color:var(--ember)">Independent validation</span>
+      <h3 style="font-size:1.15rem;margin-top:12px;color:#fff">The bands hold on two years of real transactions</h3>
+      <p style="font-size:.9rem;color:#c3d0e0;margin-top:10px">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, a table the score never touched. Mean purchases per customer: <b style="color:#fff">P1 22.8</b> &gt; <b style="color:#fff">P2 18.0</b> &gt; <b style="color:#fff">P3 4.3</b>. The priority ordering survives on actual buying behaviour, not just on the score's own inputs.</p>
+    </div>
+
+    <div class="sec-head reveal" style="margin-bottom:20px">
+      <span class="eyebrow">The honesty panel</span>
+      <h2 style="font-size:1.5rem">Tested and ruled out</h2>
+      <p>Reported as first-class results, because each one prunes the plan.</p>
+    </div>
+    <div class="ruled reveal">
+      <div class="rcard"><div class="x">✕</div><h4>QR code as a readiness signal</h4><p>Failed twice: coverage below 0.4% and headline lift 0.85×, under 1. Not a usable score input, despite being our most promising early hypothesis.</p></div>
+      <div class="rcard"><div class="x">✕</div><h4>Weather-triggered campaigns</h4><p>Temperature against physical sales correlates +0.04 (p = 0.73). No signal. Dropped unless rain data arrives, since precipitation is the more plausible driver.</p></div>
+      <div class="rcard"><div class="x">✕</div><h4>NPS as a churn predictor</h4><p>Omni detractor 3-month retention 91.4%, promoter 91.2%. NPS is an experience diagnostic, not an early-warning list, so we use it to fix the channel rather than to target people.</p></div>
+      <div class="rcard"><div class="x">✕</div><h4>Folding multi-store into the score</h4><p>Top-decile lift dropped 2.66× → 2.52×. We kept the score intact and used multi-store as a band-level filter (P2-Ready) instead.</p></div>
+    </div>
+
+    <div class="card reveal" style="background:linear-gradient(120deg,var(--red-deep),var(--red));border:none;color:#fff;margin-top:30px">
+      <span class="eyebrow" style="color:#f2b7b3">The handoff</span>
+      <h3 style="font-size:1.3rem;margin-top:12px;color:#fff">One reusable artifact: a scored, campaign-ready customer list</h3>
+      <p style="font-size:.92rem;color:rgba(255,255,255,.88);margin-top:10px">Every view on this page resolves to the same output, refreshable each month on a new snapshot: customer key, band, PriorityScore, and top drivers. That is what Swift's CRM team actually needs to run the campaign.</p>
     </div>
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section id="roadmap" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">09 · Delivery Roadmap</span>
-      <h2>From proof-of-concept to final strategy, Weeks 6–12.</h2>
-      <p>The W-framework maps directly to the delivery schedule, sequencing WHO → WHY → WHAT → HOW → WHERE toward the final sponsor presentation.</p>
-    </div>
-    <div class="timeline reveal">
-      <div class="tl-item"><div class="wk">W6</div><div class="dt">Jul 1–8</div><div class="ph">Who</div><div class="ds">Customer targeting · Research Proposal &amp; PoC</div></div>
-      <div class="tl-item"><div class="wk">W7</div><div class="dt">Jul 8–15</div><div class="ph">Why</div><div class="ds">Conversion drivers · Progress Report 1</div></div>
-      <div class="tl-item"><div class="wk">W8</div><div class="dt">Jul 15–22</div><div class="ph">What</div><div class="ds">Messaging &amp; incentives · Progress Report 2</div></div>
-      <div class="tl-item"><div class="wk">W9</div><div class="dt">Jul 22–29</div><div class="ph">How</div><div class="ds">Activation strategy · Progress Report 3</div></div>
-      <div class="tl-item"><div class="wk">W10</div><div class="dt">Jul 29–Aug 5</div><div class="ph">Where &amp; When</div><div class="ds">Deployment plan · Client Presentation 2</div></div>
-      <div class="tl-item"><div class="wk">W11–12</div><div class="dt">Aug 5–12</div><div class="ph">Final</div><div class="ds">Results, recommendations &amp; final deck</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SUCCESS CRITERIA -->
-<section id="success">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">10 · Definition of Success</span>
-      <h2>What a winning deliverable looks like.</h2>
-    </div>
-    <div class="grid g2 reveal">
-      <div class="card"><div class="sc"><div class="ic">◎</div><div><h4>Penetration target</h4><p>An actionable roadmap to lift penetration from 2.94% → 6%, ~83,506 net-new omnichannel customers identified and prioritised by band.</p></div></div></div>
-      <div class="card"><div class="sc"><div class="ic">◈</div><div><h4>Targeting precision</h4><p>Priority 1 list (~69K) validated at 6.35× lift. P1 + P2 capture 53.7% of all real converters. Score robust across weight variants.</p></div></div></div>
-      <div class="card"><div class="sc"><div class="ic">✎</div><div><h4>Messaging clarity</h4><p>Each band has a data-grounded message tied to category mix and spend headroom, no invented claims.</p></div></div></div>
-      <div class="card"><div class="sc"><div class="ic">⟐</div><div><h4>Activation blueprint</h4><p>São Paulo-first O2O plan across 425 open stores, pre-December timing, CRM channel split within the 3–4 day lead constraint.</p></div></div></div>
-      <div class="card"><div class="sc"><div class="ic">▤</div><div><h4>Data completeness</h4><p>All 16 tables present (May 2024–May 2026). 25-month panel, 123M customer rows, 150M transactions, 0 monthly gaps.</p></div></div></div>
-      <div class="card"><div class="sc"><div class="ic">✓</div><div><h4>Sponsor alignment</h4><p>Output format (strategy framework) confirmed by the Business POC. No predictive model required.</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">11 · The Team</span>
-      <h2>Team Meat the Data</h2>
-      <p>An eight-person analytics team spanning project management, data science, research, design, and web development.</p>
-    </div>
-    <div class="team-grid reveal">
-      <div class="trole"><div class="r">Project Managers</div><div class="names">Arnav Goenka<br>Sowris Kumar Sripathy</div></div>
-      <div class="trole"><div class="r">Data Scientists</div><div class="names">Arnav Goenka<br>Jie Lin<br>Sowris Kumar Sripathy</div></div>
-      <div class="trole"><div class="r">Researchers</div><div class="names">Yirui Chen<br>Xinyue Fan<br>Bhavya Kumar</div></div>
-      <div class="trole"><div class="r">Web &amp; Creative</div><div class="names">Kimberly Huang<br>Jiayi Nie</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
@@ -730,100 +576,262 @@ footer .sub{color:#c3d0e0;margin-top:12px;max-width:52ch}
       </svg>
       <div class="foot-wm">MEAT THE <span>DATA</span><small>JBS SWIFT · OMNICHANNEL</small></div>
     </div>
-    <h3>Turning a flat 2.94% into a reachable 6%, with the customers Swift already has.</h3>
-    <p class="sub">A transparent targeting engine, a differentiated activation blueprint, and a São Paulo-first deployment plan, built on 25 months of first-party data.</p>
+    <h3>A scored list, a matched message, and a place to start.</h3>
+    <p class="sub">Built on 25 months of first-party data: 2.80M active customers, 150M+ transactions, 624 stores, 181K survey comments.</p>
     <div class="foot-badge">
-      <span>25-month panel</span><span>123M customer rows</span><span>150M transactions</span><span>DuckDB + Python</span><span>Rules-based priority model</span>
+      <span>Python + DuckDB</span><span>Parquet</span><span>Rules-based scoring</span><span>Out-of-time validation</span><span>Chart.js + Leaflet</span>
     </div>
     <div class="foot-meta">
       <span>Team Meat the Data · Arnav Goenka · Bhavya Kumar · Jiayi Nie · Jie Lin · Kimberly Huang · Sowris Kumar Sripathy · Xinyue Fan · Yirui Chen</span>
-      <span class="foot-uni">Columbia University · Capstone in Applied Analytics</span>
+      <span>Columbia University · Capstone in Applied Analytics</span>
     </div>
   </div>
 </footer>
 
 <script>
-// nav scroll state
+const STORES=[[-21.20513,-47.79269,1,"RIBEIRAO PRETO","RIBEIRÃO PRETO","","SP"],[-23.50016,-46.85955,1,"ALPHAVILLE","BARUERI","","SP"],[-21.68195,-49.77367,1,"LINS","LINS","","SP"],[-23.62146,-46.6728,1,"CAMPO BELO","SÃO PAULO","","SP"],[-23.61225,-46.68433,1,"BROOKLIN","SÃO PAULO","","SP"],[-23.66158,-46.68888,1,"MARAJOARA","SÃO PAULO","","SP"],[-23.58886,-46.6248,1,"KLABIN","SÃO PAULO","","SP"],[-23.64667,-46.57581,1,"SCS MAUA","SÃO CAETANO DO SUL","","SP"],[-23.49749,-46.74716,1,"PIRITUBA","SÃO PAULO","","SP"],[-23.50095,-47.47751,1,"SOROCABA","SOROCABA","","SP"],[-23.58994,-46.82422,1,"GRANJA VIANA","COTIA","","SP"],[-23.60263,-46.6715,1,"ROUXINOL","SÃO PAULO","","SP"],[-22.88827,-47.06084,1,"BARAO ITAPURA","CAMPINAS","","SP"],[-20.8848,-51.36832,1,"ANDRADINA","ANDRADINA","","SP"],[-23.53292,-46.72684,1,"LEOPOLDINA","SÃO PAULO","","SP"],[-23.61017,-46.66034,1,"MOEMA JURUCE","SÃO PAULO","","SP"],[-23.54249,-46.65604,1,"ANGELICA","SÃO PAULO","","SP"],[-23.58412,-46.64252,1,"VILA MARIANA 2","SÃO PAULO","","SP"],[-23.61686,-46.63644,1,"VILA SAUDE","SÃO PAULO","","SP"],[-23.61746,-46.56808,1,"SAO CAETANO CENTRO","SÃO CAETANO DO SUL","","SP"],[-22.88261,-47.03376,1,"JOSE BONIFACIO","CAMPINAS","","SP"],[-22.97641,-46.99919,1,"VALINHOS","VALINHOS","","SP"],[-23.6333,-46.73527,1,"PANAMBY","SÃO PAULO","","SP"],[-23.50644,-46.57753,1,"VILA MARIA","SÃO PAULO","","SP"],[-23.57041,-46.6354,1,"ACLIMACAO","SÃO PAULO","","SP"],[-23.48657,-46.61487,1,"VILA PAULICEIA","SÃO PAULO","","SP"],[-22.92003,-47.05304,1,"SAUDADE","CAMPINAS","","SP"],[-23.53937,-46.68146,1,"PERDIZES","SÃO PAULO","","SP"],[-23.48713,-46.63322,1,"SANTANA","SÃO PAULO","","SP"],[-23.65146,-46.53458,1,"D. PEDRO ll","SANTO ANDRÉ","","SP"],[-23.45799,-46.61692,1,"TREMEMBE","SÃO PAULO","","SP"],[-23.528,-46.70065,1,"VILA ROMANA","SÃO PAULO","","SP"],[-23.19636,-45.89419,1,"SAO JOSE DOS CAMPOS","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.59025,-46.57444,1,"ZELINA","SÃO PAULO","","SP"],[-23.45479,-46.55724,1,"GUARULHOS","GUARULHOS","","SP"],[-23.02542,-45.58217,1,"TAUBATE","TAUBATÉ","","SP"],[-23.59614,-46.60624,1,"IPIRANGA","SÃO PAULO","","SP"],[-23.66554,-46.53394,1,"PORTUGAL","SANTO ANDRÉ","","SP"],[-23.08029,-47.21042,1,"INDAIATUBA","INDAIATUBA","","SP"],[-23.54686,-46.54939,1,"TATUAPE","SÃO PAULO","","SP"],[-23.54849,-46.53772,1,"VILA CARRAO","SÃO PAULO","","SP"],[-23.70662,-46.5489,1,"SAO BERNARDO","SÃO BERNARDO DO CAMPO","","SP"],[-23.23215,-45.88475,1,"SJC ANDROMEDA","SÃO JOSÉ DOS CAMPOS","","SP"],[-21.19169,-47.80991,1,"RIB.PRETO INDEPENDENCIA","RIBEIRÃO PRETO","","SP"],[-23.51575,-47.46565,1,"SOROCABA W.LUIZ","SOROCABA","","SP"],[-23.58083,-46.58365,1,"VILA PRUDENTE","SÃO PAULO","","SP"],[-23.56083,-46.69099,1,"PINHEIROS","SÃO PAULO","","SP"],[-23.58815,-46.7229,1,"MORUMBI","SÃO PAULO","","SP"],[-23.60579,-46.64887,1,"PLANALTO","SÃO PAULO","","SP"],[-23.56662,-46.6215,1,"CAMBUCI","SÃO PAULO","","SP"],[-23.52301,-46.52215,1,"PENHA","SÃO PAULO","","SP"],[-23.96242,-46.32318,1,"BOQUEIRAO","SANTOS","","SP"],[-23.5754,-46.74023,1,"JD. BONFIGLIOLI","SÃO PAULO","","SP"],[-23.57437,-46.6506,1,"TUTOIA","SÃO PAULO","","SP"],[-23.78916,-46.03166,1,"RIVIERA","BERTIOGA","","SP"],[-23.45779,-46.53057,1,"BOSQUE MAIA","GUARULHOS","","SP"],[-23.7205,-46.56358,1,"ASSUNCAO","SÃO BERNARDO DO CAMPO","","SP"],[-23.58218,-46.83847,1,"SAO CAMILO","COTIA","","SP"],[-23.60439,-46.62664,1,"CHACARA INGLESA","SÃO PAULO","","SP"],[-23.57979,-46.62433,1,"LINS DE VASCONCELOS","SÃO PAULO","","SP"],[-23.55416,-46.83597,1,"CARAPICUIBA","CARAPICUÍBA","","SP"],[-23.63658,-46.71398,1,"CHACARA ST. ANTONIO","SÃO PAULO","","SP"],[-23.62374,-46.62002,1,"BOSQUE DA SAUDE","SÃO PAULO","","SP"],[-23.55905,-46.56833,1,"AGUA RASA","SÃO PAULO","","SP"],[-23.59735,-46.64053,1,"BORGES LAGOA","SÃO PAULO","","SP"],[-23.55084,-46.64261,1,"BELA VISTA","SÃO PAULO","","SP"],[-23.54242,-46.56969,1,"SERRA DE JAPI","SÃO PAULO","","SP"],[-23.50435,-46.60748,1,"VILA GUILHERME","SÃO PAULO","","SP"],[-23.49304,-46.62618,1,"VOLUNTARIOS DA PATRIA","SÃO PAULO","","SP"],[-22.73262,-47.63787,1,"PIRACICABA","PIRACICABA","","SP"],[-23.56555,-46.66615,1,"OSCAR FREIRE","SÃO PAULO","","SP"],[-23.62489,-46.6684,1,"CAMPO BELO 2","SÃO PAULO","","SP"],[-23.6009,-46.67933,1,"VILA OLIMPIA","SÃO PAULO","","SP"],[-23.62475,-46.7406,1,"VILA ANDRADE","SÃO PAULO","","SP"],[-23.62019,-46.55321,1,"BARCELONA","SÃO CAETANO DO SUL","","SP"],[-23.52166,-46.73421,1,"GUAIPA","SÃO PAULO","","SP"],[-23.61495,-46.74187,1,"PORTAL DO MORUMBI","SÃO PAULO","","SP"],[-20.8205,-49.38322,1,"ALBERTO ANDALO","SÃO JOSÉ DO RIO PRETO","","SP"],[-23.98527,-46.30519,1,"PONTA DA PRAIA","SANTOS","","SP"],[-23.64258,-46.56197,1,"BOA VISTA","SÃO CAETANO DO SUL","","SP"],[-22.89604,-47.04743,1,"NORTE SUL","CAMPINAS","","SP"],[-23.48722,-46.621,1,"NOVA CANTAREIRA","SÃO PAULO","","SP"],[-23.4812,-46.54125,1,"VILA AUGUSTA","GUARULHOS","","SP"],[-23.53471,-46.66939,1,"PERDIZES 2","SÃO PAULO","","SP"],[-23.54069,-46.72795,1,"VILLA LOBOS","SÃO PAULO","","SP"],[-23.1831,-46.89656,1,"JUNDIAI","JUNDIAÍ","","SP"],[-23.5374,-46.77837,1,"AUTONOMISTAS","OSASCO","","SP"],[-23.5378,-46.52551,1,"VILA MATILDE","SÃO PAULO","","SP"],[-23.69473,-46.70181,1,"INTERLAGOS","SÃO PAULO","","SP"],[-23.55762,-46.75585,1,"CIDADE SAO FRANCISCO","SÃO PAULO","","SP"],[-23.52998,-46.68772,1,"POMPEIA DESEMBARGADOR","SÃO PAULO","","SP"],[-23.12029,-46.554,1,"ATIBAIA","ATIBAIA","","SP"],[-23.672,-46.5134,1,"DOM PEDRO I","SANTO ANDRÉ","","SP"],[-24.00765,-46.43,1,"GUILHERMINA","PRAIA GRANDE","","SP"],[-23.46932,-46.63042,1,"MANDAQUI","SÃO PAULO","","SP"],[-23.5212,-46.18089,1,"MOGI DAS CRUZES","MOGI DAS CRUZES","","SP"],[-23.96399,-46.34437,1,"SANTOS POMPEIA","SANTOS","","SP"],[-23.0329,-46.98691,1,"VINHEDO","VINHEDO","","SP"],[-22.33282,-49.0692,1,"BAURU","BAURU","","SP"],[-23.50035,-46.73419,1,"ANASTACIO","SÃO PAULO","","SP"],[-15.81117,-47.89809,1,"106 ASA SUL","BRASÍLIA","","DF"],[-23.98209,-46.22988,1,"ENSEADA","GUARUJÁ","","SP"],[-23.54041,-46.78829,1,"NOVA GRANADA","OSASCO","","SP"],[-21.22551,-50.43679,1,"ARACATUBA","ARAÇATUBA","","SP"],[-15.84085,-48.02278,1,"AGUAS CLARAS","BRASÍLIA","","DF"],[-23.26125,-47.29467,1,"ITU","ITU","","SP"],[-23.64285,-46.66591,1,"VILA MASCOTE","SÃO PAULO","","SP"],[-23.50637,-46.48864,1,"PONTE RASA","SÃO PAULO","","SP"],[-23.97074,-46.37144,1,"SAO VICENTE","SÃO VICENTE","","SP"],[-22.88681,-48.44472,1,"BOTUCATU","BOTUCATU","","SP"],[-23.53458,-46.568,1,"CELSO GARCIA","SÃO PAULO","","SP"],[-23.52554,-47.13214,1,"SAO ROQUE","SÃO ROQUE","","SP"],[-23.6088,-46.70719,1,"REAL PARQUE","SÃO PAULO","","SP"],[-24.02229,-46.47049,1,"TUPI","PRAIA GRANDE","","SP"],[-23.00965,-45.55042,1,"TAUBATE SAO GERALDO","TAUBATÉ","","SP"],[-24.0101,-46.40355,1,"CANTO DO FORTE","PRAIA GRANDE","","SP"],[-15.846,-47.89538,1,"GILBERTO SALOMAO","BRASÍLIA","","DF"],[-15.8093,-47.88495,1,"402 ASA SUL","BRASÍLIA","","DF"],[-21.20822,-47.81354,1,"RIB.PRETO ALTO DA BOA VISTA","RIBEIRÃO PRETO","","SP"],[-15.76897,-47.8879,1,"306 ASA NORTE","BRASÍLIA","","DF"],[-23.65624,-46.57071,1,"SBC RUDGE RAMOS","SÃO BERNARDO DO CAMPO","","SP"],[-23.53005,-46.79422,1,"OSASCO KM 18","OSASCO","","SP"],[-22.8646,-47.05357,1,"ALTO TAQUARAL","CAMPINAS","","SP"],[-22.2269,-49.93319,1,"MARILIA","MARÍLIA","","SP"],[-23.21574,-45.90285,1,"AQUARIUS","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.65656,-46.85177,1,"EMBU DAS ARTES","EMBU DAS ARTES","","SP"],[-23.467,-46.84673,1,"TAMBORE","SANTANA DE PARNAÍBA","","SP"],[-23.00942,-46.84328,1,"ITATIBA","ITATIBA","","SP"],[-23.47793,-46.57555,1,"ROLAND GARROS","SÃO PAULO","","SP"],[-23.57864,-46.48145,1,"PARQUE DO CARMO","SÃO PAULO","","SP"],[-23.55077,-46.59481,1,"ALTO DA MOOCA","SÃO PAULO","","SP"],[-21.77895,-48.17948,1,"ARARAQUARA","ARARAQUARA","","SP"],[-22.94679,-45.47708,1,"PINDAMONHANGABA","PINDAMONHANGABA","","SP"],[-23.64841,-46.70292,1,"ALTO DA BOA VISTA","SÃO PAULO","","SP"],[-23.97508,-46.31593,1,"EMBARE","SANTOS","","SP"],[-22.42318,-47.56014,1,"RIO CLARO","RIO CLARO","","SP"],[-23.54243,-46.31394,1,"SUZANO","SUZANO","","SP"],[-23.65727,-46.67345,1,"JARDIM PRUDENCIA","SÃO PAULO","","SP"],[-22.9825,-43.22334,1,"LEBLON","RIO DE JANEIRO","","RJ"],[-23.61575,-46.97065,1,"COTIA KM 39","COTIA","","SP"],[-22.81414,-45.20236,1,"GUARATINGUETA","GUARATINGUETÁ","","SP"],[-24.18045,-46.78269,1,"ITANHAEM","ITANHAÉM","","SP"],[-15.69511,-47.87149,1,"TAQUARI","BRASÍLIA","","DF"],[-23.58671,-48.03609,1,"ITAPETININGA","ITAPETININGA","","SP"],[-23.51262,-46.18098,1,"MOGI DAS CRUZES MOGILAR","MOGI DAS CRUZES","","SP"],[-23.31957,-46.59069,1,"MAIRIPORA","MAIRIPORÃ","","SP"],[-23.18128,-47.31133,1,"SALTO","SALTO","","SP"],[-23.2853,-45.95303,1,"JACAREI","JACAREÍ","","SP"],[-22.11601,-51.40145,1,"PRESIDENTE PRUDENTE","PRESIDENTE PRUDENTE","","SP"],[-24.31584,-46.99157,1,"PERUIBE","PERUÍBE","","SP"],[-23.58788,-46.73644,1,"PERI PERI","SÃO PAULO","","SP"],[-23.59419,-46.54408,1,"PARQUE SAO LUCAS","SÃO PAULO","","SP"],[-22.96495,-46.54419,1,"BRAGANCA PAULISTA","BRAGANÇA PAULISTA","","SP"],[-23.49696,-46.70383,1,"FREGUESIA DO O","SÃO PAULO","","SP"],[-23.66346,-46.52529,1,"PERIMETRAL","SANTO ANDRÉ","","SP"],[-23.5474,-46.76152,1,"VILA YARA","OSASCO","","SP"],[-23.55407,-46.65264,1,"FREI CANECA","SÃO PAULO","","SP"],[-23.70794,-46.40104,1,"RIBEIRAO PIRES","RIBEIRÃO PIRES","","SP"],[-20.80045,-49.3461,1,"SAO JOSE DO RIO PRETO","SÃO JOSÉ DO RIO PRETO","","SP"],[-22.91958,-43.23463,1,"PRACA VARNHAGEM","RIO DE JANEIRO","","RJ"],[-23.59501,-46.67663,1,"CLODOMIRO","SÃO PAULO","","SP"],[-23.62294,-46.60773,1,"VILA DAS MERCES","SÃO PAULO","","SP"],[-16.70046,-49.26729,1,"MUTIRAO","GOIÂNIA","","GO"],[-23.40843,-46.85046,1,"CAJAMAR","CAJAMAR","","SP"],[-23.48488,-46.86388,1,"ALPHAVILLE CONDE","BARUERI","","SP"],[-23.60265,-46.91428,1,"COTIA","COTIA","","SP"],[-22.18915,-47.39593,1,"LEME","LEME","","SP"],[-22.563,-47.42195,1,"LIMEIRA","LIMEIRA","","SP"],[-22.70943,-47.65465,1,"VILA RESENDE","PIRACICABA","","SP"],[-23.50679,-46.66662,1,"CASA VERDE","SÃO PAULO","","SP"],[-23.57053,-46.59122,1,"JUVENTUS","SÃO PAULO","","SP"],[-23.95495,-46.33152,1,"ANA COSTA","SANTOS","","SP"],[-24.04586,-46.52775,1,"VILA CAICARA","PRAIA GRANDE","","SP"],[-23.48689,-46.35289,1,"ITAQUA","ITAQUAQUECETUBA","","SP"],[-23.58834,-46.86948,1,"GRANJA KM 26","COTIA","","SP"],[-23.48251,-46.67327,1,"CACHOEIRINHA","SÃO PAULO","","SP"],[-23.63437,-46.50316,1,"SANTO ANDRE ORATORIO","SANTO ANDRÉ","","SP"],[-23.48687,-46.69267,1,"ITABERABA","SÃO PAULO","","SP"],[-23.5357,-46.46444,1,"CAMPANELLA","SÃO PAULO","","SP"],[-23.50884,-46.76199,1,"REMEDIOS ONIX","SÃO PAULO","","SP"],[-23.50156,-46.44252,1,"SAO MIGUEL","SÃO PAULO","","SP"],[-23.58707,-46.54429,1,"VILA EMA","SÃO PAULO","","SP"],[-23.46007,-45.06202,1,"UBATUBA","UBATUBA","","SP"],[-23.76555,-46.71742,1,"PARELHEIROS","SÃO PAULO","","SP"],[-23.54913,-46.5059,1,"AV. ITAQUERA","SÃO PAULO","","SP"],[-23.70749,-46.57554,1,"PLANALTO","SÃO BERNARDO DO CAMPO","","SP"],[-23.50597,-46.86783,1,"BARUERI","BARUERI","","SP"],[-23.65119,-46.75716,1,"CAMPO LIMPO","SÃO PAULO","","SP"],[-23.41021,-46.31962,1,"ARUJA","ARUJÁ","","SP"],[-22.5644,-44.95872,1,"CRUZEIRO","CRUZEIRO","","SP"],[-23.01682,-43.45971,1,"GLAUCIO GIL","RIO DE JANEIRO","","RJ"],[-22.93085,-43.17668,1,"LARGO DO MACHADO","RIO DE JANEIRO","","RJ"],[-23.52856,-47.49015,1,"SOROCABA PANNUNZIO","SOROCABA","","SP"],[-23.08791,-47.22534,1,"PARQUE ECOLOGICO","INDAIATUBA","","SP"],[-24.09346,-46.61774,1,"MONGAGUA","MONGAGUÁ","","SP"],[-23.08123,-46.95078,1,"LOUVEIRA","LOUVEIRA","","SP"],[-23.26425,-45.94474,1,"JACAREI VILLA BRANCA","JACAREÍ","","SP"],[-22.7758,-47.14474,1,"PAULINIA","PAULÍNIA","","SP"],[-23.10566,-45.71052,1,"CACAPAVA","CAÇAPAVA","","SP"],[-22.83225,-47.07863,1,"BARAO GERALDO","CAMPINAS","","SP"],[-23.53833,-46.93503,1,"ITAPEVI","ITAPEVI","","SP"],[-23.00947,-43.44985,1,"RECREIO","RIO DE JANEIRO","","RJ"],[-23.18036,-45.86924,1,"MONTE CASTELO","SÃO JOSÉ DOS CAMPOS","","SP"],[-15.8391,-48.05511,1,"TAGUATINGA SUL","BRASÍLIA","","DF"],[-23.6729,-46.45939,1,"MAUA 2","MAUÁ","","SP"],[-23.51378,-46.73101,1,"MALL MULTI GERMINARE","SÃO PAULO","","SP"],[-23.68493,-46.54761,1,"SBC PEREIRA BARRETO","SÃO BERNARDO DO CAMPO","","SP"],[-23.63446,-46.53215,1,"SANTA TERESINHA","SANTO ANDRÉ","","SP"],[-23.57725,-46.51579,1,"VILA RICA","SÃO PAULO","","SP"],[-23.70638,-46.70075,1,"JANGADEIROS","SÃO PAULO","","SP"],[-23.2077,-46.87899,1,"14 DE DEZEMBRO","JUNDIAÍ","","SP"],[-23.46936,-46.6451,1,"HORTO","SÃO PAULO","","SP"],[-22.99947,-43.40549,1,"ALL WAYS MALL","RIO DE JANEIRO","","RJ"],[-22.90876,-47.09515,1,"UNIMART","CAMPINAS","","SP"],[-23.20356,-45.94055,1,"URBANOVA","SÃO JOSÉ DOS CAMPOS","","SP"],[-23.59752,-46.48688,1,"MATEO BEI","SÃO PAULO","","SP"],[-22.29506,-48.54869,1,"JAU","JAÚ","","SP"],[-23.50065,-46.39874,1,"TIBURCIO","SÃO PAULO","","SP"],[-23.81691,-45.36673,1,"ILHABELA","ILHABELA","","SP"],[-23.47572,-46.70382,1,"MORRO GRANDE","SÃO PAULO","","SP"],[-23.71033,-46.84962,1,"ITAPECERICA DA SERRA","ITAPECERICA DA SERRA","","SP"],[-23.37257,-46.75395,1,"BOX CAIEIRAS","CAIEIRAS","","SP"],[-22.97283,-43.39161,1,"PARQUE OLIMPICO","RIO DE JANEIRO","","RJ"],[-23.49458,-46.96325,1,"ALDEIA DA SERRA","BARUERI","","SP"],[-22.79205,-43.30226,1,"25 DE AGOSTO","DUQUE DE CAXIAS","","RJ"],[-23.79008,-46.03424,1,"SAO LOURENCO","BERTIOGA","","SP"],[-23.36262,-46.74245,1,"CAIEIRAS","CAIEIRAS","","SP"],[-23.68562,-46.62426,1,"DIADEMA","DIADEMA","","SP"],[-23.52131,-46.41857,1,"VILA CURUCA","SÃO PAULO","","SP"],[-23.48409,-46.42115,1,"OLIVEIRA FREIRE","SÃO PAULO","","SP"],[-23.50665,-46.87527,0,"BARBOSA","BARUERI","BARBOSA","SP"],[-23.35009,-47.8445,0,"BARBOSA","TATUÍ","BARBOSA","SP"],[-23.64477,-46.67396,0,"GPA","SÃO PAULO","GPA","SP"],[-23.62634,-46.71722,0,"GPA","SÃO PAULO","GPA","SP"],[-23.47796,-47.4416,0,"BARBOSA","SOROCABA","BARBOSA","SP"],[-23.6394,-46.53971,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.51228,-46.67494,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66429,-46.52342,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.49633,-47.44207,0,"COOP","SOROCABA","COOP","SP"],[-23.98263,-46.26444,0,"ATACADAO","GUARUJÁ","ATACADAO","SP"],[-23.49491,-46.45653,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.58113,-46.60064,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.53807,-46.77106,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.52211,-46.65821,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.72268,-46.54682,0,"ATACADAO","SÃO BERNARDO DO CAMPO","ATACADAO","SP"],[-23.62912,-46.64502,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.65523,-46.69261,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.65271,-46.85064,0,"LOPES","EMBU DAS ARTES","LOPES","SP"],[-23.58459,-46.72529,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.6105,-46.56502,0,"CARREFOUR","SÃO CAETANO DO SUL","CARREFOUR","SP"],[-23.533,-47.46295,0,"CARREFOUR","VOTORANTIM","CARREFOUR","SP"],[-23.24171,-45.90536,0,"COOP","SÃO JOSÉ DOS CAMPOS","COOP","SP"],[-23.66521,-46.49183,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.65134,-46.57544,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.56105,-46.51667,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.18329,-46.9076,0,"CARREFOUR","JUNDIAÍ","CARREFOUR","SP"],[-23.69265,-46.61979,0,"COOP","DIADEMA","COOP","SP"],[-23.54939,-46.93994,0,"LOPES","ITAPEVI","LOPES","SP"],[-23.46035,-46.519,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.49856,-46.45516,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.60196,-46.53101,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.53182,-46.90351,0,"BARBOSA","JANDIRA","BARBOSA","SP"],[-23.50505,-46.83399,0,"CARREFOUR","BARUERI","CARREFOUR","SP"],[-23.61756,-46.62638,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.71219,-46.54243,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.58475,-46.77889,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.5881,-46.62049,0,"GPA","SÃO PAULO","GPA","SP"],[-23.61143,-46.70128,0,"GPA","SÃO PAULO","GPA","SP"],[-23.6454,-46.64167,0,"GPA","SÃO PAULO","GPA","SP"],[-23.57221,-46.80121,0,"BARBOSA","OSASCO","BARBOSA","SP"],[-23.60978,-46.93081,0,"BARBOSA","COTIA","BARBOSA","SP"],[-23.5863,-46.72183,0,"GPA","SÃO PAULO","GPA","SP"],[-23.56359,-46.68735,0,"GPA","SÃO PAULO","GPA","SP"],[-23.63038,-46.69083,0,"GPA","SÃO PAULO","GPA","SP"],[-23.71507,-46.5536,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.5612,-46.56067,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.53763,-46.76854,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.63139,-46.5993,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.64684,-46.52648,0,"CARREFOUR","SANTO ANDRÉ","CARREFOUR","SP"],[-23.6969,-46.44396,0,"COOP","RIBEIRÃO PIRES","COOP","SP"],[-23.64776,-46.53225,0,"GPA","SANTO ANDRÉ","GPA","SP"],[-23.6406,-46.49932,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.51752,-46.17922,0,"DAVO","MOGI DAS CRUZES","DAVO","SP"],[-23.58925,-46.6191,0,"GPA","SÃO PAULO","GPA","SP"],[-23.56624,-46.64719,0,"GPA","SÃO PAULO","GPA","SP"],[-23.49033,-46.88408,0,"LOPES","BARUERI","LOPES","SP"],[-23.46249,-46.55422,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.59261,-46.67729,0,"GPA","SÃO PAULO","GPA","SP"],[-23.62079,-46.56395,0,"GPA","SÃO CAETANO DO SUL","GPA","SP"],[-23.54306,-46.31848,0,"DAVO","SUZANO","DAVO","SP"],[-23.55011,-46.44571,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.22332,-45.90659,0,"CARREFOUR","SÃO JOSÉ DOS CAMPOS","CARREFOUR","SP"],[-23.67772,-46.67541,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.62983,-46.71082,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.63124,-46.7359,0,"GPA","SÃO PAULO","GPA","SP"],[-23.46223,-46.8759,0,"GPA","SANTANA DE PARNAÍBA","GPA","SP"],[-23.78948,-46.03229,0,"GPA","BERTIOGA","GPA","SP"],[-23.98849,-46.24844,0,"GPA","GUARUJÁ","GPA","SP"],[-23.53489,-46.71303,0,"GPA","SÃO PAULO","GPA","SP"],[-22.85307,-47.02782,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-23.96721,-46.36957,0,"CARREFOUR","SÃO VICENTE","CARREFOUR","SP"],[-23.52166,-46.59904,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.68483,-46.6327,0,"CARREFOUR","DIADEMA","CARREFOUR","SP"],[-23.67763,-46.53813,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.58838,-46.67624,0,"GPA","SÃO PAULO","GPA","SP"],[-23.54252,-46.78751,0,"LOPES","OSASCO","LOPES","SP"],[-21.21442,-47.81594,0,"CARREFOUR","RIBEIRÃO PRETO","CARREFOUR","SP"],[-22.89219,-47.02373,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-23.64246,-46.73415,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.62589,-46.68649,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.95152,-47.02837,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-21.22612,-47.83396,0,"SAVEGNAGO","RIBEIRÃO PRETO","SAVEGNAGO","SP"],[-23.58355,-46.41562,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.68649,-47.02073,0,"BARBOSA","COTIA","BARBOSA","SP"],[-23.67637,-46.55473,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.55893,-46.83784,0,"BARBOSA","CARAPICUÍBA","BARBOSA","SP"],[-23.47873,-47.45499,0,"SAO VICENTE","SOROCABA","SAO VICENTE","SP"],[-23.44072,-46.54088,0,"CARREFOUR","GUARULHOS","CARREFOUR","SP"],[-22.43646,-46.81461,0,"CUBATAO","ITAPIRA","CUBATAO","SP"],[-23.02478,-45.57795,0,"CARREFOUR","TAUBATÉ","CARREFOUR","SP"],[-20.83253,-49.3557,0,"CARREFOUR","SÃO JOSÉ DO RIO PRETO","CARREFOUR","SP"],[-23.57277,-46.69559,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66422,-46.44855,0,"COOP","MAUÁ","COOP","SP"],[-23.6388,-46.51745,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.65518,-46.52551,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.70559,-46.58887,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-23.70283,-46.53788,0,"COOP","SÃO BERNARDO DO CAMPO","COOP","SP"],[-22.89738,-47.07058,0,"SAVEGNAGO","CAMPINAS","SAVEGNAGO","SP"],[-23.98158,-46.23149,0,"CARREFOUR","GUARUJÁ","CARREFOUR","SP"],[-23.5692,-46.44542,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.66953,-46.53586,0,"CARREFOUR","SANTO ANDRÉ","CARREFOUR","SP"],[-23.48564,-47.47012,0,"CARREFOUR","SOROCABA","CARREFOUR","SP"],[-23.51341,-46.65946,0,"GPA","SÃO PAULO","GPA","SP"],[-23.63554,-46.78883,0,"DAVO","TABOÃO DA SERRA","DAVO","SP"],[-22.78543,-47.30194,0,"SAO VICENTE","NOVA ODESSA","SAO VICENTE","SP"],[-22.76237,-47.34122,0,"SAO VICENTE","AMERICANA","SAO VICENTE","SP"],[-23.57772,-46.74284,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.69783,-46.50643,0,"COOP","SANTO ANDRÉ","COOP","SP"],[-23.70661,-46.53495,0,"DAVO","SÃO BERNARDO DO CAMPO","DAVO","SP"],[-23.67202,-46.77302,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.18792,-45.79235,0,"COOP","SÃO JOSÉ DOS CAMPOS","COOP","SP"],[-23.42979,-46.43686,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.53898,-46.91477,0,"LOPES","JANDIRA","LOPES","SP"],[-23.47561,-46.55369,0,"LOPES","GUARULHOS","LOPES","SP"],[-23.61357,-46.50115,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.39473,-46.32996,0,"SEMAR","ARUJÁ","SEMAR","SP"],[-23.79632,-45.40026,0,"SEMAR","SÃO SEBASTIÃO","SEMAR","SP"],[-23.43307,-45.08672,0,"SEMAR","UBATUBA","SEMAR","SP"],[-23.23629,-45.89711,0,"SHIBATA","SÃO JOSÉ DOS CAMPOS","SHIBATA","SP"],[-23.11916,-45.71351,0,"SHIBATA","CAÇAPAVA","SHIBATA","SP"],[-22.94694,-45.48113,0,"SHIBATA","PINDAMONHANGABA","SHIBATA","SP"],[-22.84434,-45.24253,0,"SHIBATA","APARECIDA DO NORTE","SHIBATA","SP"],[-23.69585,-46.66876,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-23.66606,-46.79968,0,"BARBOSA","CAMPO LIMPO PAULISTA","BARBOSA","SP"],[-23.51302,-46.33874,0,"SEMAR","POÁ","SEMAR","SP"],[-23.53775,-46.42768,0,"DAVO","SÃO PAULO","DAVO","SP"],[-22.57161,-47.40992,0,"SAVEGNAGO","LIMEIRA","SAVEGNAGO","SP"],[-23.53104,-46.89257,0,"LOPES","JANDIRA","LOPES","SP"],[-15.83044,-47.95504,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.84616,-47.89494,0,"GPA","BRASÍLIA","GPA","DF"],[-15.73388,-47.89952,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.58703,-46.30921,0,"SEMAR","SUZANO","SEMAR","SP"],[-23.83773,-46.13194,0,"SEMAR","BERTIOGA","SEMAR","SP"],[-22.42037,-46.96023,0,"CUBATAO","MOGI MIRIM","CUBATAO","SP"],[-21.97313,-46.76772,0,"CUBATAO","SÃO JOÃO DA BOA VISTA","CUBATAO","SP"],[-23.96948,-46.32463,0,"CARREFOUR","SANTOS","CARREFOUR","SP"],[-15.84855,-48.04103,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.61189,-46.64499,0,"LEMON","SÃO PAULO","LEMON","SP"],[-23.65512,-46.59534,0,"CARREFOUR","SÃO BERNARDO DO CAMPO","CARREFOUR","SP"],[-23.50481,-46.15199,0,"SHIBATA","MOGI DAS CRUZES","SHIBATA","SP"],[-20.81427,-49.50899,0,"EMPORIO ALFREDO","MIRASSOL","EMPORIO ALFREDO","SP"],[-23.50872,-46.48981,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.52309,-46.20695,0,"SHIBATA","MOGI DAS CRUZES","SHIBATA","SP"],[-23.54641,-46.25259,0,"SEMAR","MOGI DAS CRUZES","SEMAR","SP"],[-15.84267,-47.87617,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.83589,-47.83458,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.53154,-46.56481,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.01786,-45.5655,0,"SEMAR","TAUBATÉ","SEMAR","SP"],[-22.7981,-45.20675,0,"SEMAR","GUARATINGUETÁ","SEMAR","SP"],[-23.48943,-46.3643,0,"SHIBATA","ITAQUAQUECETUBA","SHIBATA","SP"],[-22.69318,-46.99128,0,"CUBATAO","JAGUARIÚNA","CUBATAO","SP"],[-23.54855,-46.79163,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.31579,-46.22492,0,"STYLLUS","SANTA ISABEL","STYLLUS","SP"],[-23.39701,-46.32901,0,"STYLLUS","ARUJÁ","STYLLUS","SP"],[-23.49499,-46.47088,0,"BARBOSA","SÃO PAULO","BARBOSA","SP"],[-22.67049,-43.28296,0,"CARREFOUR","DUQUE DE CAXIAS","CARREFOUR","RJ"],[-15.77466,-47.88759,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-15.75062,-47.89449,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-22.1158,-51.40833,0,"CARREFOUR","PRESIDENTE PRUDENTE","CARREFOUR","SP"],[-16.71099,-49.23324,0,"CARREFOUR","GOIÂNIA","CARREFOUR","GO"],[-16.70989,-49.29726,0,"CARREFOUR","GOIÂNIA","CARREFOUR","GO"],[-23.6124,-46.77694,0,"CARREFOUR","TABOÃO DA SERRA","CARREFOUR","SP"],[-22.72473,-47.67108,0,"CARREFOUR","PIRACICABA","CARREFOUR","SP"],[-22.94013,-43.05625,0,"GPA","NITERÓI","GPA","RJ"],[-23.65919,-46.77453,0,"LOPES","SÃO PAULO","LOPES","SP"],[-23.5512,-46.46415,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.31467,-46.7209,0,"ROSSI","FRANCO DA ROCHA","ROSSI","SP"],[-23.54075,-46.4693,0,"GPA","SÃO PAULO","GPA","SP"],[-22.98104,-43.22254,0,"GPA","RIO DE JANEIRO","GPA","RJ"],[-23.49807,-46.78832,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.49178,-46.54517,0,"DAVO","GUARULHOS","DAVO","SP"],[-23.51308,-46.54051,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.31258,-45.9795,0,"SHIBATA","JACAREÍ","SHIBATA","SP"],[-23.49081,-46.46384,0,"SHIBATA","SÃO PAULO","SHIBATA","SP"],[-23.63481,-46.658,0,"CASTELAO","SÃO PAULO","CASTELAO","SP"],[-23.62108,-45.42918,0,"SHIBATA","CARAGUATATUBA","SHIBATA","SP"],[-22.92967,-45.4582,0,"SHIBATA","PINDAMONHANGABA","SHIBATA","SP"],[-23.54255,-46.75227,0,"VERDE","SÃO PAULO","VERDE","SP"],[-22.70492,-46.77087,0,"GUARANI","AMPARO","GUARANI","SP"],[-22.42203,-47.5662,0,"SAVEGNAGO","RIO CLARO","SAVEGNAGO","SP"],[-21.76344,-48.16457,0,"SAVEGNAGO","ARARAQUARA","SAVEGNAGO","SP"],[-23.44927,-46.54897,0,"X SUPER","GUARULHOS","X SUPER","SP"],[-23.54472,-46.56886,0,"GPA","SÃO PAULO","GPA","SP"],[-23.4968,-46.34813,0,"DAVO","ITAQUAQUECETUBA","DAVO","SP"],[-23.5454,-46.38057,0,"SHIBATA","SÃO PAULO","SHIBATA","SP"],[-23.98496,-46.20116,0,"GPA","GUARUJÁ","GPA","SP"],[-23.53807,-46.77106,0,"CARREFOUR","OSASCO","CARREFOUR","SP"],[-23.69451,-46.70047,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-23.01719,-45.55129,0,"CARREFOUR","TAUBATÉ","CARREFOUR","SP"],[-24.01337,-46.41817,0,"CARREFOUR","PRAIA GRANDE","CARREFOUR","SP"],[-23.49422,-46.41312,0,"DAVO","SÃO PAULO","DAVO","SP"],[-23.19509,-47.3033,0,"SAO VICENTE","SALTO","SAO VICENTE","SP"],[-23.27724,-47.28116,0,"SAO VICENTE","ITU","SAO VICENTE","SP"],[-22.00507,-47.9051,0,"SAVEGNAGO","SÃO CARLOS","SAVEGNAGO","SP"],[-22.36078,-47.37747,0,"SAVEGNAGO","ARARAS","SAVEGNAGO","SP"],[-23.52694,-46.33091,0,"SHIBATA","POÁ","SHIBATA","SP"],[-15.81835,-47.91302,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.48142,-47.42047,0,"GPA","SOROCABA","GPA","SP"],[-23.5759,-46.61596,0,"GPA","SÃO PAULO","GPA","SP"],[-24.29913,-46.97151,0,"GPA","PERUÍBE","GPA","SP"],[-23.88702,-46.42045,0,"GPA","CUBATÃO","GPA","SP"],[-22.79555,-45.18192,0,"COLINAS","GUARATINGUETÁ","COLINAS","SP"],[-23.50023,-46.87764,0,"SAO VICENTE","BARUERI","SAO VICENTE","SP"],[-22.74764,-47.63843,0,"DELTA","PIRACICABA","DELTA","SP"],[-23.28199,-47.6744,0,"DELTA","BOITUVA","DELTA","SP"],[-23.96829,-46.37704,0,"GPA","SÃO VICENTE","GPA","SP"],[-23.58181,-46.79532,0,"ROSSI","OSASCO","ROSSI","SP"],[-23.30189,-45.9626,0,"SHIBATA","JACAREÍ","SHIBATA","SP"],[-22.83025,-47.26698,0,"SAVEGNAGO","SUMARÉ","SAVEGNAGO","SP"],[-21.13972,-47.99482,0,"SAVEGNAGO","SERTÃOZINHO","SAVEGNAGO","SP"],[-24.02664,-46.48044,0,"GPA","PRAIA GRANDE","GPA","SP"],[-23.16213,-47.73795,0,"DELTA","CERQUILHO","DELTA","SP"],[-23.02711,-45.60253,0,"SHIBATA","TAUBATÉ","SHIBATA","SP"],[-23.57337,-46.54127,0,"NEGREIROS","SÃO PAULO","NEGREIROS","SP"],[-23.66593,-46.69006,0,"GPA","SÃO PAULO","GPA","SP"],[-23.44928,-46.49915,0,"X SUPER","GUARULHOS","X SUPER","SP"],[-15.83216,-48.03985,0,"CARREFOUR","BRASÍLIA","CARREFOUR","DF"],[-23.6021,-46.63971,0,"GPA","SÃO PAULO","GPA","SP"],[-22.97784,-49.8861,0,"GPA","OURINHOS","GPA","SP"],[-23.00431,-45.55748,0,"REDE SINCO","TAUBATÉ","REDE SINCO","SP"],[-23.0155,-46.82627,0,"FLEX","ITATIBA","ASP-FLEX","SP"],[-23.51379,-46.18131,0,"ALABARCE","MOGI DAS CRUZES","ALABARCE","SP"],[-23.16534,-45.89592,0,"SHIBATA","SÃO JOSÉ DOS CAMPOS","SHIBATA","SP"],[-22.88997,-43.11559,0,"GUANABARA","NITERÓI","GUANABARA","RJ"],[-23.94758,-46.33542,0,"GPA","SANTOS","GPA","SP"],[-22.92219,-43.24931,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.00111,-43.33796,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.92014,-43.22745,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.61176,-46.74114,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.70398,-46.98689,0,"ANTONELLI","JAGUARIÚNA","ANTONELLI","SP"],[-23.48605,-46.64099,0,"GPA","SÃO PAULO","GPA","SP"],[-23.70392,-46.57695,0,"LOPES","SÃO BERNARDO DO CAMPO","LOPES","SP"],[-21.99322,-49.45674,0,"SERVETODOS","PIRAJUÍ","SERVETODOS","SP"],[-22.21805,-49.65062,0,"SERVETODOS","GARÇA","SERVETODOS","SP"],[-22.73515,-47.64953,0,"SAVEGNAGO","PIRACICABA","SAVEGNAGO","SP"],[-22.18239,-47.39462,0,"SAVEGNAGO","LEME","SAVEGNAGO","SP"],[-23.62722,-46.6761,0,"GPA","SÃO PAULO","GPA","SP"],[-22.72684,-47.6383,0,"GPA","PIRACICABA","GPA","SP"],[-23.64941,-46.75742,0,"GPA","SÃO PAULO","GPA","SP"],[-22.43913,-46.81547,0,"CUBATAO","ITAPIRA","CUBATAO","SP"],[-23.59573,-46.62224,0,"COMERCIAL TATENO","SÃO PAULO","COMERCIAL TATENO","SP"],[-20.56785,-47.39217,0,"SAVEGNAGO","FRANCA","SAVEGNAGO","SP"],[-21.60158,-48.36185,0,"SAVEGNAGO","MATÃO","SAVEGNAGO","SP"],[-22.88209,-47.19735,0,"GOODBOM","HORTOLÂNDIA","GOODBOM","SP"],[-22.83201,-43.32909,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.83294,-47.16479,0,"GOODBOM","SUMARÉ","GOODBOM","SP"],[-23.59598,-46.43443,0,"ROSSI","SÃO PAULO","ROSSI","SP"],[-22.88986,-47.05884,0,"SAVEGNAGO","CAMPINAS","SAVEGNAGO","SP"],[-22.86076,-43.25344,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.88178,-43.33904,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.89585,-43.56342,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.89821,-43.29518,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.53581,-46.76742,0,"ATACADAO","OSASCO","ATACADAO","SP"],[-22.91382,-43.37432,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.03707,-45.56016,0,"GPA","TAUBATÉ","GPA","SP"],[-23.71252,-46.41183,0,"GPA","RIBEIRÃO PRETO","GPA","SP"],[-22.82635,-43.0153,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.86471,-43.29401,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.92788,-43.67789,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87624,-43.37133,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-23.43692,-45.09049,0,"SHIBATA","UBATUBA","SHIBATA","SP"],[-22.88646,-43.30872,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.84132,-43.28065,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87843,-43.42817,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.87423,-43.46464,0,"GUANABARA","RIO DE JANEIRO","GUANABARA","RJ"],[-22.76187,-43.44605,0,"GUANABARA","NOVA IGUACU","GUANABARA","RJ"],[-23.65921,-46.5017,0,"ATACADAO","SANTO ANDRÉ","ATACADAO","SP"],[-22.81529,-47.24328,0,"SAO VICENTE","SUMARÉ","SAO VICENTE","SP"],[-23.51618,-46.67002,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.50152,-46.83421,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.47523,-46.5272,0,"ATACADAO","GUARULHOS","ATACADAO","SP"],[-23.72686,-46.69802,0,"DAVO","SÃO PAULO","DAVO","SP"],[-22.86984,-43.78211,0,"GUANABARA","ITAGUAÍ","GUANABARA","RJ"],[-23.53622,-46.58199,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.69864,-46.56544,0,"BARBOSA","SÃO BERNARDO DO CAMPO","BARBOSA","SP"],[-23.98263,-46.26444,0,"ATACADAO","GUARUJÁ","ATACADAO","SP"],[-23.65562,-46.47263,0,"ATACADAO","","ATACADAO","SP"],[-23.45633,-46.5163,0,"X SUPER","","X SUPER","SP"],[-23.47523,-46.5272,0,"ATACADAO","GUARULHOS","ATACADAO","SP"],[-23.53581,-46.76742,0,"ATACADAO","OSASCO","ATACADAO","SP"],[-23.52752,-46.90479,0,"BARBOSA","JANDIRA","BARBOSA","SP"],[-23.72268,-46.54682,0,"ATACADAO","SÃO BERNARDO DO CAMPO","ATACADAO","SP"],[-23.96948,-46.32463,0,"CARREFOUR","SANTOS","CARREFOUR","SP"],[-22.89219,-47.02373,0,"CARREFOUR","CAMPINAS","CARREFOUR","SP"],[-22.1158,-51.40833,0,"CARREFOUR","PRESIDENTE PRUDENTE","CARREFOUR","SP"],[-23.65008,-46.73322,0,"AYUMI","","AYUMI","SP"],[-23.5062,-46.78871,0,"DAVO","","DAVO","SP"],[-23.56496,-46.50379,0,"X SUPER","","X SUPER","SP"],[-23.63407,-46.71747,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.46302,-46.66134,0,"GIGA","SÃO PAULO","GIGA","SP"],[-23.54255,-46.75227,0,"VERDE","SÃO PAULO","VERDE","SP"],[-23.57277,-46.69559,0,"CARREFOUR","SÃO PAULO","CARREFOUR","SP"],[-22.80094,-47.19322,0,"GOODBOM","SUMARÉ","GOODBOM","SP"],[-22.945,-47.3122,0,"GOODBOM","MONTE MOR","GOODBOM","SP"],[-23.56337,-46.61218,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.62912,-46.64502,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.52211,-46.65821,0,"ATACADAO","SÃO PAULO","ATACADAO","SP"],[-23.54675,-46.60616,0,"X SUPER","","X SUPER","SP"]];
+/* ============ DATA ============ */
+const BANDS_BASE=[
+ {id:"P1",lab:"P1",full:"P1 · High value + online history",n:66397,c:"var(--b1)",lift:6.41,liftT:"6.41×",
+  prof:"High-tier customers who have bought online before. Highest frequency and value, so they go first. The message is win-back, not welcome: they already hit friction once.",
+  stats:[["Mean purchases","22.8"],["Lift","6.41×"],["Recency","~26 days"],["Tier","Ouro / Gran Reserva / Black"]]},
+ {id:"MW",lab:"M-WARM",full:"M-WARM · Marketplace-warm",n:24678,c:"var(--mw)",lift:5.13,liftT:"5.13×",
+  prof:"High-value customers who already buy Swift through a marketplace rather than direct. Already registered with us, so reachable. Counted as a separate reachable band, not as omni.",
+  stats:[["Conversion lift","5.13×"],["Size","24,678"],["Signal","Físico + marketplace"],["Use","nudge to buy direct"]]},
+ {id:"P2",lab:"P2",full:"P2 · High value, no online yet",n:861629,c:"var(--b2)",lift:1.0,liftT:"~1.0×",
+  prof:"High-tier and physical-only. The single biggest conversion opportunity by volume, which is why we split it by readiness rather than treating it as one block.",
+  stats:[["Mean purchases","18.0"],["Recency","~25 days"],["Tier","High, no online"],["Size","861,629"]]},
+ {id:"P3",lab:"P3",full:"P3 · Mass base",n:1610526,c:"var(--b3)",lift:0.74,liftT:"0.74×",
+  prof:"Bronze and Prata mass base. Low frequency and long recency, so reach them only through low-cost broad channels. Staples dominate; churrasco is secondary.",
+  stats:[["Mean purchases","4.3"],["Recency","~169 days"],["Tier","Bronze / Prata"],["Size","1,610,526"]]}
+];
+const P2SPLIT=[
+ {id:"P2R",lab:"P2-Ready",full:"P2-Ready · multi-store shoppers",n:368506,c:"var(--b2)",lift:1.21,liftT:"1.21×",
+  prof:"Physical-only high-tier customers who already shop across two or more stores, a validated readiness signal (1.62× headline, survives frequency control). About 17.7% of converters.",
+  stats:[["Conversion lift","1.21×"],["Size","368,506"],["Signal","≥2 stores"],["Use","priority P2 list"]]},
+ {id:"P2C",lab:"P2-Cold",full:"P2-Cold · single-store",n:493123,c:"var(--b3)",lift:0.94,liftT:"0.94×",
+  prof:"High-tier but single-store, with no online readiness signal. Lower expected conversion, so nurture rather than push.",
+  stats:[["Conversion lift","0.94×"],["Size","493,123"],["Signal","1 store"],["Use","nurture / later"]]}
+];
+const AXES=[["VALUE",.31],["ENGAGEMENT",.22],["READINESS",.22],["MOMENTUM",.13],["AGE",.12]];
+const PERSONAS=[
+ {id:"pratico",name:"Prático",rank:1,head:"Less Time Shopping. More Time for Everything Else.",
+  msg:["Busy weeks deserve easier shopping.","Whether you're restocking everyday essentials or planning the week ahead, shopping online lets you get what you need without another unnecessary trip to the store. If a Swift store is nearby, choose Click &amp; Collect for an even more convenient experience.","Make shopping one less thing to worry about."],
+  cta:"Shop Smarter Today",why:"Convenience-driven staples buyers. The highest online conversion potential of any persona, so they carry the greatest marketing emphasis.",
+  met:[["Priority","Tier 1"],["Lead mechanic","Click &amp; Collect"],["Basket","Dia-a-dia staples"]]},
+ {id:"saude",name:"Saúde",rank:2,head:"Leaner Choices. Smarter Shopping. Easier Planning.",
+  msg:["Healthy eating starts with healthier shopping.","Build your basket with fresh everyday choices while spending less time shopping and more time caring for yourself and your family.","Planning healthy meals has never been easier."],
+  cta:"Build Your Healthy Basket Today",why:"Health-conscious planners. Second-highest conversion potential, and planning behaviour maps naturally onto online ordering.",
+  met:[["Priority","Tier 1"],["Lead mechanic","Planned basket"],["Basket","Lean proteins, fresh"]]},
+ {id:"chef",name:"Chef",rank:3,head:"New Cuts. New Ideas. Your Next Great Dish Starts Here.",
+  msg:["Love discovering new ingredients?","Explore premium cuts and exciting new products for your next recipe. Shopping online gives you more inspiration and more choices, all in one place.","Turn everyday cooking into something worth sharing."],
+  cta:"Discover More Online",why:"Exploration-driven cooks. Online wins here on range, not on speed: the full assortment is the value proposition.",
+  met:[["Priority","Tier 2"],["Lead mechanic","Range and discovery"],["Basket","Premium, varied cuts"]]},
+ {id:"anti",name:"Anti-Cozinheiro",rank:4,head:"Good Food, Without Making Cooking a Project.",
+  msg:["Some days you just want a good meal without spending hours planning and shopping.","Use CHEGUEI20 on your first online purchase and make grocery shopping one of the easiest parts of your day."],
+  cta:"Order in Just a Few Clicks",why:"Low-effort buyers. Simplicity is the entire pitch, so the message stays short and the path to checkout stays shorter.",
+  met:[["Priority","Tier 2"],["Lead mechanic","Speed and simplicity"],["Basket","Ready and easy"]]},
+ {id:"premium",name:"Churrasco Premium",rank:5,head:"Make the Next Churrasco One They Will Remember.",
+  msg:["Planning a special barbecue?","Choose premium cuts for your next gathering and enjoy R$20 off your first online purchase with CHEGUEI20.","Because memorable celebrations start with exceptional ingredients."],
+  cta:"Explore Premium Selections",why:"Occasion-driven premium buyers. Lower conversion readiness than the everyday personas, so the incentive has to work harder.",
+  met:[["Priority","Tier 3"],["Lead mechanic","Occasion planning"],["Basket","Premium churrasco"]]},
+ {id:"trad",name:"Churrasco Tradicional",rank:6,head:"Your Classic Churrasco Favorites, All in One Place.",
+  msg:["Weekend barbecue coming up?","Get everyone's favorites together with your first online purchase and enjoy R$20 off using CHEGUEI20.","Everything you need for the churrasco everyone has been waiting for."],
+  cta:"Start Planning Your Next Churrasco",why:"Traditional weekend barbecue buyers. Lowest readiness of the six: needs stronger incentives or an improved experience before conversion comparable to Tier 1.",
+  met:[["Priority","Tier 3"],["Lead mechanic","Weekend bundle"],["Basket","Classic churrasco"]]}
+];
+const OFFER="🎉 Use <b>CHEGUEI20</b> and enjoy R$20 off orders over R$149 on your first online purchase.";
+const SEGDATA={
+ all:{pen:"2.87%",sub:"Jun 2026 · 80,281 omni customers",gap:"87,674",fill:2.87},
+ fisico:{pen:"90.7%",sub:"2,538,000 físico-only customers · the pool we prioritise",gap:"87,674",fill:2.87},
+ online:{pen:"6.4%",sub:"~179,000 online-only customers · already digital, never in store",gap:"87,674",fill:2.87},
+ omni:{pen:"2.9%",sub:"80,281 omni customers · buy both channels in 12 months",gap:"87,674",fill:2.87}
+};
+const THEME_L=['Delivery delay','App / website','Delivery quality','Missing / wrong item','Payment / billing','Stock / availability','Positive / praise','Product quality','Store experience','Customer service','Pricing'];
+const THEME_LF=[1.1,1.7,0.6,1.0,4.7,12.0,38.3,4.8,2.9,10.3,21.8];
+const THEME_LO=[15.2,21.5,9.8,2.9,5.9,12.2,37.7,3.8,0.7,5.8,8.6];
+const DET_L=['Delivery delay','App / website','Delivery quality','Missing / wrong item','Stock / availability','Positive / praise','Payment / billing','Store experience','Customer service','Product quality','Pricing'];
+const DET_LF=[4.4,4.6,1.9,1.2,19.0,29.6,13.2,5.4,18.8,24.0,24.9];
+const DET_LO=[38.5,20.8,15.0,6.5,18.7,27.6,10.4,1.3,13.0,8.3,6.3];
+const MOD_L=['Click & collect','Express (3-5h)','Next day','Scheduled','Weekend/Monday','2-Day'];
+const MOD_NPS=[57.3,48.6,45.5,42.3,41.1,33.8];
+const MOD_DET=[14.6,19.0,19.7,20.5,22.8,20.9];
+
+/* ============ NAV + REVEAL ============ */
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
-// mobile menu (simple scroll to sections list)
-document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('summary').scrollIntoView({behavior:'smooth'})});
-// reveal on scroll
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const secs=[...document.querySelectorAll('section[id],header[id]')];
+const navA=[...document.querySelectorAll('.nav-links a')];
+const rail=[...document.querySelectorAll('.rail .step')];
+addEventListener('scroll',()=>{
+  let cur=secs[0]?.id;
+  for(const s of secs){if(s.getBoundingClientRect().top<=200)cur=s.id}
+  navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+  const order=['who','what','how','where','proof'];const i=order.indexOf(cur);
+  rail.forEach((r,k)=>r.classList.toggle('on',i<0?k===0:k===i));
+});
 
-// ---------- CHARTS ----------
-const INK='#14100E',RED='#B01B1B',EMBER='#D9793A',GOLD='#C79A44',SAGE='#3E6B57',MUTED='#8a7d70',LINE='#E7DDD0';
-Chart.defaults.font.family="'Inter',sans-serif";
-Chart.defaults.color=MUTED;
-Chart.defaults.font.size=12;
-
-function whenVisible(id,fn){
-  const el=document.getElementById(id);
-  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){fn();o.disconnect()}})},{threshold:.25});
-  o.observe(el);
+/* ============ GLOBAL FILTERS ============ */
+let SEG='all',REG='all';
+function bindSeg(id,fn){
+  document.getElementById(id).addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    [...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(b.dataset);
+  });
+}
+bindSeg('segFilter',d=>{SEG=d.seg;applySeg()});
+bindSeg('regFilter',d=>{REG=d.reg;applyReg()});
+function applySeg(){
+  const s=SEGDATA[SEG];
+  document.getElementById('penNow').textContent=s.pen;
+  document.getElementById('penSub').textContent=s.sub;
+  document.getElementById('gapNum').textContent=s.gap;
+  document.getElementById('penLbl').textContent=s.pen;
+  document.getElementById('penFill').style.width=(s.fill/6*48)+'%';
+}
+function applyReg(){
+  drawMap();
+  const note=document.getElementById('mapFilterNote');
+  if(REG==='all'){note.style.display='none'}
+  else{note.style.display='inline-flex';note.innerHTML='Filtered to <b style="margin:0 4px">'+REG+'</b> · '+STORES.filter(s=>s[6]===REG).length+' stores shown';}
+  const v={all:'all',SP:'sp_metro',RJ:'rj',DF:'all'}[REG];
+  const btn=document.querySelector(`#mapZoom button[data-v="${v}"]`);
+  if(btn){[...btn.parentNode.children].forEach(x=>x.classList.remove('on'));btn.classList.add('on');zoomTo(v)}
 }
 
-// Penetration flat line
-whenVisible('penChart',()=>{
-  const labels=['May 24','Aug 24','Nov 24','Feb 25','May 25','Aug 25','Nov 25','Feb 26','May 26'];
-  const data=[2.78,2.81,2.85,2.83,2.88,2.90,2.86,2.91,2.94];
-  new Chart(penChart,{type:'line',data:{labels,datasets:[
-    {label:'Omnichannel penetration',data,borderColor:RED,backgroundColor:'rgba(176,27,27,.08)',borderWidth:2.5,fill:true,tension:.35,pointRadius:3,pointBackgroundColor:RED},
-    {label:'6% target',data:labels.map(()=>6),borderColor:SAGE,borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}}},
-    scales:{y:{min:0,max:7,ticks:{callback:v=>v+'%'},grid:{color:LINE}},x:{grid:{display:false}}}}});
-});
+/* ============ WHO: LADDER ============ */
+let SPLIT=true,ACTIVE='P1';
+function bands(){return SPLIT?[BANDS_BASE[0],BANDS_BASE[1],...P2SPLIT,BANDS_BASE[3]]:BANDS_BASE}
+function fmt(n){return n.toLocaleString('en-US')}
+function drawLadder(){
+  const bs=bands(),max=Math.max(...bs.map(b=>b.n));
+  document.getElementById('ladder').innerHTML=bs.map(b=>`
+    <button class="brow ${b.id===ACTIVE?'on':''}" data-b="${b.id}">
+      <span class="tag" style="background:${b.c}">${b.lab}</span>
+      <span class="barwrap"><span class="bar" style="width:${b.n/max*100}%;background:${b.c};opacity:.28"></span><span class="barlbl">${fmt(b.n)} customers</span></span>
+      <span class="lift" style="color:${b.lift>=3?'var(--red)':'var(--ink-soft)'}">${b.liftT}</span>
+    </button>`).join('');
+  document.querySelectorAll('.brow').forEach(el=>el.onclick=()=>{ACTIVE=el.dataset.b;drawLadder();drawPanel()});
+}
+function drawPanel(){
+  const b=bands().find(x=>x.id===ACTIVE)||bands()[0];
+  document.getElementById('bandPanel').innerHTML=`
+    <div class="bp-head"><span class="pill2" style="background:${b.c}">${b.lab}</span><h4>${b.full}</h4></div>
+    <p>${b.prof}</p>
+    <div class="bp-stats">${b.stats.map(s=>`<div class="st"><div class="k">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>`;
+}
+document.getElementById('splitToggle').onclick=function(){
+  SPLIT=!SPLIT;this.classList.toggle('on',SPLIT);
+  if(!SPLIT&&(ACTIVE==='P2R'||ACTIVE==='P2C'))ACTIVE='P2';
+  if(SPLIT&&ACTIVE==='P2')ACTIVE='P2R';
+  drawLadder();drawPanel();if(liftC)updateLift();
+};
+document.getElementById('axesBox').innerHTML=AXES.map(a=>`
+  <div class="axis"><span class="n">${a[0]}</span><span class="track"><span class="fill" style="width:${a[1]/.31*100}%"></span></span><span class="w">${a[1].toFixed(2)}</span></div>`).join('');
 
-// Value gap grouped bar
-whenVisible('gapChart',()=>{
-  new Chart(gapChart,{type:'bar',data:{labels:['Monthly spend (R$)','Visits / month','Margin / receipt (idx)'],
-    datasets:[
-      {label:'Physical-only',data:[29.21,2,100],backgroundColor:'#d9c9b6',borderRadius:6},
-      {label:'Omnichannel',data:[100.78,6,160],backgroundColor:RED,borderRadius:6}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},
-      tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw}}},
-      scales:{y:{grid:{color:LINE},title:{display:true,text:'indexed / actual value'}},x:{grid:{display:false}}}}});
-});
+/* ============ WHAT: PERSONAS ============ */
+let PA='pratico';
+function drawP(){
+  document.getElementById('ptabs').innerHTML=PERSONAS.map(p=>
+    `<button class="ptab ${p.id===PA?'on':''}" data-p="${p.id}"><span class="rank">${p.rank}</span>${p.name}</button>`).join('');
+  document.querySelectorAll('.ptab').forEach(el=>el.onclick=()=>{PA=el.dataset.p;drawP()});
+  const p=PERSONAS.find(x=>x.id===PA);
+  document.getElementById('pcard').innerHTML=`
+    <div class="left">
+      <div class="plabel">Persona ${p.rank} · ${p.name}</div>
+      <h3>${p.head}</h3>
+      <div class="msg">${p.msg.map(m=>`<p>${m}</p>`).join('')}</div>
+      <div class="offer">${OFFER}</div>
+      <div><span class="cta">${p.cta} →</span></div>
+    </div>
+    <div class="right">
+      <div class="rl">Why this message</div>
+      <div class="why">${p.why}</div>
+      <div class="metrics">${p.met.map(m=>`<div class="met"><div class="k">${m[0]}</div><div class="v">${m[1]}</div></div>`).join('')}</div>
+    </div>`;
+}
 
-// NPS by channel horizontal bar
-whenVisible('npsChart',()=>{
-  new Chart(npsChart,{type:'bar',data:{labels:['QR Code','Retail (LNV)','Trucks (LM)','Physical (LF)','Online (LO)'],
-    datasets:[{label:'Net Promoter Score',data:[98.5,96.5,89.2,86.8,77.1],
-      backgroundColor:['#3E6B57','#5b8a72','#C79A44','#D9793A','#B01B1B'],borderRadius:6}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>'NPS +'+c.raw}}},
-      scales:{x:{min:60,max:100,grid:{color:LINE}},y:{grid:{display:false}}}}});
-});
-
-// Product ZVEC share
-whenVisible('prodChart',()=>{
-  new Chart(prodChart,{type:'bar',data:{labels:['Poultry','Fruits & Veg','Pork','Seafood','Beef'],
-    datasets:[{label:'ZVEC online revenue share',data:[5.76,5.21,5.18,4.95,4.43],
-      backgroundColor:['#B01B1B','#c34a2f','#D9793A','#d99a5a','#d9c9b6'],borderRadius:6}]},
+/* ============ CHARTS ============ */
+Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.color='#8a7d70';Chart.defaults.font.size=11;
+const LINE='#E7DDD0',DLINE='rgba(255,255,255,.12)',DTICK='#8fa3ba';
+let liftC=null;
+function onView(id,fn){const el=document.getElementById(id);if(!el)return;
+  const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){fn();o.disconnect()}}),{threshold:.2});o.observe(el)}
+function updateLift(){
+  const bs=bands();
+  liftC.data.labels=bs.map(b=>b.lab);
+  liftC.data.datasets[0].data=bs.map(b=>b.lift);
+  liftC.data.datasets[0].backgroundColor=bs.map(b=>b.lift>=3?'#B01B1B':b.lift>=1?'#D9793A':'#d9c9b6');
+  liftC.update();
+}
+onView('liftChart',()=>{
+  const bs=bands();
+  liftC=new Chart(liftChart,{type:'bar',data:{labels:bs.map(b=>b.lab),datasets:[{label:'Lift vs base',data:bs.map(b=>b.lift),
+    backgroundColor:bs.map(b=>b.lift>=3?'#B01B1B':b.lift>=1?'#D9793A':'#d9c9b6'),borderRadius:6}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>c.raw+'% online share'}}},
-      scales:{y:{min:4,max:6,ticks:{callback:v=>v+'%'},grid:{color:LINE}},x:{grid:{display:false}}}}});
+      tooltip:{callbacks:{label:c=>c.raw+'× the 0.16% base rate'}}},
+      scales:{y:{grid:{color:LINE},ticks:{callback:v=>v+'×'},title:{display:true,text:'lift vs base rate'}},x:{grid:{display:false}}}}});
+});
+function hbar(ctx,labels,lf,lo){
+  return new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'Physical',data:lf,backgroundColor:'#2a78d6',borderRadius:4,barPercentage:.72,categoryPercentage:.8},
+    {label:'Online',data:lo,backgroundColor:'#e34948',borderRadius:4,barPercentage:.72,categoryPercentage:.8}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,usePointStyle:true,color:DTICK}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
+      scales:{x:{grid:{color:DLINE},ticks:{color:DTICK,callback:v=>v+'%'}},y:{grid:{display:false},ticks:{color:DTICK,font:{size:11}}}}}});
+}
+onView('themeChart',()=>hbar(themeChart,THEME_L,THEME_LF,THEME_LO));
+onView('detChart',()=>hbar(detChart,DET_L,DET_LF,DET_LO));
+onView('modChart',()=>{
+  new Chart(modChart,{type:'bar',data:{labels:MOD_L,datasets:[
+    {label:'NPS',data:MOD_NPS,backgroundColor:'#1baf7a',borderRadius:5,barPercentage:.62,categoryPercentage:.75,yAxisID:'y'},
+    {label:'Detractor %',data:MOD_DET,backgroundColor:'#e34948',borderRadius:5,barPercentage:.62,categoryPercentage:.75,yAxisID:'y2'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,usePointStyle:true,color:DTICK}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.dataset.label==='NPS'?'+':'')+c.raw.toFixed(1)+(c.dataset.label==='NPS'?'':'%')}}},
+      scales:{x:{grid:{display:false},ticks:{color:DTICK,font:{size:10}}},
+        y:{position:'left',grid:{color:DLINE},ticks:{color:'#1baf7a',callback:v=>'+'+v},min:0,max:70},
+        y2:{position:'right',grid:{display:false},ticks:{color:'#e34948',callback:v=>v+'%'},min:0,max:35}}}});
 });
 
-// Seasonality
-whenVisible('seasonChart',()=>{
-  const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const s=[72,68,66,63,60,58.5,61,64,68,74,81,89.6];
-  new Chart(seasonChart,{type:'line',data:{labels:m,datasets:[
-    {label:'Avg net store sales (R$M)',data:s,borderColor:EMBER,backgroundColor:'rgba(217,121,58,.12)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2.5,pointBackgroundColor:EMBER}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-    tooltip:{callbacks:{label:c=>'R$'+c.raw+'M'}}},
-    scales:{y:{grid:{color:LINE},ticks:{callback:v=>'R$'+v+'M'}},x:{grid:{display:false}}}}});
-});
+/* ============ WHERE: MAP ============ */
+const VIEWS={all:{c:[-22.5,-46.5],z:6},sp_metro:{c:[-23.55,-46.63],z:10},sp_capital:{c:[-23.56,-46.65],z:12},rj:{c:[-22.9,-43.2],z:10}};
+let map=null,layerL=null,layerS=null,layerR=null;
+function initMap(){
+  map=L.map('map',{scrollWheelZoom:false}).setView(VIEWS.all.c,VIEWS.all.z);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
+  drawMap();
+}
+function drawMap(){
+  if(!map)return;
+  [layerL,layerS,layerR].forEach(l=>{if(l)map.removeLayer(l)});
+  const set=REG==='all'?STORES:STORES.filter(s=>s[6]===REG);
+  const lojas=set.filter(s=>s[2]===1),sws=set.filter(s=>s[2]===0);
+  const mk=(arr,col)=>L.layerGroup(arr.map(s=>L.circleMarker([s[0],s[1]],
+    {radius:4,color:col,weight:1,fillColor:col,fillOpacity:.62})
+    .bindPopup(`<b>${s[3]}</b><br>${s[4]} · ${s[6]}<br><span style="color:${col};font-weight:600">${s[2]===1?'LOJAS · O2O enabled':'SWS · not O2O'}</span>`)));
+  layerL=mk(lojas,'#2a78d6');layerS=mk(sws,'#e34948');
+  layerR=L.layerGroup(lojas.map(s=>L.circle([s[0],s[1]],{radius:5000,color:'#2a78d6',weight:1,opacity:.22,fillColor:'#2a78d6',fillOpacity:.05})));
+  if(document.getElementById('showLojas').checked)layerL.addTo(map);
+  if(document.getElementById('showSWS').checked)layerS.addTo(map);
+  if(document.getElementById('showRadius').checked)layerR.addTo(map);
+  const t=set.length,cov=t?(lojas.length/t*100).toFixed(1):'0.0';
+  document.getElementById('msTotal').textContent=t;
+  document.getElementById('msSplit').textContent=`${lojas.length} LOJAS + ${sws.length} SWS`;
+  document.getElementById('msCov').textContent=cov+'%';
+}
+function zoomTo(v){if(map&&VIEWS[v])map.setView(VIEWS[v].c,VIEWS[v].z)}
+['showLojas','showSWS','showRadius'].forEach(id=>document.getElementById(id).addEventListener('change',drawMap));
+bindSeg('mapZoom',d=>zoomTo(d.v));
+onView('map',initMap);
 
-// Reach doughnut
-whenVisible('reachChart',()=>{
-  new Chart(reachChart,{type:'doughnut',data:{labels:['Email 59%','WhatsApp 26%','SMS 13%','Other 2%'],
-    datasets:[{data:[59,26,13,2],backgroundColor:[RED,EMBER,GOLD,'#d9c9b6'],borderColor:'#fff',borderWidth:2}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{boxWidth:12,usePointStyle:true}},
-      tooltip:{callbacks:{label:c=>c.label}}}}});
-});
+/* ============ INIT ============ */
+drawLadder();drawPanel();drawP();applySeg();
+setTimeout(()=>{document.getElementById('penFill').style.width=(2.87/6*48)+'%'},350);
 </script>
 </body>
 </html>
