@@ -399,7 +399,7 @@ ol.steps li b{color:var(--ink)}
 .axrow{display:grid;grid-template-columns:104px 1fr 42px;gap:11px;align-items:center;margin-bottom:9px}
 .axrow .an{font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--ink-2)}
 .axrow .at{height:7px;background:var(--bg-3);border-radius:4px;overflow:hidden}
-.axrow .af{height:100%;background:var(--navy-3);border-radius:4px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.axrow .af{display:block;height:100%;background:var(--navy-3);border-radius:4px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
 .axrow .aw{font-size:13.5px;font-weight:600;text-align:right;color:var(--navy)}
 
 /* persona */
@@ -817,10 +817,10 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 
   <div class="g g2">
     <div class="panel">
-      <div class="panel-h"><h3>The score</h3><span class="sub">Five orthogonal axes, max pairwise correlation 0.52</span></div>
+      <div class="panel-h"><h3>The score</h3><span class="sub">Weights sum to 100% · max pairwise correlation 0.52</span></div>
       <div class="panel-b">
         <div id="axes"></div>
-        <p class="note"><b>AGE</b> was added at sponsor request (weight 0.12). It is independent of the other four (correlation ≤ 0.08) and improves top-decile lift from 2.66× to <b>2.75×</b>. Usable for about 60% of customers; missing values default to neutral, which is also why its weight stays modest.</p>
+        <p class="note"><b>AGE</b> was added at sponsor request with a 12% weight. It is independent of the other four (correlation ≤ 0.08) and improves top-decile lift from 2.66× to <b>2.75×</b>. Usable for about 60% of customers; missing values default to neutral, which is also why its weight stays modest.</p>
       </div>
     </div>
     <div class="panel">
@@ -1816,9 +1816,9 @@ pills('fSplit',v=>{wSplit=v;
   if(v==='split'&&wActive==='P2')wActive='P2R';drawWho()});
 pills('fBand',v=>{wBand=v;drawWho()});
 pills('fSort',v=>{wSort=v;drawWho()});
-$('axes').innerHTML=AXES.map(a=>`<div class="axrow"><span class="an">${a[0]}</span>
-  <span class="at"><span class="af" style="width:${a[1]/.31*100}%"></span></span>
-  <span class="aw num">${a[1].toFixed(2)}</span></div>`).join('');
+$('axes').innerHTML=AXES.map(a=>{const pct=Math.round(a[1]*100);return `<div class="axrow"><span class="an">${a[0]}</span>
+  <span class="at" role="progressbar" aria-label="${a[0]} weight" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><span class="af" style="width:${pct}%"></span></span>
+  <span class="aw num">${pct}%</span></div>`}).join('');
 
 /* ================= WHAT ================= */
 let pTier='all',pBasket='all',pActive='pratico';
