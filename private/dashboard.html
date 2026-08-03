@@ -797,7 +797,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   <div class="g g4" style="margin-bottom:14px">
     <div class="metric"><div class="k">Bands shown</div><div class="v num" id="whoKB">5</div><div class="s">of 5 total</div></div>
     <div class="metric"><div class="k">Customers covered</div><div class="v num" id="whoKC">2.56M</div><div class="s" id="whoKCs">100% of scored base</div></div>
-    <div class="metric"><div class="k">Weighted avg lift</div><div class="v num" id="whoKL">1.00×</div><div class="s">vs 0.16% base rate</div></div>
+    <div class="metric"><div class="k">P2 readiness advantage</div><div class="v num">1.29×</div><div class="s">P2-Ready vs P2-Cold conversion rate</div></div>
     <div class="metric"><div class="k">P1+P2 converter capture</div><div class="v num teal">53.7%</div><div class="s">of all real converters</div></div>
   </div>
 
@@ -1805,11 +1805,9 @@ function drawWho(){
       <div class="stats">${sel.stats.map(s=>`<div class="st"><div class="k">${s[0]}</div><div class="v num">${s[1]}</div></div>`).join('')}</div>
     </div>`:'';
   const cov=rows.reduce((s,b)=>s+b.n,0);
-  const wl=cov?rows.reduce((s,b)=>s+b.lift*b.n,0)/cov:0;
   $('whoKB').textContent=rows.length;
   $('whoKC').textContent=abbr(cov);
   $('whoKCs').textContent=(cov/total*100).toFixed(1)+'% of scored base';
-  $('whoKL').textContent=wl.toFixed(2)+'×';
   $('whoCount').innerHTML=`Showing <b>${rows.length}</b> of ${wSplit==='split'?5:4} bands · <b>${abbr(cov)}</b> customers`;
   if(CH.whoLift)updWhoCharts(rows);
 }
