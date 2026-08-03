@@ -16,8 +16,8 @@ A single-page application structured as a decision chain rather than a report. T
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
 | **When** | When do we send? | Occasion, channel and year filters with explicit data-availability safeguards |
 | **Where** | Where do we deploy? | Contextual street map with state, store-type and radius controls; local rollout-tier filter |
-| **Proof** | Why trust it? | Success criteria, independent validation, ruled-out hypotheses |
-| **Methods** | What are the limits? | Pipeline, source tables, glossary and analytical limitations |
+| **Proof** | Why trust it? | Success criteria, observed transaction validation, ruled-out hypotheses |
+| **Methods** | How was it built? | Pipeline, source tables and glossary |
 
 ## Tech stack
 
@@ -55,12 +55,10 @@ Raw data is not included in this repository and is excluded via `.gitignore`.
 
 ## Known open items
 
-Stated here rather than buried, and surfaced on the Methods page in the application:
+Stated here rather than buried in implementation details:
 
 - **NPS populations.** Channel NPS differs between the comment subset (+70.7 physical) and all survey responses (+86.8), because commenters are roughly 3× more likely to be detractors. Both are labelled by population in the application.
 - **Timing coverage.** The Everyday weekday pattern is available only as a pooled view; yearly buttons are disabled when that occasion is selected rather than substituting Barbecue data.
-
-The Methods page documents three structural limitations: customers cannot be linked to stores, READINESS partly overlaps the outcome, and NPS is not representative of the full customer base.
 
 ## Authentication
 

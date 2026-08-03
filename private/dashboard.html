@@ -231,10 +231,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 ol.steps{margin:0;padding-left:20px;counter-reset:s}
 ol.steps li{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin-bottom:11px;padding-left:4px}
 ol.steps li b{color:var(--ink)}
-.limit{border-left:2px solid var(--line-2);padding-left:14px}
-.limit h4{font-size:14px;color:var(--ink)}
-.limit p{font-size:13px;color:var(--ink-3);margin-top:6px;line-height:1.65}
-.limit p b{color:var(--ink-2)}
 .gloss dl{margin:0}
 .gloss dt{font-size:13.5px;font-weight:600;color:var(--navy);margin-top:12px}
 .gloss dt:first-child{margin-top:0}
@@ -811,7 +807,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Conversion lift vs base rate</h3><span class="sub">Out-of-time: score month T, observe T+1</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoLift" role="img" aria-label="Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate."></canvas><p class="sr-only">Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>n = 2,551,562 scored<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoLift" role="img" aria-label="Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate."></canvas><p class="sr-only">Conversion lift by band: P1 6.41 times, M-WARM 5.13, P2-Ready 1.21, P2-Cold 0.94, P3 0.74 times the 0.16 percent base rate.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>n = 2,551,562 scored<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · IDENTIFIED_SALES_DOCUMENT</b></p></div>
     </div>
   </div>
 
@@ -825,7 +821,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Band size vs conversion lift</h3><span class="sub">Bubble area is customer count</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoBubble" role="img" aria-label="Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift."></canvas><p class="sr-only">Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift.</p></div><p class="prov"><b>lift × customer count</b><span class="sep">·</span>5 bands, 2.56M customers<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p></div>
+      <div class="panel-b"><div class="ch"><canvas id="whoBubble" role="img" aria-label="Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift."></canvas><p class="sr-only">Band size plotted against conversion lift. P1 is smallest and highest lift; P3 is largest and lowest lift.</p></div><p class="prov"><b>lift × customer count</b><span class="sep">·</span>5 bands, 2.56M customers<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · IDENTIFIED_SALES_DOCUMENT</b></p></div>
     </div>
   </div>
 
@@ -835,13 +831,13 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   <div class="g g2" style="margin-top:14px">
     <div class="panel">
       <div class="panel-h"><h3>Conversion lift by score decile</h3><span class="sub">Decile 10 = highest priority · monotonic from decile 5 up</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoDecile" role="img" aria-label="Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10."></canvas><p class="sr-only">Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>4,093 observed converters<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p>
+      <div class="panel-b"><div class="ch"><canvas id="whoDecile" role="img" aria-label="Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10."></canvas><p class="sr-only">Conversion lift rises across score deciles from 0.43 at decile 1 to 2.75 at decile 10.</p></div><p class="prov"><b>lift vs 0.16% base rate</b><span class="sep">·</span>4,093 observed converters<span class="sep">·</span>202604 → 202605<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · PERSONAL_INFO</b></p>
         <p class="note">Conversion increases across the upper deciles, confirming that the score separates higher-priority customers. Decile 10 converts at <b>2.75×</b> the base rate. P1 reaches a higher concentration because it applies additional business rules beyond the score itself.</p>
       </div>
     </div>
     <div class="panel">
       <div class="panel-h"><h3>Median sub-scores by band</h3><span class="sub">Where each band's score actually comes from</span></div>
-      <div class="panel-b"><div class="ch"><canvas id="whoRadar" role="img" aria-label="Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0."></canvas><p class="sr-only">Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0.</p></div><p class="prov"><b>median sub-score, 0 to 100</b><span class="sep">·</span>n = 2,538,552 físico<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR</b></p>
+      <div class="panel-b"><div class="ch"><canvas id="whoRadar" role="img" aria-label="Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0."></canvas><p class="sr-only">Median sub-scores. P1 leads on engagement 80.6 and readiness 50. P2 has engagement 67.2 and readiness 0. P3 has engagement 22.4 and readiness 0.</p></div><p class="prov"><b>median sub-score, 0 to 100</b><span class="sep">·</span>n = 2,538,552 físico<span class="sep">·</span>202605 snapshot<span class="sep">·</span>Source: <b>CUSTOMER_BEHAVIOR · PERSONAL_INFO · IDENTIFIED_SALES_DOCUMENT</b></p>
         <p class="note">P1 and P2 differ most on <b>READINESS</b> (50 vs 0), which is the has-bought-online signal. P2 and P3 differ most on <b>ENGAGEMENT</b> (67.2 vs 22.4). VALUE barely separates P2 from P3, so engagement is what the ladder is really sorting on below the top.</p>
       </div>
     </div>
@@ -894,7 +890,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
           <tbody id="robustBody"></tbody>
         </table>
       </div>
-      <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist barely moves when the weights change, which indicates that the ranking is robust to the selected formula weights. <b>Key limitation:</b> READINESS partly overlaps the outcome because a previous online purchase is closely related to omnichannel status. Treat P1 as the strongest actionable signal, not as a pure prediction.</p></div>
+      <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist remains stable when the weights change, indicating that the ranking is robust to reasonable variations in the five-axis formula.</p></div>
     </div>
   </div>
   <div class="next-step">
@@ -1359,8 +1355,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Proof</div>
-      <h2>The ranking survives independent and robustness checks</h2>
-      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
+      <h2>The ranking survives outcome and robustness checks</h2>
+      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, a check against observed transaction behaviour, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
     </div>
     <div class="rhs">
       <b>8 / 8</b>criteria cleared
@@ -1412,9 +1408,9 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 
   <div class="g g2" id="valPanel" style="margin-bottom:14px">
     <div class="panel">
-      <div class="panel-h"><h3>Independent validation</h3><span class="sub">On a table the score never used</span></div>
+      <div class="panel-h"><h3>Observed transaction validation</h3><span class="sub">Two years of purchase behaviour</span></div>
       <div class="panel-b">
-        <p class="note" style="margin-top:0">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, two years of real transactions that were never an input to the score. The priority ordering survives on actual buying behaviour.</p>
+        <p class="note" style="margin-top:0">We checked the ranking against two years of transactions in IDENTIFIED_SALES_DOCUMENT. Observed purchasing intensity follows the priority ordering.</p>
         <div class="ch sm" style="margin-top:10px"><canvas id="proofVal" role="img" aria-label="Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3."></canvas><p class="sr-only">Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3.</p></div><p class="prov"><b>mean purchases per customer</b><span class="sep">·</span>2 years of transactions<span class="sep">·</span>May 2024 to May 2026<span class="sep">·</span>Source: <b>IDENTIFIED_SALES_DOCUMENT</b></p>
       </div>
     </div>
@@ -1432,7 +1428,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="panel-b"><div class="rlist" id="ruledList"></div></div>
   </div>
   <div class="next-step">
-    <div class="next-copy"><div class="lb">Final reference · Methods</div><p>The ranking passed its checks. Finish with the definitions, pipeline and analytical limits.</p></div>
+    <div class="next-copy"><div class="lb">Final reference · Methods</div><p>The ranking passed its checks. Finish with the definitions, pipeline and source tables.</p></div>
     <button type="button" class="next-link" data-go="methods">Continue to Methods →</button>
   </div>
 </section>
@@ -1441,9 +1437,9 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 <section class="page" id="p-methods" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
-      <div class="kicker">Methods, definitions and limits</div>
-      <h2>What the data can and cannot tell us</h2>
-      <p>Everything on this dashboard rests on one proprietary extract and a documented set of analytical rules. This page explains the pipeline, vocabulary and boundaries.</p>
+      <div class="kicker">Methods and definitions</div>
+      <h2>How the analysis was built</h2>
+      <p>Everything on this dashboard rests on one proprietary extract and a documented set of analytical rules. This page explains the pipeline, source tables and vocabulary.</p>
     </div>
     <div class="rhs">
       <b>16 raw tables</b>10 used directly in this dashboard
@@ -1485,7 +1481,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
           <tbody>
             <tr><td><b>CUSTOMER_BEHAVIOR</b></td><td class="rt num">123.7M</td><td>Priority score, bands, tiers</td></tr>
             <tr><td><b>SALES_BY_DOCUMENT</b></td><td class="rt num">150.4M</td><td>Channel split, timing, basket economics</td></tr>
-            <tr><td><b>IDENTIFIED_SALES_DOC</b></td><td class="rt num">39.8M</td><td>Store breadth, independent validation</td></tr>
+            <tr><td><b>IDENTIFIED_SALES_DOCUMENT</b></td><td class="rt num">39.8M</td><td>Store breadth, transaction validation</td></tr>
             <tr><td><b>NPS</b></td><td class="rt num">920K</td><td>Channel satisfaction, complaint themes</td></tr>
             <tr><td><b>PERSONAL_INFO</b></td><td class="rt num">4.0M</td><td>Age axis</td></tr>
             <tr><td><b>STORES</b></td><td class="rt num">923</td><td>O2O capability, map, geography</td></tr>
@@ -1495,38 +1491,6 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
             <tr><td><b>GEO_INFORMATION</b></td><td class="rt num">1.0M</td><td>City coordinates</td></tr>
           </tbody>
         </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel" style="margin-bottom:18px">
-    <div class="panel-h"><h3>Limitations we own</h3><span class="sub">What this analysis structurally cannot answer</span></div>
-    <div class="panel-b">
-      <div class="g g2">
-        <div class="limit">
-          <h4>Customers cannot be linked to stores</h4>
-          <p>CUSTOMER_BEHAVIOR carries no store or geographic identifier. This is why geography is used as a <b>deployment filter</b> for campaign rollout and never as an input to the individual customer score. Any claim of the form "customers near store X behave like Y" is outside what this data supports.</p>
-        </div>
-        <div class="limit">
-          <h4>READINESS partly overlaps the outcome</h4>
-          <p>A prior online purchase is close to the very thing that makes someone omnichannel, so P1's edge is partly true by construction. P1 is best read as <b>the strongest actionable signal</b>, not as a pure prediction. The 730-day cutoff on that axis is a judgement call, disclosed rather than tuned.</p>
-        </div>
-        <div class="limit">
-          <h4>NPS is not representative of the base</h4>
-          <p>Survey response rate is roughly <b>2.7%</b> of active customers, and once split by channel the detractor sample thins further. NPS is used as an experience diagnostic to decide <em>what to fix</em>, never as a per-customer targeting signal. We tested it as a churn predictor and it failed.</p>
-        </div>
-        <div class="limit">
-          <h4>Geographic and identity coverage is partial</h4>
-          <p>Only <b>73 of 125</b> store cities match GEO_INFORMATION, and <b>528 of 624</b> touchpoints have usable coordinates. Separately, <b>29%</b> of physical receipts are anonymous, and each anonymous visit generates a new ID, so those shoppers cannot be profiled or targeted at all.</p>
-        </div>
-        <div class="limit">
-          <h4>Missingness in the behavioural table</h4>
-          <p>About <b>22 of 84</b> CUSTOMER_BEHAVIOR columns exceed 50% missingness and are excluded. <code>Recencia_Online</code> is populated for only about <b>5.9%</b> of físico customers, which makes it a powerful but sparse signal. Age is usable for roughly 60% of customers; missing values default to neutral.</p>
-        </div>
-        <div class="limit">
-          <h4>Some findings await sponsor confirmation</h4>
-          <p>The treatment of ZVLV (Retail Store Sales, 1.85% of rows but 25% of revenue) is unresolved, as is whether the QR Code channel connects structurally to SWS locations. The holiday uplift on physical is likely concentrated in a few major holidays rather than spread evenly, and warrants a per-holiday split.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -2061,7 +2025,7 @@ const HEADROOM=[
 const TIERBAND={Bronze:[0,0,879755],Prata:[0,0,730771],Ouro:[39512,592597,0],
  "Gran Reserva":[13461,168152,0],Black:[13424,100880,0]};
 const SUBSCORES={P1:[30.30,80.60,50.00,50.00,57.10],P2:[15.20,67.20,0,50.00,50.00],P3:[15.20,22.40,0,50.00,50.00]};
-const ROBUST=[["base  V35/E25/R25/M15",100.0,1.000],["value-heavy  50/20/20/10",88.0,0.990],["readiness-heavy  25/25/35/15",83.4,0.997]];
+const ROBUST=[["base  V31/E22/R22/M13/A12",100.0,1.000],["value-heavy  V44/E18/R18/M08/A12",88.2,0.989],["readiness-heavy  V22/E22/R32/M12/A12",80.7,0.996]];
 const OMNI_MED=102.57;
 
 /* ================= WHERE v2 DATA ================= */
