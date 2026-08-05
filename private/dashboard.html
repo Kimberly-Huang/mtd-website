@@ -8,14 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
-  />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<link rel="stylesheet" href="/vendor/leaflet.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="/vendor/leaflet.js"></script>
 <style>
 :root{
   --bg:#FFFFFF; --bg-2:#FBF8F4; --bg-3:#F3ECE3;
@@ -51,47 +46,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
   font:600 12px 'Inter',sans-serif;padding:5px 9px;cursor:pointer}
 .signout:hover{border-color:var(--line-2);color:var(--navy);background:var(--bg-2)}
 @media(max-width:520px){.top-context{display:none}.top-in{padding:0 18px}}
-
-/* ------added-----*/
-.how-channel-summary {
-    padding: 18px 22px;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-2);
-}
-
-.how-channel-summary p {
-    margin: 8px 0 0;
-}
-
-.how-channel-summary ul {
-    margin: 10px 0 12px 22px;
-    padding: 0;
-}
-
-.how-channel-summary li {
-    margin-bottom: 7px;
-    padding-left: 3px;
-}
-
-.how-channel-summary strong {
-    color: var(--navy);
-    font-weight: 700;
-}
-
-.how-summary-title {
-    margin-bottom: 2px;
-    color: var(--navy);
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.how-summary-subtitle {
-    margin-bottom: 10px;
-    color: var(--ink-3);
-    font-size: 12.5px;
-}
-
 
 /* ---------- TAB NAV (centered, sticky) ---------- */
 .tabnav{position:sticky;top:56px;z-index:690;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -212,62 +166,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 .tbl td b{color:var(--ink);font-weight:600}
 .tbl .rt{text-align:right}
 .tblwrap{overflow-x:auto}
-/* Worst online stores table */
-.worst-store-table {
-  min-width: 1180px;
-}
-
-.store-name-cell {
-  min-width: 180px;
-}
-
-.store-name-cell b {
-  display: block;
-  color: var(--navy);
-}
-
-.store-code {
-  display: block;
-  margin-top: 2px;
-  color: var(--ink-3);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11.5px;
-}
-
-.store-location {
-  min-width: 145px;
-}
-
-.store-reasons {
-  display: flex;
-  min-width: 390px;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.store-reason {
-  display: inline-block;
-  padding: 3px 7px;
-  border: 1px solid #EFCFC9;
-  border-radius: 3px;
-  background: var(--red-soft);
-  color: var(--red-deep);
-  font-size: 11.5px;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.worst-rate {
-  color: var(--red);
-  font-weight: 700;
-}
-
-.worst-store-empty {
-  padding: 26px;
-  color: var(--ink-3);
-  text-align: center;
-}
-
 .chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:.02em}
 .chip.pass{background:#EDF3EF;color:var(--teal)}
 .chip.new{background:#EDF1F7;color:var(--navy-3)}
@@ -333,10 +231,6 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sti
 ol.steps{margin:0;padding-left:20px;counter-reset:s}
 ol.steps li{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin-bottom:11px;padding-left:4px}
 ol.steps li b{color:var(--ink)}
-.limit{border-left:2px solid var(--line-2);padding-left:14px}
-.limit h4{font-size:14px;color:var(--ink)}
-.limit p{font-size:13px;color:var(--ink-3);margin-top:6px;line-height:1.65}
-.limit p b{color:var(--ink-2)}
 .gloss dl{margin:0}
 .gloss dt{font-size:13.5px;font-weight:600;color:var(--navy);margin-top:12px}
 .gloss dt:first-child{margin-top:0}
@@ -591,13 +485,13 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   <div class="tabnav-in">
     <div class="tabs" id="tabs" role="tablist" aria-label="Analysis sections">
       <button class="tab on" data-p="overview" role="tab" aria-controls="p-overview" aria-selected="true" tabindex="0">Overview</button>
-      <button class="tab" data-p="methods" role="tab" aria-controls="p-methods" aria-selected="false" tabindex="-1">Methods</button>
       <button class="tab" data-p="who" role="tab" aria-controls="p-who" aria-selected="false" tabindex="-1">Who</button>
       <button class="tab" data-p="what" role="tab" aria-controls="p-what" aria-selected="false" tabindex="-1">What</button>
       <button class="tab" data-p="how" role="tab" aria-controls="p-how" aria-selected="false" tabindex="-1">How</button>
       <button class="tab" data-p="when" role="tab" aria-controls="p-when" aria-selected="false" tabindex="-1">When</button>
       <button class="tab" data-p="where" role="tab" aria-controls="p-where" aria-selected="false" tabindex="-1">Where</button>
       <button class="tab" data-p="proof" role="tab" aria-controls="p-proof" aria-selected="false" tabindex="-1">Proof</button>
+      <button class="tab" data-p="methods" role="tab" aria-controls="p-methods" aria-selected="false" tabindex="-1">Methods</button>
     </div>
   </div>
 </nav>
@@ -996,7 +890,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
           <tbody id="robustBody"></tbody>
         </table>
       </div>
-      <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist remains stable when the weights change, indicating that the ranking is robust to reasonable alternative five-axis weighting schemes.</p></div>
+      <div class="panel-b tight"><p class="note" style="margin-top:0">The worklist remains stable when the weights change, indicating that the ranking is robust to reasonable variations in the five-axis formula.</p></div>
     </div>
   </div>
   <div class="next-step">
@@ -1095,13 +989,13 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   </div>
 </section>
 
-<!-- ================= HOW ================= -->
+<!-- ================= HOW & WHEN ================= -->
 <section class="page" id="p-how" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
       <div class="kicker">How to reach them</div>
-      <h2>Convert In-Store Shoppers Online: Combine Price Incentives with Pickup Fulfillment</h2>
-      <p>Before pushing volume online, we examined what actually goes wrong there. Online customers are dissatisfied primarily with logistics, while physical customers are more price-sensitive. Click &amp; Collect consistently outperforms the other fulfillment modes based on NPS. We therefore recommend a price-led offer to encourage physical customers to shop online for the first time, with pickup protecting that first experience by bypassing current delivery barriers.</p>
+      <h2>Click &amp; Collect removes the online risk customers complain about</h2>
+      <p>Before pushing volume online we examined what actually goes wrong there. Online complaints are logistics complaints, not product complaints, and one fulfilment mode consistently outperforms the rest.</p>
     </div>
     <div class="rhs">
       <b>181,042</b>survey comments analysed
@@ -1113,7 +1007,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="decision-copy">
       <div class="lb">Decision takeaway</div>
       <h3>Pair a price-led first-order offer with Click &amp; Collect.</h3>
-      <p>Use a price-led offer to encourage physical customers to shop online for the first time, then protect that first experience with pickup, bypassing the delivery barriers that dominate online detractor feedback.</p>
+      <p>The promotion creates trial; pickup protects that trial from the delivery delays that dominate online detractor feedback.</p>
     </div>
     <div class="decision-stats">
       <div class="decision-stat"><b class="num">+57.3</b><span>Click &amp; Collect NPS</span></div>
@@ -1123,12 +1017,12 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   </div>
 
   <div class="fstrip">
-    <div class="filter-scope"><b>Complaint chart</b><span>Updates commenter KPIs, chart and interpretation</span></div>
+    <div class="filter-scope"><b>Complaint chart</b><span>Updates commenter KPIs and theme chart</span></div>
     <div class="fgrp">
       <span class="lbl">Comment set</span>
       <div class="pills" id="fComment">
-        <button data-v="det" class="on">Detractors only (≤6)</button>
-        <button data-v="all">All comments</button>
+        <button data-v="all" class="on">All comments</button>
+        <button data-v="det">Detractors only (≤6)</button>
       </div>
     </div>
     <div class="fgrp">
@@ -1139,8 +1033,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="fgrp">
       <span class="lbl">Themes</span>
       <div class="pills" id="fTheme">
-        <button data-v="neg" class="on">Complaints only</button>
-        <button data-v="all">All</button>
+        <button data-v="all" class="on">All</button>
+        <button data-v="neg">Complaints only</button>
         <button data-v="top5">Top 5 gaps</button>
       </div>
     </div>
@@ -1148,55 +1042,36 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   </div>
 
   <div class="g g4" style="margin-bottom:14px">
-    <div class="metric">
-      <div class="k" id="mLFLabel">Physical detractors</div>
-      <div class="v num teal" id="mLF">13,541</div>
-      <div class="s" id="mLFs">8.6% of physical commenters</div>
-    </div>
-    <div class="metric">
-      <div class="k" id="mLOLabel">Online detractors</div>
-      <div class="v num" style="color:var(--amber)" id="mLO">4,601</div>
-      <div class="s" id="mLOs">18.9% of online commenters</div>
-    </div>
+    <div class="metric"><div class="k">Physical NPS · commenters</div><div class="v num teal" id="mLF">+70.7</div><div class="s" id="mLFs">156,695 written comments</div></div>
+    <div class="metric"><div class="k">Online NPS · commenters</div><div class="v num" style="color:var(--amber)" id="mLO">+47.3</div><div class="s" id="mLOs">24,347 written comments</div></div>
     <div class="metric"><div class="k">Omni self-comparison</div><div class="v num red">−5.5 pt</div><div class="s">Same customers rate physical 81.5 and online 76.0</div></div>
     <div class="metric"><div class="k">Basket-size effect</div><div class="v num red">−6.6 pt</div><div class="s">Online NPS falls fastest on the largest baskets</div></div>
   </div>
 
   <div class="panel" style="margin-bottom:14px">
-    <div class="panel-h">
-      <h3 id="themeTitle">What drives dissatisfaction</h3>
-      <span class="sub" id="themeSub">Theme share among detractors (score ≤ 6)</span>
-    </div>
-    <div class="panel-b">
-      <div class="ch xl">
-        <canvas id="howTheme" role="img" aria-label="Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality."></canvas>
-        <p class="sr-only">Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality.</p>
-      </div>
-      <p class="prov"><b>% share of comments</b><span class="sep">·</span>n = 181,042 written comments<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p>
-      <div id="howChannelSummary" class="how-channel-summary" aria-live="polite"></div>
+    <div class="panel-h"><h3 id="themeTitle">What customers complain about</h3><span class="sub" id="themeSub">Theme share by channel, all comments</span></div>
+    <div class="panel-b"><div class="ch xl"><canvas id="howTheme" role="img" aria-label="Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality."></canvas><p class="sr-only">Complaint theme share by channel. Online is dominated by delivery delay and app issues; physical by pricing and product quality.</p></div><p class="prov"><b>% share of comments</b><span class="sep">·</span>n = 181,042 written comments<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p>
+      <p class="note"><b>Which NPS figure applies.</b> This page measures the <b>commenting</b> population: the 181,042 survey responses that carried written text, which is the only subset where themes can be extracted. Across <em>all</em> 920,127 responses the scores are higher, physical <b>+86.8</b> and online <b>+77.1</b>, because the detractor rate among commenters is 8.6% versus 2.8% overall, roughly 3× higher. People who take the trouble to write are disproportionately the unhappy ones. Both figures are correct for their own population; the ranking of channels is the same either way, and online trails physical in both.</p>
     </div>
   </div>
 
   <div class="g g23">
     <div class="panel">
       <div class="panel-h"><h3>Pickup beats every delivery mode</h3><span class="sub">NPS and detractor rate by fulfilment modality</span></div>
-      <div class="panel-b">
-        <div class="ch">
-          <canvas id="howMod" role="img" aria-label="NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors."></canvas>
-          <p class="sr-only">NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors.</p>
-        </div>
-        <p class="prov"><b>NPS points and detractor %</b><span class="sep">·</span>online orders only<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p>
-      </div>
+      <div class="panel-b"><div class="ch"><canvas id="howMod" role="img" aria-label="NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors."></canvas><p class="sr-only">NPS by fulfilment mode: Click and collect plus 57.3 with 14.6 percent detractors, down to 2-day delivery plus 33.8 with 20.9 percent detractors.</p></div><p class="prov"><b>NPS points and detractor %</b><span class="sep">·</span>online orders only<span class="sep">·</span>25-month panel<span class="sep">·</span>Source: <b>NPS</b></p></div>
     </div>
     <div>
       <div class="callout" style="margin-bottom:14px">
         <div class="lb">Recommended intervention</div>
         <h3>Click &amp; Collect: +57.3 NPS, lowest detractor rate</h3>
-        <p>“Retire na Loja” is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it brings customers into a store where Swift controls the experience.</p>
+        <p>"Retire na Loja" is online's best-liked mode and it is exactly the O2O behaviour we want to grow. It sidesteps the delivery complaints that dominate online detractors, and it brings customers into a store where Swift controls the experience.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h3>Physical pain is the way in</h3><span class="sub">Detractor themes, physical vs online</span></div>
+        <div class="panel-b" id="painBox"></div>
       </div>
     </div>
   </div>
-
   <div class="panel" style="margin-top:14px">
     <div class="panel-h"><h3>The lowest-friction conversion path</h3><span class="sub">Turns untrackable SWS footfall into a CRM contact and a first online order</span></div>
     <div class="panel-b">
@@ -1210,7 +1085,6 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
       <p class="note">Each step draws on a separate finding: QR satisfaction, the CPF identification gap, pricing complaints, store proximity and the NPS ranking by fulfilment mode. Together, these findings support the proposed journey.</p>
     </div>
   </div>
-
   <div class="next-step">
     <div class="next-copy"><div class="lb">Next insight · When</div><p>The mechanic is credible. Next, place it in the strongest activation window.</p></div>
     <button type="button" class="next-link" data-go="when">Continue to When →</button>
@@ -1470,46 +1344,6 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
       <p class="note" style="margin-top:0">A small gap means the online experience is already decent, so push conversion harder there. A large gap means online lags badly and operations should be fixed first. The worst online detractor rates are all in SP Capital: <b>Tutóia 40.2%</b>, <b>Vila Mariana 35.7%</b>, <b>Clodomiro 34.9%</b>, which gives the sponsor named locations to fix rather than a general recommendation.</p>
     </div>
   </div>
-
-  <!-- Worst 20 online stores -->
-  <div class="panel" style="margin-top:14px">
-    <div class="panel-h">
-      <h3>Worst 20 Online Stores</h3>
-
-      <span class="sub" id="worstStoreCount">
-      Ranked by online detractor rate
-    </span>
-    </div>
-
-    <div class="tblwrap">
-      <table class="tbl worst-store-table">
-        <thead>
-        <tr>
-          <th class="rt">Rank</th>
-          <th>Store</th>
-          <th>Location</th>
-          <th class="rt">Written comments</th>
-          <th class="rt">Detractors</th>
-          <th class="rt">Detractor rate</th>
-          <th class="rt">Online NPS</th>
-          <th>Primary reasons for dissatisfaction</th>
-        </tr>
-        </thead>
-
-        <tbody id="worstStoreBody"></tbody>
-      </table>
-    </div>
-
-    <div class="panel-b tight">
-      <p class="note" style="margin-top:0">
-        Stores are ranked using the online detractor rate in the supplied
-        store-level NPS file. Complaint percentages show the leading themes
-        found among each store's online detractor comments. Use this list as
-        an operational improvement queue before increasing online demand.
-      </p>
-    </div>
-  </div>
-
   <div class="next-step">
     <div class="next-copy"><div class="lb">Next insight · Proof</div><p>The rollout is defined. Next, test whether the evidence is strong enough to act on.</p></div>
     <button type="button" class="next-link" data-go="proof">Continue to Proof →</button>
@@ -1521,8 +1355,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
   <div class="phead">
     <div class="lhs">
       <div class="kicker">Proof</div>
-      <h2>The ranking survives independent and robustness checks</h2>
-      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, an independent check on a table the score never used, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
+      <h2>The ranking survives outcome and robustness checks</h2>
+      <p>A strategy is only as good as the tests it survived. Below are the floors set before results were seen, a check against observed transaction behaviour, and the hypotheses we killed. Each figure traces to a named notebook cell and re-runs on a fresh monthly extract without code changes.</p>
     </div>
     <div class="rhs">
       <b>8 / 8</b>criteria cleared
@@ -1574,9 +1408,9 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 
   <div class="g g2" id="valPanel" style="margin-bottom:14px">
     <div class="panel">
-      <div class="panel-h"><h3>Independent validation</h3><span class="sub">On a table the score never used</span></div>
+      <div class="panel-h"><h3>Observed transaction validation</h3><span class="sub">Two years of purchase behaviour</span></div>
       <div class="panel-b">
-        <p class="note" style="margin-top:0">We re-checked the ranking against IDENTIFIED_SALES_DOCUMENT, two years of real transactions that were never an input to the score. The priority ordering survives on actual buying behaviour.</p>
+        <p class="note" style="margin-top:0">We checked the ranking against two years of transactions in IDENTIFIED_SALES_DOCUMENT. Observed purchasing intensity follows the priority ordering.</p>
         <div class="ch sm" style="margin-top:10px"><canvas id="proofVal" role="img" aria-label="Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3."></canvas><p class="sr-only">Mean purchases per customer over two years: P1 22.8, P2 18.0, P3 4.3.</p></div><p class="prov"><b>mean purchases per customer</b><span class="sep">·</span>2 years of transactions<span class="sep">·</span>May 2024 to May 2026<span class="sep">·</span>Source: <b>IDENTIFIED_SALES_DOCUMENT</b></p>
       </div>
     </div>
@@ -1594,8 +1428,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     <div class="panel-b"><div class="rlist" id="ruledList"></div></div>
   </div>
   <div class="next-step">
-    <div class="next-copy"><div class="lb">Return to overview</div><p>Return to the executive summary and review the complete omnichannel activation strategy.</p></div>
-    <button type="button" class="next-link" data-go="overview">Return to Overview →</button>
+    <div class="next-copy"><div class="lb">Final reference · Methods</div><p>The ranking passed its checks. Finish with the definitions, pipeline and source tables.</p></div>
+    <button type="button" class="next-link" data-go="methods">Continue to Methods →</button>
   </div>
 </section>
 
@@ -1603,9 +1437,9 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
 <section class="page" id="p-methods" role="tabpanel" tabindex="0">
   <div class="phead">
     <div class="lhs">
-      <div class="kicker">Methods, definitions and limits</div>
-      <h2>What the data can and cannot tell us</h2>
-      <p>Everything on this dashboard rests on one proprietary extract and a documented set of analytical rules. This page explains the pipeline, vocabulary and boundaries.</p>
+      <div class="kicker">Methods and definitions</div>
+      <h2>How the analysis was built</h2>
+      <p>Everything on this dashboard rests on one proprietary extract and a documented set of analytical rules. This page explains the pipeline, source tables and vocabulary.</p>
     </div>
     <div class="rhs">
       <b>16 raw tables</b>10 used directly in this dashboard
@@ -1647,7 +1481,7 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
           <tbody>
             <tr><td><b>CUSTOMER_BEHAVIOR</b></td><td class="rt num">123.7M</td><td>Priority score, bands, tiers</td></tr>
             <tr><td><b>SALES_BY_DOCUMENT</b></td><td class="rt num">150.4M</td><td>Channel split, timing, basket economics</td></tr>
-            <tr><td><b>IDENTIFIED_SALES_DOC</b></td><td class="rt num">39.8M</td><td>Store breadth, independent validation</td></tr>
+            <tr><td><b>IDENTIFIED_SALES_DOCUMENT</b></td><td class="rt num">39.8M</td><td>Store breadth, transaction validation</td></tr>
             <tr><td><b>NPS</b></td><td class="rt num">920K</td><td>Channel satisfaction, complaint themes</td></tr>
             <tr><td><b>PERSONAL_INFO</b></td><td class="rt num">4.0M</td><td>Age axis</td></tr>
             <tr><td><b>STORES</b></td><td class="rt num">923</td><td>O2O capability, map, geography</td></tr>
@@ -1699,8 +1533,8 @@ footer{border-top:1px solid var(--line);background:var(--bg);padding:14px 0;marg
     </div>
   </div>
   <div class="next-step">
-    <div class="next-copy"><div class="lb">Next insight · Who</div><p>Continue to the customer prioritization framework and see which audiences should be activated first.</p></div>
-    <button type="button" class="next-link" data-go="who">Continue to Who →</button>
+    <div class="next-copy"><div class="lb">Return to the decision</div><p>Go back to the five-decision story and the two recommended pilots.</p></div>
+    <button type="button" class="next-link" data-go="overview">Return to Overview →</button>
   </div>
 </section>
 
@@ -1781,7 +1615,7 @@ const THEMES=[
  {t:'Delivery quality',lf:0.6,lo:9.8,dlf:1.9,dlo:15.0,neg:true},
  {t:'Missing / wrong item',lf:1.0,lo:2.9,dlf:1.2,dlo:6.5,neg:true},
  {t:'Payment / billing',lf:4.7,lo:5.9,dlf:13.2,dlo:10.4,neg:true},
- {t:'Stock / availability',lf:12.0,lo:12.2,dlf:19.2,dlo:19.0,neg:true},
+ {t:'Stock / availability',lf:12.0,lo:12.2,dlf:19.0,dlo:18.7,neg:true},
  {t:'Positive / praise',lf:38.3,lo:37.7,dlf:29.6,dlo:27.6,neg:false},
  {t:'Product quality',lf:4.8,lo:3.8,dlf:24.0,dlo:8.3,neg:true},
  {t:'Store experience',lf:2.9,lo:0.7,dlf:5.4,dlo:1.3,neg:true},
@@ -1872,77 +1706,25 @@ function readURL(){
 }
 
 /* ================= TABS ================= */
-const PAGES=['overview','methods','who','what','how','when','where','proof'];
+const PAGES=['overview','who','what','how','when','where','proof','methods'];
 let CUR='overview';
-function go(p) {
-  if (!PAGES.includes(p)) {
-    return;
+function go(p){
+  if(!PAGES.includes(p))return;
+  CUR=p;
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('on',el.id==='p-'+p));
+  document.querySelectorAll('.tab').forEach(el=>{
+    const on=el.dataset.p===p;
+    el.classList.toggle('on',on);
+    el.setAttribute('aria-selected',on?'true':'false');
+    el.setAttribute('tabindex',on?'0':'-1');
+  });
+  const activeTab=document.querySelector(`.tab[data-p="${p}"]`),tabsEl=$('tabs');
+  if(activeTab&&tabsEl&&matchMedia('(max-width:640px)').matches){
+    tabsEl.scrollTo({left:activeTab.offsetLeft-(tabsEl.clientWidth-activeTab.offsetWidth)/2,behavior:'smooth'});
   }
-
-  CUR = p;
-
-  document.querySelectorAll('.page').forEach(el => {
-    el.classList.toggle(
-            'on',
-            el.id === `p-${p}`
-    );
-  });
-
-  document.querySelectorAll('.tab').forEach(el => {
-    const on = el.dataset.p === p;
-
-    el.classList.toggle('on', on);
-    el.setAttribute(
-            'aria-selected',
-            on ? 'true' : 'false'
-    );
-    el.setAttribute(
-            'tabindex',
-            on ? '0' : '-1'
-    );
-  });
-
-  const activeTab =
-          document.querySelector(
-                  `.tab[data-p="${p}"]`
-          );
-
-  const tabsElement = $('tabs');
-
-  if (
-          activeTab &&
-          tabsElement &&
-          matchMedia('(max-width:640px)').matches
-  ) {
-    tabsElement.scrollTo({
-      left:
-              activeTab.offsetLeft -
-              (
-                      tabsElement.clientWidth -
-                      activeTab.offsetWidth
-              ) / 2,
-      behavior: 'smooth'
-    });
-  }
-
-  scrollTo({
-    top: 0,
-    behavior: 'instant'
-  });
-
+  scrollTo({top:0,behavior:'instant'});
   syncURL();
-
-  if (p === 'where') {
-    setTimeout(() => {
-      initMap();
-
-      if (map) {
-        map.invalidateSize(true);
-        drawMap();
-      }
-    }, 120);
-  }
-
+  if(p==='where')setTimeout(()=>{initMap();map&&map.invalidateSize()},60);
   initCharts(p);
 }
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)go(b.dataset.p)});
@@ -2031,365 +1813,78 @@ pills('fTier',v=>{pTier=v;drawWhat()});
 pills('fBasket',v=>{pBasket=v;drawWhat()});
 
 /* ================= HOW ================= */
-let hComment='det',hTheme='neg';
-
+let hComment='all',hTheme='all';
 function themeRows(){
   let r=THEMES.slice();
-
-  if(hTheme==='neg'){
-    r=r.filter(t=>t.neg);
-  }
-
-  if(hTheme==='top5'){
-    r=r.slice().sort((a,b)=>
-      Math.abs(hComment==='det' ? b.dlo-b.dlf : b.lo-b.lf)-
-      Math.abs(hComment==='det' ? a.dlo-a.dlf : a.lo-a.lf)
-    ).slice(0,5);
-  }
-
+  if(hTheme==='neg')r=r.filter(t=>t.neg);
+  if(hTheme==='top5'){r=r.slice().sort((a,b)=>
+    Math.abs((hComment==='det'?b.dlo-b.dlf:b.lo-b.lf))-Math.abs((hComment==='det'?a.dlo-a.dlf:a.lo-a.lf))).slice(0,5)}
   return r;
 }
-
-function updateHowChannelSummary(){
-  const physicalCheckbox=$('cLF');
-  const onlineCheckbox=$('cLO');
-  const summaryBox=$('howChannelSummary');
-
-  if(!physicalCheckbox || !onlineCheckbox || !summaryBox){
-    return;
-  }
-
-  const showPhysical=physicalCheckbox.checked;
-  const showOnline=onlineCheckbox.checked;
-
-  if(hComment!=='det'){
-    summaryBox.innerHTML=`
-      <div class="how-summary-title">Interpretation shown for detractors</div>
-      <div class="how-summary-subtitle">Select “Detractors only (≤6)” to view the channel-specific dissatisfaction summary.</div>
-      <p>The chart is currently displaying all written comments, including promoters, passives and detractors.</p>
-    `;
-    return;
-  }
-
-  if(showPhysical && showOnline){
-    summaryBox.innerHTML=`
-      <div class="how-summary-title">What drives dissatisfaction</div>
-      <div class="how-summary-subtitle">Theme share among detractors (score ≤ 6)</div>
-      <p>Physical and online detractors complain about fundamentally different things. Physical complaints concentrate on in-store factors — <strong>Pricing (24.9%)</strong>, <strong>Product quality (24.0%)</strong>, <strong>Stock / availability (19.2%)</strong>, and <strong>Customer service (18.8%)</strong> — all things Swift controls at the shelf. Online complaints are dominated by logistics — <strong>Delivery delay (38.5%)</strong>, <strong>App / website friction (20.8%)</strong>, <strong>Stock / availability (19.0%)</strong>, and <strong>Delivery quality (15.0%)</strong>. The gap between channels is the strategic opening: the same customer who dislikes pricing in-store has no reason to fear the online experience if delivery is removed from the equation.</p>
-    `;
-    return;
-  }
-
-  if(showPhysical && !showOnline){
-    summaryBox.innerHTML=`
-      <div class="how-summary-title">Current Physical Barriers — Why physical customers haven't converted yet</div>
-      <p>Physical detractors are not complaining about the digital experience — they haven't tried it. Their frustration is entirely in-store:</p>
-      <ul>
-        <li><strong>Pricing (24.9%)</strong> — the #1 complaint; customers feel Swift is more expensive than alternatives.</li>
-        <li><strong>Product quality (24.0%)</strong> — freshness and in-store condition concerns.</li>
-        <li><strong>Stock / availability (19.2%)</strong> — items regularly out of stock.</li>
-        <li><strong>Customer service (18.8%)</strong> — staff responsiveness and knowledge.</li>
-      </ul>
-      <p>These are conversion levers, not barriers. A price-led first-order offer directly answers the top complaint, making the physical customer's grievance the reason to try online.</p>
-    `;
-    return;
-  }
-
-  if(!showPhysical && showOnline){
-    summaryBox.innerHTML=`
-      <div class="how-summary-title">Current Online Barriers — What stops converted customers from staying</div>
-      <p>Online detractors tell a single clear story: the product is fine, the logistics are not.</p>
-      <ul>
-        <li><strong>Delivery delay (38.5%)</strong> — arriving hours or days late, missed windows, cancellations.</li>
-        <li><strong>App / website (20.8%)</strong> — login issues, payment rejections, confusing navigation.</li>
-        <li><strong>Stock / availability (19.0%)</strong> — items shown online but unavailable at fulfillment.</li>
-        <li><strong>Delivery quality (15.0%)</strong> — arriving thawed, damaged, or wrong temperature.</li>
-      </ul>
-      <p>Click &amp; Collect eliminates the top two complaints entirely. The customer picks up in-store — no delivery window, no courier handoff. This is why Click &amp; Collect NPS (<strong>+57.3</strong>) leads every other fulfillment mode by a wide margin.</p>
-    `;
-    return;
-  }
-
-  summaryBox.innerHTML=`
-    <div class="how-summary-title">Select a channel</div>
-    <p>Select Physical, Online, or both channels to view the relevant detractor summary.</p>
-  `;
-}
-
 function drawHow(){
   const det=hComment==='det';
-
-  $('themeTitle').textContent=det
-    ? 'What drives dissatisfaction'
-    : 'What customers comment on';
-
-  $('themeSub').textContent=det
-    ? 'Theme share among detractors (score ≤ 6)'
-    : 'Theme share by channel, all comments';
-
-  if($('mLFLabel')){
-    $('mLFLabel').textContent=det
-      ? 'Physical detractors'
-      : 'Physical NPS · commenters';
-  }
-
-  $('mLF').textContent=det ? '13,541' : '+70.7';
-  $('mLFs').textContent=det
-    ? '8.6% of physical commenters'
-    : '156,695 written comments';
-
-  if($('mLOLabel')){
-    $('mLOLabel').textContent=det
-      ? 'Online detractors'
-      : 'Online NPS · commenters';
-  }
-
-  $('mLO').textContent=det ? '4,601' : '+47.3';
-  $('mLOs').textContent=det
-    ? '18.9% of online commenters'
-    : '24,347 written comments';
-
+  $('themeTitle').textContent=det?'What drives dissatisfaction':'What customers comment on';
+  $('themeSub').textContent=det?'Theme share among detractors (score ≤ 6)':'Theme share by channel, all comments';
+  $('mLF').textContent=det?'13,541':'+70.7';
+  $('mLFs').textContent=det?'physical detractors (8.6% of commenters)':'156,695 written comments';
+  $('mLO').textContent=det?'4,601':'+47.3';
+  $('mLOs').textContent=det?'online detractors (18.9% of commenters)':'24,347 written comments';
   const rows=themeRows();
   $('howCount').innerHTML=`Showing <b>${rows.length}</b> of ${THEMES.length} themes`;
-
-  if(CH.howTheme){
-    updHowChart();
-  }
-
-  updateHowChannelSummary();
+  const pain=[['Pricing',24.9,6.3],['Product quality',24.0,8.3],['Customer service',18.8,13.0],
+              ['Delivery delay',4.4,38.5],['App / website',4.6,20.8],['Delivery quality',1.9,15.0]];
+  $('painBox').innerHTML=pain.map(p=>{const mx=40;
+    return `<div class="painrow">
+      <div class="pl"><span class="painbar" style="width:${p[1]/mx*84}px;background:${NAVY2}"></span>
+        <b class="num" style="margin-left:6px">${p[1].toFixed(1)}%</b></div>
+      <div class="pc">${p[0]}</div>
+      <div class="pr"><b class="num" style="margin-right:6px">${p[2].toFixed(1)}%</b>
+        <span class="painbar" style="width:${p[2]/mx*84}px;background:${RED}"></span></div>
+    </div>`}).join('')
+    +`<p class="note"><span style="color:${NAVY2};font-weight:600">Physical</span> detractors complain about
+      price and product. <span style="color:${RED};font-weight:600">Online</span> detractors complain about
+      delivery and the app. That asymmetry is the opening: a price-led offer answers the physical customer's
+      actual grievance, and Click &amp; Collect removes the online one.</p>`;
+  if(CH.howTheme)updHowChart();
 }
-
-pills('fComment',v=>{
-  hComment=v;
-  drawHow();
-  syncURL();
-});
-
-pills('fTheme',v=>{
-  hTheme=v;
-  drawHow();
-  syncURL();
-});
-
-['cLF','cLO'].forEach(id=>{
-  const checkbox=$(id);
-  if(!checkbox)return;
-
-  checkbox.addEventListener('change',()=>{
-    drawHow();
-    syncURL();
-  });
-});
+pills('fComment',v=>{hComment=v;drawHow()});
+pills('fTheme',v=>{hTheme=v;drawHow()});
+['cLF','cLO'].forEach(id=>$(id).addEventListener('change',()=>{if(CH.howTheme)updHowChart();syncURL()}));
 
 /* ================= WHERE ================= */
 let wState='all';
 let map=null,lyL=null,lyS=null,lyR=null;
 const VIEWS={all:{c:[-22.5,-46.5],z:6},sp_metro:{c:[-23.55,-46.63],z:10},sp_capital:{c:[-23.56,-46.65],z:12},rj:{c:[-22.9,-43.2],z:10}};
 function storeSet(){return wState==='all'?STORES:STORES.filter(s=>s[6]===wState)}
-function initMap() {
-  const mapElement = $('map');
-
-  if (!mapElement) {
-    console.error('Map container #map was not found.');
-    return;
-  }
-
-  if (typeof L === 'undefined') {
-    console.error(
-            'Leaflet failed to load. Check the Leaflet CSS and JavaScript URLs.'
-    );
-    return;
-  }
-
-  if (map) {
-    map.invalidateSize(true);
-    return;
-  }
-
-  map = L.map('map', {
-    scrollWheelZoom: false,
-    minZoom: 4,
-    maxZoom: 14
-  }).setView(
-          VIEWS.all.c,
-          VIEWS.all.z
-  );
-
-  L.tileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          {
-            attribution:
-                    '&copy; OpenStreetMap contributors',
-            maxZoom: 19
-          }
-  ).addTo(map);
-
+function initMap(){
+  if(map||typeof L==='undefined')return;
+  map=L.map('map',{scrollWheelZoom:false,minZoom:4,maxZoom:14}).setView(VIEWS.all.c,VIEWS.all.z);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains:'abcd',
+    maxZoom:19
+  }).addTo(map);
   drawMap();
-
-  requestAnimationFrame(() => {
-    map.invalidateSize(true);
-  });
-
-  setTimeout(() => {
-    map.invalidateSize(true);
-  }, 200);
 }
-function drawMap() {
-  const set = storeSet();
-  const lojas = set.filter(store => store[2] === 1);
-  const sws = set.filter(store => store[2] === 0);
-
-  const total = set.length;
-  const coverage = total
-          ? (lojas.length / total * 100).toFixed(1)
-          : '0.0';
-
-  const msTotal = $('msTotal');
-  const msSplit = $('msSplit');
-  const msCov = $('msCov');
-  const whereCount = $('whereCount');
-
-  if (msTotal) {
-    msTotal.textContent = fmt(total);
+function drawMap(){
+  const set=storeSet(),lo=set.filter(s=>s[2]===1),sw=set.filter(s=>s[2]===0);
+  const t=set.length,cov=t?(lo.length/t*100).toFixed(1):'0.0';
+  $('msTotal').textContent=fmt(t);
+  $('msSplit').textContent=`${lo.length} LOJAS + ${sw.length} SWS`;
+  $('msCov').textContent=cov+'%';
+  $('whereCount').innerHTML=`Showing <b>${fmt(t)}</b> of ${STORES.length} plotted stores`;
+  if(map){
+    [lyL,lyS,lyR].forEach(l=>l&&map.removeLayer(l));
+    const mk=(a,c)=>L.layerGroup(a.map(s=>L.circleMarker([s[0],s[1]],
+      {radius:4,color:c,weight:1,fillColor:c,fillOpacity:.6})
+      .bindPopup(`<b>${s[3]}</b><br>${s[4]} · ${s[6]}<br><span style="color:${c}">${s[2]?'LOJAS · O2O enabled':'SWS · not O2O'}</span>`)));
+    lyL=mk(lo,'#213B58');lyS=mk(sw,'#B01B1B');
+    lyR=L.layerGroup(lo.map(s=>L.circle([s[0],s[1]],{radius:5000,color:'#213B58',weight:1,opacity:.2,fillOpacity:.04})));
+    if($('showLojas').checked)lyL.addTo(map);
+    if($('showSWS').checked)lyS.addTo(map);
+    if($('showRadius').checked)lyR.addTo(map);
   }
-
-  if (msSplit) {
-    msSplit.textContent =
-            `${lojas.length} LOJAS + ${sws.length} SWS`;
-  }
-
-  if (msCov) {
-    msCov.textContent = `${coverage}%`;
-  }
-
-  if (whereCount) {
-    whereCount.innerHTML =
-            `Showing <b>${fmt(total)}</b> of ${STORES.length} plotted stores`;
-  }
-
-  /*
-   * 只有地图已经初始化后，才更新Leaflet图层。
-   */
-  if (map && typeof L !== 'undefined') {
-    [lyL, lyS, lyR].forEach(layer => {
-      if (layer && map.hasLayer(layer)) {
-        map.removeLayer(layer);
-      }
-    });
-
-    const createMarkerLayer = (stores, color) => {
-      return L.layerGroup(
-              stores.map(store => {
-                const latitude = Number(store[0]);
-                const longitude = Number(store[1]);
-
-                if (
-                        !Number.isFinite(latitude) ||
-                        !Number.isFinite(longitude)
-                ) {
-                  return null;
-                }
-
-                return L.circleMarker(
-                        [latitude, longitude],
-                        {
-                          radius: 4,
-                          color: color,
-                          weight: 1,
-                          fillColor: color,
-                          fillOpacity: 0.65
-                        }
-                ).bindPopup(`
-            <b>${store[3]}</b><br>
-            ${store[4]} · ${store[6]}<br>
-            <span style="color:${color}">
-              ${
-                        store[2] === 1
-                                ? 'LOJAS · O2O enabled'
-                                : 'SWS · not O2O'
-                }
-            </span>
-          `);
-              }).filter(Boolean)
-      );
-    };
-
-    lyL = createMarkerLayer(
-            lojas,
-            '#213B58'
-    );
-
-    lyS = createMarkerLayer(
-            sws,
-            '#B01B1B'
-    );
-
-    lyR = L.layerGroup(
-            lojas
-                    .map(store => {
-                      const latitude = Number(store[0]);
-                      const longitude = Number(store[1]);
-
-                      if (
-                              !Number.isFinite(latitude) ||
-                              !Number.isFinite(longitude)
-                      ) {
-                        return null;
-                      }
-
-                      return L.circle(
-                              [latitude, longitude],
-                              {
-                                radius: 5000,
-                                color: '#213B58',
-                                weight: 1,
-                                opacity: 0.2,
-                                fillOpacity: 0.04
-                              }
-                      );
-                    })
-                    .filter(Boolean)
-    );
-
-    const showLojas = $('showLojas');
-    const showSWS = $('showSWS');
-    const showRadius = $('showRadius');
-
-    if (!showLojas || showLojas.checked) {
-      lyL.addTo(map);
-    }
-
-    if (!showSWS || showSWS.checked) {
-      lyS.addTo(map);
-    }
-
-    if (showRadius && showRadius.checked) {
-      lyR.addTo(map);
-    }
-
-    requestAnimationFrame(() => {
-      map.invalidateSize(true);
-    });
-  }
-
-  if (CH.whereState) {
-    updWhereChart();
-  }
-
-  /*
-   * Worst Store表格单独执行。
-   * 即使表格出错，也不影响地图。
-   */
-  try {
-    if (typeof drawWorstStores === 'function') {
-      drawWorstStores();
-    }
-  } catch (error) {
-    console.error(
-            'Failed to render the Worst 20 Stores table:',
-            error
-    );
-  }
+  if(CH.whereState)updWhereChart();
 }
 pills('fState',v=>{wState=v;drawMap();
   const z={all:'all',SP:'sp_metro',RJ:'rj',DF:'all',GO:'all'}[v];
@@ -2530,7 +2025,7 @@ const HEADROOM=[
 const TIERBAND={Bronze:[0,0,879755],Prata:[0,0,730771],Ouro:[39512,592597,0],
  "Gran Reserva":[13461,168152,0],Black:[13424,100880,0]};
 const SUBSCORES={P1:[30.30,80.60,50.00,50.00,57.10],P2:[15.20,67.20,0,50.00,50.00],P3:[15.20,22.40,0,50.00,50.00]};
-const ROBUST=[["base  31/22/22/13/12",100.0,1.000],["value-heavy  44/18/18/08/12",88.2,0.989],["readiness-heavy  22/22/32/12/12",80.7,0.996]];
+const ROBUST=[["base  V31/E22/R22/M13/A12",100.0,1.000],["value-heavy  V44/E18/R18/M08/A12",88.2,0.989],["readiness-heavy  V22/E22/R32/M12/A12",80.7,0.996]];
 const OMNI_MED=102.57;
 
 /* ================= WHERE v2 DATA ================= */
@@ -2562,348 +2057,7 @@ const SWSCITIES=[["Guarulhos",80,"12 SWS, only 3 LOJAS, massive anonymous traffi
  ["Osasco",71,"10 SWS, 4 LOJAS, metro SP"]];
 const PARTNERS=[["GPA",0.8,"Pilot the QR programme here first"],["Carrefour",1.4,"Pilot candidate"],
  ["Guanabara",8.3,"Too far, home delivery only"],["Cubatão",50.4,"Too far, home delivery only"]];
-const WORST_ONLINE_STORES = [
-  {
-    rank: 1,
-    code: 1294,
-    store: "TUTOIA",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 122,
-    detractors: 49,
-    avgScore: 6.3,
-    nps: 2.5,
-    detRate: 40.2,
-    reasons: [
-      "Delivery Delay (42.9%)",
-      "App / Website (20.4%)",
-      "Stock / Availability (14.3%)"
-    ]
-  },
-  {
-    rank: 2,
-    code: 5134,
-    store: "GILBERTO SALOMAO",
-    city: "BRASÍLIA",
-    state: "DF",
-    responses: 39,
-    detractors: 14,
-    avgScore: 6.9,
-    nps: 12.8,
-    detRate: 35.9,
-    reasons: [
-      "Delivery Delay (42.9%)",
-      "App / Website (28.6%)",
-      "Payment / Billing (14.3%)"
-    ]
-  },
-  {
-    rank: 3,
-    code: 779,
-    store: "VILA MARIANA 2",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 126,
-    detractors: 45,
-    avgScore: 6.3,
-    nps: 11.9,
-    detRate: 35.7,
-    reasons: [
-      "Delivery Delay (55.6%)",
-      "App / Website (17.8%)",
-      "Customer Service (17.8%)"
-    ]
-  },
-  {
-    rank: 4,
-    code: 5185,
-    store: "CLODOMIRO",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 152,
-    detractors: 53,
-    avgScore: 6.6,
-    nps: 14.5,
-    detRate: 34.9,
-    reasons: [
-      "Delivery Delay (41.5%)",
-      "App / Website (18.9%)",
-      "Stock / Availability (15.1%)"
-    ]
-  },
-  {
-    rank: 5,
-    code: 475,
-    store: "BROOKLIN",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 94,
-    detractors: 30,
-    avgScore: 6.9,
-    nps: 25.5,
-    detRate: 31.9,
-    reasons: [
-      "Delivery Delay (36.7%)",
-      "App / Website (33.3%)",
-      "Product Quality (10.0%)"
-    ]
-  },
-  {
-    rank: 6,
-    code: 1376,
-    store: "PERDIZES 2",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 181,
-    detractors: 57,
-    avgScore: 6.9,
-    nps: 22.1,
-    detRate: 31.5,
-    reasons: [
-      "Delivery Delay (38.6%)",
-      "Delivery Quality (15.8%)",
-      "Stock / Availability (15.8%)"
-    ]
-  },
-  {
-    rank: 7,
-    code: 5174,
-    store: "PERI PERI",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 136,
-    detractors: 42,
-    avgScore: 6.9,
-    nps: 25.0,
-    detRate: 30.9,
-    reasons: [
-      "Delivery Delay (47.6%)",
-      "App / Website (21.4%)",
-      "Delivery Quality (16.7%)"
-    ]
-  },
-  {
-    rank: 8,
-    code: 1278,
-    store: "MORUMBI",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 55,
-    detractors: 17,
-    avgScore: 6.9,
-    nps: 20.0,
-    detRate: 30.9,
-    reasons: [
-      "Delivery Delay (47.1%)",
-      "Product Quality (23.5%)",
-      "Delivery Quality (11.8%)"
-    ]
-  },
-  {
-    rank: 9,
-    code: 576,
-    store: "LEOPOLDINA",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 217,
-    detractors: 64,
-    avgScore: 7.2,
-    nps: 21.7,
-    detRate: 29.5,
-    reasons: [
-      "Delivery Delay (32.8%)",
-      "App / Website (21.9%)",
-      "Stock / Availability (15.6%)"
-    ]
-  },
-  {
-    rank: 10,
-    code: 1323,
-    store: "BORGES LAGOA",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 212,
-    detractors: 62,
-    avgScore: 7.1,
-    nps: 19.8,
-    detRate: 29.2,
-    reasons: [
-      "Delivery Delay (40.3%)",
-      "App / Website (17.7%)",
-      "Delivery Quality (14.5%)"
-    ]
-  },
-  {
-    rank: 11,
-    code: 868,
-    store: "SANTANA",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 110,
-    detractors: 32,
-    avgScore: 7.4,
-    nps: 33.6,
-    detRate: 29.1,
-    reasons: [
-      "Delivery Delay (37.5%)",
-      "App / Website (15.6%)",
-      "Stock / Availability (12.5%)"
-    ]
-  },
-  {
-    rank: 12,
-    code: 1380,
-    store: "VILLA LOBOS",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 238,
-    detractors: 69,
-    avgScore: 7.2,
-    nps: 25.2,
-    detRate: 29.0,
-    reasons: [
-      "Delivery Delay (30.4%)",
-      "App / Website (27.5%)",
-      "Delivery Quality (20.3%)"
-    ]
-  },
-  {
-    rank: 13,
-    code: 5119,
-    store: "AGUAS CLARAS",
-    city: "BRASÍLIA",
-    state: "DF",
-    responses: 90,
-    detractors: 26,
-    avgScore: 7.5,
-    nps: 26.7,
-    detRate: 28.9,
-    reasons: [
-      "Delivery Delay (34.6%)",
-      "App / Website (19.2%)",
-      "Product Quality (7.7%)"
-    ]
-  },
-  {
-    rank: 14,
-    code: 880,
-    store: "VILA ROMANA",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 52,
-    detractors: 15,
-    avgScore: 7.4,
-    nps: 30.8,
-    detRate: 28.8,
-    reasons: [
-      "Delivery Delay (66.7%)",
-      "Customer Service (20.0%)",
-      "Delivery Quality (13.3%)"
-    ]
-  },
-  {
-    rank: 15,
-    code: 1330,
-    store: "SERRA DE JAPI",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 67,
-    detractors: 19,
-    avgScore: 7.2,
-    nps: 25.4,
-    detRate: 28.4,
-    reasons: [
-      "Delivery Delay (42.1%)",
-      "Stock / Availability (31.6%)",
-      "Delivery Quality (26.3%)"
-    ]
-  },
-  {
-    rank: 16,
-    code: 1346,
-    store: "VILA ANDRADE",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 230,
-    detractors: 65,
-    avgScore: 7.2,
-    nps: 26.5,
-    detRate: 28.3,
-    reasons: [
-      "Delivery Delay (35.4%)",
-      "App / Website (23.1%)",
-      "Stock / Availability (15.4%)"
-    ]
-  },
-  {
-    rank: 17,
-    code: 570,
-    store: "BARAO ITAPURA",
-    city: "CAMPINAS",
-    state: "SP",
-    responses: 54,
-    detractors: 15,
-    avgScore: 7.4,
-    nps: 35.2,
-    detRate: 27.8,
-    reasons: [
-      "Delivery Delay (20.0%)",
-      "Product Quality (20.0%)",
-      "Missing / Wrong Item (20.0%)"
-    ]
-  },
-  {
-    rank: 18,
-    code: 5163,
-    store: "TAQUARI",
-    city: "BRASÍLIA",
-    state: "DF",
-    responses: 33,
-    detractors: 9,
-    avgScore: 7.5,
-    nps: 33.3,
-    detRate: 27.3,
-    reasons: [
-      "App / Website (33.3%)",
-      "Delivery Delay (22.2%)",
-      "Stock / Availability (22.2%)"
-    ]
-  },
-  {
-    rank: 19,
-    code: 5200,
-    store: "JUVENTUS",
-    city: "SÃO PAULO",
-    state: "SP",
-    responses: 77,
-    detractors: 21,
-    avgScore: 7.4,
-    nps: 28.6,
-    detRate: 27.3,
-    reasons: [
-      "Delivery Delay (42.9%)",
-      "Delivery Quality (19.0%)",
-      "App / Website (14.3%)"
-    ]
-  },
-  {
-    rank: 20,
-    code: 1266,
-    store: "RIB.PRETO INDEPENDENCIA",
-    city: "RIBEIRÃO PRETO",
-    state: "SP",
-    responses: 74,
-    detractors: 20,
-    avgScore: 7.5,
-    nps: 32.4,
-    detRate: 27.0,
-    reasons: [
-      "Delivery Delay (35.0%)",
-      "Delivery Quality (25.0%)",
-      "App / Website (20.0%)"
-    ]
-  }
-];
+const BADSTORES=[["Tutóia",40.2],["Vila Mariana",35.7],["Clodomiro",34.9]];
 
 /* ================= WHO v2 LOGIC ================= */
 let wTier='all';
@@ -2935,85 +2089,6 @@ pills('fTierW',v=>{wTier=v;drawWhoV2()});
 
 /* ================= WHERE v2 LOGIC ================= */
 let geoTier='all';
-
-function drawWorstStores() {
-  const body = $('worstStoreBody');
-  const count = $('worstStoreCount');
-
-  if (!body || !count) {
-    return;
-  }
-
-  const rows = wState === 'all'
-          ? WORST_ONLINE_STORES
-          : WORST_ONLINE_STORES.filter(store => store.state === wState);
-
-  count.innerHTML = `
-    Showing <b>${rows.length}</b> of
-    ${WORST_ONLINE_STORES.length} stores
-    ${wState === 'all' ? '· All Brazil' : `· ${wState}`}
-  `;
-
-  if (rows.length === 0) {
-    body.innerHTML = `
-      <tr>
-        <td colspan="8" class="worst-store-empty">
-          No stores from the supplied Top 20 list match the current
-          state filter.
-        </td>
-      </tr>
-    `;
-
-    return;
-  }
-
-  body.innerHTML = rows.map(store => `
-    <tr>
-      <td class="rt num">
-        <b>#${store.rank}</b>
-      </td>
-
-      <td class="store-name-cell">
-        <b>${store.store}</b>
-        <span class="store-code">Store code ${store.code}</span>
-      </td>
-
-      <td class="store-location">
-        ${store.city}<br>
-        <span style="color:var(--ink-3);font-size:12px">
-          ${store.state}
-        </span>
-      </td>
-
-      <td class="rt num">
-        ${fmt(store.responses)}
-      </td>
-
-      <td class="rt num">
-        ${fmt(store.detractors)}
-      </td>
-
-      <td class="rt num">
-        <span class="worst-rate">
-          ${store.detRate.toFixed(1)}%
-        </span>
-      </td>
-
-      <td class="rt num">
-        ${store.nps >= 0 ? '+' : ''}${store.nps.toFixed(1)}
-      </td>
-
-      <td>
-        <div class="store-reasons">
-          ${store.reasons.map(reason => `
-            <span class="store-reason">${reason}</span>
-          `).join('')}
-        </div>
-      </td>
-    </tr>
-  `).join('');
-}
-
 function drawGeo(){
   const rows=geoTier==='all'?GEOTIERS:GEOTIERS.filter(g=>g.t===+geoTier);
   $('geoList').innerHTML=rows.map(g=>`
