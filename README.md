@@ -11,13 +11,13 @@ A single-page application structured as a decision chain rather than a report. T
 | Section | Question | Key interactions |
 |---|---|---|
 | **Overview** | What should Swift do next? | Visual strategy roadmap, five-decision narrative, KPI baseline and two coordinated pilot plans |
+| **Methods** | How was it built? | Pipeline, source tables and glossary |
 | **Who** | Which customers to convert? | Band ladder drill-down, P2 split toggle, band sorting, local RFV-table highlight |
 | **What** | What do we say to them? | Persona playbook plus evidence-backed audience share and conversion lift |
 | **How** | How do we reach them? | Comment set (all vs detractors), channel toggles, theme filters |
 | **When** | When do we send? | Occasion, channel and year filters with explicit data-availability safeguards |
-| **Where** | Where do we deploy? | Contextual street map with state, store-type and radius controls; local rollout-tier filter |
+| **Where** | Where do we deploy? | Contextual street map, rollout controls and a Worst 20 online-store service queue |
 | **Proof** | Why trust it? | Success criteria, observed transaction validation, ruled-out hypotheses |
-| **Methods** | How was it built? | Pipeline, source tables and glossary |
 
 ## Tech stack
 
@@ -29,7 +29,7 @@ A single-page application structured as a decision chain rather than a report. T
 
 ## Implementation notes
 
-- **One narrative spine, not two modes.** Overview is the guided executive story; Who through Methods are the drill-down layers. Decision banners and next-section handoffs preserve the same logic across every tab without removing analytical depth.
+- **One narrative spine, not two modes.** Overview is the guided executive story; the remaining sections provide methods and decision-specific drill-downs. Decision banners and next-section handoffs preserve the same logic across every tab without removing analytical depth.
 - **Two analytically separate pilots.** The recommendation coordinates a customer-level CRM activation pilot with a geography-level store rollout, but does not claim a customer-to-store join that the source data cannot support.
 - **Server-enforced access.** Unauthenticated requests receive only the login document. The dashboard HTML is bundled inside a Vercel Function and is returned only after a signed session cookie is verified.
 - **Client-side filtering throughout.** 16 pill-group filters and 5 checkbox filters recompute charts, KPI cards and tables from in-memory data. No database connection or customer-level browser payload is required.
